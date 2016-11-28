@@ -9,5 +9,6 @@ public class CreateNewUserPage {
     public static final   String INPUT_EMAIL_ID="email";
     public static final   String SELECT_REGION_ID="regionID";
     public static final   String SELECT_ROLE_ID="roleID";
-
+    public static final   String BUTTON_CREATE_CSS="input[value=\"Create\"]";
+    public static final   String BUTTON_CANCEL_CSS="input[value=\"Cancel\"]";
 }

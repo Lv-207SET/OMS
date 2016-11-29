@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -21,7 +22,7 @@ public class CreateNewUserPage {
     private WebElement inputFirstName;
     private WebElement inputLastName;
     private WebElement inputPassword;
-    private WebElement inputComfirmPassword;
+    private WebElement inputConfirmPassword;
     private WebElement inputEmail;
     private Select selectRegion;
     private Select selectRole;
@@ -30,7 +31,16 @@ public class CreateNewUserPage {
 
     public CreateNewUserPage(WebDriver driver) {
         this.driver = driver;
-
+        this.inputLogin = driver.findElement(By.id(INPUT_LOGIN_ID));
+        this.inputFirstName = driver.findElement(By.id(INPUT_FIRST_NAME_ID));
+        this.inputLastName = driver.findElement(By.id(INPUT_LAST_NAME_ID));
+        this.inputPassword = driver.findElement(By.id(INPUT_PASSWORD_ID));
+        this.inputConfirmPassword = driver.findElement(By.id(INPUT_CONFIRM_PASSWORD_ID));
+        this.inputEmail = driver.findElement(By.id(INPUT_EMAIL_ID));
+        this.selectRegion = new Select(driver.findElement(By.id(SELECT_REGION_ID)));
+        this.selectRole = new Select(driver.findElement(By.id(SELECT_ROLE_ID)));
+        this.buttonCreate = driver.findElement(By.id(BUTTON_CREATE_CSS));
+        this.buttonCancel = driver.findElement(By.id(BUTTON_CANCEL_CSS));
     }
 
     public WebDriver getDriver() {
@@ -73,12 +83,12 @@ public class CreateNewUserPage {
         this.inputPassword = inputPassword;
     }
 
-    public WebElement getInputComfirmPassword() {
-        return inputComfirmPassword;
+    public WebElement getInputConfirmPassword() {
+        return inputConfirmPassword;
     }
 
-    public void setInputComfirmPassword(WebElement inputComfirmPassword) {
-        this.inputComfirmPassword = inputComfirmPassword;
+    public void setInputConfirmPassword(WebElement inputComfirmPassword) {
+        this.inputConfirmPassword = inputComfirmPassword;
     }
 
     public WebElement getInputEmail() {
@@ -121,7 +131,53 @@ public class CreateNewUserPage {
         this.buttonCancel = buttonCancel;
     }
 
-    public void createUser() {
+    public CreateNewUserPage setLogin(String login) {
+        getInputLogin().sendKeys(login);
+        return this;
+    }
 
+    public CreateNewUserPage setFirstName(String firstName) {
+        getInputFirstName().sendKeys(firstName);
+        return this;
+    }
+
+    public CreateNewUserPage setLastName(String lastName) {
+        getInputLastName().sendKeys(lastName);
+        return this;
+    }
+
+    public CreateNewUserPage setPassword(String password) {
+        getInputPassword().sendKeys(password);
+        return this;
+    }
+
+    public CreateNewUserPage setConfirmPassword(String password) {
+        getInputConfirmPassword().sendKeys(password);
+        return this;
+    }
+
+    public CreateNewUserPage setEmail(String email) {
+        getInputEmail().sendKeys(email);
+        return this;
+    }
+
+    public CreateNewUserPage selectRegion(String region) {
+        getSelectRegion().selectByValue(region);
+        return this;
+    }
+
+    public CreateNewUserPage selectRole(String role) {
+        getSelectRole().selectByValue(role);
+        return this;
+    }
+
+    public CreateNewUserPage createUser() {
+        buttonCreate.click();
+        return this;
+    }
+
+    public AdministrationPage cancel() {
+        buttonCancel.click();
+        return new AdministrationPage();
     }
 }

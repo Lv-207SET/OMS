@@ -13,12 +13,12 @@ public class UserInfoPage extends BasePage{
     private final String ADMINISTRATION_TAB_XPATH = "//*[@id=\"nav\"]/li[1]/a";
     private final String ORDERING_TAB_XPATH = "//*[@id=\"nav\"]/li[1]/a";
     private final String ITEM_MANAGEMENT_TAB_XPATH = "//*[@id=\"nav\"]/li[1]/a";
-    private  final WebDriver driver;
 
 
 
-    UserInfoPage (WebDriver driver){
-        this.driver = driver;
+
+   public UserInfoPage (WebDriver driver){
+        super(driver);
     }
 
     public String getFirstNameLabel() {
@@ -46,13 +46,13 @@ public class UserInfoPage extends BasePage{
     public AdministrationPage  clickOnAdministrationTab () {
         driver.findElement(By.xpath(ADMINISTRATION_TAB_XPATH))
                 .click();
-        return new AdministrationPage();
+        return new AdministrationPage(driver);
     }
 
     public ItemManagementPage clickOnItemManagementTab () {
         driver.findElement(By.xpath(ITEM_MANAGEMENT_TAB_XPATH))
                 .click();
-        return new ItemManagementPage();
+        return new ItemManagementPage(driver);
     }
 
     public OrderingPage clickOnOrderingTab () {

@@ -7,21 +7,33 @@ import org.openqa.selenium.WebElement;
 
 public abstract class BasePage {
 
-    protected WebDriver driver;
-
-    public BasePage(WebDriver driver) {
-        this.driver = driver;
-    }
-
     final private String LOGOUT_BUTTON_XPATH = ".//*[@id='logout']/img";
     final private String OMS_LABEL_XPATH = ".//*[@id='logo']/h1";
     final private String SIMPLE_SLIM_GENIUS_LABEL_XPATH = ".//*[@id='logo']/h2";
     final private String INSPIRED_BY_GOOGLE_LINK_XPATH = ".//*[@id='footer']/a";
     final private String LAST_UPDATE_LABEL_XPATH = ".//*[@id='footer']/p";
+    final private String USER_INFO_LINK_XPATH = ".//a[@href='userInfo.htm']";
+
+    protected WebDriver driver;
+    private WebElement linkUserInfo;
+
+    public BasePage(WebDriver driver) {
+        this.driver = driver;
+        this.linkUserInfo = driver.findElement(By.xpath(USER_INFO_LINK_XPATH));
+    }
+
+
+
+
 
     public void clickLogoutButton(){
          driver.findElement(By.xpath(LOGOUT_BUTTON_XPATH))
                  .click();
+    }
+
+    public UserInfoPage clickUserInfo(){
+        linkUserInfo.click();
+        return new UserInfoPage(driver);
     }
 
     public WebElement getOmsLabel(){

@@ -1,5 +1,6 @@
 package pages;
 
+import enums.FieldFilterSupervisor;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,24 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemManagementPage extends BasePage{
-
-    // enum for elements in dropdown list
-
-    public static enum ChangeFieldFilter {
-        NAME("Name"), DESCRIPTION("Description");
-
-        private String field;
-
-        private ChangeFieldFilter(String field) {
-            this.field = field;
-        }
-
-        @Override
-        public String toString() {
-            return this.field;
-        }
-    }
-
 
     public ItemManagementPage(WebDriver driver) {
         super(driver);
@@ -247,7 +230,7 @@ public class ItemManagementPage extends BasePage{
 
     //Set Elements
 
-    public void setChangeFieldFilter(ChangeFieldFilter fieldFilter) {
+    public void setChangeFieldFilter(FieldFilterSupervisor fieldFilter) {
         getChangeFieldFilter().selectByVisibleText(fieldFilter.toString());
     }
 

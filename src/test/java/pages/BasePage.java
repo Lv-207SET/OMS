@@ -15,8 +15,9 @@ public abstract class BasePage {
     final private String INSPIRED_BY_GOOGLE_LINK_XPATH= ".//*[@id='footer']/a";
     final private String LAST_UPDATE_LABEL_XPATH= ".//*[@id='footer']/p";
 
-    public WebElement getLogoutButton(){
-        return driver.findElement(By.xpath(LOGOUT_BUTTON_XPATH));
+    public void clickLogoutButton(){
+         driver.findElement(By.xpath(LOGOUT_BUTTON_XPATH))
+                 .click();
     }
 
     public WebElement getOmsLabel(){

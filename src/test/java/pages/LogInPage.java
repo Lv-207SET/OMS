@@ -42,7 +42,7 @@ public class LogInPage {
     public UserInfoPage clickLogInButton (){
         WebElement logInButton = driver.findElement(By.name(LOG_IN_BUTTON_NAME));
         logInButton.click();
-        return new UserInfoPage();
+        return new UserInfoPage(driver);
     }
 
     public String getErrorMessage() {

@@ -18,7 +18,7 @@ public abstract class AdminBasePage extends BasePage{
     public UserInfoPage clickOnUserInfoTab(){
         WebElement userInfoTab = driver.findElement(By.xpath(USERINFO_TAB_XPATH));
         userInfoTab.click();
-        return new UserInfoPage();
+        return new UserInfoPage(driver);
     }
 
 

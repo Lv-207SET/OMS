@@ -3,7 +3,7 @@
 <suite name="Task12 test suite">
     <test name="UI test" >
         <classes>
-            <class name="task12.WebDriverPracticeTest"/>
+            <class name="Test"/>
         </classes>
     </test>
 

@@ -15,7 +15,7 @@ public abstract class BasePage {
     final private String USER_INFO_LINK_XPATH = ".//a[@href='userInfo.htm']";
 
     protected WebDriver driver;
-    private WebElement linkUserInfo;
+    protected WebElement linkUserInfo;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;

@@ -29,4 +29,5 @@ public class AdministrationPage extends BasePage {
         selectDropdownList.selectByVisibleText("");
         return this;
     }
+
 }

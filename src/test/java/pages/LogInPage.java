@@ -12,6 +12,7 @@ public class LogInPage {
     final private String LOG_IN_BUTTON_NAME = "submit";
     final private String CANCEL_BUTTON_NAME = "reset";
     final private String ERROR_MESSAGE_XPATH = "//*[@id=\"edit\"]/fieldset/font";
+    final private String USER_INFO_TAB ="//*[@id=\"nav\"]/li[1]/a";
 
 
     public LogInPage (final WebDriver driver) {
@@ -48,6 +49,12 @@ public class LogInPage {
     public String getErrorMessage() {
         WebElement errorMessage = driver.findElement(By.name(ERROR_MESSAGE_XPATH));
         return  errorMessage.getText();
+    }
+
+    public UserInfoPage clickOnUserInfoTab () {
+        driver.findElement(By.xpath(USER_INFO_TAB))
+                .click();
+        return new UserInfoPage(driver);
     }
 
 }

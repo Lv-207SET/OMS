@@ -197,7 +197,7 @@ public class CreateNewUserPage {
 
     public AdministrationPage cancel() {
         buttonCancel.click();
-        return new AdministrationPage();
+        return new AdministrationPage(driver);
     }
 
     public String getErrorLogin() {

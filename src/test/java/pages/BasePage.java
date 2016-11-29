@@ -14,10 +14,10 @@ public abstract class BasePage {
     }
 
     final private String LOGOUT_BUTTON_XPATH = ".//*[@id='logout']/img";
-    final private String OMS_LABEL_XPATH= ".//*[@id='logo']/h1";
-    final private String SIMPLE_SLIM_GENIUS_LABEL_XPATH= ".//*[@id='logo']/h2";
-    final private String INSPIRED_BY_GOOGLE_LINK_XPATH= ".//*[@id='footer']/a";
-    final private String LAST_UPDATE_LABEL_XPATH= ".//*[@id='footer']/p";
+    final private String OMS_LABEL_XPATH = ".//*[@id='logo']/h1";
+    final private String SIMPLE_SLIM_GENIUS_LABEL_XPATH = ".//*[@id='logo']/h2";
+    final private String INSPIRED_BY_GOOGLE_LINK_XPATH = ".//*[@id='footer']/a";
+    final private String LAST_UPDATE_LABEL_XPATH = ".//*[@id='footer']/p";
 
     public void clickLogoutButton(){
          driver.findElement(By.xpath(LOGOUT_BUTTON_XPATH))

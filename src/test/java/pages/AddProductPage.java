@@ -7,12 +7,13 @@ import org.openqa.selenium.WebElement;
 public class AddProductPage extends BasePage {
 
     private WebDriver driver;
-    final static private String ADD_PRODUCT_LABEL_XPATH = "//*[@id='edit']/h3";
-    final static private String PRODUCT_NAME_INPUT_ID = "name";
-    final static private String PRODUCT_DESCRIPTION_TEXTAREA_ID = "description";
-    final static private String PRODUCT_PRICE_ID = "price";
-    final static private String OK_BUTTON_XPATH = "//*[@value='OK']";
-    final static private String CANCEL_BUTTON_XPATH = "//*[@value='Cancel']";
+    private final String ADD_PRODUCT_LABEL_XPATH = "//*[@id='edit']/h3";
+    private final String PRODUCT_NAME_INPUT_ID = "name";
+    private final String PRODUCT_DESCRIPTION_TEXTAREA_ID = "description";
+    private final String PRODUCT_PRICE_ID = "price";
+    private final String OK_BUTTON_XPATH = "//*[@value='OK']";
+    private final String CANCEL_BUTTON_XPATH = "//*[@value='Cancel']";
+    private final String ITEM_MANAGEMENT_TAB_XPATH = "//a[@href='itemManagement.htm']";
 
     public AddProductPage(WebDriver driver) {
         super(driver);
@@ -54,4 +55,9 @@ public class AddProductPage extends BasePage {
         return new ItemManagementPage(driver);
     }
 
+    public ItemManagementPage clickOnItemManagementTab () {
+        driver.findElement(By.xpath(ITEM_MANAGEMENT_TAB_XPATH))
+                .click();
+        return new ItemManagementPage(driver);
+    }
 }

@@ -17,6 +17,13 @@ public class CreateNewUserPage {
     public static final String BUTTON_CREATE_CSS = "input[value=\"Create\"]";
     public static final String BUTTON_CANCEL_CSS = "input[value=\"Cancel\"]";
 
+    public static final String ERROR_LOGIN_ID = "login.errors";
+    public static final String ERROR_FIRST_NAME_ID = "firstName.errors";
+    public static final String ERROR_LAST_NAME_ID = "lastName.errors";
+    public static final String ERROR_PASSWORD_ID = "password.errors";
+    public static final String ERROR_CONFIRM_PASSWORD_ID = "confirmPassword.errors";
+    public static final String ERROR_EMAIL_ID = "emailError";
+
     private WebDriver driver;
     private WebElement inputLogin;
     private WebElement inputFirstName;
@@ -28,6 +35,12 @@ public class CreateNewUserPage {
     private Select selectRole;
     private WebElement buttonCreate;
     private WebElement buttonCancel;
+    private WebElement errorLogin;
+    private WebElement errorFirstName;
+    private WebElement errorLastName;
+    private WebElement errorPassword;
+    private WebElement errorConfirmPassword;
+    private WebElement errorEmail;
 
     public CreateNewUserPage(WebDriver driver) {
         this.driver = driver;
@@ -132,31 +145,37 @@ public class CreateNewUserPage {
     }
 
     public CreateNewUserPage setLogin(String login) {
+        getInputLogin().clear();
         getInputLogin().sendKeys(login);
         return this;
     }
 
     public CreateNewUserPage setFirstName(String firstName) {
+        getInputFirstName().clear();
         getInputFirstName().sendKeys(firstName);
         return this;
     }
 
     public CreateNewUserPage setLastName(String lastName) {
+        getInputLastName().clear();
         getInputLastName().sendKeys(lastName);
         return this;
     }
 
     public CreateNewUserPage setPassword(String password) {
+        getInputPassword().clear();
         getInputPassword().sendKeys(password);
         return this;
     }
 
     public CreateNewUserPage setConfirmPassword(String password) {
+        getInputConfirmPassword().clear();
         getInputConfirmPassword().sendKeys(password);
         return this;
     }
 
     public CreateNewUserPage setEmail(String email) {
+        getInputEmail().clear();
         getInputEmail().sendKeys(email);
         return this;
     }
@@ -179,5 +198,36 @@ public class CreateNewUserPage {
     public AdministrationPage cancel() {
         buttonCancel.click();
         return new AdministrationPage();
+    }
+
+    public String getErrorLogin() {
+        errorLogin = driver.findElement(By.id(ERROR_LOGIN_ID));
+        return errorLogin.getText();
+
+    }
+
+    public String getErrorFirstName() {
+        errorFirstName = driver.findElement(By.id(ERROR_FIRST_NAME_ID));
+        return errorFirstName.getText();
+    }
+
+    public String getErrorLastName() {
+        errorLastName = driver.findElement(By.id(ERROR_LAST_NAME_ID));
+        return errorLastName.getText();
+    }
+
+    public String getErrorPassword() {
+        errorPassword = driver.findElement(By.id(ERROR_PASSWORD_ID));
+        return errorPassword.getText();
+    }
+
+    public String getErrorConfirmPassword() {
+        errorConfirmPassword = driver.findElement(By.id(ERROR_CONFIRM_PASSWORD_ID));
+        return errorConfirmPassword.getText();
+    }
+
+    public String getErrorEmail() {
+        errorEmail = driver.findElement(By.id(ERROR_EMAIL_ID));
+        return errorEmail.getText();
     }
 }

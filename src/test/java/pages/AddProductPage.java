@@ -14,15 +14,15 @@ public class AddProductPage extends BasePage {
     private final String OK_BUTTON_XPATH = "//*[@value='OK']";
     private final String CANCEL_BUTTON_XPATH = "//*[@value='Cancel']";
     private final String ITEM_MANAGEMENT_TAB_XPATH = "//a[@href='itemManagement.htm']";
+    private final String PRODUCT_NAME_ERROR_MESSAGE_ID = "productName.errors";
+    private final String PRODUCT_PRICE_ERROR_MESSAGE_ID = "productPrice.errors";
 
     public AddProductPage(WebDriver driver) {
         super(driver);
-        this.driver = driver;
     }
 
     public WebElement getAddProductLabel() {
-        return driver
-                .findElement(By.xpath(ADD_PRODUCT_LABEL_XPATH));
+        return driver.findElement(By.xpath(ADD_PRODUCT_LABEL_XPATH));
     }
 
     public void enterProductName(String productNameValue) {
@@ -43,6 +43,16 @@ public class AddProductPage extends BasePage {
         productPriceInput.sendKeys(productPriceValue);
     }
 
+    public String getProductNameErrorMessage() {
+        WebElement productNameErrorMessage = driver.findElement(By.id(PRODUCT_NAME_ERROR_MESSAGE_ID));
+        return productNameErrorMessage.getText();
+    }
+
+    public String getProductPriceErrorMessage() {
+        WebElement productPriceErrorMessage = driver.findElement(By.id(PRODUCT_PRICE_ERROR_MESSAGE_ID));
+        return productPriceErrorMessage.getText();
+    }
+
     public ItemManagementPage clickOkButton() {
         WebElement okButton = driver.findElement(By.xpath(OK_BUTTON_XPATH));
         okButton.click();
@@ -56,8 +66,7 @@ public class AddProductPage extends BasePage {
     }
 
     public ItemManagementPage clickOnItemManagementTab () {
-        driver.findElement(By.xpath(ITEM_MANAGEMENT_TAB_XPATH))
-                .click();
+        driver.findElement(By.xpath(ITEM_MANAGEMENT_TAB_XPATH)).click();
         return new ItemManagementPage(driver);
     }
 }

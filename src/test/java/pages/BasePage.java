@@ -9,6 +9,10 @@ public abstract class BasePage {
 
     private WebDriver driver;
 
+    public BasePage(WebDriver driver) {
+        this.driver = driver;
+    }
+
     final private String LOGOUT_BUTTON_XPATH = ".//*[@id='logout']/img";
     final private String OMS_LABEL_XPATH= ".//*[@id='logo']/h1";
     final private String SIMPLE_SLIM_GENIUS_LABEL_XPATH= ".//*[@id='logo']/h2";

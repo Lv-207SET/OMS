@@ -6,6 +6,7 @@ public enum ConditionFilterDropdownList {
     START_WITH("start with"),
     CONTAINS("contains"),
     DOES_NOT_CONTAIN("does not contain");
+
     private String nameOfConditionfilterField;
 
     ConditionFilterDropdownList(String nameOfConditionfilterField) {

@@ -74,7 +74,7 @@ public class AdministrationPage extends BasePage {
 // set condition filter on equals input login of desired user who should be deleted into
 // search text field and click search button
     public AdministrationPage deleteUserByLogin(final String login, boolean deleteUserOrNot){
-        this.selectFieldFilterDropdownList(FieldFilterDropdownList.USER_NAME)
+        this.selectFieldFilterDropdownList(FieldFilterDropdownList.LOGIN)
                 .selectConditionFilterDropdownList(ConditionFilterDropdownList.EQUALS)
                 .inputIntoSearchField(login)
                 .clickSearchButton();

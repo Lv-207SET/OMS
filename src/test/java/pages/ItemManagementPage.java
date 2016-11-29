@@ -234,11 +234,6 @@ public class ItemManagementPage extends BasePage{
         getChangeFieldFilter().selectByVisibleText(fieldFilter.toString());
     }
 
-    public void clickShowItemsLink(){
-        getShowItemsLink().click();
-        showFiveItems = !showFiveItems;
-    }
-
     public void clickFirstButton(){
          getFirstButton().click();
     }
@@ -267,22 +262,37 @@ public class ItemManagementPage extends BasePage{
         return new CreateReportPage(driver);
     }
 
+    public EditProductPage gotoEditProductPage(int index){
+        getListEditLinks().get(index).click();
+        return new EditProductPage(driver);
+    }
 
 
+    // functional
 
+    public void clickShowItemsLink(){
+        getShowItemsLink().click();
+        showFiveItems = !showFiveItems;
+    }
 
+    public void searchByName(String name){
+        setChangeFieldFilter(FieldFilterSupervisor.NAME);
+        getFieldFilterSelect().click();
+        getFieldFilterSelect().clear();
+        getFieldFilterSelect().sendKeys(name);
+        getSearchButton().click();
+    }
 
+    public void searchByDescription(String description){
+        setChangeFieldFilter(FieldFilterSupervisor.DESCRIPTION);
+        getFieldFilterSelect().click();
+        getFieldFilterSelect().clear();
+        getFieldFilterSelect().sendKeys(description);
+        getSearchButton().click();
+    }
 
-
-
-
-
-
-
-
-
-
-
-
+    public void deleteProduct(int index){
+        getListDeleteLinks().get(index).click();
+    }
 
 }

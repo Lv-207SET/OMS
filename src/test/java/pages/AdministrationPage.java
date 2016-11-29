@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.NoSuchElementException;
+
 /**
  * Class represents "Administration" page
  */
@@ -17,6 +19,7 @@ public class AdministrationPage extends BasePage {
     public static final String SELECT_CONDITION_FILTER_DROPDOWN_LIST = "//select[@id='condition']";
     public static final String SEACH_INPUT = "seachField";
     public static final String SEARCH_BUTTON = "input[value='Search']";
+    public static final String DELETE = "Delete";
 
     public AdministrationPage(final WebDriver driver) {
         super(driver);
@@ -67,15 +70,30 @@ public class AdministrationPage extends BasePage {
         return this;
     }
 
-// Delete user by login. Administrator set Fielsd filter on User Name,
+// Delete user by login. Administrator set Fields filter on User Name,
 // set condition filter on equals input login of desired user who should be deleted into
 // search text field and click search button
-    public AdministrationPage deleteUserByLogin(final String login){
+    public AdministrationPage deleteUserByLogin(final String login, boolean deleteUserOrNot){
         this.selectFieldFilterDropdownList(FieldFilterDropdownList.USER_NAME)
                 .selectConditionFilterDropdownList(ConditionFilterDropdownList.EQUALS)
                 .inputIntoSearchField(login)
                 .clickSearchButton();
+
+        try {
+            driver.findElement(By.linkText(DELETE)).click();
+            if (deleteUserOrNot) {
+                driver.switchTo().alert().accept();
+            } else {
+                driver.switchTo().alert().dismiss();
+            }
+        } catch (NoSuchElementException e) {
+            System.out.println("No user with such login found");
+        }
         return this;
     }
+
+//    Find user by login and return as java object in purpose to compare it with
+//    data in database
+
 
 }

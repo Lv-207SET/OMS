@@ -1,5 +1,6 @@
 package pages;
 
+import enums.SelectRoleDropdownListEnums;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -173,8 +174,8 @@ public class EditUserPage {
         return this;
     }
 
-    public EditUserPage selectRole(String role) {
-        getSelectRole().selectByValue(role);
+    public EditUserPage selectRole(SelectRoleDropdownListEnums role) {
+        getSelectRole().selectByValue(role.toString());
         return this;
     }
 

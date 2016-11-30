@@ -17,30 +17,30 @@ public class ItemManagementPage extends BasePage{
     private boolean showFiveItems = true;   // true - showing 5 items, false - showing 10 items in table
 
     //UI Mapping
-    private final String USER_INFO_TAB_XPATH = ".//*[@id='nav']/li[2]/a";
-    private final String PAGE_IS_APPOINTED_LABEL_XPATH = ".//*[@id='list']/h2";
-    private final String ADD_PRODUCT_LINK_XPATH = ".//*[@id='list']/a[1]";
-    private final String PRODUCTS_FOUND_LABEL_XPATH = ".//*[@id='list']/h4[1]";
-    private final String PRODUCTS_COUNT_LABEL_ID = "recordsFound";
-    private final String SEARCH_BY_LABEL_XPATH = ".//*[@id='list']/fieldset/legend";
-    private final String FIELD_FILTER_LABEL_XPATH = ".//*[@id='searchForm']/label";
-    private final String FIELD_FILTER_SELECT_ID = "field";
-    private final String SEARCH_FIELD_ID = "searchField";
-    private final String SEARCH_BUTTON_XPATH =  ".//*[@id='searchField']/following-sibling::input";
-    private final String SHOW_ITEMS_LINK_XPATH = ".//a[@href='itemManagement/resizeItemList.htm']";
-    private final String TABLE_NAME_LINK_XPATH =".//*[@id='table']/thead/tr/th[1]/a";
-    private final String TABLE_DESCRIPTION_LINK_XPATH =".//*[@id='table']/thead/tr/th[2]/a";
-    private final String TABLE_PRICE_LINK_XPATH =".//*[@id='table']/thead/tr/th[3]/a";
-    private final String TABLE_EDIT_LABEL_XPATH =".//*[@id='table']/thead/tr/th[4]";
-    private final String TABLE_DELETE_LABEL_XPATH =".//*[@id='table']/thead/tr/th[5]";
-    private final String FIRST_BUTTON_ID ="first";
-    private final String BACKWARD__BUTTON_ID ="previous";
-    private final String FORWARD__BUTTON_ID ="next";
-    private final String LAST__BUTTON_ID ="last";
-    private final String PAGE_LABEL_XPATH = ".//*[@id='list']/h4[2]";
-    private final String PAGE_NUMBER_LABEL_ID = "pageNumber";
-    private final String PAGE_COUNT_LABEL_ID = "pageCount";
-    private final String CREATE_REPORT_LINK_XPATH = ".//a[@href='reportItems.htm']";
+    private final static String USER_INFO_TAB_XPATH = ".//*[@id='nav']/li[2]/a";
+    private final static String PAGE_IS_APPOINTED_LABEL_XPATH = ".//*[@id='list']/h2";
+    private final static String ADD_PRODUCT_LINK_XPATH = ".//*[@id='list']/a[1]";
+    private final static String PRODUCTS_FOUND_LABEL_XPATH = ".//*[@id='list']/h4[1]";
+    private final static String PRODUCTS_COUNT_LABEL_ID = "recordsFound";
+    private final static String SEARCH_BY_LABEL_XPATH = ".//*[@id='list']/fieldset/legend";
+    private final static String FIELD_FILTER_LABEL_XPATH = ".//*[@id='searchForm']/label";
+    private final static String FIELD_FILTER_SELECT_ID = "field";
+    private final static String SEARCH_FIELD_ID = "searchField";
+    private final static String SEARCH_BUTTON_XPATH =  ".//*[@id='searchField']/following-sibling::input";
+    private final static String SHOW_ITEMS_LINK_XPATH = ".//a[@href='itemManagement/resizeItemList.htm']";
+    private final static String TABLE_NAME_LINK_XPATH =".//*[@id='table']/thead/tr/th[1]/a";
+    private final static String TABLE_DESCRIPTION_LINK_XPATH =".//*[@id='table']/thead/tr/th[2]/a";
+    private final static String TABLE_PRICE_LINK_XPATH =".//*[@id='table']/thead/tr/th[3]/a";
+    private final static String TABLE_EDIT_LABEL_XPATH =".//*[@id='table']/thead/tr/th[4]";
+    private final static String TABLE_DELETE_LABEL_XPATH =".//*[@id='table']/thead/tr/th[5]";
+    private final static String FIRST_BUTTON_ID ="first";
+    private final static String BACKWARD__BUTTON_ID ="previous";
+    private final static String FORWARD__BUTTON_ID ="next";
+    private final static String LAST__BUTTON_ID ="last";
+    private final static String PAGE_LABEL_XPATH = ".//*[@id='list']/h4[2]";
+    private final static String PAGE_NUMBER_LABEL_ID = "pageNumber";
+    private final static String PAGE_COUNT_LABEL_ID = "pageCount";
+    private final static String CREATE_REPORT_LINK_XPATH = ".//a[@href='reportItems.htm']";
 
     //get Elements
     public WebElement getUserInfoTab() {

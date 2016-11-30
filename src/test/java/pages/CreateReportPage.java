@@ -17,12 +17,12 @@ public class CreateReportPage extends BasePage{
         public static final String SELECT_CONDITION_ID = "condition";
         public static final String SEARCH_FIELD_ID = "searchField";
         public static final String SEARCH_BUTTON_NAME = "search";
-        public static final String SHOW_ITEMS_LINK_XPATH = ".//*[@id='list']/p/a";//CSS: #list p a  - redundant
-        public static final String FIRST_NAME_LINK_XPATH = ".//*[@id='list']/table/thead/tr/th[1]/a";//CSS: th:nth-child(1) a
-        public static final String LAST_NAME_LINK_XPATH = ".//*[@id='list']/table/thead/tr/th[2]/a";//CSS: th:nth-child(2) a
-        public static final String LOGIN_LINK_XPATH = ".//*[@id='list']/table/thead/tr/th[3]/a";//CSS: th:nth-child(3) a
-        public static final String ROLE_LINK_XPATH = ".//*[@id='list']/table/thead/tr/th[4]/a";//CSS: th:nth-child(4) a
-        public static final String REGION_LINK_XPATH = ".//*[@id='list']/table/thead/tr/th[5]/a";//CSS: th:nth-child(5) a
+        public static final String SHOW_ITEMS_LINK_CSS = "#list p a";
+        public static final String FIRST_NAME_LINK_CSS = "th:nth-child(1) a";
+        public static final String LAST_NAME_LINK_CSS = "th:nth-child(2) a";
+        public static final String LOGIN_LINK_CSS= "th:nth-child(3) a";
+        public static final String ROLE_LINK_CSS = "th:nth-child(4) a";
+        public static final String REGION_LINK_CSS = "th:nth-child(5) a";
         public static final String FIRST_BUTTON_ID = "first";
         public static final String BACKWARD_BUTTON_ID = "previous";
         public static final String FORWARD_BUTTON_ID = "next";
@@ -65,12 +65,12 @@ public class CreateReportPage extends BasePage{
             this.selectCondition  = new Select(driver.findElement(By.id(SELECT_CONDITION_ID)));
             this.inputSearchField = driver.findElement(By.id(SEARCH_FIELD_ID));
             this.buttonSearch = driver.findElement(By.name(SEARCH_BUTTON_NAME));
-            this.linkShowItems = driver.findElement(By.xpath(SHOW_ITEMS_LINK_XPATH));
-            this.linkFirstName = driver.findElement(By.xpath(FIRST_NAME_LINK_XPATH));
-            this.linkLastName = driver.findElement(By.xpath(LAST_NAME_LINK_XPATH));
-            this.linkLogin = driver.findElement(By.xpath(LOGIN_LINK_XPATH));
-            this.linkRole = driver.findElement(By.xpath(ROLE_LINK_XPATH));
-            this.linkRegion = driver.findElement(By.xpath(REGION_LINK_XPATH));
+            this.linkShowItems = driver.findElement(By.cssSelector(SHOW_ITEMS_LINK_CSS));
+            this.linkFirstName = driver.findElement(By.cssSelector(FIRST_NAME_LINK_CSS));
+            this.linkLastName = driver.findElement(By.cssSelector(LAST_NAME_LINK_CSS));
+            this.linkLogin = driver.findElement(By.cssSelector(LOGIN_LINK_CSS));
+            this.linkRole = driver.findElement(By.cssSelector(ROLE_LINK_CSS));
+            this.linkRegion = driver.findElement(By.cssSelector(REGION_LINK_CSS));
             this.buttonFirst = driver.findElement(By.id(FIRST_BUTTON_ID));
             this.buttonBackward = driver.findElement(By.id(BACKWARD_BUTTON_ID));
             this.buttonForward = driver.findElement(By.id(FORWARD_BUTTON_ID));
@@ -101,8 +101,6 @@ public class CreateReportPage extends BasePage{
             buttonSearch.click();
             return this;
         }
-
-//        public CreateReportPage sortByFirstNameASC(){
 
         public WebElement getSubHeader() {
             return subHeader;

@@ -11,8 +11,8 @@ public class LogInPage {
     final private String REMEMBER_ME_CHECKBOX_NAME = "_spring_security_remember_me";
     final private String LOG_IN_BUTTON_NAME = "submit";
     final private String CANCEL_BUTTON_NAME = "reset";
-    final private String ERROR_MESSAGE_XPATH = "//*[@id=\"edit\"]/fieldset/font";
-    final private String USER_INFO_TAB ="//*[@id=\"nav\"]/li[1]/a";
+    final private String ERROR_MESSAGE_XPATH = "//*[@id=\"edit\"]/fieldset/font";//??? do we really need this
+    final private String USER_INFO_TAB ="//*[@id=\"nav\"]/li[1]/a"; //you can use CSS: #nav a
 
 
     public LogInPage (final WebDriver driver) {

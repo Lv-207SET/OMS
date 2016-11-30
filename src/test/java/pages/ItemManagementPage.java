@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,11 +22,11 @@ public class ItemManagementPage extends BasePage{
     private final String ADD_PRODUCT_LINK_XPATH = ".//*[@id='list']/a[1]";
     private final String PRODUCTS_FOUND_LABEL_XPATH = ".//*[@id='list']/h4[1]";
     private final String PRODUCTS_COUNT_LABEL_ID = "recordsFound";
-    private final String  SEARCH_BY_LABEL_XPATH = ".//*[@id='list']/fieldset/legend";
-    private final String  FIELD_FILTER_LABEL_XPATH = ".//*[@id='searchForm']/label";
-    private final String  FIELD_FILTER_SELECT_ID = "field";
-    private final String  SEARCH_FIELD_ID = "searchField";
-    private final String  SEARCH_BUTTON_XPATH =  ".//*[@id='searchField']/following-sibling::input";
+    private final String SEARCH_BY_LABEL_XPATH = ".//*[@id='list']/fieldset/legend";
+    private final String FIELD_FILTER_LABEL_XPATH = ".//*[@id='searchForm']/label";
+    private final String FIELD_FILTER_SELECT_ID = "field";
+    private final String SEARCH_FIELD_ID = "searchField";
+    private final String SEARCH_BUTTON_XPATH =  ".//*[@id='searchField']/following-sibling::input";
     private final String SHOW_ITEMS_LINK_XPATH = ".//a[@href='itemManagement/resizeItemList.htm']";
     private final String TABLE_NAME_LINK_XPATH =".//*[@id='table']/thead/tr/th[1]/a";
     private final String TABLE_DESCRIPTION_LINK_XPATH =".//*[@id='table']/thead/tr/th[2]/a";
@@ -43,9 +42,7 @@ public class ItemManagementPage extends BasePage{
     private final String PAGE_COUNT_LABEL_ID = "pageCount";
     private final String CREATE_REPORT_LINK_XPATH = ".//a[@href='reportItems.htm']";
 
-
     //get Elements
-
     public WebElement getUserInfoTab() {
         return driver.findElement(By.xpath(USER_INFO_TAB_XPATH));
     }

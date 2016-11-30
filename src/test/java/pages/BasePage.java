@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-
 public abstract class BasePage {
 
     final private String LOGOUT_BUTTON_XPATH = ".//*[@id='logout']/img";
@@ -21,10 +20,6 @@ public abstract class BasePage {
         this.driver = driver;
         this.linkUserInfo = driver.findElement(By.xpath(USER_INFO_LINK_XPATH));
     }
-
-
-
-
 
     public void clickLogoutButton(){
          driver.findElement(By.xpath(LOGOUT_BUTTON_XPATH))

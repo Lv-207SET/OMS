@@ -30,7 +30,6 @@ public class CreateReportPage extends BasePage{
         public static final String PAGE_NUMBER_SPAN_ID = "pageNumber";
         public static final String PAGE_COUNT_SPAN_ID = "pageCount";
 
-
         private WebElement linkAdministrationPage;
         private WebElement subHeader;
         private WebElement linkSaveReport;
@@ -53,7 +52,6 @@ public class CreateReportPage extends BasePage{
         private WebElement buttonLast;
         private WebElement spanPageNumber;
         private WebElement spanPageCount;
-
 
         public CreateReportPage(WebDriver driver) {
             super(driver);
@@ -79,20 +77,12 @@ public class CreateReportPage extends BasePage{
             this.buttonLast = driver.findElement(By.id(LAST_BUTTON_ID));
             this.spanPageNumber = driver.findElement(By.id(PAGE_NUMBER_SPAN_ID));
             this.spanPageCount = driver.findElement(By.id(PAGE_COUNT_SPAN_ID));
-
-
-
-
-
         }
 
         AdministrationPage goToAdministrationPage(){
             linkAdministrationPage.click();
             return new AdministrationPage(driver);
         }
-
-
-
 
         //These methods could be chained
         public CreateReportPage selectField(String fieldOption){
@@ -113,25 +103,6 @@ public class CreateReportPage extends BasePage{
         }
 
 //        public CreateReportPage sortByFirstNameASC(){
-//
-//        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         public WebElement getSubHeader() {
             return subHeader;
@@ -216,10 +187,4 @@ public class CreateReportPage extends BasePage{
         public WebElement getSpanPageCount() {
             return spanPageCount;
         }
-
-
-
-
-
-
     }

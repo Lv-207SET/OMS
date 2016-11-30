@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class UserInfoPage extends BasePage{
     private final static String ENGLISH_LANGUAGE_LINK_ID = "en_US";
@@ -26,8 +25,8 @@ public class UserInfoPage extends BasePage{
         return driver.findElement(By.xpath(LAST_NAME_LABEL_XPATH)).getText();
     }
 
-    public WebElement getRoleLabel() {
-        return driver.findElement(By.xpath(ROLE_LABEL_XPATH));
+    public String getRoleLabel() {
+        return driver.findElement(By.xpath(ROLE_LABEL_XPATH)).getText();
     }
 
     public void changeToUkrainianLanguage () {

@@ -17,12 +17,12 @@ public class CreateReportPage extends BasePage{
         public static final String SELECT_CONDITION_ID = "condition";
         public static final String SEARCH_FIELD_ID = "searchField";
         public static final String SEARCH_BUTTON_NAME = "search";
-        public static final String SHOW_ITEMS_LINK_XPATH = ".//*[@id='list']/p/a";
-        public static final String FIRST_NAME_LINK_XPATH = ".//*[@id='list']/table/thead/tr/th[1]/a";
-        public static final String LAST_NAME_LINK_XPATH = ".//*[@id='list']/table/thead/tr/th[2]/a";
-        public static final String LOGIN_LINK_XPATH = ".//*[@id='list']/table/thead/tr/th[3]/a";
-        public static final String ROLE_LINK_XPATH = ".//*[@id='list']/table/thead/tr/th[4]/a";
-        public static final String REGION_LINK_XPATH = ".//*[@id='list']/table/thead/tr/th[5]/a";
+        public static final String SHOW_ITEMS_LINK_XPATH = ".//*[@id='list']/p/a";//CSS: #list p a  - redundant
+        public static final String FIRST_NAME_LINK_XPATH = ".//*[@id='list']/table/thead/tr/th[1]/a";//CSS: th:nth-child(1) a
+        public static final String LAST_NAME_LINK_XPATH = ".//*[@id='list']/table/thead/tr/th[2]/a";//CSS: th:nth-child(2) a
+        public static final String LOGIN_LINK_XPATH = ".//*[@id='list']/table/thead/tr/th[3]/a";//CSS: th:nth-child(3) a
+        public static final String ROLE_LINK_XPATH = ".//*[@id='list']/table/thead/tr/th[4]/a";//CSS: th:nth-child(4) a
+        public static final String REGION_LINK_XPATH = ".//*[@id='list']/table/thead/tr/th[5]/a";//CSS: th:nth-child(5) a
         public static final String FIRST_BUTTON_ID = "first";
         public static final String BACKWARD_BUTTON_ID = "previous";
         public static final String FORWARD_BUTTON_ID = "next";

@@ -1,7 +1,10 @@
 package pages;
 
+import database.UserEntity;
 import enums.ConditionFilterDropdownList;
 import enums.FieldFilterDropdownList;
+import enums.Region;
+import enums.Role;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,6 +23,7 @@ public class AdministrationPage extends BasePage {
     public static final String SEACH_INPUT = "seachField";
     public static final String SEARCH_BUTTON = "input[value='Search']";
     public static final String DELETE = "Delete";
+    public static final String GET_USER_BY_LOGIN = "//tr[1]/td[1]";
 
     public AdministrationPage(final WebDriver driver) {
         super(driver);
@@ -94,6 +98,23 @@ public class AdministrationPage extends BasePage {
 
 //    Find user by login and return as java object in purpose to compare it with
 //    data in database
+    public UserEntity getUserByLoginAndTransferToJavaObject(String login){
+        this.selectFieldFilterDropdownList(FieldFilterDropdownList.LOGIN)
+                .selectConditionFilterDropdownList(ConditionFilterDropdownList.EQUALS)
+                .inputIntoSearchField(login)
+                .clickSearchButton();
 
+        UserEntity user = null;
+            user = new UserEntity.Builder()
+                    .setFirstName(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText())
+                    .setLastName(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText())
+                    .setPassword(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText())
+                    .setLogin(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText())
+                    .setEmail(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText())
+                    .setRegion(Region.valueOf(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText()))
+                    .setRole(Role.valueOf(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText()))
+                    .build();
+        return user;
+    }
 
 }

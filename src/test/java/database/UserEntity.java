@@ -1,10 +1,11 @@
 package database;
 
 import enums.Region;
+import enums.Role;
 import enums.SelectRoleDropdownListEnums;
 
 /**
- * POJO class created in purpose to work with databases. With step builder.
+ * POJO class created in purpose to work with databases.
  */
 public class UserEntity {
     private String firstName;
@@ -13,7 +14,7 @@ public class UserEntity {
     private String login;
     private String email;
     private Region region;
-    private SelectRoleDropdownListEnums role;
+    private Role role;
 
     public UserEntity(Builder userEntityBuilder) {
         this.firstName = userEntityBuilder.firstName;
@@ -50,7 +51,7 @@ public class UserEntity {
         return region;
     }
 
-    public SelectRoleDropdownListEnums getRole() {
+    public Role getRole() {
         return role;
     }
 
@@ -61,7 +62,7 @@ public class UserEntity {
         private String login;
         private String email;
         private Region region;
-        private SelectRoleDropdownListEnums role;
+        private Role role;
 
         public Builder setEmail(String email) {
             this.email = email;
@@ -93,11 +94,12 @@ public class UserEntity {
             return this;
         }
 
-        public Builder setRole(SelectRoleDropdownListEnums role) {
+        public Builder setRole(Role role) {
             this.role = role;
             return this;
         }
-        UserEntity build(){
+
+        public UserEntity build(){
             return new UserEntity(this);
         }
 

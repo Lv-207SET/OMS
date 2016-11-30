@@ -12,7 +12,7 @@ public class UserInfoPage extends BasePage{
     private final String ROLE_LABEL_XPATH = "//tr[td = \"Role\"]/td[2]"; //fieldset tr:nth-child(4) td:last-child
     private final String ADMINISTRATION_TAB_XPATH = "//*[@id=\"nav\"]/li[1]/a";//CSS: #nav .cur a
     private final String ORDERING_TAB_XPATH = "//*[@id=\"nav\"]/li[1]/a"; //this Xpath is the same as ADM_tab. Is it ok?
-    private final String ITEM_MANAGEMENT_TAB_XPATH = "//*[@id=\"nav\"]/li[1]/a"//again
+    private final String ITEM_MANAGEMENT_TAB_XPATH = "//*[@id=\"nav\"]/li[1]/a";//again
 
    public UserInfoPage (WebDriver driver){
         super(driver);

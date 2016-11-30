@@ -5,7 +5,7 @@ public enum Role {
     ADMINISTRATOR("Administrator"),
     MERCHANDISER("Merchandiser"),
     SUPERVISOR("Supervisor"),
-    CUSTOMER("Customer");;
+    CUSTOMER("Customer");
 
     private String roleName;
 

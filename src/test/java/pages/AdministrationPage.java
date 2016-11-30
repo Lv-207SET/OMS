@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.NoSuchElementException;
 
 public class AdministrationPage extends BasePage {
@@ -171,8 +172,8 @@ public class AdministrationPage extends BasePage {
                     .setFirstName(tableCells.get(0).getText())
                     .setLastName(tableCells.get(1).getText())
                     .setLogin(tableCells.get(2).getText())
-                    .setRole(Role.valueOf(tableCells.get(3).getText()))
-                    .setRegion(Region.valueOf(tableCells.get(4).getText()))
+                    .setRole(Role.valueOf(tableCells.get(3).getText().toUpperCase(Locale.ENGLISH)))
+                    .setRegion(Region.valueOf(tableCells.get(4).getText().toUpperCase(Locale.ENGLISH)))
                     .build();
             userEntityListFormCurrentPage.add(user);
         }

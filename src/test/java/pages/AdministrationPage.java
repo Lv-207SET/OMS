@@ -50,7 +50,7 @@ public class AdministrationPage extends BasePage {
 
     //  User as role an "Administrator" goes from tab "Administration" to
     //  "Create New User" page by using this method
-    public CreateNewUserPage gToCreateNewUserPage() {
+    public CreateNewUserPage goToCreateNewUserPage() {
         driver.findElement(By.xpath(GO_TO_CREATE_NEW_USER_PAGE)).click();
         return new CreateNewUserPage(this.driver);
     }

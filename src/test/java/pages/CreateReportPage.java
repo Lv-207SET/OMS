@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public class CreateReportPage extends BasePage{
 
+        public static final String ADMINISTRATION_LINK_XPATH = ".//a[@href='users.htm']";
         public static final String SUBHEADER_XPATH = ".//*[@id='list']/h2";
         public static final String SAVE_REPORT_LINK_XPATH = ".//*[@id='list']/a";
         public static final String USERS_FOUND_SPAN_ID = "usersFound";
@@ -29,6 +30,8 @@ public class CreateReportPage extends BasePage{
         public static final String PAGE_NUMBER_SPAN_ID = "pageNumber";
         public static final String PAGE_COUNT_SPAN_ID = "pageCount";
 
+
+        private WebElement linkAdministrationPage;
         private WebElement subHeader;
         private WebElement linkSaveReport;
         private WebElement spanUsersFound;
@@ -54,6 +57,7 @@ public class CreateReportPage extends BasePage{
 
         public CreateReportPage(WebDriver driver) {
             super(driver);
+            this.linkAdministrationPage =driver.findElement(By.xpath(ADMINISTRATION_LINK_XPATH));
             this.subHeader = driver.findElement(By.xpath(SUBHEADER_XPATH));
             this.linkSaveReport = driver.findElement(By.xpath(SAVE_REPORT_LINK_XPATH));
             this.spanUsersFound = driver.findElement(By.id(USERS_FOUND_SPAN_ID));
@@ -63,7 +67,7 @@ public class CreateReportPage extends BasePage{
             this.selectCondition  = new Select(driver.findElement(By.id(SELECT_CONDITION_ID)));
             this.inputSearchField = driver.findElement(By.id(SEARCH_FIELD_ID));
             this.buttonSearch = driver.findElement(By.name(SEARCH_BUTTON_NAME));
-            this.linkShowItems = driver.findElement(By.name(SHOW_ITEMS_LINK_XPATH));
+            this.linkShowItems = driver.findElement(By.xpath(SHOW_ITEMS_LINK_XPATH));
             this.linkFirstName = driver.findElement(By.xpath(FIRST_NAME_LINK_XPATH));
             this.linkLastName = driver.findElement(By.xpath(LAST_NAME_LINK_XPATH));
             this.linkLogin = driver.findElement(By.xpath(LOGIN_LINK_XPATH));
@@ -81,6 +85,52 @@ public class CreateReportPage extends BasePage{
 
 
         }
+
+        AdministrationPage goToAdministrationPage(){
+            linkAdministrationPage.click();
+            return new AdministrationPage(driver);
+        }
+
+
+
+
+        //These methods could be chained
+        public CreateReportPage selectField(String fieldOption){
+            selectField.selectByVisibleText(fieldOption);
+            return this;
+        }
+
+        public CreateReportPage selectCondition(String conditionOption){
+            selectCondition.selectByVisibleText(conditionOption);
+            return this;
+        }
+
+        public CreateReportPage search(String searchTerm){
+            inputSearchField.clear();
+            inputSearchField.sendKeys(searchTerm);
+            buttonSearch.click();
+            return this;
+        }
+
+//        public CreateReportPage sortByFirstNameASC(){
+//
+//        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         public WebElement getSubHeader() {

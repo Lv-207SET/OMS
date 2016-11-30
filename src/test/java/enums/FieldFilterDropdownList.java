@@ -2,10 +2,10 @@ package enums;
 
 public enum FieldFilterDropdownList {
     ALL_COLUMNS("All columns"),
-    USER_NAME("User Name"),
     FIRST_NAME("First Name"),
     LAST_NAME("Last Name"),
-    ROLE("Role");
+    ROLE("Role"),
+    LOGIN("Login Name");
 
     private String fieldname;
 

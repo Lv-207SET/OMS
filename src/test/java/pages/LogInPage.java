@@ -47,7 +47,7 @@ public class LogInPage {
     }
 
     public String getErrorMessage() {
-        WebElement errorMessage = driver.findElement(By.name(ERROR_MESSAGE_XPATH));
+        WebElement errorMessage = driver.findElement(By.xpath(ERROR_MESSAGE_XPATH));
         return  errorMessage.getText();
     }
 

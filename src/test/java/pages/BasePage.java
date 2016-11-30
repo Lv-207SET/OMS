@@ -6,12 +6,13 @@ import org.openqa.selenium.WebElement;
 
 public abstract class BasePage {
 
-    final private String LOGOUT_BUTTON_XPATH = ".//*[@id='logout']/img";
-    final private String OMS_LABEL_XPATH = ".//*[@id='logo']/h1";
-    final private String SIMPLE_SLIM_GENIUS_LABEL_XPATH = ".//*[@id='logo']/h2";
-    final private String INSPIRED_BY_GOOGLE_LINK_XPATH = ".//*[@id='footer']/a";
-    final private String LAST_UPDATE_LABEL_XPATH = ".//*[@id='footer']/p";
-    final private String USER_INFO_LINK_XPATH = ".//a[@href='userInfo.htm']";
+    final private String LOGOUT_BUTTON_XPATH = ".//*[@id='logout']/img"; //CSS: #logout img
+    final private String OMS_LABEL_XPATH = ".//*[@id='logo']/h1";//CSS: #logo h1
+    final private String SIMPLE_SLIM_GENIUS_LABEL_XPATH = ".//*[@id='logo']/h2"; //CSS: #logo h2
+    final private String INSPIRED_BY_GOOGLE_LINK_XPATH = ".//*[@id='footer']/a"; //CSS: #footer a
+    final private String LAST_UPDATE_LABEL_XPATH = ".//*[@id='footer']/p";//CSS: #footer p
+    final private String USER_INFO_LINK_XPATH = ".//a[@href='userInfo.htm']";//redundant already is in LogInPage 
+                                                                             //CSS: #nav a
 
     protected WebDriver driver;
     protected WebElement linkUserInfo;

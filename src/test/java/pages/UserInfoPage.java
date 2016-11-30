@@ -5,14 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class UserInfoPage extends BasePage{
-    private final String ENGLISH_LANGUAGE_LINK_ID = "en_US";
-    private final String UKRAINIAN_LANGUAGE_LINK_ID = "uk_UA";
-    private final String FIRST_NAME_LABEL_XPATH = "//tr[td = \"First name\"]/td[2]"; //fieldset tr:nth-child(1) td:last-child
-    private final String LAST_NAME_LABEL_XPATH = "//tr[td = \"Last name\"]/td[2]"; //fieldset tr:nth-child(2) td:last-child
-    private final String ROLE_LABEL_XPATH = "//tr[td = \"Role\"]/td[2]"; //fieldset tr:nth-child(4) td:last-child
-    private final String ADMINISTRATION_TAB_XPATH = "//*[@id=\"nav\"]/li[1]/a";//CSS: #nav .cur a
-    private final String ORDERING_TAB_XPATH = "//*[@id=\"nav\"]/li[1]/a"; //this Xpath is the same as ADM_tab. Is it ok?
-    private final String ITEM_MANAGEMENT_TAB_XPATH = "//*[@id=\"nav\"]/li[1]/a"//again
+    private final static String ENGLISH_LANGUAGE_LINK_ID = "en_US";
+    private final static String UKRAINIAN_LANGUAGE_LINK_ID = "uk_UA";
+    private final static String FIRST_NAME_LABEL_XPATH = "//tr[td = \"First name\"]/td[2]"; //fieldset tr:nth-child(1) td:last-child
+    private final static String LAST_NAME_LABEL_XPATH = "//tr[td = \"Last name\"]/td[2]"; //fieldset tr:nth-child(2) td:last-child
+    private final static String ROLE_LABEL_XPATH = "//tr[td = \"Role\"]/td[2]"; //fieldset tr:nth-child(4) td:last-child
+    private final static String ADMINISTRATION_TAB_CSS = "#nav .cur a";
+    private final static String ORDERING_TAB_CSS = "#nav .cur a";
+    private final static String ITEM_MANAGEMENT_TAB_CSS = "#nav .cur a";
 
    public UserInfoPage (WebDriver driver){
         super(driver);
@@ -41,19 +41,19 @@ public class UserInfoPage extends BasePage{
     }
 
     public AdministrationPage  clickOnAdministrationTab () {
-        driver.findElement(By.xpath(ADMINISTRATION_TAB_XPATH))
+        driver.findElement(By.cssSelector(ADMINISTRATION_TAB_CSS))
                 .click();
         return new AdministrationPage(driver);
     }
 
     public ItemManagementPage clickOnItemManagementTab () {
-        driver.findElement(By.xpath(ITEM_MANAGEMENT_TAB_XPATH))
+        driver.findElement(By.cssSelector(ITEM_MANAGEMENT_TAB_CSS))
                 .click();
         return new ItemManagementPage(driver);
     }
 
     public OrderingPage clickOnOrderingTab () {
-        driver.findElement(By.xpath(ORDERING_TAB_XPATH))
+        driver.findElement(By.cssSelector(ORDERING_TAB_CSS))
                 .click();
         return new OrderingPage();
     }

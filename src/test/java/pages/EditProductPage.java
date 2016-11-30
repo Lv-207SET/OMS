@@ -7,15 +7,15 @@ import org.openqa.selenium.WebElement;
 public class EditProductPage extends BasePage {
 
     private WebDriver driver;
-    private final String ADD_PRODUCT_LABEL_XPATH = "//*[@id='edit']/h3";
-    private final String PRODUCT_NAME_INPUT_ID = "name";
-    private final String PRODUCT_DESCRIPTION_TEXTAREA_ID = "description";
-    private final String PRODUCT_PRICE_ID = "price";
-    private final String OK_BUTTON_XPATH = "//*[@value='OK']";
-    private final String CANCEL_BUTTON_XPATH = "//*[@value='Cancel']";
-    private final String ITEM_MANAGEMENT_TAB_XPATH = "//a[@href='itemManagement.htm']";
-    private final String PRODUCT_NAME_ERROR_MESSAGE_ID = "productName.errors";
-    private final String PRODUCT_PRICE_ERROR_MESSAGE_ID = "productPrice.errors";
+    private final static String ADD_PRODUCT_LABEL_XPATH = "//*[@id='edit']/h3";
+    private final static String PRODUCT_NAME_INPUT_ID = "name";
+    private final static String PRODUCT_DESCRIPTION_TEXTAREA_ID = "description";
+    private final static String PRODUCT_PRICE_ID = "price";
+    private final static String OK_BUTTON_XPATH = "//*[@value='OK']";
+    private final static String CANCEL_BUTTON_XPATH = "//*[@value='Cancel']";
+    private final static String ITEM_MANAGEMENT_TAB_XPATH = "//a[@href='itemManagement.htm']";
+    private final static String PRODUCT_NAME_ERROR_MESSAGE_ID = "productName.errors";
+    private final static String PRODUCT_PRICE_ERROR_MESSAGE_ID = "productPrice.errors";
 
     public EditProductPage(WebDriver driver) {
         super(driver);

@@ -6,13 +6,13 @@ import org.openqa.selenium.WebElement;
 
 public class LogInPage {
     private WebDriver driver;
-    final private String LOG_IN_INPUT_FIELD_NAME = "j_username";
-    final private String PASSWORD_INPUT_FIELD_NAME ="j_password";
-    final private String REMEMBER_ME_CHECKBOX_NAME = "_spring_security_remember_me";
-    final private String LOG_IN_BUTTON_NAME = "submit";
-    final private String CANCEL_BUTTON_NAME = "reset";
-    final private String ERROR_MESSAGE_XPATH = "//*[@id=\"edit\"]/fieldset/font";//??? do we really need this
-    final private String USER_INFO_TAB ="//*[@id=\"nav\"]/li[1]/a"; //you can use CSS: #nav a
+    final private static String LOG_IN_INPUT_FIELD_NAME = "j_username";
+    final private static String PASSWORD_INPUT_FIELD_NAME ="j_password";
+    final private static String REMEMBER_ME_CHECKBOX_NAME = "_spring_security_remember_me";
+    final private static String LOG_IN_BUTTON_NAME = "submit";
+    final private static String CANCEL_BUTTON_NAME = "reset";
+    final private static String ERROR_MESSAGE_XPATH = "//*[@id=\"edit\"]/fieldset/font";
+    final private static String USER_INFO_TAB ="#nav a";
 
 
     public LogInPage (final WebDriver driver) {
@@ -52,7 +52,7 @@ public class LogInPage {
     }
 
     public UserInfoPage clickOnUserInfoTab () {
-        driver.findElement(By.xpath(USER_INFO_TAB))
+        driver.findElement(By.cssSelector(USER_INFO_TAB))
                 .click();
         return new UserInfoPage(driver);
     }

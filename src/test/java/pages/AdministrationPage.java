@@ -13,14 +13,14 @@ import java.util.NoSuchElementException;
 
 public class AdministrationPage extends BasePage {
 
-    public static final String RESIZE_USERS_LIST = "//a[@href='resizeUsersList.htm']"; //CSS: #list p a
-    public static final String GO_TO_CREATE_NEW_USER_PAGE = "//div[@id='list']/a[1]"; //CSS: a[href="addUser.htm"]
-    public static final String SELECT_FIELD_FILTER_DROPDOWN_LIST = "//select[@id='field']"; //CSS: #field
-    public static final String SELECT_CONDITION_FILTER_DROPDOWN_LIST = "//select[@id='condition']"; //CSS: #condition
+    public static final String RESIZE_USERS_LIST_CSS = "#list p a";
+    public static final String GO_TO_CREATE_NEW_USER_PAGE_CSS = "a[href=\"addUser.htm\"]";
+    public static final String SELECT_FIELD_FILTER_DROPDOWN_LIST_CSS = "#field";
+    public static final String SELECT_CONDITION_FILTER_DROPDOWN_LIST_CSS = "#condition";
     public static final String SEARCH_INPUT = "searchField";
     public static final String SEARCH_BUTTON = "input[value='Search']";
     public static final String DELETE = "Delete";
-    public static final String GET_USER_BY_LOGIN = "//tr[1]/td[1]";//is it corest - points to First Name - Iva on table
+    public static final String GET_USER_BY_LOGIN = "//tr[1]/td[1]";//is it correct - points to First Name - Iva on table
     public static final String TABLE_BODY = "tbody";
     public static final String TR = "tr";
     public static final String TD = "td";
@@ -47,14 +47,14 @@ public class AdministrationPage extends BasePage {
     //  User as role an "Administrator" goes from tab "Administration" to
     //  "Create New User" page by using this method
     public CreateNewUserPage goToCreateNewUserPage() {
-        driver.findElement(By.xpath(GO_TO_CREATE_NEW_USER_PAGE)).click();
+        driver.findElement(By.cssSelector(GO_TO_CREATE_NEW_USER_PAGE_CSS)).click();
         return new CreateNewUserPage(this.driver);
     }
 
     //  Administrator select all fields in "Field Filter" dropdown list
     //  in "Search by" block on "Administration" tab
     public AdministrationPage selectFieldFilterDropdownList(final FieldFilterDropdownList fieldFilterDropdownList) {
-        WebElement selectFieldFilterElement = driver.findElement(By.xpath(SELECT_FIELD_FILTER_DROPDOWN_LIST));
+        WebElement selectFieldFilterElement = driver.findElement(By.cssSelector(SELECT_FIELD_FILTER_DROPDOWN_LIST_CSS));
         final Select selectDropdownList = new Select(selectFieldFilterElement);
         selectDropdownList.selectByVisibleText(fieldFilterDropdownList.getFieldName());
         return this;
@@ -63,7 +63,7 @@ public class AdministrationPage extends BasePage {
     //  Administrator select all fields in "Condition Filter" dropdown list
     //  in "Search by" block on "Administration" tab
     public AdministrationPage selectConditionFilterDropdownList(final ConditionFilterDropdownList conditionFilter) {
-        WebElement selectConditionFilterElement = driver.findElement(By.xpath(SELECT_CONDITION_FILTER_DROPDOWN_LIST));
+        WebElement selectConditionFilterElement = driver.findElement(By.cssSelector(SELECT_CONDITION_FILTER_DROPDOWN_LIST_CSS));
         final Select selectConditionFilter = new Select(selectConditionFilterElement);
         selectConditionFilter.selectByVisibleText(conditionFilter.getNameOfConditionFilterField());
         return this;
@@ -123,7 +123,7 @@ public class AdministrationPage extends BasePage {
     //   Change user quantity per page by click "Show 10 items" or "Show 5 items"
     public AdministrationPage changeQuantityOfUsersPerPage(UsersPerPage usersPerPageQuantity){
         if (usersPerPageQuantity == usersPerPage){
-            driver.findElement(By.xpath(RESIZE_USERS_LIST)).click();
+            driver.findElement(By.cssSelector(RESIZE_USERS_LIST_CSS)).click();
         }
         return this;
     }

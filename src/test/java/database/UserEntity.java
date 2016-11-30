@@ -2,7 +2,7 @@ package database;
 
 import enums.Region;
 import enums.Role;
-import enums.SelectRoleDropdownListEnums;
+import enums.SelectRoleDropdownList;
 
 /**
  * POJO class created in purpose to work with databases.

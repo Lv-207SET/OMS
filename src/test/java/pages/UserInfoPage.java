@@ -7,15 +7,12 @@ import org.openqa.selenium.WebElement;
 public class UserInfoPage extends BasePage{
     private final String ENGLISH_LANGUAGE_LINK_ID = "en_US";
     private final String UKRAINIAN_LANGUAGE_LINK_ID = "uk_UA";
-    private final String FIRST_NAME_LABEL_XPATH = "//tr[td = \"First name\"]/td[2]";
-    private final String LAST_NAME_LABEL_XPATH = "//tr[td = \"Last name\"]/td[2]";
-    private final String ROLE_LABEL_XPATH = "//tr[td = \"Role\"]/td[2]";
-    private final String ADMINISTRATION_TAB_XPATH = "//*[@id=\"nav\"]/li[1]/a";
-    private final String ORDERING_TAB_XPATH = "//*[@id=\"nav\"]/li[1]/a";
-    private final String ITEM_MANAGEMENT_TAB_XPATH = "//*[@id=\"nav\"]/li[1]/a";
-
-
-
+    private final String FIRST_NAME_LABEL_XPATH = "//tr[td = \"First name\"]/td[2]"; //fieldset tr:nth-child(1) td:last-child
+    private final String LAST_NAME_LABEL_XPATH = "//tr[td = \"Last name\"]/td[2]"; //fieldset tr:nth-child(2) td:last-child
+    private final String ROLE_LABEL_XPATH = "//tr[td = \"Role\"]/td[2]"; //fieldset tr:nth-child(4) td:last-child
+    private final String ADMINISTRATION_TAB_XPATH = "//*[@id=\"nav\"]/li[1]/a";//CSS: #nav .cur a
+    private final String ORDERING_TAB_XPATH = "//*[@id=\"nav\"]/li[1]/a"; //this Xpath is the same as ADM_tab. Is it ok?
+    private final String ITEM_MANAGEMENT_TAB_XPATH = "//*[@id=\"nav\"]/li[1]/a"//again
 
    public UserInfoPage (WebDriver driver){
         super(driver);
@@ -60,8 +57,4 @@ public class UserInfoPage extends BasePage{
                 .click();
         return new OrderingPage();
     }
-
-
-
-
 }

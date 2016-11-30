@@ -11,19 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-/**
- * Class represents "Administration" page
- */
 public class AdministrationPage extends BasePage {
 
-    public static final String RESIZE_USERS_LIST = "//a[@href='resizeUsersList.htm']";
-    public static final String GO_TO_CREATE_NEW_USER_PAGE = "//div[@id='list']/a[1]";
-    public static final String SELECT_FIELD_FILTER_DROPDOWN_LIST = "//select[@id='field']";
-    public static final String SELECT_CONDITION_FILTER_DROPDOWN_LIST = "//select[@id='condition']";
+    public static final String RESIZE_USERS_LIST = "//a[@href='resizeUsersList.htm']"; //CSS: #list p a
+    public static final String GO_TO_CREATE_NEW_USER_PAGE = "//div[@id='list']/a[1]"; //CSS: a[href="addUser.htm"]
+    public static final String SELECT_FIELD_FILTER_DROPDOWN_LIST = "//select[@id='field']"; //CSS: #field
+    public static final String SELECT_CONDITION_FILTER_DROPDOWN_LIST = "//select[@id='condition']"; //CSS: #condition
     public static final String SEARCH_INPUT = "searchField";
     public static final String SEARCH_BUTTON = "input[value='Search']";
     public static final String DELETE = "Delete";
-    public static final String GET_USER_BY_LOGIN = "//tr[1]/td[1]";
+    public static final String GET_USER_BY_LOGIN = "//tr[1]/td[1]";//is it corest - points to First Name - Iva on table
     public static final String TABLE_BODY = "tbody";
     public static final String TR = "tr";
     public static final String TD = "td";
@@ -39,7 +36,6 @@ public class AdministrationPage extends BasePage {
     private FieldFilterDropdownList fieldFilterDropdownList;
     private SortingOrder sortingOrderEnum;
     private UsersPerPage usersPerPage;
-
 
     public AdministrationPage(final WebDriver driver) {
         super(driver);
@@ -87,7 +83,7 @@ public class AdministrationPage extends BasePage {
         return this;
     }
 
-    //  Click "Search" button in "Serch by" field
+    //  Click "Search" button in "Search by" field
     public AdministrationPage clickSearchButton() {
         driver.findElement(By.cssSelector(SEARCH_BUTTON)).click();
         return this;
@@ -206,7 +202,6 @@ public class AdministrationPage extends BasePage {
                 .clearSearchTextBox()
                 .clickSearchButton();
         return this;
-
     }
 
     // Check if navigation buttons is enabled
@@ -261,6 +256,4 @@ public class AdministrationPage extends BasePage {
         String foundUsers = driver.findElement(By.id(CURRENT_PAGE_NUMBER)).getText();
         return foundUsers;
     }
-
-
 }

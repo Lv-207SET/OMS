@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LogInPage {
+public class LogInPage extends BasePage{
     private WebDriver driver;
     final private static String LOG_IN_INPUT_FIELD_NAME = "j_username";
     final private static String PASSWORD_INPUT_FIELD_NAME ="j_password";
@@ -26,7 +26,7 @@ public class LogInPage {
     }
 
     public LogInPage (final WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public LogInPage enterLoginName(String loginNameValue){

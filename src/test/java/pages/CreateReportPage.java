@@ -142,5 +142,7 @@ public class CreateReportPage extends BasePage{
 
     public WebElement getSpanPageCount() {
         return driver.findElement(By.id(PAGE_COUNT_SPAN_ID));
+    }
+}
 
      

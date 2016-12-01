@@ -47,7 +47,7 @@ public class CreateReportPage extends BasePage{
         }
 
         public CreateReportPage selectCondition(String conditionOption){
-            getSelectCondition.selectByVisibleText(conditionOption);
+            getSelectCondition().selectByVisibleText(conditionOption);
             return this;
         }
 
@@ -55,7 +55,7 @@ public class CreateReportPage extends BasePage{
             WebElement inputSearchField = getInputSearchField();     
             inputSearchField.clear();
             inputSearchField.sendKeys(searchTerm); 
-            getButtonSearch.click();
+            getButtonSearch().click();
             return this;
         }
 
@@ -80,11 +80,11 @@ public class CreateReportPage extends BasePage{
         }
 
         public Select getSelectField() {
-            return driver.findElement(By.id(SELECT_FIELD_ID));
+            return new Select(driver.findElement(By.id(SELECT_FIELD_ID)));
         }
 
         public Select getSelectCondition() {
-            return driver.findElement(By.id(SELECT_CONDITION_ID));
+            return new Select(driver.findElement(By.id(SELECT_CONDITION_ID)));
         }
 
         public WebElement getInputSearchField() {

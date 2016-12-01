@@ -102,8 +102,8 @@ public class CreateNewUserPage extends BasePage{
         return inputConfirmPassword;
     }
 
-    public void setInputConfirmPassword(WebElement inputComfirmPassword) {
-        this.inputConfirmPassword = inputComfirmPassword;
+    public void setInputConfirmPassword(WebElement inputConfirmPassword) {
+        this.inputConfirmPassword = inputConfirmPassword;
     }
 
     public WebElement getInputEmail() {

@@ -33,6 +33,13 @@ public class AdministrationPage extends BasePage {
     public static final String TOTAL_PAGE_NUMBER = "pageCount";
     public static final String CURRENT_PAGE_NUMBER = "pageNumber";
     public static final String LINK_EDIT_USER = "Edit";
+    public final static String CREATE_REPORT_LINK_CSS = "#list h4:last-of-type + a";
+    public static final String FIRST_NAME_LINK_CSS = "th:nth-child(1) a";
+    public static final String LAST_NAME_LINK_CSS = "th:nth-child(2) a";
+    public static final String LOGIN_LINK_CSS= "th:nth-child(3) a";
+    public static final String ROLE_LINK_CSS = "th:nth-child(4) a";
+    public static final String REGION_LINK_CSS = "th:nth-child(5) a";
+
 
     private FieldFilterDropdownList fieldFilterDropdownList;
     private SortingOrder sortingOrderEnum;
@@ -257,4 +264,10 @@ public class AdministrationPage extends BasePage {
         String foundUsers = driver.findElement(By.id(CURRENT_PAGE_NUMBER)).getText();
         return foundUsers;
     }
+
+    public CreateReportPage goToCreateReportPage() {
+        driver.findElement(By.cssSelector(CREATE_REPORT_LINK_CSS)).click();
+        return new CreateReportPage(this.driver);
+    }
+
 }

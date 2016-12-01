@@ -1,8 +1,7 @@
 package database;
 
-import enums.Region;
+import enums.RegionEnum;
 import enums.Role;
-import enums.SelectRoleDropdownListEnums;
 
 /**
  * POJO class created in purpose to work with databases.
@@ -13,7 +12,7 @@ public class UserEntity {
     private String password;
     private String login;
     private String email;
-    private Region region;
+    private RegionEnum region;
     private Role role;
 
     public UserEntity(Builder userEntityBuilder) {
@@ -47,7 +46,7 @@ public class UserEntity {
         return password;
     }
 
-    public Region getRegion() {
+    public RegionEnum getRegion() {
         return region;
     }
 
@@ -61,7 +60,7 @@ public class UserEntity {
         private String password;
         private String login;
         private String email;
-        private Region region;
+        private RegionEnum region;
         private Role role;
 
         public Builder setEmail(String email) {
@@ -89,7 +88,7 @@ public class UserEntity {
             return this;
         }
 
-        public Builder setRegion(Region region) {
+        public Builder setRegion(RegionEnum region) {
             this.region = region;
             return this;
         }

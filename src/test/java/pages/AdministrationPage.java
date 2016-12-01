@@ -3,7 +3,7 @@ package pages;
 import database.UserEntity;
 import enums.ConditionFilterDropdownList;
 import enums.FieldFilterDropdownList;
-import enums.Region;
+import enums.RegionEnum;
 import enums.Role;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -111,7 +111,7 @@ public class AdministrationPage extends BasePage {
                     .setPassword(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText())
                     .setLogin(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText())
                     .setEmail(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText())
-                    .setRegion(Region.valueOf(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText()))
+                    .setRegion(RegionEnum.valueOf(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText()))
                     .setRole(Role.valueOf(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText()))
                     .build();
         return user;

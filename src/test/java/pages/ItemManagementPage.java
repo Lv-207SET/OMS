@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,48 +17,46 @@ public class ItemManagementPage extends BasePage{
     private boolean showFiveItems = true;   // true - showing 5 items, false - showing 10 items in table
 
     //UI Mapping
-    private final String USER_INFO_TAB_XPATH = ".//*[@id='nav']/li[2]/a";
-    private final String PAGE_IS_APPOINTED_LABEL_XPATH = ".//*[@id='list']/h2";
-    private final String ADD_PRODUCT_LINK_XPATH = ".//*[@id='list']/a[1]";
-    private final String PRODUCTS_FOUND_LABEL_XPATH = ".//*[@id='list']/h4[1]";
-    private final String PRODUCTS_COUNT_LABEL_ID = "recordsFound";
-    private final String  SEARCH_BY_LABEL_XPATH = ".//*[@id='list']/fieldset/legend";
-    private final String  FIELD_FILTER_LABEL_XPATH = ".//*[@id='searchForm']/label";
-    private final String  FIELD_FILTER_SELECT_ID = "field";
-    private final String  SEARCH_FIELD_ID = "searchField";
-    private final String  SEARCH_BUTTON_XPATH =  ".//*[@id='searchField']/following-sibling::input";
-    private final String SHOW_ITEMS_LINK_XPATH = ".//a[@href='itemManagement/resizeItemList.htm']";
-    private final String TABLE_NAME_LINK_XPATH =".//*[@id='table']/thead/tr/th[1]/a";
-    private final String TABLE_DESCRIPTION_LINK_XPATH =".//*[@id='table']/thead/tr/th[2]/a";
-    private final String TABLE_PRICE_LINK_XPATH =".//*[@id='table']/thead/tr/th[3]/a";
-    private final String TABLE_EDIT_LABEL_XPATH =".//*[@id='table']/thead/tr/th[4]";
-    private final String TABLE_DELETE_LABEL_XPATH =".//*[@id='table']/thead/tr/th[5]";
-    private final String FIRST_BUTTON_ID ="first";
-    private final String BACKWARD__BUTTON_ID ="previous";
-    private final String FORWARD__BUTTON_ID ="next";
-    private final String LAST__BUTTON_ID ="last";
-    private final String PAGE_LABEL_XPATH = ".//*[@id='list']/h4[2]";
-    private final String PAGE_NUMBER_LABEL_ID = "pageNumber";
-    private final String PAGE_COUNT_LABEL_ID = "pageCount";
-    private final String CREATE_REPORT_LINK_XPATH = ".//a[@href='reportItems.htm']";
-
+    private final static String USER_INFO_TAB_CSS = "#nav li:nth-child(2) a";
+    private final static String PAGE_IS_APPOINTED_LABEL_CSS = "#list h2";
+    private final static String ADD_PRODUCT_LINK_CSS = "#list>a";
+    private final static String PRODUCTS_FOUND_LABEL_CSS = "#list h4:first-of-type";
+    private final static String PRODUCTS_COUNT_LABEL_ID = "recordsFound";
+    private final static String SEARCH_BY_LABEL_TAG_NAME = "legend";
+    private final static String FIELD_FILTER_LABEL_CSS = "#searchForm label";
+    private final static String FIELD_FILTER_SELECT_ID = "field";
+    private final static String SEARCH_FIELD_ID = "searchField";
+    private final static String SEARCH_BUTTON_CSS = "input[value='Search']";
+    private final static String SHOW_ITEMS_LINK_CSS = "#list p a";
+    private final static String TABLE_NAME_LINK_CSS ="th:nth-child(1) a";
+    private final static String TABLE_DESCRIPTION_LINK_CSS ="th:nth-child(2) a";
+    private final static String TABLE_PRICE_LINK_CSS ="th:nth-child(3) a";
+    private final static String TABLE_EDIT_LABEL_CSS ="th:nth-last-of-type(2)";
+    private final static String TABLE_DELETE_LABEL_CSS ="th:nth-last-of-type(1)";
+    private final static String FIRST_BUTTON_ID ="first";
+    private final static String BACKWARD__BUTTON_ID ="previous";
+    private final static String FORWARD__BUTTON_ID ="next";
+    private final static String LAST__BUTTON_ID ="last";
+    private final static String PAGE_LABEL_CSS = "#list h4:last-of-type";
+    private final static String PAGE_NUMBER_LABEL_ID = "pageNumber";
+    private final static String PAGE_COUNT_LABEL_ID = "pageCount";
+    private final static String CREATE_REPORT_LINK_CSS = "#list h4:last-of-type + a";
 
     //get Elements
-
     public WebElement getUserInfoTab() {
-        return driver.findElement(By.xpath(USER_INFO_TAB_XPATH));
+        return driver.findElement(By.cssSelector(USER_INFO_TAB_CSS));
     }
 
     public WebElement getPageIsAppointedLabel() {
-        return driver.findElement(By.xpath(PAGE_IS_APPOINTED_LABEL_XPATH));
+        return driver.findElement(By.cssSelector(PAGE_IS_APPOINTED_LABEL_CSS));
     }
 
     public WebElement getAddProductLink() {
-        return driver.findElement(By.xpath(ADD_PRODUCT_LINK_XPATH));
+        return driver.findElement(By.cssSelector(ADD_PRODUCT_LINK_CSS));
     }
 
     public WebElement getProductsFoundLabel() {
-        return driver.findElement(By.xpath(PRODUCTS_FOUND_LABEL_XPATH));
+        return driver.findElement(By.cssSelector(PRODUCTS_FOUND_LABEL_CSS));
     }
 
     public WebElement getProductsCountLabel() {
@@ -67,11 +64,11 @@ public class ItemManagementPage extends BasePage{
     }
 
     public WebElement getSearchByLabel() {
-        return driver.findElement(By.xpath(SEARCH_BY_LABEL_XPATH));
+        return driver.findElement(By.tagName(SEARCH_BY_LABEL_TAG_NAME));
     }
 
     public WebElement getFieldFilterLabel() {
-        return driver.findElement(By.xpath(FIELD_FILTER_LABEL_XPATH));
+        return driver.findElement(By.cssSelector(FIELD_FILTER_LABEL_CSS));
     }
 
     public WebElement getFieldFilterSelect() {
@@ -83,31 +80,31 @@ public class ItemManagementPage extends BasePage{
     }
 
     public WebElement getSearchButton() {
-        return driver.findElement(By.xpath(SEARCH_BUTTON_XPATH));
+        return driver.findElement(By.cssSelector(SEARCH_BUTTON_CSS));
     }
 
     public WebElement getShowItemsLink() {
-        return driver.findElement(By.xpath(SHOW_ITEMS_LINK_XPATH));
+        return driver.findElement(By.cssSelector(SHOW_ITEMS_LINK_CSS));
     }
 
     public WebElement getTableNameLink() {
-        return driver.findElement(By.xpath(TABLE_NAME_LINK_XPATH));
+        return driver.findElement(By.cssSelector(TABLE_NAME_LINK_CSS));
     }
 
     public WebElement getTableDescriptionLink() {
-        return driver.findElement(By.xpath(TABLE_DESCRIPTION_LINK_XPATH));
+        return driver.findElement(By.cssSelector(TABLE_DESCRIPTION_LINK_CSS));
     }
 
     public WebElement getTablePriceLink() {
-        return driver.findElement(By.xpath(TABLE_PRICE_LINK_XPATH));
+        return driver.findElement(By.cssSelector(TABLE_PRICE_LINK_CSS));
     }
 
     public WebElement getTableEditLabel() {
-        return driver.findElement(By.xpath(TABLE_EDIT_LABEL_XPATH));
+        return driver.findElement(By.cssSelector(TABLE_EDIT_LABEL_CSS));
     }
 
     public WebElement getTableDeleteLabel() {
-        return driver.findElement(By.xpath(TABLE_DELETE_LABEL_XPATH));
+        return driver.findElement(By.cssSelector(TABLE_DELETE_LABEL_CSS));
     }
 
     public WebElement getFirstButton() {
@@ -127,7 +124,7 @@ public class ItemManagementPage extends BasePage{
     }
 
     public WebElement getPageLabel() {
-        return driver.findElement(By.xpath(PAGE_LABEL_XPATH));
+        return driver.findElement(By.cssSelector(PAGE_LABEL_CSS));
     }
 
     public WebElement getPageNumberLabel() {
@@ -139,7 +136,7 @@ public class ItemManagementPage extends BasePage{
     }
 
     public WebElement getCreateReportLink() {
-        return driver.findElement(By.xpath(CREATE_REPORT_LINK_XPATH));
+        return driver.findElement(By.cssSelector(CREATE_REPORT_LINK_CSS));
     }
 
     public Select getChangeFieldFilter() {
@@ -151,7 +148,7 @@ public class ItemManagementPage extends BasePage{
     }
 
     //get List WebElements from table
-
+    //need to redo tr td:nth-child(1)
     public List<WebElement> getListName(){
         List<WebElement> listName = new ArrayList<>();
         if (showFiveItems){
@@ -166,7 +163,7 @@ public class ItemManagementPage extends BasePage{
             }
         return listName;
     }
-
+    //need to redo tr td:nth-child(2)
     public List<WebElement> getListDescription(){
         List<WebElement> listDescription = new ArrayList<>();
         if (showFiveItems){
@@ -181,7 +178,7 @@ public class ItemManagementPage extends BasePage{
             }
         return listDescription;
     }
-
+    //need to redo tr td:nth-child(3)
     public List<WebElement> getListPrice(){
         List<WebElement> listPrice = new ArrayList<>();
         if (showFiveItems){
@@ -196,7 +193,7 @@ public class ItemManagementPage extends BasePage{
             }
         return listPrice;
     }
-
+    //need to redo tr td:nth-child(4)
     public List<WebElement> getListEditLinks(){
         List<WebElement> getListEditLinks = new ArrayList<>();
         if (showFiveItems){
@@ -211,7 +208,7 @@ public class ItemManagementPage extends BasePage{
             }
         return getListEditLinks;
     }
-
+    //need to redo tr td:nth-child(5)
     public List<WebElement> getListDeleteLinks(){
         List<WebElement> getListDeleteLinks = new ArrayList<>();
         if (showFiveItems){

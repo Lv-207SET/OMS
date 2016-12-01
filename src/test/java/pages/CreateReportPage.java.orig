@@ -38,7 +38,6 @@ public class CreateReportPage extends BasePage{
     AdministrationPage goToAdministrationPage(){
         driver.findElement(By.cssSelector(ADMINISTRATION_LINK_CSS)).click();
         return new AdministrationPage(driver);
-
     }
 
     //These methods could be chained
@@ -142,5 +141,5 @@ public class CreateReportPage extends BasePage{
 
     public WebElement getSpanPageCount() {
         return driver.findElement(By.id(PAGE_COUNT_SPAN_ID));
-
-     
+	}
+}

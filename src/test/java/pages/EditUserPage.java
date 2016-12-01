@@ -1,12 +1,13 @@
 package pages;
 
-import enums.SelectRoleDropdownListEnums;
+import enums.SelectRegionDropdownList;
+import enums.SelectRoleDropdownList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-public class EditUserPage {
+public class EditUserPage  extends BasePage {
     public static final String LABEL_EDITING_CAPTION_CSS = "#edit>h3";
     public static final String LABEL_NO_CHANGE_CSS = "#edit>span";
     public static final String INPUT_FIRST_NAME_ID = "firstName";
@@ -18,14 +19,13 @@ public class EditUserPage {
     public static final String SELECT_ROLE_ID = "roleID";
     public static final String BUTTON_SAVE_CHANGES_CSS = "input[value=\"Save changes\"]";
     public static final String BUTTON_CANCEL_CSS = "input[value=\"Cancel\"]";
-
     public static final String ERROR_FIRST_NAME_ID = "firstName.errors";
     public static final String ERROR_LAST_NAME_ID = "lastName.errors";
     public static final String ERROR_PASSWORD_ID = "password.errors";
     public static final String ERROR_CONFIRM_PASSWORD_ID = "confirmPassword.errors";
     public static final String ERROR_EMAIL_ID = "emailError";
 
-    private WebDriver driver;
+    //private WebDriver driver;
     private WebElement labelEditingCaption;
     private WebElement labelNoChange;
     private WebElement inputFirstName;
@@ -45,8 +45,7 @@ public class EditUserPage {
     private WebElement errorEmail;
 
     public EditUserPage(WebDriver driver) {
-        this.driver = driver;
-
+        super(driver);
         this.inputFirstName = driver.findElement(By.id(INPUT_FIRST_NAME_ID));
         this.inputLastName = driver.findElement(By.id(INPUT_LAST_NAME_ID));
         this.inputPassword = driver.findElement(By.id(INPUT_PASSWORD_ID));
@@ -95,8 +94,8 @@ public class EditUserPage {
         return inputConfirmPassword;
     }
 
-    public void setInputConfirmPassword(WebElement inputComfirmPassword) {
-        this.inputConfirmPassword = inputComfirmPassword;
+    public void setInputConfirmPassword(WebElement inputConfirmPassword) {
+        this.inputConfirmPassword = inputConfirmPassword;
     }
 
     public WebElement getInputEmail() {
@@ -169,12 +168,12 @@ public class EditUserPage {
         return this;
     }
 
-    public EditUserPage selectRegion(String region) {
-        getSelectRegion().selectByValue(region);
+    public EditUserPage selectRegion(SelectRegionDropdownList region) {
+        getSelectRegion().selectByValue(region.toString());
         return this;
     }
 
-    public EditUserPage selectRole(SelectRoleDropdownListEnums role) {
+    public EditUserPage selectRole(SelectRoleDropdownList role) {
         getSelectRole().selectByValue(role.toString());
         return this;
     }

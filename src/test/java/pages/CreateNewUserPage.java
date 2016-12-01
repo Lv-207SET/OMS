@@ -1,12 +1,13 @@
 package pages;
 
-import enums.SelectRoleDropdownListEnums;
+import enums.SelectRegionDropdownList;
+import enums.SelectRoleDropdownList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-public class CreateNewUserPage {
+public class CreateNewUserPage extends BasePage{
     public static final String INPUT_LOGIN_ID = "login";
     public static final String INPUT_FIRST_NAME_ID = "firstName";
     public static final String INPUT_LAST_NAME_ID = "lastName";
@@ -25,7 +26,7 @@ public class CreateNewUserPage {
     public static final String ERROR_CONFIRM_PASSWORD_ID = "confirmPassword.errors";
     public static final String ERROR_EMAIL_ID = "emailError";
 
-    private WebDriver driver;
+    //private WebDriver driver;
     private WebElement inputLogin;
     private WebElement inputFirstName;
     private WebElement inputLastName;
@@ -44,7 +45,7 @@ public class CreateNewUserPage {
     private WebElement errorEmail;
 
     public CreateNewUserPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
         this.inputLogin = driver.findElement(By.id(INPUT_LOGIN_ID));
         this.inputFirstName = driver.findElement(By.id(INPUT_FIRST_NAME_ID));
         this.inputLastName = driver.findElement(By.id(INPUT_LAST_NAME_ID));
@@ -101,8 +102,8 @@ public class CreateNewUserPage {
         return inputConfirmPassword;
     }
 
-    public void setInputConfirmPassword(WebElement inputComfirmPassword) {
-        this.inputConfirmPassword = inputComfirmPassword;
+    public void setInputConfirmPassword(WebElement inputConfirmPassword) {
+        this.inputConfirmPassword = inputConfirmPassword;
     }
 
     public WebElement getInputEmail() {
@@ -181,12 +182,12 @@ public class CreateNewUserPage {
         return this;
     }
 
-    public CreateNewUserPage selectRegion(String region) {
-        getSelectRegion().selectByValue(region);
+    public CreateNewUserPage selectRegion(SelectRegionDropdownList region) {
+        getSelectRegion().selectByValue(region.toString());
         return this;
     }
 
-    public CreateNewUserPage selectRole(SelectRoleDropdownListEnums role) {
+    public CreateNewUserPage selectRole(SelectRoleDropdownList role) {
         getSelectRole().selectByValue(role.toString());
         return this;
     }

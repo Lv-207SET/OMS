@@ -1,13 +1,14 @@
 package enums;
 
-public enum SelectRoleDropdownListEnums {
+public enum SelectRoleDropdownList {
     ADMINISTRATOR("Administrator"),
+    CUSTOMER("Customer"),
     MERCHANDISER("Merchandiser"),
-    SUPERVISOR("supervisor");
+    SUPERVISOR("Supervisor");
     //
     private String role;
 
-    private SelectRoleDropdownListEnums (String role) {
+    private SelectRoleDropdownList(String role) {
         this.role= role;
     }
 

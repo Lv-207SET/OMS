@@ -13,7 +13,16 @@ public enum Region {
         this.region = region;
     }
 
-    public String getRegion() {
+    public String getRegionType() {
         return region;
+    }
+    public static Region getRegion(String regionString) {
+        for (final Region regionEnum : Region.values()) {
+            if (regionEnum.getRegionType().trim().equalsIgnoreCase(regionString)) {
+                return regionEnum;
+            }
+        }
+
+        return null;
     }
 }

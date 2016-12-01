@@ -7,9 +7,9 @@ public class UserInfoPage extends BasePage{
 
     private final static String ENGLISH_LANGUAGE_LINK_ID = "en_US";
     private final static String UKRAINIAN_LANGUAGE_LINK_ID = "uk_UA";
-    private final static String FIRST_NAME_LABEL_XPATH = "//tr[td = \"First name\"]/td[2]"; //fieldset tr:nth-child(1) td:last-child
-    private final static String LAST_NAME_LABEL_XPATH = "//tr[td = \"Last name\"]/td[2]"; //fieldset tr:nth-child(2) td:last-child
-    private final static String ROLE_LABEL_XPATH = "//tr[td = \"Role\"]/td[2]"; //fieldset tr:nth-child(4) td:last-child
+    private final static String FIRST_NAME_LABEL_CSS = "fieldset tr:nth-child(1) td:last-child";
+    private final static String LAST_NAME_LABEL_CSS = "fieldset tr:nth-child(2) td:last-child";
+    private final static String ROLE_LABEL_CSS = "fieldset tr:nth-child(4) td:last-child";
     private final static String ADMINISTRATION_TAB_CSS = "#nav .cur a";
     private final static String ORDERING_TAB_CSS = "#nav .cur a";
     private final static String ITEM_MANAGEMENT_TAB_CSS = "#nav .cur a";
@@ -20,15 +20,15 @@ public class UserInfoPage extends BasePage{
     }
 
     public String getFirstNameLabel() {
-        return  driver.findElement(By.xpath(FIRST_NAME_LABEL_XPATH)).getText();
+        return  driver.findElement(By.cssSelector(FIRST_NAME_LABEL_CSS)).getText();
     }
 
     public String getLastNameLabel() {
-        return driver.findElement(By.xpath(LAST_NAME_LABEL_XPATH)).getText();
+        return driver.findElement(By.cssSelector(LAST_NAME_LABEL_CSS)).getText();
     }
 
     public String getRoleLabel() {
-        return driver.findElement(By.xpath(ROLE_LABEL_XPATH)).getText();
+        return driver.findElement(By.cssSelector(ROLE_LABEL_CSS)).getText();
     }
 
     public void changeToUkrainianLanguage () {

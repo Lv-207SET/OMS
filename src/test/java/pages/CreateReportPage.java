@@ -7,12 +7,12 @@ import org.openqa.selenium.support.ui.Select;
 
 public class CreateReportPage extends BasePage{
 
-        public static final String ADMINISTRATION_LINK_XPATH = ".//a[@href='users.htm']";
-        public static final String SUBHEADER_XPATH = ".//*[@id='list']/h2";
-        public static final String SAVE_REPORT_LINK_XPATH = ".//*[@id='list']/a";
+        public static final String ADMINISTRATION_LINK_CSS = "#nav .cur a";
+        public static final String SUBHEADER_CSS = "#list h2";
+        public static final String SAVE_REPORT_LINK_CSS = "#list>a";
         public static final String USERS_FOUND_SPAN_ID = "usersFound";
-        public static final String SEARCH_BY_LABEL_XPATH = ".//*[@id='list']/fieldset/legend";
-        public static final String FIELD_FILTER_LABEL_XPATH = ".//*[@id='searchForm']/label";
+        public static final String SEARCH_BY_LABEL_TAG_NAME = "legend";
+        public static final String FIELD_FILTER_LABEL_CSS = "#searchForm label";
         public static final String SELECT_FIELD_ID = "field";
         public static final String SELECT_CONDITION_ID = "condition";
         public static final String SEARCH_FIELD_ID = "searchField";
@@ -55,12 +55,12 @@ public class CreateReportPage extends BasePage{
 
         public CreateReportPage(WebDriver driver) {
             super(driver);
-            this.linkAdministrationPage =driver.findElement(By.xpath(ADMINISTRATION_LINK_XPATH));
-            this.subHeader = driver.findElement(By.xpath(SUBHEADER_XPATH));
-            this.linkSaveReport = driver.findElement(By.xpath(SAVE_REPORT_LINK_XPATH));
+            this.linkAdministrationPage =driver.findElement(By.cssSelector(ADMINISTRATION_LINK_CSS));
+            this.subHeader = driver.findElement(By.cssSelector(SUBHEADER_CSS));
+            this.linkSaveReport = driver.findElement(By.cssSelector(SAVE_REPORT_LINK_CSS));
             this.spanUsersFound = driver.findElement(By.id(USERS_FOUND_SPAN_ID));
-            this.labelSearchBy = driver.findElement(By.xpath(SEARCH_BY_LABEL_XPATH));
-            this.labelFieldFilter = driver.findElement(By.xpath(FIELD_FILTER_LABEL_XPATH));
+            this.labelSearchBy = driver.findElement(By.tagName(SEARCH_BY_LABEL_TAG_NAME));
+            this.labelFieldFilter = driver.findElement(By.cssSelector(FIELD_FILTER_LABEL_CSS));
             this.selectField  = new Select(driver.findElement(By.id(SELECT_FIELD_ID)));
             this.selectCondition  = new Select(driver.findElement(By.id(SELECT_CONDITION_ID)));
             this.inputSearchField = driver.findElement(By.id(SEARCH_FIELD_ID));

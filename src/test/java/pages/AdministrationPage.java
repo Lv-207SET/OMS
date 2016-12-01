@@ -15,13 +15,13 @@ import java.util.NoSuchElementException;
 public class AdministrationPage extends BasePage {
 
     public static final String RESIZE_USERS_LIST_CSS = "#list p a";
-    public static final String GO_TO_CREATE_NEW_USER_PAGE_CSS = "a[href=\"addUser.htm\"]";
+    public static final String GO_TO_CREATE_NEW_USER_PAGE_CSS = "#list>a";
     public static final String SELECT_FIELD_FILTER_DROPDOWN_LIST_CSS = "#field";
     public static final String SELECT_CONDITION_FILTER_DROPDOWN_LIST_CSS = "#condition";
     public static final String SEARCH_INPUT = "searchField";
     public static final String SEARCH_BUTTON = "input[value='Search']";
     public static final String DELETE = "Delete";
-    public static final String GET_USER_BY_LOGIN = "//tr[1]/td[1]";//is it correct - points to First Name - Iva on table
+    public static final String GET_USER_BY_LOGIN = "//tr[1]/td[1]";//???
     public static final String TABLE_BODY = "tbody";
     public static final String TR = "tr";
     public static final String TD = "td";

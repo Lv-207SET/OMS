@@ -19,7 +19,6 @@ public class EditUserPage {
     public static final String SELECT_ROLE_ID = "roleID";
     public static final String BUTTON_SAVE_CHANGES_CSS = "input[value=\"Save changes\"]";
     public static final String BUTTON_CANCEL_CSS = "input[value=\"Cancel\"]";
-
     public static final String ERROR_FIRST_NAME_ID = "firstName.errors";
     public static final String ERROR_LAST_NAME_ID = "lastName.errors";
     public static final String ERROR_PASSWORD_ID = "password.errors";

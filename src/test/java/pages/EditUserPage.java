@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-public class EditUserPage {
+public class EditUserPage  extends BasePage {
     public static final String LABEL_EDITING_CAPTION_CSS = "#edit>h3";
     public static final String LABEL_NO_CHANGE_CSS = "#edit>span";
     public static final String INPUT_FIRST_NAME_ID = "firstName";
@@ -25,7 +25,7 @@ public class EditUserPage {
     public static final String ERROR_CONFIRM_PASSWORD_ID = "confirmPassword.errors";
     public static final String ERROR_EMAIL_ID = "emailError";
 
-    private WebDriver driver;
+    //private WebDriver driver;
     private WebElement labelEditingCaption;
     private WebElement labelNoChange;
     private WebElement inputFirstName;
@@ -45,8 +45,7 @@ public class EditUserPage {
     private WebElement errorEmail;
 
     public EditUserPage(WebDriver driver) {
-        this.driver = driver;
-
+        super(driver);
         this.inputFirstName = driver.findElement(By.id(INPUT_FIRST_NAME_ID));
         this.inputLastName = driver.findElement(By.id(INPUT_LAST_NAME_ID));
         this.inputPassword = driver.findElement(By.id(INPUT_PASSWORD_ID));

@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-public class CreateNewUserPage {
+public class CreateNewUserPage extends BasePage{
     public static final String INPUT_LOGIN_ID = "login";
     public static final String INPUT_FIRST_NAME_ID = "firstName";
     public static final String INPUT_LAST_NAME_ID = "lastName";
@@ -26,7 +26,7 @@ public class CreateNewUserPage {
     public static final String ERROR_CONFIRM_PASSWORD_ID = "confirmPassword.errors";
     public static final String ERROR_EMAIL_ID = "emailError";
 
-    private WebDriver driver;
+    //private WebDriver driver;
     private WebElement inputLogin;
     private WebElement inputFirstName;
     private WebElement inputLastName;
@@ -45,7 +45,7 @@ public class CreateNewUserPage {
     private WebElement errorEmail;
 
     public CreateNewUserPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
         this.inputLogin = driver.findElement(By.id(INPUT_LOGIN_ID));
         this.inputFirstName = driver.findElement(By.id(INPUT_FIRST_NAME_ID));
         this.inputLastName = driver.findElement(By.id(INPUT_LAST_NAME_ID));

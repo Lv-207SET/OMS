@@ -46,6 +46,5 @@ hs_err_pid*
 
 
 /src/test/resources/drivers/chromedriver.exe
-/src/test/java/Test.java
-/src/test/java/Test.xml
+/src/test/java/temp
 /src/test/java/TestRunner.java

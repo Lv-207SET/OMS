@@ -30,159 +30,116 @@ public class CreateReportPage extends BasePage{
         public static final String PAGE_NUMBER_SPAN_ID = "pageNumber";
         public static final String PAGE_COUNT_SPAN_ID = "pageCount";
 
-        private WebElement linkAdministrationPage;
-        private WebElement subHeader;
-        private WebElement linkSaveReport;
-        private WebElement spanUsersFound;
-        private WebElement labelSearchBy;
-        private WebElement labelFieldFilter;
-        private Select selectField;
-        private Select selectCondition;
-        private WebElement inputSearchField ;
-        private WebElement buttonSearch;
-        private WebElement linkShowItems;
-        private WebElement linkFirstName;
-        private WebElement linkLastName;
-        private WebElement linkLogin;
-        private WebElement linkRole;
-        private WebElement linkRegion;
-        private WebElement buttonFirst;
-        private WebElement buttonBackward;
-        private WebElement buttonForward;
-        private WebElement buttonLast;
-        private WebElement spanPageNumber;
-        private WebElement spanPageCount;
-
+       
         public CreateReportPage(WebDriver driver) {
             super(driver);
-            this.linkAdministrationPage =driver.findElement(By.cssSelector(ADMINISTRATION_LINK_CSS));
-            this.subHeader = driver.findElement(By.cssSelector(SUBHEADER_CSS));
-            this.linkSaveReport = driver.findElement(By.cssSelector(SAVE_REPORT_LINK_CSS));
-            this.spanUsersFound = driver.findElement(By.id(USERS_FOUND_SPAN_ID));
-            this.labelSearchBy = driver.findElement(By.tagName(SEARCH_BY_LABEL_TAG_NAME));
-            this.labelFieldFilter = driver.findElement(By.cssSelector(FIELD_FILTER_LABEL_CSS));
-            this.selectField  = new Select(driver.findElement(By.id(SELECT_FIELD_ID)));
-            this.selectCondition  = new Select(driver.findElement(By.id(SELECT_CONDITION_ID)));
-            this.inputSearchField = driver.findElement(By.id(SEARCH_FIELD_ID));
-            this.buttonSearch = driver.findElement(By.name(SEARCH_BUTTON_NAME));
-            this.linkShowItems = driver.findElement(By.cssSelector(SHOW_ITEMS_LINK_CSS));
-            this.linkFirstName = driver.findElement(By.cssSelector(FIRST_NAME_LINK_CSS));
-            this.linkLastName = driver.findElement(By.cssSelector(LAST_NAME_LINK_CSS));
-            this.linkLogin = driver.findElement(By.cssSelector(LOGIN_LINK_CSS));
-            this.linkRole = driver.findElement(By.cssSelector(ROLE_LINK_CSS));
-            this.linkRegion = driver.findElement(By.cssSelector(REGION_LINK_CSS));
-            this.buttonFirst = driver.findElement(By.id(FIRST_BUTTON_ID));
-            this.buttonBackward = driver.findElement(By.id(BACKWARD_BUTTON_ID));
-            this.buttonForward = driver.findElement(By.id(FORWARD_BUTTON_ID));
-            this.buttonLast = driver.findElement(By.id(LAST_BUTTON_ID));
-            this.spanPageNumber = driver.findElement(By.id(PAGE_NUMBER_SPAN_ID));
-            this.spanPageCount = driver.findElement(By.id(PAGE_COUNT_SPAN_ID));
         }
 
         AdministrationPage goToAdministrationPage(){
-            linkAdministrationPage.click();
+            driver.findElement(By.cssSelector(ADMINISTRATION_LINK_CSS)).click();
             return new AdministrationPage(driver);
         }
 
         //These methods could be chained
         public CreateReportPage selectField(String fieldOption){
-            selectField.selectByVisibleText(fieldOption);
+            getSelectField().selectByVisibleText(fieldOption);
             return this;
         }
 
         public CreateReportPage selectCondition(String conditionOption){
-            selectCondition.selectByVisibleText(conditionOption);
+            getSelectCondition.selectByVisibleText(conditionOption);
             return this;
         }
 
         public CreateReportPage search(String searchTerm){
+            WebElement inputSearchField = getInputSearchField();     
             inputSearchField.clear();
-            inputSearchField.sendKeys(searchTerm);
-            buttonSearch.click();
+            inputSearchField.sendKeys(searchTerm); 
+            getButtonSearch.click();
             return this;
         }
 
         public WebElement getSubHeader() {
-            return subHeader;
+            return driver.findElement(By.cssSelector(SUBHEADER_CSS));
         }
 
         public WebElement getLinkSaveReport() {
-            return linkSaveReport;
+            return driver.findElement(By.cssSelector(SAVE_REPORT_LINK_CSS));
         }
 
         public WebElement getSpanUsersFound() {
-            return spanUsersFound;
+            return driver.findElement(By.id(USERS_FOUND_SPAN_ID));
         }
 
         public WebElement getLabelSearchBy() {
-            return labelSearchBy;
+            return driver.findElement(By.tagName(SEARCH_BY_LABEL_TAG_NAME));
         }
 
         public WebElement getLabelFieldFilter() {
-            return labelFieldFilter;
+            return driver.findElement(By.cssSelector(FIELD_FILTER_LABEL_CSS));
         }
 
         public Select getSelectField() {
-            return selectField;
+            return driver.findElement(By.id(SELECT_FIELD_ID));
         }
 
         public Select getSelectCondition() {
-            return selectCondition;
+            return driver.findElement(By.id(SELECT_CONDITION_ID));
         }
 
         public WebElement getInputSearchField() {
-            return inputSearchField;
+            return driver.findElement(By.id(SEARCH_FIELD_ID));
         }
 
         public WebElement getButtonSearch() {
-            return buttonSearch;
+            return driver.findElement(By.name(SEARCH_BUTTON_NAME));
         }
 
         public WebElement getLinkShowItems() {
-            return linkShowItems;
+            return driver.findElement(By.cssSelector(SHOW_ITEMS_LINK_CSS));
         }
 
         public WebElement getLinkFirstName() {
-            return linkFirstName;
+            return driver.findElement(By.cssSelector(FIRST_NAME_LINK_CSS));
         }
 
         public WebElement getLinkLastName() {
-            return linkLastName;
+            return driver.findElement(By.cssSelector(FIRST_NAME_LINK_CSS));
         }
 
         public WebElement getLinkLogin() {
-            return linkLogin;
+            return driver.findElement(By.cssSelector(LOGIN_LINK_CSS));
         }
 
         public WebElement getLinkRole() {
-            return linkRole;
+            return driver.findElement(By.cssSelector(ROLE_LINK_CSS));
         }
 
         public WebElement getLinkRegion() {
-            return linkRegion;
+            return driver.findElement(By.cssSelector(REGION_LINK_CSS));
         }
 
         public WebElement getButtonFirst() {
-            return buttonFirst;
+            return driver.findElement(By.id(FIRST_BUTTON_ID));
         }
 
         public WebElement getButtonBackward() {
-            return buttonBackward;
+            return driver.findElement(By.id(BACKWARD_BUTTON_ID));
         }
 
         public WebElement getButtonForward() {
-            return buttonForward;
+            return driver.findElement(By.id(FORWARD_BUTTON_ID));
         }
 
         public WebElement getButtonLast() {
-            return buttonLast;
+            return driver.findElement(By.id(LAST_BUTTON_ID));
         }
 
         public WebElement getSpanPageNumber() {
-            return spanPageNumber;
+            return driver.findElement(By.id(PAGE_NUMBER_SPAN_ID));
         }
 
         public WebElement getSpanPageCount() {
-            return spanPageCount;
+            return driver.findElement(By.id(PAGE_COUNT_SPAN_ID));
         }
     }

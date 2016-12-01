@@ -14,9 +14,11 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.testng.annotations.DataProvider;
 
+import database.ProductEntity;
 import database.UserEntity;
-import enums.RegionEnum;
+import enums.Region;
 import enums.Role;
 
 //import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -106,18 +108,40 @@ public class ReadDataFromFile {
                     .setPassword(userField[2].toString())
                     .setLogin(userField[3].toString())
                     .setEmail(userField[4].toString())
-                    .setRegion(RegionEnum.getRegion(userField[5].toString()))
+                    .setRegion(Region.getRegion(userField[5].toString()))
                     .setRole(Role.getRole(userField[6].toString()))
                     .build();
             listOfUsers.add(user);
         }
         return listOfUsers;
     }
-
+    
+    private static List<ProductEntity> readProductsData(String sheetName){
+        List<Object[]> products = readAllTestDataFromSheet(sheetName);
+        List<ProductEntity> listOfProducts = new ArrayList<ProductEntity>();
+        for(Object[] productField : products){
+            ProductEntity product = new ProductEntity.Builder()
+                    .setName(productField[0].toString())
+                    .setDescription(productField[1].toString())
+                    .setPrice(productField[2].toString())
+                    .build();
+            listOfProducts.add(product);
+        }
+        
+        return listOfProducts;
+    }
+    
+    
+    @DataProvider(name = "getUsersDataProvider")
+    public static Iterator<UserEntity> EditUsersDataProvider() {
+        return readUesrsData( "sheetWithTCNAme").iterator();
+    }
+    
+    @DataProvider(name = "detProductsDataProvider")
+    public static Iterator<ProductEntity> excelEditUsers() {
+        return readProductsData( "sheetWithTCNAme").iterator();
+    }
   
-/*   public static Iterator<Object[]> excelNewUsers() {
-       return usersFromFileAdminPage(TEST_DATA_PATH, "NewUsersData").iterator();
-   }
-*/
+
 
 }

@@ -1,7 +1,7 @@
 package enums;
 
 
-public enum RegionEnum {
+public enum Region {
     NORTH("North"),
     EAST("East"),
     SOUTH("South"),
@@ -9,15 +9,15 @@ public enum RegionEnum {
 
     private String region;
 
-    RegionEnum(String region) {
+    Region(String region) {
         this.region = region;
     }
 
     public String getRegionType() {
         return region;
     }
-    public static RegionEnum getRegion(String regionString) {
-        for (final RegionEnum regionEnum : RegionEnum.values()) {
+    public static Region getRegion(String regionString) {
+        for (final Region regionEnum : Region.values()) {
             if (regionEnum.getRegionType().trim().equalsIgnoreCase(regionString)) {
                 return regionEnum;
             }

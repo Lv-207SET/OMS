@@ -7,22 +7,22 @@ import org.openqa.selenium.WebElement;
 public class EditProductPage extends BasePage {
 
     private WebDriver driver;
-    private final String ADD_PRODUCT_LABEL_XPATH = "//*[@id='edit']/h3";
-    private final String PRODUCT_NAME_INPUT_ID = "name";
-    private final String PRODUCT_DESCRIPTION_TEXTAREA_ID = "description";
-    private final String PRODUCT_PRICE_ID = "price";
-    private final String OK_BUTTON_XPATH = "//*[@value='OK']";
-    private final String CANCEL_BUTTON_XPATH = "//*[@value='Cancel']";
-    private final String ITEM_MANAGEMENT_TAB_XPATH = "//a[@href='itemManagement.htm']";
-    private final String PRODUCT_NAME_ERROR_MESSAGE_ID = "productName.errors";
-    private final String PRODUCT_PRICE_ERROR_MESSAGE_ID = "productPrice.errors";
+    private final static String ADD_PRODUCT_LABEL_CSS = "#edit h3";
+    private final static String PRODUCT_NAME_INPUT_ID = "name";
+    private final static String PRODUCT_DESCRIPTION_TEXTAREA_ID = "description";
+    private final static String PRODUCT_PRICE_ID = "price";
+    private final static String OK_BUTTON_CSS = "[value='OK']";
+    private final static String CANCEL_BUTTON_CSS = "[value='Cancel']";
+    private final static String ITEM_MANAGEMENT_TAB_CSS = "#nav .cur a";
+    private final static String PRODUCT_NAME_ERROR_MESSAGE_ID = "productName.errors";
+    private final static String PRODUCT_PRICE_ERROR_MESSAGE_ID = "productPrice.errors";
 
     public EditProductPage(WebDriver driver) {
         super(driver);
     }
 
     public WebElement getAddProductLabel() {
-        return driver.findElement(By.xpath(ADD_PRODUCT_LABEL_XPATH));
+        return driver.findElement(By.cssSelector(ADD_PRODUCT_LABEL_CSS));
     }
 
     public void enterProductName(String productNameValue) {
@@ -54,19 +54,19 @@ public class EditProductPage extends BasePage {
     }
 
     public ItemManagementPage clickOkButton() {
-        WebElement okButton = driver.findElement(By.xpath(OK_BUTTON_XPATH));
+        WebElement okButton = driver.findElement(By.cssSelector(OK_BUTTON_CSS));
         okButton.click();
         return new ItemManagementPage(driver);
     }
 
     public ItemManagementPage clickCancelButton() {
-        WebElement cancelButton = driver.findElement(By.xpath(CANCEL_BUTTON_XPATH));
+        WebElement cancelButton = driver.findElement(By.cssSelector(CANCEL_BUTTON_CSS));
         cancelButton.click();
         return new ItemManagementPage(driver);
     }
 
     public ItemManagementPage clickOnItemManagementTab () {
-        driver.findElement(By.xpath(ITEM_MANAGEMENT_TAB_XPATH)).click();
+        driver.findElement(By.cssSelector(ITEM_MANAGEMENT_TAB_CSS)).click();
         return new ItemManagementPage(driver);
     }
 }

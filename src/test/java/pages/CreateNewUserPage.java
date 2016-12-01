@@ -1,6 +1,7 @@
 package pages;
 
-import enums.SelectRoleDropdownListEnums;
+import enums.SelectRegionDropdownList;
+import enums.SelectRoleDropdownList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -181,12 +182,12 @@ public class CreateNewUserPage {
         return this;
     }
 
-    public CreateNewUserPage selectRegion(String region) {
-        getSelectRegion().selectByValue(region);
+    public CreateNewUserPage selectRegion(SelectRegionDropdownList region) {
+        getSelectRegion().selectByValue(region.toString());
         return this;
     }
 
-    public CreateNewUserPage selectRole(SelectRoleDropdownListEnums role) {
+    public CreateNewUserPage selectRole(SelectRoleDropdownList role) {
         getSelectRole().selectByValue(role.toString());
         return this;
     }

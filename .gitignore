@@ -1,5 +1,6 @@
 *.class
 
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
@@ -42,3 +43,9 @@ hs_err_pid*
 *.doc
 *.docx
 *.pdf
+
+
+D:/oms/src/test/resources/drivers/chromedriver.exe
+D:/oms/src/test/java/Test.java
+D:/oms/src/test/java/Test.xml
+D:/oms/src/test/java/TestRunner.java

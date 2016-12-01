@@ -28,6 +28,10 @@ public class Test extends TestRunner {
                 .selectCondition(ConditionFilterDropdownList.CONTAINS.getNameOfConditionFilterField())
                 /*.search("Con")*/;
 
+
+        page.parseTable();
+
+
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {

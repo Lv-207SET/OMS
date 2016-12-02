@@ -53,9 +53,9 @@ public class CreateNewUserPage extends BasePage{
         this.inputConfirmPassword = driver.findElement(By.id(INPUT_CONFIRM_PASSWORD_ID));
         this.inputEmail = driver.findElement(By.id(INPUT_EMAIL_ID));
         this.selectRegion = new Select(driver.findElement(By.id(SELECT_REGION_ID)));
-        this.selectRole = new Select(driver.findElement(By.id(SELECT_ROLE_ID)));
-        this.buttonCreate = driver.findElement(By.id(BUTTON_CREATE_CSS));
-        this.buttonCancel = driver.findElement(By.id(BUTTON_CANCEL_CSS));
+        //this.selectRole = new Select(driver.findElement(By.id(SELECT_ROLE_ID)));
+        this.buttonCreate = driver.findElement(By.cssSelector(BUTTON_CREATE_CSS));
+        this.buttonCancel = driver.findElement(By.cssSelector(BUTTON_CANCEL_CSS));
     }
 
     public WebDriver getDriver() {
@@ -231,5 +231,10 @@ public class CreateNewUserPage extends BasePage{
     public String getErrorEmail() {
         errorEmail = driver.findElement(By.id(ERROR_EMAIL_ID));
         return errorEmail.getText();
+    }
+
+    public AdministrationPage createNewUser(){
+        buttonCreate.click();
+        return new AdministrationPage(driver);
     }
 }

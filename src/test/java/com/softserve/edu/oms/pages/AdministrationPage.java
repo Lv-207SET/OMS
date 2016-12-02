@@ -264,7 +264,7 @@ public class AdministrationPage {
 	}
 
 	public String  getFoundUsersNumber() {
-		String foundUsers = driver.findElement(By.id(USERS_FOUND)).getText();
+		String foundUsers = driver.findElement(By.id(USERS_FOUND)).getAttribute("innerHTML");
 		return foundUsers;
 	}
 

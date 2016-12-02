@@ -4,14 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.softserve.edu.oms.data.IUser;
-
-public class OmsAdminHomePage extends AOmsHomePage {
+public class AdminHomePage extends AHomePage {
 
 	// Fields
 	private WebElement administrationTab;
 
-	public OmsAdminHomePage(WebDriver driver) {
+	public AdminHomePage(WebDriver driver) {
 		super(driver);
 		this.administrationTab = driver.findElement(By.xpath("//a[contains(@href, 'users.htm')]"));
 	}
@@ -38,9 +36,9 @@ public class OmsAdminHomePage extends AOmsHomePage {
 	
     // Business Logic
 
-    public OmsAdministrationPage gotoAdministrationPage() {
+    public AdministrationPage gotoAdministrationPage() {
     	clickgetAdministrationTab();
-		return new OmsAdministrationPage(driver);
+		return new AdministrationPage(driver);
 	}
 
 }

@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.oms.data.IUser;
 
-public class OmsLoginPage {
+public class LoginPage {
 	
 	public static final String NAME_REMEMBER_ME = "remember_me";
 	private static final String NAME_ATTRIBUTE = "name";
@@ -24,7 +24,7 @@ public class OmsLoginPage {
     private WebElement submit;
     private WebElement rememberMeCheckbox;
 
-	public OmsLoginPage(WebDriver driver) {
+	public LoginPage(WebDriver driver) {
 		this.driver = driver;
 		//
 		this.loginname = driver.findElement(By.name("j_username"));
@@ -131,18 +131,18 @@ public class OmsLoginPage {
 		clickSubmitButton();
 	}
 
-    public OmsHomePage successUserLogin(IUser user) {
+    public HomePage successUserLogin(IUser user) {
         setLoginData(user);
         // Return a new page object representing the destination.
-        return new OmsHomePage(driver);
+        return new HomePage(driver);
     }
 
-    public OmsAdminHomePage successAdminLogin(IUser admin) {
+    public AdminHomePage successAdminLogin(IUser admin) {
     //public AdminHomePage successAdminLogin(String login, String password) {
 		setLoginData(admin);
 		//setLoginData(login, password);
 		// Return a new page object representing the destination.
-		return new OmsAdminHomePage(driver);
+		return new AdminHomePage(driver);
 	}
 
 //	public RegistratorHomePage successRegistratorLogin(IUser registrator) {

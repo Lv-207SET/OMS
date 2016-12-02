@@ -2,6 +2,7 @@ package com.softserve.edu.oms.tests;
 
 import java.util.concurrent.TimeUnit;
 
+import com.softserve.edu.oms.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -11,9 +12,8 @@ import org.testng.annotations.Test;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.ListUtils;
 import com.softserve.edu.oms.data.UserRepository;
-import com.softserve.edu.oms.pages.OmsAdministrationPage;
-import com.softserve.edu.oms.pages.OmsHomePage;
-import com.softserve.edu.oms.pages.OmsLoginPage;
+import com.softserve.edu.oms.pages.AdministrationPage;
+import com.softserve.edu.oms.pages.LoginPage;
 
 public class OmsLoginTest {
 	
@@ -43,8 +43,8 @@ public class OmsLoginTest {
 		Thread.sleep(2000);
 		//
 		// Test steps.
-		OmsLoginPage omsLoginPage = new OmsLoginPage(driver);
-		OmsHomePage omsHomePage = omsLoginPage.successUserLogin(user);
+		LoginPage omsLoginPage = new LoginPage(driver);
+		HomePage omsHomePage = omsLoginPage.successUserLogin(user);
 		Thread.sleep(2000);
 		//
 		// Check
@@ -58,7 +58,7 @@ public class OmsLoginTest {
 		// Return to previous state
 		omsLoginPage = omsHomePage.gotoLoginPage();
 		Assert.assertTrue(omsLoginPage.getRememberMeCheckboxNameAttribute()
-				.contains(OmsLoginPage.NAME_REMEMBER_ME));
+				.contains(LoginPage.NAME_REMEMBER_ME));
 		//
 		Thread.sleep(2000);
 		driver.quit();
@@ -83,7 +83,7 @@ public class OmsLoginTest {
 		Thread.sleep(2000);
 		//
 		// Test steps.
-		OmsAdministrationPage omsAdministrationPage = new OmsLoginPage(driver)
+		AdministrationPage omsAdministrationPage = new LoginPage(driver)
 				.successAdminLogin(admin)
 				.gotoAdministrationPage();
 		//

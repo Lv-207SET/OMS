@@ -1,4 +1,4 @@
-package enums;
+package com.softserve.edu.oms.enums;
 
 public enum FieldFilterSupervisor {
     NAME("Name"), DESCRIPTION("Description");

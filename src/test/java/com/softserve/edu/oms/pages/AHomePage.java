@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public abstract class AOmsHomePage {
+public abstract class AHomePage {
 
 	// Fields
 	protected WebDriver driver;
@@ -15,7 +15,7 @@ public abstract class AOmsHomePage {
     private WebElement role;
     private WebElement logout;
 
-	public AOmsHomePage(WebDriver driver) {
+	public AHomePage(WebDriver driver) {
 		this.driver = driver;
 		//
 		this.userInfoTab = driver.findElement(By.xpath("//a[contains(@href,'userInfo.htm')]"));
@@ -83,9 +83,9 @@ public abstract class AOmsHomePage {
 
     // Business Logic
 
-    public OmsLoginPage gotoLoginPage() {
+    public LoginPage gotoLoginPage() {
     	clickgetLogout();
-		return new OmsLoginPage(driver);
+		return new LoginPage(driver);
 	}
 
 }

@@ -4,17 +4,14 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.softserve.edu.oms.data.IUser;
-import com.softserve.edu.oms.data.ListUtils;
 import com.softserve.edu.oms.data.UserRepository;
-import com.softserve.edu.oms.pages.OmsAdminHomePage;
-import com.softserve.edu.oms.pages.OmsAdministrationPage;
-import com.softserve.edu.oms.pages.OmsHomePage;
-import com.softserve.edu.oms.pages.OmsLoginPage;
+import com.softserve.edu.oms.pages.AdminHomePage;
+import com.softserve.edu.oms.pages.AdministrationPage;
+import com.softserve.edu.oms.pages.LoginPage;
 
 public class TestTest {
  
@@ -42,11 +39,11 @@ public class TestTest {
         driver.get("http://localhost:8080/OMS/");
         Thread.sleep(2000);
         
-        OmsLoginPage omsLoginPage = new OmsLoginPage(driver);
-       // OmsHomePage omsHomePage = omsLoginPage.successUserLogin(user);
+        LoginPage omsLoginPage = new LoginPage(driver);
+       // HomePage omsHomePage = omsLoginPage.successUserLogin(user);
         Thread.sleep(2000);
-        OmsAdminHomePage omsAdminHomePage = omsLoginPage.successAdminLogin(admin);
-        OmsAdministrationPage omsAdministrationPage = omsAdminHomePage.gotoAdministrationPage();
+        AdminHomePage omsAdminHomePage = omsLoginPage.successAdminLogin(admin);
+        AdministrationPage omsAdministrationPage = omsAdminHomePage.gotoAdministrationPage();
         
         
         

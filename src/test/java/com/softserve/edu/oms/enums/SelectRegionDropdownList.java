@@ -1,4 +1,4 @@
-package enums;
+package com.softserve.edu.oms.enums;
 
 /**
  * Created by User on 30.11.2016.

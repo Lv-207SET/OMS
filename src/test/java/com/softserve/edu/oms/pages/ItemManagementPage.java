@@ -1,6 +1,6 @@
-package pages;
+package com.softserve.edu.oms.pages;
 
-import enums.FieldFilterSupervisor;
+import com.softserve.edu.oms.enums.FieldFilterSupervisor;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

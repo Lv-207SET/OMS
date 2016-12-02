@@ -1,7 +1,7 @@
-package pages;
+package com.softserve.edu.oms.pages;
 
-import enums.SelectRegionDropdownList;
-import enums.SelectRoleDropdownList;
+import com.softserve.edu.oms.enums.SelectRegionDropdownList;
+import com.softserve.edu.oms.enums.SelectRoleDropdownList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

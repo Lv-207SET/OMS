@@ -1,4 +1,4 @@
-package database;
+package com.softserve.edu.oms.database;
 
 public class ProductEntity {
     private String name;

@@ -1,17 +1,17 @@
-package tests;
+package com.softserve.edu.oms.tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import pages.LogInPage;
+import com.softserve.edu.oms.pages.LoginPage;
 
 import java.util.concurrent.TimeUnit;
 
 public class TestRunner {
 
     protected WebDriver driver;
-    protected LogInPage logInPage;
+    protected LoginPage logInPage;
 
     @BeforeClass
     public void setUpDriver() {
@@ -31,7 +31,7 @@ public class TestRunner {
                 .maximize();
 
         driver.get(logInPageUrl);
-        logInPage = new LogInPage(driver);
+        logInPage = new LoginPage(driver);
     }
 
     @AfterClass(alwaysRun = true)

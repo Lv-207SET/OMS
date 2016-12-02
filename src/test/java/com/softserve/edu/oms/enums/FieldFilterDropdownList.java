@@ -1,4 +1,4 @@
-package enums;
+package com.softserve.edu.oms.enums;
 
 public enum FieldFilterDropdownList {
     ALL_COLUMNS("All columns"),

@@ -1,4 +1,4 @@
-package utils;
+package com.softserve.edu.oms.utils;
 
 import java.io.FileInputStream;
 import java.util.ArrayList;
@@ -17,10 +17,10 @@ import org.testng.annotations.DataProvider;
 
 import com.sun.jna.platform.win32.Netapi32Util.User;
 
-import database.ProductEntity;
-import database.UserEntity;
-import enums.Region;
-import enums.Role;
+import com.softserve.edu.oms.database.ProductEntity;
+import com.softserve.edu.oms.database.UserEntity;
+import com.softserve.edu.oms.enums.Region;
+import com.softserve.edu.oms.enums.Role;
 
 //import org.apache.poi.xssf.usermodel.XSSFRow;
 

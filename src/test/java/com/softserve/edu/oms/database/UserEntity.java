@@ -1,8 +1,8 @@
-package database;
+package com.softserve.edu.oms.database;
 
-import enums.Region;
-import enums.Role;
-import enums.SelectRoleDropdownList;
+import com.softserve.edu.oms.enums.Region;
+import com.softserve.edu.oms.enums.Role;
+import com.softserve.edu.oms.enums.SelectRoleDropdownList;
 
 
 /**

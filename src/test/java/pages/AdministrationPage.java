@@ -14,10 +14,10 @@ import java.util.NoSuchElementException;
 
 public class AdministrationPage extends BasePage {
 
-    public static final String RESIZE_USERS_LIST_CSS = "#list p a";
+    public static final String SHOW_ITEMS_LINK_CSS = "#list p a";
     public static final String GO_TO_CREATE_NEW_USER_PAGE_CSS = "#list>a";
-    public static final String SELECT_FIELD_FILTER_DROPDOWN_LIST_CSS = "#field";
-    public static final String SELECT_CONDITION_FILTER_DROPDOWN_LIST_CSS = "#condition";
+    public static final String SELECT_FIELD_FILTER_DROPDOWN_LIST_ID = "field";
+    public static final String SELECT_CONDITION_FILTER_DROPDOWN_LIST_ID = "condition";
     public static final String SEARCH_INPUT = "searchField";
     public static final String SEARCH_BUTTON = "input[value='Search']";
     public static final String DELETE = "Delete";
@@ -33,7 +33,7 @@ public class AdministrationPage extends BasePage {
     public static final String TOTAL_PAGE_NUMBER = "pageCount";
     public static final String CURRENT_PAGE_NUMBER = "pageNumber";
     public static final String LINK_EDIT_USER = "Edit";
-    public final static String CREATE_REPORT_LINK_CSS = "#list h4:last-of-type + a";
+    public final static String CREATE_REPORT_LINK_CSS = "#list h5 a";
     public static final String FIRST_NAME_LINK_CSS = "th:nth-child(1) a";
     public static final String LAST_NAME_LINK_CSS = "th:nth-child(2) a";
     public static final String LOGIN_LINK_CSS= "th:nth-child(3) a";
@@ -62,7 +62,7 @@ public class AdministrationPage extends BasePage {
     //  Administrator select all fields in "Field Filter" dropdown list
     //  in "Search by" block on "Administration" tab
     public AdministrationPage selectFieldFilterDropdownList(final FieldFilterDropdownList fieldFilterDropdownList) {
-        WebElement selectFieldFilterElement = driver.findElement(By.cssSelector(SELECT_FIELD_FILTER_DROPDOWN_LIST_CSS));
+        WebElement selectFieldFilterElement = driver.findElement(By.id(SELECT_FIELD_FILTER_DROPDOWN_LIST_ID));
         final Select selectDropdownList = new Select(selectFieldFilterElement);
         selectDropdownList.selectByVisibleText(fieldFilterDropdownList.getFieldName());
         return this;
@@ -71,7 +71,7 @@ public class AdministrationPage extends BasePage {
     //  Administrator select all fields in "Condition Filter" dropdown list
     //  in "Search by" block on "Administration" tab
     public AdministrationPage selectConditionFilterDropdownList(final ConditionFilterDropdownList conditionFilter) {
-        WebElement selectConditionFilterElement = driver.findElement(By.cssSelector(SELECT_CONDITION_FILTER_DROPDOWN_LIST_CSS));
+        WebElement selectConditionFilterElement = driver.findElement(By.id(SELECT_CONDITION_FILTER_DROPDOWN_LIST_ID));
         final Select selectConditionFilter = new Select(selectConditionFilterElement);
         selectConditionFilter.selectByVisibleText(conditionFilter.getNameOfConditionFilterField());
         return this;
@@ -131,7 +131,7 @@ public class AdministrationPage extends BasePage {
     //   Change user quantity per page by click "Show 10 items" or "Show 5 items"
     public AdministrationPage changeQuantityOfUsersPerPage(UsersPerPage usersPerPageQuantity){
         if (usersPerPageQuantity == usersPerPage){
-            driver.findElement(By.cssSelector(RESIZE_USERS_LIST_CSS)).click();
+            driver.findElement(By.cssSelector(SHOW_ITEMS_LINK_CSS)).click();
         }
         return this;
     }

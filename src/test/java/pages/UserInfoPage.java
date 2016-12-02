@@ -5,14 +5,15 @@ import org.openqa.selenium.WebDriver;
 
 public class UserInfoPage extends BasePage{
 
-    private final static String ENGLISH_LANGUAGE_LINK_ID = "en_US";
-    private final static String UKRAINIAN_LANGUAGE_LINK_ID = "uk_UA";
+    private final static String ENGLISH_LANGUAGE_LINK_ID = "en_US";//xpath
+    private final static String UKRAINIAN_LANGUAGE_LINK_ID = "uk_UA";//xpath
     private final static String FIRST_NAME_LABEL_CSS = "fieldset tr:nth-child(1) td:last-child";
     private final static String LAST_NAME_LABEL_CSS = "fieldset tr:nth-child(2) td:last-child";
+    private final static String CUSTOMER_TYPE_LABEL_CSS = "fieldset tr:nth-child(3) td:last-child"; //getter needed
     private final static String ROLE_LABEL_CSS = "fieldset tr:nth-child(4) td:last-child";
-    private final static String ADMINISTRATION_TAB_CSS = "#nav .cur a";
-    private final static String ORDERING_TAB_CSS = "#nav .cur a";
-    private final static String ITEM_MANAGEMENT_TAB_CSS = "#nav .cur a";
+    private final static String ADMINISTRATION_TAB_CSS = "[href=\"/OMS/users.htm\"]";
+    private final static String ORDERING_TAB_CSS = "[href=\"/OMS/order.htm\"]";
+    private final static String ITEM_MANAGEMENT_TAB_CSS = "[href=\"/OMS/itemManagement.htm\"]";
 
 
    public UserInfoPage (WebDriver driver){

@@ -19,11 +19,11 @@ public class CreateNewUserPage extends BasePage{
     public static final String BUTTON_CREATE_CSS = "input[value=\"Create\"]";
     public static final String BUTTON_CANCEL_CSS = "input[value=\"Cancel\"]";
 
-    public static final String ERROR_LOGIN_ID = "login.errors";
-    public static final String ERROR_FIRST_NAME_ID = "firstName.errors";
-    public static final String ERROR_LAST_NAME_ID = "lastName.errors";
-    public static final String ERROR_PASSWORD_ID = "password.errors";
-    public static final String ERROR_CONFIRM_PASSWORD_ID = "confirmPassword.errors";
+    public static final String ERROR_LOGIN_ID = "nameError";
+    public static final String ERROR_FIRST_NAME_ID = "firstNameError";
+    public static final String ERROR_LAST_NAME_ID = "lastNameError";
+    public static final String ERROR_PASSWORD_ID = "passwordError";
+    public static final String ERROR_CONFIRM_PASSWORD_ID = "confirmError";
     public static final String ERROR_EMAIL_ID = "emailError";
 
     //private WebDriver driver;

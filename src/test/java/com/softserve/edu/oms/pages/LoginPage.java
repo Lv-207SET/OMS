@@ -6,31 +6,17 @@ import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.oms.data.IUser;
 
-public class LoginPage {
-	
-	public static final String NAME_REMEMBER_ME = "remember_me";
-	private static final String NAME_ATTRIBUTE = "name";
+public class LoginPage extends ABasePage{
 
-	// Fields
-	private WebDriver driver;
-	//
-	//private static final String LOG_IN_INPUT_FIELD_NAME = "j_username";
-	//private static final String PASSWORD_INPUT_FIELD_NAME ="j_password";
-	//private static final String LOG_IN_BUTTON_NAME = "submit";
-	//private static final String REMEMBER_ME_CHECKBOX_NAME = "_spring_security_remember_me";
-	//
-	private WebElement loginname;
-    private WebElement password;
-    private WebElement submit;
-    private WebElement rememberMeCheckbox;
+	private static final String REMEMBER_ME_NAME = "remember_me";
+	private static final String ATTRIBUTE_NAME = "name";
+	private static final String LOGIN_INPUT_FIELD_NAME = "j_username";
+	private static final String PASSWORD_INPUT_FIELD_NAME ="j_password";
+	private static final String LOGIN_BUTTON_NAME = "submit";
+	private static final String REMEMBER_ME_CHECKBOX_NAME = "_spring_security_remember_me";
 
 	public LoginPage(WebDriver driver) {
-		this.driver = driver;
-		//
-		this.loginname = driver.findElement(By.name("j_username"));
-		this.password = driver.findElement(By.name("j_password"));
-		this.submit = driver.findElement(By.name("submit"));
-		this.rememberMeCheckbox = driver.findElement(By.name("_spring_security_remember_me"));
+		super(driver);
 	}
 
     // PageObject
@@ -38,23 +24,19 @@ public class LoginPage {
 	// get Data
 
 	public WebElement getLoginnameInput() {
-		return this.loginname;
-		//return this.driver.findElement(By.name(LOG_IN_INPUT_FIELD_NAME));
+		return this.driver.findElement(By.name(LOGIN_INPUT_FIELD_NAME));
 	}
 
 	public WebElement getPasswordInput() {
-		return this.password;
-		//return this.driver.findElement(By.name(PASSWORD_INPUT_FIELD_NAME));
+		return this.driver.findElement(By.name(PASSWORD_INPUT_FIELD_NAME));
 	}
 
 	public WebElement getSubmitButton() {
-		return this.submit;
-		//return this.driver.findElement(By.name(LOG_IN_BUTTON_NAME));
+		return this.driver.findElement(By.name(LOGIN_BUTTON_NAME));
 	}
 
 	public WebElement getRememberMeCheckbox() {
-		return this.rememberMeCheckbox;
-		//return this.driver.findElement(By.name(REMEMBER_ME_CHECKBOX_NAME));
+		return this.driver.findElement(By.name(REMEMBER_ME_CHECKBOX_NAME));
 	}
 
 	// Functional
@@ -72,7 +54,7 @@ public class LoginPage {
 	}
 
 	public String getRememberMeCheckboxNameAttribute() {
-		return getRememberMeCheckbox().getAttribute(NAME_ATTRIBUTE).toLowerCase().trim();
+		return getRememberMeCheckbox().getAttribute(ATTRIBUTE_NAME).toLowerCase().trim();
 	}
 
 	// set Data
@@ -145,18 +127,25 @@ public class LoginPage {
 		return new AdminHomePage(driver);
 	}
 
-//	public RegistratorHomePage successRegistratorLogin(IUser registrator) {
-//		setLoginData(registrator);
-//		// Return a new page object representing the destination.
-//		return new RegistratorHomePage();
-//	}
-//
-    // TODO Develop User class
-//    public LoginValidatorPage unsuccessfulLogin(IUser invalidUser) {
-//	//public LoginValidatorPage unsuccessfulLogin(String login, String password) {
-//    	setLoginData(invalidUser);
-//		//setLoginData(login, password);
-//		return new LoginValidatorPage(driver); // return this;
-//	}
+	public CustomerHomePage succesCustomerLogin (IUser customer){
+		setLoginData(customer);
+		return new CustomerHomePage(driver);
+	}
+
+	public MerchandiserHomePage succesMerchandiserLogin (IUser merchandiser){
+		setLoginData(merchandiser);
+		return new MerchandiserHomePage(driver);
+	}
+
+	public SupervisorHomePage succesSupervisorLogin (IUser supervisor){
+		setLoginData(supervisor);
+		return new SupervisorHomePage(driver);
+	}
+
+
+    public LoginValidatorPage unsuccessfulLogin(IUser invalidUser) {
+    	setLoginData(invalidUser);
+		return new LoginValidatorPage(driver);
+	}
 
 }

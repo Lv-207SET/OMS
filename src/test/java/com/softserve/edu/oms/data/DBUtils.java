@@ -76,4 +76,32 @@ public class DBUtils implements IExternalData {
 		return allCells;
 	}
 
+	public void deleteUsersFromDB(){
+		Connection con = null;
+		Statement st = null;
+
+		try {
+			//DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+			DriverManager.registerDriver(new net.sourceforge.jtds.jdbc.Driver());
+			con = DriverManager.getConnection(url, username, password);
+		} catch (Exception e) {
+			throw new RuntimeException(SQL_EXCEPTION_FOUND, e);
+		}
+		// TODO Delete messages
+		if (con != null) {
+			System.out.println("+++Connection Successful! \n");
+		} else {
+			System.out.println("+++Connection fail \n");
+			System.exit(0);
+		}
+		try {
+			st = con.createStatement();
+			st.execute("DELETE FROM Users WHERE FirstName='rrd';");
+
+		} catch (Exception e) {
+			throw new RuntimeException(SQL_EXCEPTION_FOUND, e);
+		}
+	}
+
+
 }

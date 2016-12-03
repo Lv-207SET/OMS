@@ -13,6 +13,7 @@ public class LoginPage extends ABasePage{
 	private static final String LOGIN_INPUT_FIELD_NAME = "j_username";
 	private static final String PASSWORD_INPUT_FIELD_NAME ="j_password";
 	private static final String LOGIN_BUTTON_NAME = "submit";
+	private static final String RESET_BUTTON_NAME = "reset";
 	private static final String REMEMBER_ME_CHECKBOX_NAME = "_spring_security_remember_me";
 
 	public LoginPage(WebDriver driver) {
@@ -35,6 +36,10 @@ public class LoginPage extends ABasePage{
 		return this.driver.findElement(By.name(LOGIN_BUTTON_NAME));
 	}
 
+	public WebElement getResetButton() {
+		return this.driver.findElement(By.name(RESET_BUTTON_NAME));
+	}
+
 	public WebElement getRememberMeCheckbox() {
 		return this.driver.findElement(By.name(REMEMBER_ME_CHECKBOX_NAME));
 	}
@@ -51,6 +56,10 @@ public class LoginPage extends ABasePage{
 
 	public String getSubmitButtonText() {
 		return getSubmitButton().getText().trim();
+	}
+
+	public String getResetButtonText() {
+		return getResetButton().getText().trim();
 	}
 
 	public String getRememberMeCheckboxNameAttribute() {
@@ -97,6 +106,10 @@ public class LoginPage extends ABasePage{
 		getSubmitButton().click();
 	}
 
+	public void clickResetButton() {
+		getResetButton().click();
+	}
+
 	public void clickgetRememberMeCheckbox() {
 		getRememberMeCheckbox().click();
 	}
@@ -111,6 +124,12 @@ public class LoginPage extends ABasePage{
 		//setLoginInputClear(login);
 		//setPasswordInputClear(password);
 		clickSubmitButton();
+	}
+
+	public void setLoginDataAndReset(IUser user) {
+		setLoginnameInputClear(user.getLoginname());
+		setPasswordInputClear(user.getPassword());
+		clickResetButton();
 	}
 
     public HomePage successUserLogin(IUser user) {

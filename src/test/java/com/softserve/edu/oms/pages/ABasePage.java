@@ -10,7 +10,7 @@ public abstract class ABasePage {
     private static final String OMS_LABEL_CSS = "#logo h1";
     private static final String SIMPLE_SLIM_GENIUS_LABEL_CSS = "#logo h2";
     private static final String INSPIRED_BY_GOOGLE_LINK_CSS = "#footer a";
-    private static final String USER_INFO_TAB_XPATH = "//a[contains(@href, 'usersInfo.htm')]";
+    private static final String USER_INFO_TAB_CSS = "*[href=\"/OMS/userInfo.htm\"]";
 
     protected WebDriver driver;
 
@@ -34,7 +34,7 @@ public abstract class ABasePage {
     public WebElement getInspiredByGoogleLink(){return driver.findElement(By.cssSelector(INSPIRED_BY_GOOGLE_LINK_CSS));}
 
     public WebElement getUserInfoTab() {
-        return driver.findElement(By.xpath(USER_INFO_TAB_XPATH));
+        return driver.findElement(By.cssSelector(USER_INFO_TAB_CSS));
     }
 
 
@@ -70,13 +70,11 @@ public abstract class ABasePage {
     }
 
     public void clickUserInfoTab(){
-        driver.findElement(By.xpath(USER_INFO_TAB_XPATH))
+        driver.findElement(By.cssSelector(USER_INFO_TAB_CSS))
                 .click();
     }
 
-
     // Business Logic
-
 
     public HomePage gotoUserInfoTab(){
         clickUserInfoTab();
@@ -87,11 +85,4 @@ public abstract class ABasePage {
         clickLogoutButton();
         return new LoginPage(driver);
     }
-
-
-
-
-
-
-
 }

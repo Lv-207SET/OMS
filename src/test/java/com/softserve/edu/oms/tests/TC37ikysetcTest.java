@@ -13,13 +13,13 @@ public class TC37ikysetcTest extends TestRunner {
 
     @DataProvider
     public Object[][] someUser() {
-		return new Object[][] {
-		    { UserRepository.get().invalidUser() }
+        return new Object[][] {
+                { UserRepository.get().invalidUser() }
         };
     }
 
     @Test(dataProvider = "someUser")
-    public void Test(IUser someUser) {
+    public void verifyResetButtonFunctionalityTest(IUser someUser) {
         logInPage.setLoginDataAndReset(someUser);
         Assert.assertTrue(logInPage.getLoginnameInputText().isEmpty());
         Assert.assertTrue(logInPage.getPasswordInputText().isEmpty());

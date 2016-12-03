@@ -3,6 +3,7 @@ package com.softserve.edu.oms.tests;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -40,7 +41,7 @@ public class TC53rrabaTest {
         System.setProperty("webdriver.chrome.driver",
                 this.getClass().getResource("/drivers/chromedriver.exe").getPath().substring(1));
         driver = new ChromeDriver();
-//        driver = new FirefoxDriver();
+//         WebDriver driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.get("http://localhost:8080/OMS/");
         Thread.sleep(2000);
@@ -56,9 +57,11 @@ public class TC53rrabaTest {
                 CreateNewUserPage createNewUserPage = omsAdministrationPage.goToCreateNewUserPage();
                 String login = "roman";
                 createNewUserPage.setLogin(login + login.charAt(i)).setFirstName("rrd").setLastName("rrd")
-                        .setPassword("1234").setConfirmPassword("1234").setEmail("rrws@gmail.com");
+                        .setPassword("1234").setConfirmPassword("1234").setEmail("rdd@g.com"); //setEmail("rrws@gmail.com");
                 // driver.switchTo().alert().accept();
-                Thread.sleep(3000);
+                //Thread.sleep(3000);
+                driver.findElement(By.cssSelector("#logo>h1")).click();
+                driver.findElement(By.cssSelector("#logo>h1")).click();
                 omsAdministrationPage = createNewUserPage.createNewUser();
             }
             numberUsers = numberUsers +(5- (numberUsers % 5));

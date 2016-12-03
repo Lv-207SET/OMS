@@ -3,7 +3,9 @@ package com.softserve.edu.oms.tests;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import com.softserve.edu.oms.database.UserEntity;
+
+import com.softserve.edu.oms.data.User;
+
 
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -59,9 +61,9 @@ public class TC47rrabaTest {
                 .clickSearchButton();
 
         List<String> listLastNameFromTable = new ArrayList<>();
-        for(UserEntity userEntity:omsAdministrationPage.getAllUsers()){
-            listLastNameFromTable.add(userEntity.getLastName());
-            System.out.println(userEntity.getLastName());
+        for(User user:omsAdministrationPage.getAllUsers()){
+            listLastNameFromTable.add(user.getLastname());
+            System.out.println(user.getLastname());
 
         }
 
@@ -96,9 +98,9 @@ public class TC47rrabaTest {
                 .clickSearchButton();
 
         List<String> listLastNameFromTable = new ArrayList<>();
-        for(UserEntity userEntity:omsAdministrationPage.getAllUsers()){
-            listLastNameFromTable.add(userEntity.getLogin());
-            System.out.println(userEntity.getLogin());
+        for(User user:omsAdministrationPage.getAllUsers()){
+            listLastNameFromTable.add(user.getLoginname());
+            System.out.println(user.getLoginname());
 
         }
 
@@ -141,9 +143,9 @@ public class TC47rrabaTest {
                 .clickSearchButton();
 
         List<String> listLastNameFromTable = new ArrayList<>();
-        for(UserEntity userEntity:omsAdministrationPage.getAllUsers()){
-            listLastNameFromTable.add(userEntity.getRole().getRoleType());
-            System.out.println(userEntity.getRole().getRoleType());
+        for(User user:omsAdministrationPage.getAllUsers()){
+            listLastNameFromTable.add(user.getRole());
+            System.out.println(user.getRole());
 
         }
 

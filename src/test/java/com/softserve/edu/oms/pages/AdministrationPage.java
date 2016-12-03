@@ -1,6 +1,6 @@
 package com.softserve.edu.oms.pages;
 
-import com.softserve.edu.oms.database.UserEntity;
+import com.softserve.edu.oms.data.User;
 import com.softserve.edu.oms.enums.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -151,22 +151,21 @@ public class AdministrationPage {
 
 	//   Find user by login and return as java object in purpose to compare it with
 	//   data in database
-	public UserEntity getUserByLoginAndTransferToJavaObject(String login) {
+	public User getUserByLoginAndTransferToJavaObject(String login) {
 		this.selectFieldFilterDropdownList(FieldFilterDropdownList.LOGIN)
 				.selectConditionFilterDropdownList(ConditionFilterDropdownList.EQUALS)
 				.inputIntoSearchField(login)
 				.clickSearchButton();
 
-		UserEntity user = null;
-		user = new UserEntity.Builder()
-				.setFirstName(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText())
-				.setLastName(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText())
-				.setPassword(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText())
-				.setLogin(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText())
-				.setEmail(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText())
-				.setRegion(Region.valueOf(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText()))
-				.setRole(Role.valueOf(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText()))
-				.build();
+		User user = new User();
+		user.setFirstname(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText());
+		user.setLastname(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText());
+		user.setPassword(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText());
+		user.setLoginname(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText());
+		user.setEmail(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText());
+		user.setRegion(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText());
+		user.setRole(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText());
+				;
 		return user;
 	}
 
@@ -181,29 +180,27 @@ public class AdministrationPage {
 	}
 
 	//    Find list of users on current page
-	public List<UserEntity> getUsersFormCurrentPage() {
-		final List<UserEntity> userEntityListFormCurrentPage = new ArrayList<>();
+	public List<User> getUsersFormCurrentPage() {
+		final List<User> userEntityListFormCurrentPage = new ArrayList<>();
 		final WebElement table = driver.findElement(By.tagName(TABLE_BODY));
 		final List<WebElement> webElements = table.findElements(By.tagName(TR));
 		for (WebElement rows : webElements) {
 			final List<WebElement> tableCells = rows.findElements(By.tagName(TD));
-			UserEntity user = null;
-			user = new UserEntity.Builder()
-					.setFirstName(tableCells.get(0).getText())
-					.setLastName(tableCells.get(1).getText())
-					.setLogin(tableCells.get(2).getText())
-					.setRole(Role.valueOf(tableCells.get(3).getText().toUpperCase(Locale.ENGLISH)))
-					.setRegion(Region.valueOf(tableCells.get(4).getText().toUpperCase(Locale.ENGLISH)))
-					.build();
+			User user = new User ();
+			user.setFirstname(tableCells.get(0).getText());
+			user.setLastname(tableCells.get(1).getText());
+			user.setLoginname(tableCells.get(2).getText());
+			user.setRole(tableCells.get(3).getText().toUpperCase(Locale.ENGLISH));
+			user.setRegion(tableCells.get(4).getText().toUpperCase(Locale.ENGLISH));
 			userEntityListFormCurrentPage.add(user);
 		}
 		return userEntityListFormCurrentPage;
 	}
 
 	// Get all users list from search result
-	public List<UserEntity> getAllUsers() {
-		final List<UserEntity> usersOnAllPages = new ArrayList<>();
-		List<UserEntity> usersFromCurrentPage = this.getUsersFormCurrentPage();
+	public List<User> getAllUsers() {
+		final List<User> usersOnAllPages = new ArrayList<>();
+		List<User> usersFromCurrentPage = this.getUsersFormCurrentPage();
 		while (usersFromCurrentPage != null) {
 			usersOnAllPages.addAll(usersFromCurrentPage);
 			if (driver.findElement(By.id(FORWARD_BUTTON)).isEnabled()) {

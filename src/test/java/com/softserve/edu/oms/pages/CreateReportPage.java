@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-public class CreateReportPage extends BasePage{
+public class CreateReportPage extends ABasePage {
 
     public static final String ADMINISTRATION_LINK_CSS = "#nav .cur a";
     public static final String SUBHEADER_CSS = "#list h2";

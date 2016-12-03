@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-public class CreateNewUserPage extends BasePage{
+public class CreateNewUserPage extends ABasePage {
     public static final String INPUT_LOGIN_ID = "login";
     public static final String INPUT_FIRST_NAME_ID = "firstName";
     public static final String INPUT_LAST_NAME_ID = "lastName";

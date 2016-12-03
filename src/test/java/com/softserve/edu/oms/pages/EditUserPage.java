@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-public class EditUserPage  extends BasePage {
+public class EditUserPage  extends ABasePage {
     public static final String LABEL_EDITING_CAPTION_CSS = "#edit>h3";
     public static final String LABEL_NO_CHANGE_CSS = "#edit>span";
     public static final String INPUT_FIRST_NAME_ID = "firstName";

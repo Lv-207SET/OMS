@@ -1,13 +1,9 @@
 package com.softserve.edu.oms.tests;
 
-import org.hamcrest.CoreMatchers;
-import org.testng.annotations.Test;
-import com.softserve.edu.oms.pages.UserInfoPage;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-
-public class LoginPageTest extends TestRunner {
-    private final String errorMessage = "";
+//
+//
+//public class LoginPageTest extends TestRunner {
+//    private final String errorMessage = "";
 
 //    @Test
 //    public void verifyCorrectLogin (String login , String password) {
@@ -48,4 +44,4 @@ public class LoginPageTest extends TestRunner {
 //                .clickLogoutButton();
 //        assertThat(logInPage.getLogInInputField().getText(),CoreMatchers.equalTo(login));
 //    }
-}
+//}

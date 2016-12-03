@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemManagementPage extends BasePage{
+public class ItemManagementPage extends ABasePage {
 
     public ItemManagementPage(WebDriver driver) {
         super(driver);

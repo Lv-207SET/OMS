@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class EditProductPage extends BasePage {
+public class EditProductPage extends ABasePage {
 
     private WebDriver driver;
     private final static String ADD_PRODUCT_LABEL_CSS = "#edit h3";

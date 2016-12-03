@@ -269,7 +269,7 @@ public class AdministrationPage {
 	}
 
 	public String getPagesQuantity() {
-		String foundUsers = driver.findElement(By.id(TOTAL_PAGE_NUMBER)).getText();
+		String foundUsers = driver.findElement(By.id(TOTAL_PAGE_NUMBER)).getAttribute("innerHTML");
 		return foundUsers;
 	}
 

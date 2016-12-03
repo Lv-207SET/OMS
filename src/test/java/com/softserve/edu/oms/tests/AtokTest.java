@@ -18,7 +18,8 @@ public class AtokTest extends TestRunner {
             e.printStackTrace();
         }
 
-        logInPage.successAdminLogin(user);
+       // logInPage.successAdminLogin(user).gotoAdministrationPage().compareto();
+
 
        // System.out.println(logInPage.getLoginnameInputText());
 

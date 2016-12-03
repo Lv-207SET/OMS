@@ -317,16 +317,28 @@ public class AAdminReportPage extends ABasePage {
     }
 
     public void compareto(){
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         List<WebElement> logins = driver.findElements(By.xpath(LOGINS_XPATH));
         int size = logins.size();
         String []textofLogins = new String[size];
+        for (int i = 0; i<size; i++) {
+            textofLogins[i] = logins.get(i).getText().trim();
+            System.out.println(textofLogins[i]);
+        }
+
+        //...to be finished
 
 
 
     }
 
 
-    AdministrationPage goToAdministrationPage(){
+    AdministrationPage gotoAdministrationPage(){
         driver.findElement(By.cssSelector(ADMINISTRATION_LINK_CSS)).click();
         return new AdministrationPage(driver);
 

@@ -19,10 +19,15 @@ public class TC37ikysetcTest extends TestRunner {
     }
 
     @Test(dataProvider = "someUser")
-    public void verifyResetButtonFunctionalityTest(IUser someUser) {
+    public void verifyResetButtonFunctionality(IUser someUser) {
+
         logInPage.setLoginDataAndReset(someUser);
-        Assert.assertTrue(logInPage.getLoginnameInputText().isEmpty());
-        Assert.assertTrue(logInPage.getPasswordInputText().isEmpty());
+        Assert.assertTrue(logInPage
+                .getLoginnameInputText()
+                .isEmpty());
+        Assert.assertTrue(logInPage
+                .getPasswordInputText()
+                .isEmpty());
     }
 
 }

@@ -6,8 +6,8 @@ import org.openqa.selenium.WebElement;
 
 public class AdminHomePage extends HomePage {
 
-	private final static String ADMINISTRATION_TAB_XPATH = "//a[contains(@href, 'users.htm')]";
-	private final static String ORDERING_TAB_XPATH = "//a[contains(@href, 'order.htm')]";
+	private final static String ADMINISTRATION_TAB_CSS = "*[href=\"/OMS/users.htm\"]";
+	private final static String ORDERING_TAB_XPATH = ".//a[contains(@href, 'order.htm')]";
 
 	public AdminHomePage(WebDriver driver) {
 		super(driver);
@@ -18,7 +18,7 @@ public class AdminHomePage extends HomePage {
 	// get Data
 
 	public WebElement getAdministrationTab() {
-		return driver.findElement(By.xpath(ADMINISTRATION_TAB_XPATH));
+		return driver.findElement(By.cssSelector(ADMINISTRATION_TAB_CSS));
 	}
 
 	public WebElement getOrderingTab(){

@@ -14,6 +14,13 @@ public class DBUtils implements IExternalData {
 			+ " Users.Password, Users.Email, Regions.RegionName, Roles.RoleName"
 			+ " from (Users join Regions on Users.RegionRef = Regions.ID)"
 			+ " join Roles on Users.RoleRef = Roles.ID;";
+
+	private static final String SQL_DELETE_USERS_FIRSTNAME =  "DELETE FROM Users WHERE FirstName='rrd'";
+	private static final String SQL_SELECT_COLUMN_LASTNAME = "SELECT LastName FROM Users WHERE IsUserActive=1 AND LastName LIKE 'none%'";
+	private static final String SQL_SELECT_COLUMN_LOGIN = "SELECT Login FROM Users WHERE IsUserActive=1 AND Login LIKE '%none%'";
+	//	private static final String SQL_SELECT_COLUMN_ROLE = "SELECT r.RoleName FROM Users as u JOIN Roles as r on u.RoleRef=r.ID" +
+//                                                    "WHERE u.IsUserActive=1 AND r.RoleName not like '%er%'";
+	private static final String SQL_SELECT_COLUMN_ROLE = "SELECT r.RoleName FROM Users as u JOIN Roles as r on u.RoleRef=r.ID WHERE u.IsUserActive=1 AND r.RoleName not like '%er%'";
 	//
 	// TODO This is hardcode. Must be refactor
 	// MySQL
@@ -96,14 +103,14 @@ public class DBUtils implements IExternalData {
 		}
 		try {
 			st = con.createStatement();
-			st.execute("DELETE FROM Users WHERE FirstName='rrd';");
+			st.execute(SQL_DELETE_USERS_FIRSTNAME);
 
 		} catch (Exception e) {
 			throw new RuntimeException(SQL_EXCEPTION_FOUND, e);
 		}
 	}
 
-	public List<String> getOneColumn() {
+	public List<String> getOneColumn(String nameOfColumn) {
 		List<List<String>> allCells = new ArrayList<List<String>>();
 
 		List<String> listOfOneColumn = new ArrayList<>();
@@ -129,7 +136,17 @@ public class DBUtils implements IExternalData {
 		}
 		try {
 			st = con.createStatement();
-			rs = st.executeQuery("SELECT  LastName FROM Users WHERE IsUserActive=1 AND LastName LIKE 'none%'");
+			switch (nameOfColumn) {
+				case ("lastName"):  rs = st.executeQuery(SQL_SELECT_COLUMN_LASTNAME);
+					break;
+				case ("login"):  rs = st.executeQuery(SQL_SELECT_COLUMN_LOGIN);
+					break;
+				case ("role"):  rs = st.executeQuery(SQL_SELECT_COLUMN_ROLE);
+					break;
+			}
+
+
+			//rs = st.executeQuery(SQL_SELECT_COLUMN_ROLE);
 			//columnCount = rs.getMetaData().getColumnCount();
 			//
 			while (rs.next()) {

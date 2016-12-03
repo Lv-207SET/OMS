@@ -1,5 +1,7 @@
 package com.softserve.edu.oms.tests;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import com.softserve.edu.oms.database.UserEntity;
 
@@ -56,18 +58,111 @@ public class TC47rrabaTest {
                 .inputIntoSearchField("none")
                 .clickSearchButton();
 
+        List<String> listLastNameFromTable = new ArrayList<>();
         for(UserEntity userEntity:omsAdministrationPage.getAllUsers()){
+            listLastNameFromTable.add(userEntity.getLastName());
             System.out.println(userEntity.getLastName());
 
         }
 
         System.out.println("++++++++++++++++++++++");
+        List<String> listLastNameFromDB = new ArrayList<>();
         DBUtils dbUtils = new DBUtils();
-        dbUtils.getOneColumn();
+        listLastNameFromDB = dbUtils.getOneColumn("lastName");
 
-        Assert.assertTrue(omsAdministrationPage.getAllUsers().retainAll(dbUtils.getOneColumn()));
+        Assert.assertTrue(listLastNameFromTable.equals(listLastNameFromDB));
+
+        driver.quit();
+
+    }
+     @Test(dataProvider = "validUsers")
+    public void test3(IUser admin){
+        System.setProperty("webdriver.chrome.driver",
+                this.getClass().getResource("/drivers/chromedriver.exe").getPath().substring(1));
+        driver = new ChromeDriver();
+//         WebDriver driver = new FirefoxDriver();
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.get("http://localhost:8080/OMS/");
+
+        LoginPage omsLoginPage = new LoginPage(driver);
+        AdminHomePage omsAdminHomePage = omsLoginPage.successAdminLogin(admin);
+        AdministrationPage omsAdministrationPage = omsAdminHomePage.gotoAdministrationPage();
+
+
+        omsAdministrationPage
+                .selectFieldFilterDropdownList(FieldFilterDropdownList.LOGIN)
+                .selectConditionFilterDropdownList(ConditionFilterDropdownList.CONTAINS)
+                .inputIntoSearchField("none")
+                .clickSearchButton();
+
+        List<String> listLastNameFromTable = new ArrayList<>();
+        for(UserEntity userEntity:omsAdministrationPage.getAllUsers()){
+            listLastNameFromTable.add(userEntity.getLogin());
+            System.out.println(userEntity.getLogin());
+
+        }
+
+        System.out.println("++++++++++++++++++++++");
+         List<String> listLastNameFromDB = new ArrayList<>();
+        DBUtils dbUtils = new DBUtils();
+         listLastNameFromDB = dbUtils.getOneColumn("login");
+
+        ;
+
+        // Assert.assertTrue(listLastNmeFromTable.retainAll(dbUtils.getOneColumn()));
+        Assert.assertTrue(listLastNameFromTable.equals(listLastNameFromDB));
+
+
+        driver.quit();
+
 
 
     }
+
+
+    @Test(dataProvider = "validUsers")
+    public void test4(IUser admin){
+        System.setProperty("webdriver.chrome.driver",
+                this.getClass().getResource("/drivers/chromedriver.exe").getPath().substring(1));
+        driver = new ChromeDriver();
+//         WebDriver driver = new FirefoxDriver();
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.get("http://localhost:8080/OMS/");
+
+        LoginPage omsLoginPage = new LoginPage(driver);
+        AdminHomePage omsAdminHomePage = omsLoginPage.successAdminLogin(admin);
+        AdministrationPage omsAdministrationPage = omsAdminHomePage.gotoAdministrationPage();
+
+
+        omsAdministrationPage
+                .selectFieldFilterDropdownList(FieldFilterDropdownList.ROLE)
+                .selectConditionFilterDropdownList(ConditionFilterDropdownList.DOES_NOT_CONTAIN)
+                .inputIntoSearchField("er")
+                .clickSearchButton();
+
+        List<String> listLastNameFromTable = new ArrayList<>();
+        for(UserEntity userEntity:omsAdministrationPage.getAllUsers()){
+            listLastNameFromTable.add(userEntity.getRole().getRoleType());
+            System.out.println(userEntity.getRole().getRoleType());
+
+        }
+
+        System.out.println("++++++++++++++++++++++");
+        DBUtils dbUtils = new DBUtils();
+        List<String> listLastNameFromDB = new ArrayList<>();
+        listLastNameFromDB = dbUtils.getOneColumn("role");
+
+
+        // Assert.assertTrue(listLastNmeFromTable.retainAll(dbUtils.getOneColumn()));
+        Assert.assertTrue(listLastNameFromTable.equals(listLastNameFromDB));
+
+
+        driver.quit();
+
+
+
+    }
+
+
 
 }

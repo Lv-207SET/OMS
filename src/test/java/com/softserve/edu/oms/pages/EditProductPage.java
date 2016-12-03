@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class EditProductPage extends ABasePage {
-    
+
     private final static String ADD_PRODUCT_LABEL_CSS = "#edit h3";
     private final static String PRODUCT_NAME_INPUT_ID = "name";
     private final static String PRODUCT_DESCRIPTION_TEXTAREA_ID = "description";

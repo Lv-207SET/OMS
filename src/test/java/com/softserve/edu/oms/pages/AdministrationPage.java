@@ -226,19 +226,19 @@ public class AdministrationPage {
 	}
 
 	// Check if navigation buttons is enabled
-	public boolean checkIfForwardButtonEnabled() {
+	public boolean checkIsForwardButtonEnabled() {
 		return driver.findElement(By.id(FORWARD_BUTTON)).isEnabled();
 	}
 
-	public boolean checkIfLastButtonEnabled() {
+	public boolean checkIsLastButtonEnabled() {
 		return driver.findElement(By.id(LAST_BUTTON)).isEnabled();
 	}
 
-	public boolean checkIfBackwardButtonEnabled() {
+	public boolean checkIsBackwardButtonEnabled() {
 		return driver.findElement(By.id(PREVIOUS_BUTTON)).isEnabled();
 	}
 
-	public boolean checkisFirstButtonEnabled() {
+	public boolean checkIsFirstButtonEnabled() {
 		return driver.findElement(By.id(FIRST_BUTTON)).isEnabled();
 	}
 

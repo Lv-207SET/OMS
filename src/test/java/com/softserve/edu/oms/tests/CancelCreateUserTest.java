@@ -3,7 +3,7 @@ package com.softserve.edu.oms.tests;
         import com.softserve.edu.oms.pages.AdministrationPage;
         import com.softserve.edu.oms.pages.CreateNewUserPage;
         import com.softserve.edu.oms.pages.LoginPage;
-        import com.softserve.edu.oms.pages.UserInfoPage;
+       // import com.softserve.edu.oms.pages.UserInfoPage;
         import org.testng.Assert;
         import org.testng.annotations.Test;
 
@@ -15,8 +15,8 @@ public class CancelCreateUserTest extends TestRunner{
         logInPage.setLoginnameInput("noneiva");
         logInPage.setPasswordInput("qwerty");
         logInPage.clickSubmitButton();
-        UserInfoPage userInfoPage=new UserInfoPage(driver);
-        userInfoPage.clickOnAdministrationTab();
+//        UserInfoPage userInfoPage=new UserInfoPage(driver);
+//        userInfoPage.clickOnAdministrationTab();
         AdministrationPage adminPage=new AdministrationPage(driver);
         CreateNewUserPage createPage=adminPage.goToCreateNewUserPage();
         createPage.setLogin("hdftwqewq")

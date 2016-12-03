@@ -103,5 +103,59 @@ public class DBUtils implements IExternalData {
 		}
 	}
 
+	public List<String> getOneColumn() {
+		List<List<String>> allCells = new ArrayList<List<String>>();
+
+		List<String> listOfOneColumn = new ArrayList<>();
+		List<String> rowCells = null;
+		Connection con = null;
+		Statement st = null;
+		ResultSet rs = null;
+		int columnCount = 0;
+		//
+		try {
+			//DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+			DriverManager.registerDriver(new net.sourceforge.jtds.jdbc.Driver());
+			con = DriverManager.getConnection(url, username, password);
+		} catch (Exception e) {
+			throw new RuntimeException(SQL_EXCEPTION_FOUND, e);
+		}
+		// TODO Delete messages
+		if (con != null) {
+			System.out.println("+++Connection Successful! \n");
+		} else {
+			System.out.println("+++Connection fail \n");
+			System.exit(0);
+		}
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery("SELECT  LastName FROM Users WHERE IsUserActive=1 AND LastName LIKE 'none%'");
+			//columnCount = rs.getMetaData().getColumnCount();
+			//
+			while (rs.next()) {
+				listOfOneColumn.add(rs.getString(1));
+//                rowCells = new ArrayList<String>();
+//                for (int i = 1; i <= columnCount; i++) {
+//                    rowCells.add(rs.getString(i));
+//                    System.out.print("+++\t" + rs.getString(i) + "\t");
+//                }
+//                allCells.add(rowCells);
+				System.out.println(rs.getString(1));
+			}
+			if (rs != null) {
+				rs.close();
+			}
+			if (st != null) {
+				st.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(SQL_EXCEPTION_FOUND, e);
+		}
+		return listOfOneColumn;
+	}
+
 
 }

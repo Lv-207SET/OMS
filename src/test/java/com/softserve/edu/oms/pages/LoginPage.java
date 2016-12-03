@@ -126,7 +126,7 @@ public class LoginPage extends ABasePage{
 		clickSubmitButton();
 	}
 
-	private void setLoginDataAndReset(IUser user) {
+	public void setLoginDataAndReset(IUser user) {
 		setLoginnameInputClear(user.getLoginname());
 		setPasswordInputClear(user.getPassword());
 		clickResetButton();

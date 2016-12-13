@@ -228,4 +228,40 @@ public class DBUtils implements IExternalData {
 		return user;
 	}
 
+    public List<String> getLogins(String sqlQuery){
+        List<String> logins = new ArrayList<>();
+        Connection con = null;
+        Statement st = null;
+        ResultSet rs = null;
+
+        try {
+            DriverManager.registerDriver(new net.sourceforge.jtds.jdbc.Driver());
+            con = DriverManager.getConnection(url, username, password);
+        } catch (Exception e) {
+            throw new RuntimeException(SQL_EXCEPTION_FOUND, e);
+        }
+
+
+        try {
+            st = con.createStatement();
+            rs = st.executeQuery(sqlQuery);
+            while (rs.next()) {
+                logins.add(rs.getString("Login"));
+                //System.out.println("getting "+rs.getString("login"));
+
+            }
+            if (rs != null) {
+                rs.close();
+            }
+            if (st != null) {
+                st.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(SQL_EXCEPTION_FOUND, e);
+        }
+        return logins;
+    }
 }

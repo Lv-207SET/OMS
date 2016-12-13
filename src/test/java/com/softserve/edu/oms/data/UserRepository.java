@@ -41,6 +41,11 @@ public final class UserRepository {
 				"abcd@gmail.com", "East", "Administrator");
 	}
 
+	public IUser badMemoryUser() {
+		return new User("BadMemoryUser", "Neo", "Matrix", "paSSworD",
+				"hello@gmail.com", "East", "Supervisor");
+	}
+
 	public List<IUser> getUsersFromCsvFile() {
 		return new UserUtils().getAllUsers();
 	}

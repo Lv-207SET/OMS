@@ -274,4 +274,12 @@ public class CreateNewUserPage extends ABasePage {
         setLoginData(someUser);
         return new AdministrationPage(driver);
     }
+
+    public CreateNewUserPage acceptAlert() {
+        driver
+                .switchTo()
+                .alert()
+                .accept();
+        return this;
+    }
 }

@@ -28,27 +28,31 @@ public class TC53rrabaTest extends TestRunner{
         IUser user = UserRepository.get().someUser();
         
         AdminHomePage adminHomePage = 
-                logInPage.successAdminLogin(UserRepository.get().adminUser());
+                loginPage.successAdminLogin(UserRepository.get().adminUser());
         administrationPage = 
                 adminHomePage.gotoAdministrationPage();
-        numberUsers = Integer.valueOf(administrationPage.getFoundUsersNumber());
-        pagesCount = Integer.valueOf(administrationPage.getPagesQuantity());
+        //numberUsers = Integer.valueOf(administrationPage.getFoundUsersNumber());
+        numberUsers = administrationPage.getFoundUsersNumber();
+        //pagesCount = Integer.valueOf(administrationPage.getPagesQuantity());
+        pagesCount =  administrationPage.getPagesQuantity();
         
-        numberOfImems = administrationPage.getUsersPerPage();
+        //numberOfImems = administrationPage.getUsersPerPage();
+        numberOfImems = 5;
 
         if ((numberUsers % numberOfImems) != 0) {
             for (int i = 0; i < (numberOfImems - (numberUsers % numberOfImems)); i++) {
                 CreateNewUserPage createNewUserPage = 
                         administrationPage.goToCreateNewUserPage();
 
-                createNewUserPage.setLogin(user.getLoginname() + user.getLoginname().charAt(i)).
-                      setFirstName(user.getFirstname()).
-                      setLastName(user.getLastname()).
-                      setPassword(user.getPassword()).
-                      setConfirmPassword(user.getPassword()).
-                      setEmail(user.getEmail()); 
+                createNewUserPage.setInputLogin(user.getLoginname() + user.getLoginname().charAt(i)).
+                      setInputFirstName(user.getFirstname()).
+                      setInputLastName(user.getLastname()).
+                      setInputPassword(user.getPassword()).
+                      setInputConfirmPassword(user.getPassword()).
+                      setInputEmail(user.getEmail()); 
                 
-                administrationPage = createNewUserPage.createNewUser();
+                
+                administrationPage = createNewUserPage.successCreateNewUser();
             }
             numberUsers = numberUsers +(numberOfImems- (numberUsers % numberOfImems));
         }
@@ -76,15 +80,15 @@ public class TC53rrabaTest extends TestRunner{
 
         CreateNewUserPage createNewUserPage = 
                 administrationPage.goToCreateNewUserPage();
-        createNewUserPage.
-              setLogin(user.getLoginname()).
-              setFirstName(user.getFirstname()).
-              setLastName(user.getLastname()).
-              setPassword(user.getPassword()).
-              setConfirmPassword(user.getPassword()).
-              setEmail(user.getEmail());
+//        createNewUserPage.
+//              setLogin(user.getLoginname()).
+//              setFirstName(user.getFirstname()).
+//              setLastName(user.getLastname()).
+//              setPassword(user.getPassword()).
+//              setConfirmPassword(user.getPassword()).
+//              setEmail(user.getEmail());
  
-        administrationPage = createNewUserPage.createNewUser();
+        administrationPage = createNewUserPage.successCreateNewUser(user);
         newNumberOfUsers = Integer.valueOf(administrationPage.getFoundUsersNumber());
         newPagesCount = Integer.valueOf(administrationPage.getPagesQuantity());
         Assert.assertEquals(numberUsers + 1, newNumberOfUsers);

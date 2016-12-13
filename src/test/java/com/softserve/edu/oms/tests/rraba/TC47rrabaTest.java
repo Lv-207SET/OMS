@@ -30,7 +30,7 @@ public class TC47rrabaTest extends TestRunner{
     @BeforeMethod 
     public void setUp() {
         AdminHomePage adminHomePage = 
-                logInPage.successAdminLogin(UserRepository.get().adminUser());
+                loginPage.successAdminLogin(UserRepository.get().adminUser());
         administrationPage = 
                 adminHomePage.gotoAdministrationPage();
     }
@@ -46,12 +46,17 @@ public class TC47rrabaTest extends TestRunner{
         List<String> columnListFromDB;       
         DBUtils dbUtils;
 
-        administrationPage
-                .selectFieldFilterDropdownList(FieldFilterDropdownList.LAST_NAME)
-                .selectConditionFilterDropdownList(ConditionFilterDropdownList.START_WITH)
-                .inputIntoSearchField(SEARCH_TEXT_NONE)
-                .clickSearchButton();
-
+//        administrationPage
+//                .selectFieldFilterDropdownList(FieldFilterDropdownList.LAST_NAME)
+//                .selectConditionFilterDropdownList(ConditionFilterDropdownList.START_WITH)
+//                .inputIntoSearchField(SEARCH_TEXT_NONE)
+//                .clickSearchButton();
+        
+        administrationPage.filterAndSearch(
+                FieldFilterDropdownList.LAST_NAME, 
+                ConditionFilterDropdownList.START_WITH, 
+                SEARCH_TEXT_NONE);
+        
         for(User user:administrationPage.getAllUsers()){
             columnListFromTable.add(user.getLastname());
            }
@@ -69,11 +74,16 @@ public class TC47rrabaTest extends TestRunner{
         List<String> columnListFromDB;       
         DBUtils dbUtils;
         
-        administrationPage
-                .selectFieldFilterDropdownList(FieldFilterDropdownList.LOGIN)
-                .selectConditionFilterDropdownList(ConditionFilterDropdownList.CONTAINS)
-                .inputIntoSearchField(SEARCH_TEXT_NONE)
-                .clickSearchButton();
+//        administrationPage
+//                .selectFieldFilterDropdownList(FieldFilterDropdownList.LOGIN)
+//                .selectConditionFilterDropdownList(ConditionFilterDropdownList.CONTAINS)
+//                .inputIntoSearchField(SEARCH_TEXT_NONE)
+//                .clickSearchButton();
+        
+        administrationPage.filterAndSearch(
+                FieldFilterDropdownList.LOGIN, 
+                ConditionFilterDropdownList.CONTAINS, 
+                SEARCH_TEXT_NONE);
 
         for(User user:administrationPage.getAllUsers()){
             columnListFromTable.add(user.getLoginname());
@@ -96,11 +106,16 @@ public class TC47rrabaTest extends TestRunner{
        int newPagesCount;
        int numberOfItems;
        
-        administrationPage
-                .selectFieldFilterDropdownList(FieldFilterDropdownList.ROLE)
-                .selectConditionFilterDropdownList(ConditionFilterDropdownList.DOES_NOT_CONTAIN)
-                .inputIntoSearchField(SEARCH_TEXT_ER)
-                .clickSearchButton();
+//        administrationPage
+//                .selectFieldFilterDropdownList(FieldFilterDropdownList.ROLE)
+//                .selectConditionFilterDropdownList(ConditionFilterDropdownList.DOES_NOT_CONTAIN)
+//                .inputIntoSearchField(SEARCH_TEXT_ER)
+//                .clickSearchButton();
+        
+        administrationPage.filterAndSearch(
+                FieldFilterDropdownList.ROLE, 
+                ConditionFilterDropdownList.DOES_NOT_CONTAIN, 
+                SEARCH_TEXT_ER);
 
         columnListFromTable = new ArrayList<>();
         for(User user:administrationPage.getAllUsers()){
@@ -115,7 +130,8 @@ public class TC47rrabaTest extends TestRunner{
         numberOfusers = Integer.valueOf(administrationPage.getFoundUsersNumber());
         Assert.assertEquals(columnListFromDB.size(),numberOfusers);
         
-        numberOfItems = administrationPage.getUsersPerPage();
+        //numberOfItems = administrationPage.getUsersPerPage();
+        numberOfItems = 5;
         
         if ((columnListFromDB.size() % numberOfItems) !=0) {
             pagesNumber = ((columnListFromDB.size() - 

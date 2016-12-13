@@ -269,6 +269,11 @@ public class CreateNewUserPage extends ABasePage {
         setLoginData(validUser);
         return new AdministrationPage(driver);
     }
+    
+    public AdministrationPage successCreateNewUser(){
+        clickButtonCreate();
+        return new AdministrationPage(driver);
+    }
 
     public AdministrationPage cancelCreateNewUser(IUser someUser) {
         setLoginData(someUser);

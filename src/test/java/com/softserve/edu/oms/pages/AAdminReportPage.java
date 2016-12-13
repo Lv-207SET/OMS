@@ -4,6 +4,8 @@ import com.softserve.edu.oms.data.DBUtils;
 import com.softserve.edu.oms.data.User;
 import com.softserve.edu.oms.enums.ConditionFilterDropdownList;
 import com.softserve.edu.oms.enums.FieldFilterDropdownList;
+import com.softserve.edu.oms.enums.UsersPerPage;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
@@ -174,7 +176,8 @@ public abstract class AAdminReportPage extends ABasePage {
     }
 
     public String getShowItemsLinkText() {
-        return driver.findElement(By.cssSelector(SHOW_ITEMS_LINK_CSS)).getText();
+        //return driver.findElement(By.cssSelector(SHOW_ITEMS_LINK_CSS)).getText();
+        return driver.findElement(By.cssSelector(SHOW_ITEMS_LINK_CSS)).getAttribute("innerHTML");
     }
 
     public String getFirstNameLinkText() {
@@ -215,11 +218,17 @@ public abstract class AAdminReportPage extends ABasePage {
     }
 
     public String getPageCountSpanText() {
-        return driver.findElement(By.id(PAGE_COUNT_SPAN_ID)).getText();
+        //return driver.findElement(By.id(PAGE_COUNT_SPAN_ID)).getText();
+        return driver.findElement(By.id(PAGE_COUNT_SPAN_ID)).getAttribute("innerHTML");
+    }
+    
+    public String getUsersFoundText(){
+        return getUsersFoundSpan().getAttribute("innerHTML");
     }
 
+ 
     public int getFoundUsersNumber() {
-        return Integer.parseInt(getShowItemsLinkText());
+       return Integer.parseInt(getUsersFoundText());
     }
 
     public int getPagesQuantity() {

@@ -164,38 +164,45 @@ public class CreateNewUserPage extends ABasePage {
 
     // set Data
 
-    public void setInputLogin(String login) {
+    public CreateNewUserPage setInputLogin(String login) {
         getInputLogin().clear();
         getInputLogin().sendKeys(login);
+        return this;
     }
 
-    public void setInputFirstName(String firstName) {
+    public CreateNewUserPage setInputFirstName(String firstName) {
         getInputFirstName().clear();
         getInputFirstName().sendKeys(firstName);
+        return this;
     }
 
-    public void setInputLastName(String lastName) {
+    public CreateNewUserPage setInputLastName(String lastName) {
         getInputLastName().clear();
         getInputLastName().sendKeys(lastName);
+        return this;
     }
 
-    public void setInputPassword(String password) {
+    public CreateNewUserPage setInputPassword(String password) {
         getInputPassword().clear();
         getInputPassword().sendKeys(password);
+        return this;
     }
 
-    public void setInputConfirmPassword(String confirmPassword) {
+    public CreateNewUserPage setInputConfirmPassword(String confirmPassword) {
         getInputConfirmPassword().clear();
         getInputConfirmPassword().sendKeys(confirmPassword);
+        return this;
     }
 
-    public void setInputEmail(String email) {
+    public CreateNewUserPage setInputEmail(String email) {
         getInputEmail().clear();
         getInputEmail().sendKeys(email);
+        return this;
     }
 
-    public void setSelectRegion(Region region) {
+    public CreateNewUserPage setSelectRegion(Region region) {
         getSelectRegion().selectByVisibleText(region.getRegionType());
+        return this;
     }
 
     public CreateNewUserPage selectRole(Role roleId) {
@@ -203,40 +210,48 @@ public class CreateNewUserPage extends ABasePage {
         return this;
     }
 
-    public void clearInputLogin() {
+    public CreateNewUserPage clearInputLogin() {
         getInputLogin().clear();
+        return this;
     }
 
-    public void clearInputFirstName() {
+    public CreateNewUserPage clearInputFirstName() {
         getInputFirstName().clear();
+        return this;
     }
 
-    public void clearInputLastName() {
+    public CreateNewUserPage clearInputLastName() {
         getInputLastName().clear();
+        return this;
     }
 
-    public void clearInputPassword() {
+    public CreateNewUserPage clearInputPassword() {
         getInputPassword().clear();
+        return this;
     }
 
-    public void clearInputConfirmPassword() {
+    public CreateNewUserPage clearInputConfirmPassword() {
         getInputConfirmPassword().clear();
+        return this;
     }
 
-    public void clearInputEmail() {
+    public CreateNewUserPage clearInputEmail() {
         getInputEmail().clear();
+        return this;
     }
 
-    public void clickButtonCreate() {
+    public CreateNewUserPage clickButtonCreate() {
         getButtonCreate().click();
+        return this;
     }
 
-    public void clickButtonCancel() {
+    public CreateNewUserPage clickButtonCancel() {
         getButtonCancel().click();
+        return this;
     }
 
     // business logic
-    public void setLoginData(IUser user) {
+    public CreateNewUserPage setLoginData(IUser user) {
         setInputLogin(user.getLoginname());
         setInputFirstName(user.getFirstname());
         setInputLastName(user.getLastname());
@@ -246,7 +261,7 @@ public class CreateNewUserPage extends ABasePage {
         setSelectRegion(Region.getRegion(user.getRegion()));
         selectRole(Role.valueOf(user.getRole().toUpperCase()));
         clickButtonCreate();
-
+        return this;
     }
 
 

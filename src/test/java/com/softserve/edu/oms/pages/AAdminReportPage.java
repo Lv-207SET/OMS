@@ -12,9 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 
 public abstract class AAdminReportPage extends ABasePage {
@@ -290,8 +288,29 @@ public abstract class AAdminReportPage extends ABasePage {
         getSelectField().selectByVisibleText(fieldOption.getFieldName());
     }
 
+    public Set<String> getSelectFieldOptions() {
+        Select selectFieldFilterElement = getSelectField();
+        List<WebElement>listOptions=selectFieldFilterElement.getOptions();
+        Set<String> options=new HashSet<>();
+        listOptions.forEach(p -> { options.add(p.getText().toLowerCase());});
+        return options;
+    }
     public void selectCondition(ConditionFilterDropdownList conditionOption){
         getSelectCondition().selectByVisibleText(conditionOption.getNameOfConditionFilterField());
+    }
+
+    public Set<String> getSelectConditionOptions() {
+        Select selectConditionFilterElement = getSelectCondition();
+        List<WebElement>listOptions=selectConditionFilterElement.getOptions();
+        Set<String> options=new HashSet<>();
+        listOptions.forEach(p -> { options.add(p.getText());});
+        return options;
+    }
+
+    public AAdminReportPage selectConditionByIndex(final int index) {
+        final Select selectConditionFilter = getSelectCondition();
+        selectConditionFilter.selectByIndex(index);
+        return this;
     }
 
     public void search(String searchTerm){

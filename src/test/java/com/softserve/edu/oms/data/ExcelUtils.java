@@ -19,7 +19,7 @@ public class ExcelUtils implements IExternalData {
 	private final String FILE_NOT_ACCESIBLE = " File %s could not be Accesible";
 	private final String FILE_NOT_CLOSE = " File %s could not be closed";
 
-	public List<List<String>> getAllCells(String absoluteFilePath) {
+	public  List<List<String>> getAllCells(String absoluteFilePath, String sheetName) {
 		List<List<String>> allRows = new ArrayList<List<String>>();
 		InputStream inputStream = null;
 		DataFormatter formatter = new DataFormatter();
@@ -35,7 +35,7 @@ public class ExcelUtils implements IExternalData {
 			// workBook = new HSSFWorkbook(inputStream);
 			workBook = new XSSFWorkbook(inputStream);
 			// sheet = (new XSSFWorkbook(inputStream)).getSheetAt(0);
-			sheet = workBook.getSheetAt(0);
+			sheet = workBook.getSheet(sheetName);
 		} catch (FileNotFoundException e) {
 			throw new RuntimeException(String.format(FILE_NOT_READ, absoluteFilePath));
 			// throw new GeneralCustomException(String.format(FILE_NOT_READ,

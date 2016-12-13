@@ -14,7 +14,7 @@ public final class CSVUtils implements IExternalData {
 	private final String PROPERTIES_EXCEPTION_CLOSE = "File %s could not be closed";
 	private final String CSV_SPLIT_BY = ",";
 
-	public List<List<String>> getAllCells(String absoluteFilePath) {
+	public List<List<String>> getAllCells(String absoluteFilePath, String name) {
 		List<List<String>> allCells = new ArrayList<List<String>>();
 		String row;
 		// List<String> row;

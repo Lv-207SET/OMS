@@ -37,7 +37,7 @@ public final class UserRepository {
 	}
 
 	public IUser invalidUser() {
-		return new User("abcd", "abcd", "abcd", "abcd",
+		return new User("abcdqwd", "abcd123", "abcd123", "abcd1",
 				"abcd@gmail.com", "East", "Administrator");
 	}
 

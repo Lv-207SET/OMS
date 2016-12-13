@@ -2,27 +2,20 @@ package com.softserve.edu.oms.enums;
 
 
 public enum Role {
-    ADMINISTRATOR("Administrator"),
-    MERCHANDISER("Merchandiser"),
-    SUPERVISOR("Supervisor"),
-    CUSTOMER("Customer");
+    ADMINISTRATOR("roleID1"),
+    MERCHANDISER("roleID3"),
+    SUPERVISOR("roleID4"),
+    CUSTOMER("roleID2");
 
-    private String roleName;
+    private String roleId;
 
-    Role(String roleName) {
-        this.roleName = roleName;
+    Role(String roleId) {
+        this.roleId = roleId;
     }
 
-    public String getRoleType() {
-        return roleName;
+    public String getRoleId() {
+        return roleId;
     }
-    
-    public static Role getRole(final String roleString) {
-        for (final Role roleEnum : Role.values()) {
-            if (roleEnum.getRoleType().equals(roleString)) {
-                return roleEnum;
-            }
-        }
-        return null;
-    }
+
+
 }

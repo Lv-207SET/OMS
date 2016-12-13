@@ -11,11 +11,12 @@ import java.util.concurrent.TimeUnit;
 public class TestRunner {
 
     protected WebDriver driver;
-    protected LoginPage logInPage;
+    protected LoginPage loginPage;
 
     @BeforeClass
     public void setUpDriver() {
 
+        System.out.println("before");
         final String driverPath = "src/test/resources/drivers/";
         final String logInPageUrl= "http://localhost:8080/OMS/login.htm";
         System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver.exe");
@@ -31,7 +32,7 @@ public class TestRunner {
                 .maximize();
 
         driver.get(logInPageUrl);
-        logInPage = new LoginPage(driver);
+        loginPage = new LoginPage(driver);
     }
 
     @AfterClass(alwaysRun = true)

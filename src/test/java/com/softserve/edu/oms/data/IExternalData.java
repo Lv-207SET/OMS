@@ -3,6 +3,6 @@ import java.util.List;
 
 public interface IExternalData {
 
-	List<List<String>> getAllCells(String absoluteFilePath);
+	List<List<String>> getAllCells(String absoluteFilePath, String sheetName);
 
 }

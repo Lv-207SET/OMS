@@ -8,7 +8,6 @@ import com.softserve.edu.oms.data.IUser;
 
 public class LoginPage extends ABasePage{
 
-	private static final String REMEMBER_ME_NAME = "remember_me";
 	private static final String ATTRIBUTE_NAME = "name";
 	private static final String LOGIN_INPUT_FIELD_NAME = "j_username";
 	private static final String PASSWORD_INPUT_FIELD_NAME ="j_password";
@@ -116,13 +115,9 @@ public class LoginPage extends ABasePage{
 
     // Business Logic
 
-    // TODO Develop User class
     private void setLoginData(IUser user) {
-    //private void setLoginData(String login, String password) {
 		setLoginnameInputClear(user.getLoginname());
 		setPasswordInputClear(user.getPassword());
-		//setLoginInputClear(login);
-		//setPasswordInputClear(password);
 		clickSubmitButton();
 	}
 
@@ -134,15 +129,11 @@ public class LoginPage extends ABasePage{
 
     public HomePage successUserLogin(IUser user) {
         setLoginData(user);
-        // Return a new page object representing the destination.
         return new HomePage(driver);
     }
 
     public AdminHomePage successAdminLogin(IUser admin) {
-    //public AdminHomePage successAdminLogin(String login, String password) {
 		setLoginData(admin);
-		//setLoginData(login, password);
-		// Return a new page object representing the destination.
 		return new AdminHomePage(driver);
 	}
 
@@ -164,6 +155,13 @@ public class LoginPage extends ABasePage{
 
     public LoginValidatorPage unsuccessfulLogin(IUser invalidUser) {
     	setLoginData(invalidUser);
+		return new LoginValidatorPage(driver);
+	}
+
+	public LoginValidatorPage loginWithEmptyCredentials (){
+		this.clearLoginnameInput();
+		this.clearPasswordInput();
+		this.clickSubmitButton();
 		return new LoginValidatorPage(driver);
 	}
 

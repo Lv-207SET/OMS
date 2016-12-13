@@ -4,9 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-/**
- * Created by Antonio on 03.12.2016.
- */
 public class LoginValidatorPage  extends LoginPage{
 
     private static final String BAD_CREDENTIALS_ERROR_MESSAGE_CSS = "#edit>fieldset>font";
@@ -17,10 +14,14 @@ public class LoginValidatorPage  extends LoginPage{
 
     // get Data
 
-    public WebElement getBadCredentialsErrorMessage() {return driver.findElement(By.cssSelector(BAD_CREDENTIALS_ERROR_MESSAGE_CSS));}
+    public WebElement getBadCredentialsErrorMessage() {
+        return driver.findElement(By.cssSelector(BAD_CREDENTIALS_ERROR_MESSAGE_CSS));
+    }
 
     // Functional
 
-    public String getBadCredentialsErrorMessageText() {return driver.findElement(By.cssSelector(BAD_CREDENTIALS_ERROR_MESSAGE_CSS)).getText();}
+    public String getBadCredentialsErrorMessageText() {
+        return driver.findElement(By.cssSelector(BAD_CREDENTIALS_ERROR_MESSAGE_CSS)).getText();
+    }
 
 }

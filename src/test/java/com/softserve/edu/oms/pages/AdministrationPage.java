@@ -141,12 +141,22 @@ public class AdministrationPage {
 		return this;
 	}
 
+	public WebElement getShowItemsLink (){
+		return driver.findElement(By.cssSelector(SHOW_ITEMS_LINK_CSS));
+	}
+
+	public String getShowItemsLinkText (){
+		return getShowItemsLink().getText();
+	}
+
 	//   Change user quantity per page by click "Show 10 items" or "Show 5 items"
-	public AdministrationPage changeQuantityOfUsersPerPage(UsersPerPage usersPerPageQuantity){
-		if (usersPerPageQuantity == usersPerPage){
-			driver.findElement(By.cssSelector(SHOW_ITEMS_LINK_CSS)).click();
-		}
+	public AdministrationPage changeQuantityOfUsersPerPage(){
+		getShowItemsLink().click();
 		return this;
+	}
+
+	public boolean showItemsLinkIsDisplayed () {
+		return this.getShowItemsLink().isDisplayed();
 	}
 
 	//   Find user by login and return as java object in purpose to compare it with
@@ -195,6 +205,11 @@ public class AdministrationPage {
 			userEntityListFormCurrentPage.add(user);
 		}
 		return userEntityListFormCurrentPage;
+	}
+
+
+	public int getQuantityOfUsersPerPage (){
+		return getUsersFormCurrentPage().size();
 	}
 
 	// Get all users list from search result
@@ -260,14 +275,16 @@ public class AdministrationPage {
 		return this;
 	}
 
-	public String  getFoundUsersNumber() {
+	public int getFoundUsersNumber() {
 		String foundUsers = driver.findElement(By.id(USERS_FOUND)).getAttribute("innerHTML");
-		return foundUsers;
+		int UsersNumber = Integer.parseInt(foundUsers);
+		return UsersNumber;
 	}
 
-	public String getPagesQuantity() {
+	public int getPagesQuantity() {
 		String foundUsers = driver.findElement(By.id(TOTAL_PAGE_NUMBER)).getAttribute("innerHTML");
-		return foundUsers;
+		int UsersNumber = Integer.parseInt(foundUsers);
+		return UsersNumber;
 	}
 
 	public String  getCurrentPageNumber() {

@@ -76,7 +76,7 @@ public class TC47olavryntcTest {
     }
 
     //@Test(dataProvider = "validUsers")
-    public void test1A(IUser admin) {
+    public void verifySearchTooLongName(IUser admin) {
         softAssert=new SoftAssert();
         omsAdminHomePage = omsLoginPage.successAdminLogin(admin);
         omsAdministrationPage = omsAdminHomePage.gotoAdministrationPage();
@@ -94,7 +94,7 @@ public class TC47olavryntcTest {
     }
 
     @Test(dataProvider = "validUsers")
-    public void test1B(IUser admin) {
+    public void verifySearchByEquals(IUser admin) {
         softAssert=new SoftAssert();
         omsAdminHomePage = omsLoginPage.successAdminLogin(admin);
         omsAdministrationPage = omsAdminHomePage.gotoAdministrationPage();
@@ -109,7 +109,7 @@ public class TC47olavryntcTest {
     }
 
     @Test(dataProvider = "validUsers")
-    public void test1C(IUser admin) {
+    public void verifySearchByNotEquals(IUser admin) {
         softAssert=new SoftAssert();
         omsAdminHomePage = omsLoginPage.successAdminLogin(admin);
         omsAdministrationPage = omsAdminHomePage.gotoAdministrationPage();

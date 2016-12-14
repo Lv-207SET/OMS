@@ -31,13 +31,13 @@ public class CancelCreateUserTest extends TestRunner {
         DBUtils dbUtils = new DBUtils();
         user = UserRepository.get().invalidUser();
         Assert.assertNull(dbUtils.getUserByLogin(user.getLoginname()));
-        createPage.setInputLogin(user.getLoginname())
-                .setInputFirstName(user.getFirstname())
-                .setInputLastName(user.getLastname())
-                .setInputEmail(user.getEmail())
-                .setInputPassword(user.getPassword())
-                .setInputConfirmPassword(user.getPassword())
-                .clickButtonCancel();
+        createPage.setLoginInput(user.getLoginname())
+                .setFirstNameInput(user.getFirstname())
+                .setLastNameInput(user.getLastname())
+                .setEmailInput(user.getEmail())
+                .setPasswordInput(user.getPassword())
+                .setConfirmPasswordInput(user.getPassword())
+                .clickCancelButton();
         Assert.assertNull(dbUtils.getUserByLogin(user.getLoginname()));
         //Assert.assertAll();
 

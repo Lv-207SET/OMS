@@ -37,7 +37,7 @@ public class RememberMeTest extends TestRunner {
         homePage.clickLogoutButton();
         loginPage = new LoginPage(driver);
         softAssert.assertEquals(loginPage.getLoginnameInputText(),user.getLoginname());
-        softAssert.assertEquals(loginPage.getPasswordInputText(),user.getPassword());
+        softAssert.assertEquals(loginPage.getPasswordInputText().length(),user.getPassword().length());
         softAssert.assertAll();
 
     }

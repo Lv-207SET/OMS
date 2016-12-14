@@ -1,11 +1,12 @@
-package com.softserve.edu.oms.tests;
+package com.softserve.edu.oms.tests.atokmtc;
 
 import com.softserve.edu.oms.data.IUser;
-import com.softserve.edu.oms.data.SQLQueries;
+import com.softserve.edu.oms.enums.SQLQueries;
 import com.softserve.edu.oms.data.UserRepository;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import com.softserve.edu.oms.tests.TestRunner;
 
 
 public class TC46atokTEST extends TestRunner {
@@ -20,7 +21,7 @@ public class TC46atokTEST extends TestRunner {
 
     @Test(dataProvider = "admUser")
     public void assertSortById(IUser admUser) {
-        Assert.assertTrue(logInPage.logout()
+        Assert.assertTrue(loginPage.logout()
                 .successAdminLogin(admUser)
                 .gotoAdministrationPage()
                 .goToCreateReportPage()
@@ -34,7 +35,7 @@ public class TC46atokTEST extends TestRunner {
 
     @Test(dataProvider = "admUser")
     public void assertSortByFirstNameASC(IUser admUser) {
-        Assert.assertTrue( logInPage.logout()
+        Assert.assertTrue( loginPage.logout()
                 .successAdminLogin(admUser)
                 .gotoAdministrationPage()
                 .goToCreateReportPage()
@@ -48,7 +49,7 @@ public class TC46atokTEST extends TestRunner {
 
     @Test(dataProvider = "admUser")
     public void assertSortByFirstNameDESC(IUser admUser) {
-        Assert.assertTrue(logInPage.logout()
+        Assert.assertTrue(loginPage.logout()
                 .successAdminLogin(admUser)
                 .gotoAdministrationPage()
                 .goToCreateReportPage()

@@ -1,20 +1,11 @@
 package com.softserve.edu.oms.pages;
 
+import com.softserve.edu.oms.locators.AddProductPageLocators;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class AddProductPage extends ABasePage {
-
-    private final static String CREATING_PRODUCT_LABEL_CSS = "#edit h3";
-    private final static String PRODUCT_NAME_INPUT_ID = "name";
-    private final static String PRODUCT_DESCRIPTION_TEXTAREA_ID = "description";
-    private final static String PRODUCT_PRICE_INPUT_ID = "price";
-    private final static String OK_BUTTON_CSS = "[value='OK']";
-    private final static String CANCEL_BUTTON_CSS= "[value='Cancel']";
-    private final static String ITEM_MANAGEMENT_TAB_CSS = "#nav .cur a";
-    private final static String PRODUCT_NAME_ERROR_MESSAGE_ID = "productName.errors";
-    private final static String PRODUCT_PRICE_ERROR_MESSAGE_ID = "productPrice.errors";
 
     public AddProductPage(WebDriver driver) {
         super(driver);
@@ -23,39 +14,39 @@ public class AddProductPage extends ABasePage {
     // get Data
 
     public WebElement getCreatingNewProductLabel() {
-        return driver.findElement(By.cssSelector(CREATING_PRODUCT_LABEL_CSS));
+        return driver.findElement(AddProductPageLocators.CREATING_PRODUCT_LABEL_CSS.by);
     }
 
     public WebElement getProductNameInput() {
-        return driver.findElement(By.id(PRODUCT_NAME_INPUT_ID));
+        return driver.findElement(AddProductPageLocators.PRODUCT_NAME_INPUT_ID.by);
     }
 
     public WebElement getProductDescriptionTextarea() {
-        return driver.findElement(By.id(PRODUCT_DESCRIPTION_TEXTAREA_ID));
+        return driver.findElement(AddProductPageLocators.PRODUCT_DESCRIPTION_TEXTAREA_ID.by);
     }
 
     public WebElement getProductPriceInput() {
-        return driver.findElement(By.id(PRODUCT_PRICE_INPUT_ID));
+        return driver.findElement(AddProductPageLocators.PRODUCT_PRICE_INPUT_ID.by);
     }
 
     public WebElement getOkButton() {
-        return driver.findElement(By.cssSelector(OK_BUTTON_CSS));
+        return driver.findElement(AddProductPageLocators.OK_BUTTON_CSS.by);
     }
 
     public WebElement getCancelButton() {
-        return driver.findElement(By.cssSelector(CANCEL_BUTTON_CSS));
+        return driver.findElement(AddProductPageLocators.CANCEL_BUTTON_CSS.by);
     }
 
     public WebElement getItemManagementTab() {
-        return driver.findElement(By.cssSelector(ITEM_MANAGEMENT_TAB_CSS));
+        return driver.findElement(AddProductPageLocators.ITEM_MANAGEMENT_TAB_CSS.by);
     }
 
     public WebElement getProductNameErrorMessage() {
-        return driver.findElement(By.id(PRODUCT_NAME_ERROR_MESSAGE_ID));
+        return driver.findElement(AddProductPageLocators.PRODUCT_NAME_ERROR_MESSAGE_ID.by);
     }
 
     public WebElement getProductPriceErrorMessage() {
-        return driver.findElement(By.id(PRODUCT_PRICE_ERROR_MESSAGE_ID));
+        return driver.findElement(AddProductPageLocators.PRODUCT_PRICE_ERROR_MESSAGE_ID.by);
     }
 
     // functional

@@ -13,6 +13,7 @@ import com.softserve.edu.oms.data.User;
 import com.softserve.edu.oms.data.UserRepository;
 import com.softserve.edu.oms.enums.ConditionFilterDropdownList;
 import com.softserve.edu.oms.enums.FieldFilterDropdownList;
+import com.softserve.edu.oms.enums.SQLQueries;
 import com.softserve.edu.oms.pages.AdminHomePage;
 import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.tests.TestRunner;
@@ -56,7 +57,8 @@ public class TC47rrabaTest extends TestRunner{
            }
  
         dbUtils = new DBUtils();
-        columnListFromDB = dbUtils.getOneColumn(byLastName);
+        columnListFromDB = dbUtils.getOneColumn(SQLQueries.SQL_SELECT_COLUMN_LASTNAME.getQuery(),
+                byLastName, SEARCH_TEXT_NONE, SEARCH_TEXT_ER);
 
         Assert.assertTrue(columnListFromTable.equals(columnListFromDB));   
      }
@@ -78,7 +80,8 @@ public class TC47rrabaTest extends TestRunner{
         }
 
         dbUtils = new DBUtils();
-        columnListFromDB = dbUtils.getOneColumn(byLoginName);
+        columnListFromDB = dbUtils.getOneColumn(SQLQueries.SQL_SELECT_COLUMN_LOGIN.getQuery(),
+                byLoginName, SEARCH_TEXT_NONE, SEARCH_TEXT_ER);
 
         Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
     }
@@ -105,7 +108,8 @@ public class TC47rrabaTest extends TestRunner{
         }
 
         dbUtils = new DBUtils();
-        columnListFromDB = dbUtils.getOneColumn(byRole);
+        columnListFromDB = dbUtils.getOneColumn(SQLQueries.SQL_SELECT_COLUMN_ROLE.getQuery(),
+                byRole, SEARCH_TEXT_NONE, SEARCH_TEXT_ER);
 
         Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
  

@@ -89,7 +89,7 @@ public class  DBUtils implements IExternalData {
     }
  
 
-	public List<String> getOneColumn(String nameOfColumn) {
+	public List<String> getOneColumn(String sqlQuery, String nameOfColumn, String value1, String value2) {
  		List<String> listOfOneColumn = new ArrayList<>();	 
 		Statement st = null;
 		ResultSet rs = null;
@@ -97,11 +97,11 @@ public class  DBUtils implements IExternalData {
 		try {
 			st = con.createStatement();
 			switch (nameOfColumn) {
-				case ("lastName"):  rs = st.executeQuery(SQLQueries.SQL_SELECT_COLUMN_LASTNAME.getQuery());
+				case ("lastName"):  rs = st.executeQuery(sqlQuery + "\'" + value1 + "%\'");				                                                 				                    
 					break;
-				case ("login"):  rs = st.executeQuery(SQLQueries.SQL_SELECT_COLUMN_LOGIN.getQuery());
+				case ("login"):  rs = st.executeQuery(sqlQuery + "\'%" + value1 + "%\'");    
 					break;
-				case ("role"):  rs = st.executeQuery(SQLQueries.SQL_SELECT_COLUMN_ROLE.getQuery());
+				case ("role"):  rs = st.executeQuery(sqlQuery + "\'%" + value2 + "%\'");   				
 					break;
 			}
 
@@ -115,6 +115,7 @@ public class  DBUtils implements IExternalData {
 		return listOfOneColumn;
 	}
 
+	
 	public User getUserByLogin(String login) {
 		User user = null;
 		Statement st = null;

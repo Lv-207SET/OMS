@@ -46,8 +46,7 @@ public abstract class AAdminReportPage extends ABasePage {
     private static final String TABLE_BODY = "tbody";
     private static final String TR = "tr";
     private static final String TD = "td";
-    //    TODO make normal selector
-    public static final String GET_USER_BY_LOGIN = "//tr[1]/td[1]";
+    public static final String GET_USER_BY_LOGIN = "#table tr:first-child td:first-child";
 
 
 

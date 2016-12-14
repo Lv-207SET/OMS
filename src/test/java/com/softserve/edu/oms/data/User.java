@@ -96,4 +96,13 @@ public class User implements IUser {
 				+"\tregion= " + region
 				+"\trole= " + role;
 	}
+	
+	public boolean CompareTo (User user){
+
+	return this.getLoginname().equals(user.getLoginname())
+			&& this.getFirstname().equals(user.getFirstname())
+			&& this.getLastname().equals(user.getLastname())
+			&& this.getRegion().equalsIgnoreCase(user.getRegion().toString())
+			&& this.getRole().equalsIgnoreCase(user.getRole().toString());
+	}
 }

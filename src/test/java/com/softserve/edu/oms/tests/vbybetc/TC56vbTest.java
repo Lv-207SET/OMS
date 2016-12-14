@@ -48,16 +48,16 @@ public class TC56vbTest extends TestRunner{
 
         CreateNewUserPage newUserPage = new CreateNewUserPage(driver);
         newUserPage
-                .setInputLogin(nonExistingLogin)
-                .setInputFirstName(nonExistingUser.getFirstname())
-                .setInputLastName(nonExistingUser.getLastname())
-                .setInputPassword(nonExistingUser.getPassword())
-                .setInputConfirmPassword(nonExistingUser.getPassword())
-                .setInputEmail(nonExistingUser.getEmail())
-                .successCreateNewUser();
+                .setLoginInput(nonExistingLogin)
+                .setFirstNameInput(nonExistingUser.getFirstname())
+                .setLastNameInput(nonExistingUser.getLastname())
+                .setPasswordInput(nonExistingUser.getPassword())
+                .setConfirmPasswordInput(nonExistingUser.getPassword())
+                .setEmailInput(nonExistingUser.getEmail())
+                .clickCreateButton();
 
         CreateNewUserPage newUserPageAgain = new AdministrationPage(driver)
-                .goToCreateNewUserPage().setInputLogin(nonExistingLogin.toUpperCase());
+                .goToCreateNewUserPage().setLoginInput(nonExistingLogin.toUpperCase());
 
         Assert.assertTrue(newUserPageAgain.getLoginErrorMessageText().contains("already in use"));
 

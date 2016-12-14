@@ -3,8 +3,6 @@ package com.softserve.edu.oms.pages;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.enums.Region;
 import com.softserve.edu.oms.enums.Role;
-import com.softserve.edu.oms.enums.SelectRegionDropdownList;
-import com.softserve.edu.oms.enums.SelectRoleDropdownList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -292,6 +290,12 @@ public class CreateNewUserPage extends ABasePage {
                 .switchTo()
                 .alert()
                 .accept();
+        return this;
+    }
+
+    @Override
+    public CreateNewUserPage waitForLoad(){
+        super.waitForLoad();
         return this;
     }
 }

@@ -5,16 +5,15 @@ import com.softserve.edu.oms.data.User;
 import com.softserve.edu.oms.enums.ConditionFilterDropdownList;
 import com.softserve.edu.oms.enums.FieldFilterDropdownList;
 import com.softserve.edu.oms.enums.UsersPerPage;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 public abstract class AAdminReportPage extends ABasePage {
@@ -433,13 +432,9 @@ public abstract class AAdminReportPage extends ABasePage {
         return this;
     }
 
+    @Override
     public AAdminReportPage waitForLoad() {
-        WebDriverWait wait = (WebDriverWait)new WebDriverWait(driver,10)
-            .ignoring(StaleElementReferenceException.class);
-        wait.until((ExpectedCondition<Boolean>) webDriver -> {
-            WebElement element = webDriver.findElement(By.id(LAST_BUTTON_ID));
-            return element != null && element.isDisplayed();
-        });
+        super.waitForLoad();
         return this;
 
     }

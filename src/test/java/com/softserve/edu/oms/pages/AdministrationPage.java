@@ -15,10 +15,10 @@ public class AdministrationPage extends AAdminReportPage {
 		super(driver);
 	}
 
-    public static final String DELETE = "Delete";
-    public static final String GO_TO_CREATE_NEW_USER_PAGE_CSS = "#list>a";
-    public static final String LINK_EDIT_USER = "Edit";
-    public static final String CREATE_REPORT_LINK_CSS = "#list h5 a";
+    private static final String DELETE = "Delete";
+    private static final String GO_TO_CREATE_NEW_USER_PAGE_CSS = "#list>a";
+    private static final String LINK_EDIT_USER = "Edit";
+    private static final String CREATE_REPORT_LINK_CSS = "#list h5 a";
 
 	private FieldFilterDropdownList fieldFilterDropdownList;
 	private SortingOrder sortingOrderEnum;
@@ -109,6 +109,12 @@ public class AdministrationPage extends AAdminReportPage {
     @Override
     public AAdminReportPage sortByRegionDESC(){
         super.sortByRegionDESC();
+        return this;
+    }
+
+    @Override
+    public AdministrationPage waitForLoad() {
+        super.waitForLoad();
         return this;
     }
 

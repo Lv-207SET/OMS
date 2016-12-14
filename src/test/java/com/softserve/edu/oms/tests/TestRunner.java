@@ -14,7 +14,7 @@ public class TestRunner {
     protected LoginPage loginPage;
 
     @BeforeClass
-    public void setUpDriver() {
+    public void oneTimeSetUp() {
 
         System.out.println("before");
         final String driverPath = "src/test/resources/drivers/";
@@ -36,7 +36,7 @@ public class TestRunner {
     }
 
     @AfterClass(alwaysRun = true)
-    public void tearDown(){ 
+    public void oneTimeTearDown(){ 
         driver.quit();
     }
     

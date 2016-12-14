@@ -4,6 +4,8 @@ import com.softserve.edu.oms.data.DBUtils;
 import com.softserve.edu.oms.data.User;
 import com.softserve.edu.oms.enums.ConditionFilterDropdownList;
 import com.softserve.edu.oms.enums.FieldFilterDropdownList;
+import com.softserve.edu.oms.enums.UsersPerPage;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
@@ -44,8 +46,7 @@ public abstract class AAdminReportPage extends ABasePage {
     private static final String TABLE_BODY = "tbody";
     private static final String TR = "tr";
     private static final String TD = "td";
-    //    TODO make normal selector
-    public static final String GET_USER_BY_LOGIN = "//tr[1]/td[1]";
+    public static final String GET_USER_BY_LOGIN = "#table tr:first-child td:first-child";
 
 
 
@@ -213,11 +214,18 @@ public abstract class AAdminReportPage extends ABasePage {
     }
 
     public String getPageCountSpanText() {
-        return driver.findElement(By.id(PAGE_COUNT_SPAN_ID)).getText();
+        //return driver.findElement(By.id(PAGE_COUNT_SPAN_ID)).getText();
+        return driver.findElement(By.id(PAGE_COUNT_SPAN_ID)).getAttribute("innerHTML");
+    }
+    
+    public String getUsersFoundText(){
+        return getUsersFoundSpan().getAttribute("innerHTML");
     }
 
+
+ 
     public int getFoundUsersNumber() {
-        return Integer.parseInt(getShowItemsLinkText());
+       return Integer.parseInt(getUsersFoundText());
     }
 
     public int getPagesQuantity() {
@@ -226,6 +234,16 @@ public abstract class AAdminReportPage extends ABasePage {
 
     public int  getCurrentPageNumber() {
         return Integer.parseInt(getPageNumberSpanText());
+    }
+    
+    public int getUsersPerPageNumber(){
+        String itemsLinkText = getShowItemsLink().getText(); 
+        int numberLinkText = Integer.parseInt(itemsLinkText.
+                substring(itemsLinkText.indexOf(" ")+1, itemsLinkText.lastIndexOf(" ")));
+        if (UsersPerPage.TEN.getResultsPerPage() == numberLinkText)
+            return UsersPerPage.FIVE.getResultsPerPage();
+        else 
+            return UsersPerPage.TEN.getResultsPerPage();
     }
 
     // Check if navigation buttons is enabled
@@ -437,8 +455,8 @@ public abstract class AAdminReportPage extends ABasePage {
             user.setFirstname(tableCells.get(0).getText());
             user.setLastname(tableCells.get(1).getText());
             user.setLoginname(tableCells.get(2).getText());
-            user.setRole(tableCells.get(3).getText().toUpperCase(Locale.ENGLISH));
-            user.setRegion(tableCells.get(4).getText().toUpperCase(Locale.ENGLISH));
+            user.setRole(tableCells.get(3).getText()); 
+            user.setRegion(tableCells.get(4).getText()); 
             userListFormCurrentPage.add(user);
         }
         return userListFormCurrentPage;

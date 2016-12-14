@@ -45,6 +45,17 @@ public final class UserRepository {
 		return new User("BadMemoryUser", "Neo", "Matrix", "paSSworD",
 				"hello@gmail.com", "East", "Supervisor");
 	}
+	
+	public IUser someUser() {
+        return new User("roman", "rrd", "rrd", "1234",
+                "rdd@g.com", "West", "Administrator");
+    }
+    
+    
+    public IUser newUser() {
+        return new User("andriy", "rrd", "rrd", "1234",
+                "rdd@g.com", "West", "Administrator");
+    }
 
 	public List<IUser> getUsersFromCsvFile() {
 		return new UserUtils().getAllUsers();

@@ -16,6 +16,5 @@ public enum Role {
     public String getRoleId() {
         return roleId;
     }
-
-
+    
 }

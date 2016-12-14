@@ -7,27 +7,29 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.softserve.edu.oms.enums.SQLQueries;
+
 public class DBUtils implements IExternalData {
 	private static final String SQL_EXCEPTION_FOUND = "SQL Exception found";
-	private static final String SQL_SELECT_USERS = "select Users.Login, Users.FirstName, Users.LastName,"
-			+ " Users.Password, Users.Email, Regions.RegionName, Roles.RoleName"
-			+ " from (Users join Regions on Users.RegionRef = Regions.ID)"
-			+ " join Roles on Users.RoleRef = Roles.ID;";
-	private static final String SQL_SELECT_USER_BY_LOGIN = "select Users.Login, Users.FirstName, Users.LastName,"
-			+ " Users.Password, Users.Email, Regions.RegionName, Roles.RoleName"
-			+ " from (Users join Regions on Users.RegionRef = Regions.ID)"
-			+ " join Roles on Users.RoleRef = Roles.ID"
-			+ " where Users.login=";
-	private static final String SQL_DELETE_USERS_FIRSTNAME =  "DELETE FROM Users WHERE FirstName='rrd'";
-	private static final String SQL_SELECT_COLUMN_LASTNAME = "SELECT LastName FROM Users WHERE IsUserActive=1 AND LastName LIKE 'none%'";
-	private static final String SQL_SELECT_COLUMN_LOGIN = "SELECT Login FROM Users WHERE IsUserActive=1 AND Login LIKE '%none%'";
-	private static final String SQL_SELECT_COLUMN_ROLE = "SELECT r.RoleName FROM Users as u JOIN Roles as r on u.RoleRef=r.ID WHERE u.IsUserActive=1 AND r.RoleName not like '%er%'";
+//	private static final String SQL_SELECT_USERS = "select Users.Login, Users.FirstName, Users.LastName,"
+//			+ " Users.Password, Users.Email, Regions.RegionName, Roles.RoleName"
+//			+ " from (Users join Regions on Users.RegionRef = Regions.ID)"
+//			+ " join Roles on Users.RoleRef = Roles.ID;";
+//	private static final String SQL_SELECT_USER_BY_LOGIN = "select Users.Login, Users.FirstName, Users.LastName,"
+//			+ " Users.Password, Users.Email, Regions.RegionName, Roles.RoleName"
+//			+ " from (Users join Regions on Users.RegionRef = Regions.ID)"
+//			+ " join Roles on Users.RoleRef = Roles.ID"
+////			+ " where Users.login=";
+//	private static final String SQL_DELETE_USERS_FIRSTNAME =  "DELETE FROM Users WHERE FirstName='rrd'";
+//	private static final String SQL_SELECT_COLUMN_LASTNAME = "SELECT LastName FROM Users WHERE IsUserActive=1 AND LastName LIKE 'none%'";
+//	private static final String SQL_SELECT_COLUMN_LOGIN = "SELECT Login FROM Users WHERE IsUserActive=1 AND Login LIKE '%none%'";
+//	private static final String SQL_SELECT_COLUMN_ROLE = "SELECT r.RoleName FROM Users as u JOIN Roles as r on u.RoleRef=r.ID WHERE u.IsUserActive=1 AND r.RoleName not like '%er%'";
 	
-	private static final String SQL_DELETE_USER_LOGIN = "DELETE FROM Users WHERE Login=";
-    private static final String SQL_COUNT_ALL_USERS = "SELECT count (*) FROM Users WHERE IsUserActive=1";
+//	private static final String SQL_DELETE_USER_LOGIN = "DELETE FROM Users WHERE Login=";
+//    private static final String SQL_COUNT_ALL_USERS = "SELECT count (*) FROM Users WHERE IsUserActive=1";
 
-    private static final String SQL_SELECT_COLUMN_USER_FIVE_VALUES = "select TOP 5 Users.Login, Users.FirstName, Users.LastName,Users.Password, Users.Email, Regions.RegionName, Roles.RoleName from (Users join Regions on Users.RegionRef = Regions.ID) join Roles on Users.RoleRef = Roles.ID ORDER BY RoleRef";
-    private static final String SQL_SELECT_COLUMN_NOTEXISTED_LOGIN = "SELECT * FROM Users WHERE Login=";
+//    private static final String SQL_SELECT_COLUMN_USER_FIVE_VALUES = "select TOP 5 Users.Login, Users.FirstName, Users.LastName,Users.Password, Users.Email, Regions.RegionName, Roles.RoleName from (Users join Regions on Users.RegionRef = Regions.ID) join Roles on Users.RoleRef = Roles.ID ORDER BY RoleRef";
+//    private static final String SQL_SELECT_COLUMN_NOTEXISTED_LOGIN = "SELECT * FROM Users WHERE Login=";
 
 
 	private String username = "db207";
@@ -75,7 +77,7 @@ public class DBUtils implements IExternalData {
       
 		try {
 			st = con.createStatement();
-			rs = st.executeQuery(SQL_SELECT_USERS);
+			rs = st.executeQuery(SQLQueries.SQL_SELECT_USERS.getQuery());
 			columnCount = rs.getMetaData().getColumnCount();
 			//
 			while (rs.next()) {
@@ -100,7 +102,7 @@ public class DBUtils implements IExternalData {
  
 		try {
 			st = con.createStatement();
-			st.execute(SQL_DELETE_USERS_FIRSTNAME);
+			st.execute(SQLQueries.SQL_DELETE_USERS_FIRSTNAME.getQuery());
 		    closeConnection(con, st);
 		} catch (Exception e) {
 			throw new RuntimeException(SQL_EXCEPTION_FOUND, e);
@@ -115,17 +117,16 @@ public class DBUtils implements IExternalData {
 		try {
 			st = con.createStatement();
 			switch (nameOfColumn) {
-				case ("lastName"):  rs = st.executeQuery(SQL_SELECT_COLUMN_LASTNAME);
+				case ("lastName"):  rs = st.executeQuery(SQLQueries.SQL_SELECT_COLUMN_LASTNAME.getQuery());
 					break;
-				case ("login"):  rs = st.executeQuery(SQL_SELECT_COLUMN_LOGIN);
+				case ("login"):  rs = st.executeQuery(SQLQueries.SQL_SELECT_COLUMN_LOGIN.getQuery());
 					break;
-				case ("role"):  rs = st.executeQuery(SQL_SELECT_COLUMN_ROLE);
+				case ("role"):  rs = st.executeQuery(SQLQueries.SQL_SELECT_COLUMN_ROLE.getQuery());
 					break;
 			}
 
 			while (rs.next()) {
 				listOfOneColumn.add(rs.getString(1));
-				System.out.println(rs.getString(1));
 			}
 		  closeConnection(con, st, rs);
 		} catch (Exception e) {
@@ -143,7 +144,7 @@ public class DBUtils implements IExternalData {
 	 
 		try {
 			st = con.createStatement();
-			String query=SQL_SELECT_USER_BY_LOGIN +"\'"+ login+"\';";
+			String query=SQLQueries.SQL_SELECT_USER_BY_LOGIN.getQuery() +"\'"+ login+"\';";
 			System.out.println(query);
 			rs = st.executeQuery(query);
 			columnCount = rs.getMetaData().getColumnCount();
@@ -211,7 +212,8 @@ public class DBUtils implements IExternalData {
 
         try {
             st = con.createStatement();
-            st.execute(SQL_DELETE_USER_LOGIN+ "\'" + userLogin + "\'");
+            st.execute(SQLQueries.DELETE_FROM_USERS_WHERE_LOGIN_EQUALS.getQuery()
+                    + "\'" + userLogin + "\'");
             closeConnection(con, st);
         } catch (Exception e) {
             throw new RuntimeException(SQL_EXCEPTION_FOUND, e);
@@ -228,7 +230,7 @@ public class DBUtils implements IExternalData {
 
         try {
             st = con.createStatement();
-            rs = st.executeQuery(SQL_COUNT_ALL_USERS);
+            rs = st.executeQuery(SQLQueries.SQL_COUNT_ALL_USERS.getQuery());
             
             rs.next();
             userCount = rs.getInt(1);
@@ -251,7 +253,7 @@ public class DBUtils implements IExternalData {
 
         try {
             st = con.createStatement();
-            rs = st.executeQuery(SQL_SELECT_COLUMN_USER_FIVE_VALUES);
+            rs = st.executeQuery(SQLQueries.SQL_SELECT_COLUMN_USER_FIVE_VALUES.getQuery());
 
             while (rs.next()) {
                 User user = new User(
@@ -283,7 +285,7 @@ public class DBUtils implements IExternalData {
 
         try{
             st = con.createStatement();
-            rs = st.executeQuery(SQL_SELECT_COLUMN_NOTEXISTED_LOGIN + "\'" + loginOfUser + "\'");
+            rs = st.executeQuery(SQLQueries.SQL_SELECT_COLUMN_NOTEXISTED_LOGIN.getQuery() + "\'" + loginOfUser + "\'");
             userIsInDB = rs.next();
             closeConnection(con, st,rs);
         }catch (Exception e) {

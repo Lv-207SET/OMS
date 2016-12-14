@@ -164,37 +164,37 @@ public class CreateNewUserPage extends ABasePage {
 
     // set Data
 
-    public CreateNewUserPage setInputLogin(String login) {
+    public CreateNewUserPage setLoginInput(String login) {
         getLoginInput().clear();
         getLoginInput().sendKeys(login);
         return this;
     }
 
-    public CreateNewUserPage setInputFirstName(String firstName) {
+    public CreateNewUserPage setFirstNameInput(String firstName) {
         getFirstNameInput().clear();
         getFirstNameInput().sendKeys(firstName);
         return this;
     }
 
-    public CreateNewUserPage setInputLastName(String lastName) {
+    public CreateNewUserPage setLastNameInput(String lastName) {
         getLastNameInput().clear();
         getLastNameInput().sendKeys(lastName);
         return this;
     }
 
-    public CreateNewUserPage setInputPassword(String password) {
+    public CreateNewUserPage setPasswordInput(String password) {
         getPasswordInput().clear();
         getPasswordInput().sendKeys(password);
         return this;
     }
 
-    public CreateNewUserPage setInputConfirmPassword(String confirmPassword) {
+    public CreateNewUserPage setConfirmPasswordInput(String confirmPassword) {
         getConfirmPasswordInput().clear();
         getConfirmPasswordInput().sendKeys(confirmPassword);
         return this;
     }
 
-    public CreateNewUserPage setInputEmail(String email) {
+    public CreateNewUserPage setEmailInput(String email) {
         getEmailInput().clear();
         getEmailInput().sendKeys(email);
         return this;
@@ -205,77 +205,85 @@ public class CreateNewUserPage extends ABasePage {
         return this;
     }
 
-    public CreateNewUserPage selectRole(Role roleId) {
+    public CreateNewUserPage setSelectRole(Role roleId) {
         driver.findElement(By.id(roleId.getRoleId())).click();
         return this;
     }
 
-    public CreateNewUserPage clearInputLogin() {
+    public CreateNewUserPage clearLoginInput() {
         getLoginInput().clear();
         return this;
     }
 
-    public CreateNewUserPage clearInputFirstName() {
+    public CreateNewUserPage clearFirstNameInput() {
         getFirstNameInput().clear();
         return this;
     }
 
-    public CreateNewUserPage clearInputLastName() {
+    public CreateNewUserPage clearLastNameInput() {
         getLastNameInput().clear();
         return this;
     }
 
-    public CreateNewUserPage clearInputPassword() {
+    public CreateNewUserPage clearPasswordInput() {
         getPasswordInput().clear();
         return this;
     }
 
-    public CreateNewUserPage clearInputConfirmPassword() {
+    public CreateNewUserPage clearConfirmPasswordInput() {
         getConfirmPasswordInput().clear();
         return this;
     }
 
-    public CreateNewUserPage clearInputEmail() {
+    public CreateNewUserPage clearEmailInput() {
         getEmailInput().clear();
         return this;
     }
 
-    public CreateNewUserPage clickButtonCreate() {
+    public CreateNewUserPage clickCreateButton() {
         getCreateButton().click();
         return this;
     }
 
-    public CreateNewUserPage clickButtonCancel() {
+    public CreateNewUserPage clickCancelButton() {
         getCancelButton().click();
         return this;
     }
 
     // business logic
     public CreateNewUserPage setLoginData(IUser user) {
-        setInputLogin(user.getLoginname());
-        setInputFirstName(user.getFirstname());
-        setInputLastName(user.getLastname());
-        setInputPassword(user.getPassword());
-        setInputConfirmPassword(user.getPassword());
-        setInputEmail(user.getEmail());
+        setLoginInput(user.getLoginname());
+        setFirstNameInput(user.getFirstname());
+        setLastNameInput(user.getLastname());
+        setPasswordInput(user.getPassword());
+        setConfirmPasswordInput(user.getPassword());
+        setEmailInput(user.getEmail());
         setSelectRegion(Region.getRegion(user.getRegion()));
-        selectRole(Role.valueOf(user.getRole().toUpperCase()));
-        clickButtonCreate();
+        setSelectRole(Role.valueOf(user.getRole().toUpperCase()));
         return this;
     }
-    
+
     public AdministrationPage successCreateNewUser(IUser validUser){
         setLoginData(validUser);
+        clickCreateButton();
         return new AdministrationPage(driver);
     }
-    
+
+    public CreateNewUserPage unsuccessCreateNewUser(IUser invalidUser){
+        setLoginData(invalidUser);
+        clickCreateButton();
+        return this;
+    }
+
+    // ???
     public AdministrationPage successCreateNewUser(){
-        clickButtonCreate();
+        clickCreateButton();
         return new AdministrationPage(driver);
     }
 
     public AdministrationPage cancelCreateNewUser(IUser someUser) {
         setLoginData(someUser);
+        clickCancelButton();
         return new AdministrationPage(driver);
     }
 

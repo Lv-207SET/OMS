@@ -7,11 +7,6 @@ public final class UserUtils {
 	private String filename;
 	private IExternalData externalData;
 
-	public UserUtils() {
-		filename = "/users.csv";
-		externalData = new CSVUtils();
-	}
-
 	public UserUtils(String filename, IExternalData externalData) {
 		this.filename = filename;
 		this.externalData = externalData;

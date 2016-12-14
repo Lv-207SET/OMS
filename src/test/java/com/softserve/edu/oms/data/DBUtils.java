@@ -1,5 +1,7 @@
 package com.softserve.edu.oms.data;
 
+import com.softserve.edu.oms.enums.SQLQueries;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,9 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.softserve.edu.oms.enums.SQLQueries;
-
-public class DBUtils implements IExternalData {
+public class  DBUtils implements IExternalData {
 	private static final String SQL_EXCEPTION_FOUND = "SQL Exception found";
 //	private static final String SQL_SELECT_USERS = "select Users.Login, Users.FirstName, Users.LastName,"
 //			+ " Users.Password, Users.Email, Regions.RegionName, Roles.RoleName"

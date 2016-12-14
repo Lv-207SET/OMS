@@ -60,10 +60,6 @@ public final class UserRepository {
                 "rdd@g.com", "West", "Administrator");
     }
 
-	public List<IUser> getUsersFromCsvFile() {
-		return new UserUtils().getAllUsers();
-	}
-
 	public List<IUser> getUsersFromExcelFile() {
 		return new UserUtils("/users.xlsx", new ExcelUtils()).getAllUsers();
 	}

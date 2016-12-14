@@ -125,7 +125,6 @@ public class DBUtils implements IExternalData {
 
 			while (rs.next()) {
 				listOfOneColumn.add(rs.getString(1));
-				System.out.println(rs.getString(1));
 			}
 		  closeConnection(con, st, rs);
 		} catch (Exception e) {

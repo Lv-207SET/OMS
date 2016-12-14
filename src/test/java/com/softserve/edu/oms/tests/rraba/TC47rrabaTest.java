@@ -45,12 +45,6 @@ public class TC47rrabaTest extends TestRunner{
         List<String> columnListFromTable = new ArrayList<>();
         List<String> columnListFromDB;       
         DBUtils dbUtils;
-
-//        administrationPage
-//                .selectFieldFilterDropdownList(FieldFilterDropdownList.LAST_NAME)
-//                .selectConditionFilterDropdownList(ConditionFilterDropdownList.START_WITH)
-//                .inputIntoSearchField(SEARCH_TEXT_NONE)
-//                .clickSearchButton();
         
         administrationPage.filterAndSearch(
                 FieldFilterDropdownList.LAST_NAME, 
@@ -73,12 +67,6 @@ public class TC47rrabaTest extends TestRunner{
         List<String> columnListFromTable = new ArrayList<>();
         List<String> columnListFromDB;       
         DBUtils dbUtils;
-        
-//        administrationPage
-//                .selectFieldFilterDropdownList(FieldFilterDropdownList.LOGIN)
-//                .selectConditionFilterDropdownList(ConditionFilterDropdownList.CONTAINS)
-//                .inputIntoSearchField(SEARCH_TEXT_NONE)
-//                .clickSearchButton();
         
         administrationPage.filterAndSearch(
                 FieldFilterDropdownList.LOGIN, 
@@ -105,12 +93,6 @@ public class TC47rrabaTest extends TestRunner{
        int pagesNumber;
        int newPagesCount;
        int numberOfItems;
-       
-//        administrationPage
-//                .selectFieldFilterDropdownList(FieldFilterDropdownList.ROLE)
-//                .selectConditionFilterDropdownList(ConditionFilterDropdownList.DOES_NOT_CONTAIN)
-//                .inputIntoSearchField(SEARCH_TEXT_ER)
-//                .clickSearchButton();
         
         administrationPage.filterAndSearch(
                 FieldFilterDropdownList.ROLE, 
@@ -126,8 +108,8 @@ public class TC47rrabaTest extends TestRunner{
         columnListFromDB = dbUtils.getOneColumn(byRole);
 
         Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
-        
-        numberOfusers = Integer.valueOf(administrationPage.getFoundUsersNumber());
+ 
+        numberOfusers =  administrationPage.getFoundUsersNumber();
         Assert.assertEquals(columnListFromDB.size(),numberOfusers);
         
         //numberOfItems = administrationPage.getUsersPerPage();

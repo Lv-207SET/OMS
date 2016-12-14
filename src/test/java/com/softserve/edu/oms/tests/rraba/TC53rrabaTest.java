@@ -31,9 +31,7 @@ public class TC53rrabaTest extends TestRunner{
                 loginPage.successAdminLogin(UserRepository.get().adminUser());
         administrationPage = 
                 adminHomePage.gotoAdministrationPage();
-        //numberUsers = Integer.valueOf(administrationPage.getFoundUsersNumber());
         numberUsers = administrationPage.getFoundUsersNumber();
-        //pagesCount = Integer.valueOf(administrationPage.getPagesQuantity());
         pagesCount =  administrationPage.getPagesQuantity();
         
         //numberOfImems = administrationPage.getUsersPerPage();
@@ -80,13 +78,6 @@ public class TC53rrabaTest extends TestRunner{
 
         CreateNewUserPage createNewUserPage = 
                 administrationPage.goToCreateNewUserPage();
-//        createNewUserPage.
-//              setLogin(user.getLoginname()).
-//              setFirstName(user.getFirstname()).
-//              setLastName(user.getLastname()).
-//              setPassword(user.getPassword()).
-//              setConfirmPassword(user.getPassword()).
-//              setEmail(user.getEmail());
  
         administrationPage = createNewUserPage.successCreateNewUser(user);
         newNumberOfUsers = Integer.valueOf(administrationPage.getFoundUsersNumber());

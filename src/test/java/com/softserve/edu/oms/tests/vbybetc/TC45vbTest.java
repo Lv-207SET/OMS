@@ -4,7 +4,6 @@ import com.softserve.edu.oms.data.DBUtils;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.User;
 import com.softserve.edu.oms.data.UserRepository;
-import com.softserve.edu.oms.pages.AdminHomePage;
 import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.tests.TestRunner;
 import org.testng.Assert;
@@ -26,10 +25,9 @@ public class TC45vbTest extends TestRunner{
     public void CorrectUserDisplayingTest(IUser admUser) {
         int numberOfFoundUsersFromDB;
 
-        AdminHomePage adminHomePage= loginPage.successAdminLogin(admUser);
-        adminHomePage.clickAdministrationTab();
+        AdministrationPage administrationPage = loginPage.successAdminLogin(admUser)
+                .clickAdministrationTab();
 
-        AdministrationPage administrationPage = new AdministrationPage(driver);
         int numberOfFoundUsersFromPage = administrationPage.getFoundUsersNumber();
 
         DBUtils dbUtils = new DBUtils();

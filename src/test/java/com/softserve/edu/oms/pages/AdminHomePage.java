@@ -38,8 +38,9 @@ public class AdminHomePage extends HomePage {
 
 	// set Data
 
-	public void clickAdministrationTab() {
+	public AdministrationPage clickAdministrationTab() {
 		getAdministrationTab().click();
+		return new AdministrationPage(driver);
 	}
 
 	public void clickOrderingTab() {

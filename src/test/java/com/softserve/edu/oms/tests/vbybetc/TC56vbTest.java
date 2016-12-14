@@ -3,7 +3,6 @@ package com.softserve.edu.oms.tests.vbybetc;
 import com.softserve.edu.oms.data.DBUtils;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.UserRepository;
-import com.softserve.edu.oms.pages.AdminHomePage;
 import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.pages.CreateNewUserPage;
 import com.softserve.edu.oms.tests.TestRunner;
@@ -11,8 +10,6 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import java.sql.SQLException;
 
 public class TC56vbTest extends TestRunner{
 
@@ -33,15 +30,13 @@ public class TC56vbTest extends TestRunner{
     @Test(dataProvider = "admUser")
     public void PreconditionTest(IUser admUser) {
 
-        AdminHomePage adminHomePage = loginPage.successAdminLogin(admUser);
-        adminHomePage.clickAdministrationTab();
-
-        AdministrationPage administrationPage = new AdministrationPage(driver);
-        administrationPage.goToCreateNewUserPage();
+        CreateNewUserPage adminHomePage = loginPage.successAdminLogin(admUser)
+                .clickAdministrationTab()
+                .goToCreateNewUserPage();
     }
 
     @Test(dataProvider = "nonExistingUser")
-    public void UniqueUserCreatingTest(IUser nonExistingUser) throws SQLException, InterruptedException {
+    public void UniqueUserCreatingTest(IUser nonExistingUser)  {
 
         DBUtils dbUtils = new DBUtils();
 
@@ -61,13 +56,9 @@ public class TC56vbTest extends TestRunner{
                 .setInputEmail(nonExistingUser.getEmail())
                 .successCreateNewUser();
 
-        AdministrationPage administrationPage = new AdministrationPage(driver);
-        administrationPage.goToCreateNewUserPage();
+        CreateNewUserPage newUserPageAgain = new AdministrationPage(driver)
+                .goToCreateNewUserPage().setInputLogin(nonExistingLogin.toUpperCase());
 
-        CreateNewUserPage newUserPageAgain = new CreateNewUserPage(driver);
-        newUserPageAgain.setInputLogin(nonExistingLogin.toUpperCase());
-
-        Thread.sleep(10000);
         Assert.assertTrue(newUserPageAgain.getLoginErrorMessageText().contains("already in use"));
 
         dbUtils.deleteUserFromDB(nonExistingUser.getLoginname());

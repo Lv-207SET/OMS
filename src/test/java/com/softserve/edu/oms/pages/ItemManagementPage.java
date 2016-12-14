@@ -1,14 +1,33 @@
+/*
+ * @(#)Example.java 1.00 2016/12/15 
+ *
+ * Copyright (c) 1993-2016 Softserve, Inc.
+ *
+ * This software is the confidential and proprietary information of Softserve.
+ */
+
 package com.softserve.edu.oms.pages;
 
 import com.softserve.edu.oms.enums.FieldFilterSupervisor;
+
 import com.softserve.edu.oms.locators.ItemManagementPageLocators;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import java.util.List;
 
+/**
+ * Class which is responsible for ItemManagement page. Page Object pattern.  
+ * 
+ * @version  1.82 11 December 2016
+ * @author  Raba Roman
+ * 
+ */
 public class ItemManagementPage extends ABasePage {
 
+    
+    /** Creates new object
+    */
     public ItemManagementPage(WebDriver driver) {
         super(driver);
     }
@@ -146,37 +165,65 @@ public class ItemManagementPage extends ABasePage {
 
     // business logic
     
+    /** Method, which creates list of webelements from table by column "Name"
+     * on ItemManagement page. 
+     */
     public List<WebElement> getListName() {
         List<WebElement> listName = driver.findElements(ItemManagementPageLocators.COLUMN_NAME_CSS.by);
         return listName;
     }
-
+    
+    
+    /** Method, which creates list of webelements from table by column "Description"
+     * on ItemManagement page. 
+     */
     public List<WebElement> getListDescription() {
         List<WebElement> listDescription = driver.findElements(ItemManagementPageLocators.COLUMN_DESCRIPTION_CSS.by);
         return listDescription;
     }
 
+    
+    /** Method, which creates list of webelements from table by column "Price"
+     * on ItemManagement page. 
+     */
     public List<WebElement> getListPrice() {
         List<WebElement> listPrice = driver.findElements(ItemManagementPageLocators.COLUMN_PRICE_CSS.by);
         return listPrice;
     }
 
+    
+    /** Method, which creates list of webelements from table by column "Edit"
+     * on ItemManagement page. 
+     */
     public List<WebElement> getListEditLinks() {
         List<WebElement> getListEditLinks = driver.findElements(ItemManagementPageLocators.COLUMN_EDIT_CSS.by);
         return getListEditLinks;
     }
 
+    
+    /** Method, which creates list of webelements from table by column "Delete"
+     * on ItemManagement page. 
+     */
     public List<WebElement> getListDeleteLinks() {
         List<WebElement> getListDeleteLinks = driver.findElements(ItemManagementPageLocators.COLUMN_DELETE_CSS.by);
         return getListDeleteLinks;
     }
 
+    
+    /** Method, which clicks on "Show link" and changes number of rows in table
+     * which are shown on ItemManagement page.
+     */
     public ItemManagementPage clickShowItemsLink() {
         getShowItemsLink().click();
         showFiveItems = !showFiveItems;
         return this;
     }
 
+    
+    
+    /** Method, which finds by "Product Name".
+     * @param name - name for search.
+     */
     public ItemManagementPage searchByName(String name) {
         setChangeFieldFilter(FieldFilterSupervisor.NAME);
         getFieldFilterSelect().click();
@@ -186,6 +233,10 @@ public class ItemManagementPage extends ABasePage {
         return this;
     }
 
+    
+    /** Method, which finds by "Description".
+     * @param description - description for search.
+     */
     public ItemManagementPage searchByDescription(String description) {
         setChangeFieldFilter(FieldFilterSupervisor.DESCRIPTION);
         getFieldFilterSelect().click();
@@ -195,21 +246,34 @@ public class ItemManagementPage extends ABasePage {
         return this;
     }
 
+    
+    /** Method, which deletes product by index.
+     * @param index - index for deleting.
+     */
     public ItemManagementPage deleteProduct(int index) {
         getListDeleteLinks().get(index).click();
         return this;
     }
 
+    
+    /** Method, which goes to AddProduct page.
+     */
     public AddProductPage gotoAddProductPage() {
         getAddProductLink().click();
         return new AddProductPage(driver);
     }
 
+    
+    /** Method, which goes to CreateReport page.
+     */
     public CreateReportPage gotoCreateReportPage() {
         getCreateReportLink().click();
         return new CreateReportPage(driver);
     }
 
+    /** Method, which goes to EditProduct page.
+     * @param index - index of product for redirecting to EditProduct page.
+     */
     public EditProductPage gotoEditProductPage(int index) {
         getListEditLinks().get(index).click();
         return new EditProductPage(driver);

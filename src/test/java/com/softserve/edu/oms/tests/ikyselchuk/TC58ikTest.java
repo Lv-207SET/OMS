@@ -48,13 +48,13 @@ public class TC58ikTest extends TestRunner{
         dbUtils = new DBUtils();
         assertThat(dbUtils.getUserByLogin(newUser.getLoginname()), CoreMatchers.equalTo(null));
         createNewUserPage
-                .setInputLogin(newUser.getLoginname())
-                .setInputFirstName(newUser.getFirstname())
-                .setInputLastName(newUser.getLastname())
-                .setInputPassword(newUser.getPassword())
-                .setInputConfirmPassword(newUser.getPassword().toUpperCase())
-                .setInputEmail(newUser.getEmail())
-                .clickButtonCreate();
+                .setLoginInput(newUser.getLoginname())
+                .setFirstNameInput(newUser.getFirstname())
+                .setLastNameInput(newUser.getLastname())
+                .setPasswordInput(newUser.getPassword())
+                .setConfirmPasswordInput(newUser.getPassword().toUpperCase())
+                .setEmailInput(newUser.getEmail())
+                .clickCreateButton();
         createNewUserPage.acceptAlert();
 
         Assert.assertTrue(createNewUserPage.getConfirmPasswordErrorMessage().isDisplayed()

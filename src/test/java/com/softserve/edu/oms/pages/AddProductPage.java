@@ -6,10 +6,10 @@ import org.openqa.selenium.WebElement;
 
 public class AddProductPage extends ABasePage {
 
-    private final static String ADD_PRODUCT_LABEL_CSS = "#edit h3";
+    private final static String CREATING_PRODUCT_LABEL_CSS = "#edit h3";
     private final static String PRODUCT_NAME_INPUT_ID = "name";
     private final static String PRODUCT_DESCRIPTION_TEXTAREA_ID = "description";
-    private final static String PRODUCT_PRICE_ID = "price";
+    private final static String PRODUCT_PRICE_INPUT_ID = "price";
     private final static String OK_BUTTON_CSS = "[value='OK']";
     private final static String CANCEL_BUTTON_CSS= "[value='Cancel']";
     private final static String ITEM_MANAGEMENT_TAB_CSS = "#nav .cur a";
@@ -20,52 +20,159 @@ public class AddProductPage extends ABasePage {
         super(driver);
     }
 
-    public WebElement getAddProductLabel() {
-        return driver.findElement(By.cssSelector(ADD_PRODUCT_LABEL_CSS));
+    // get Data
+
+    public WebElement getCreatingNewProductLabel() {
+        return driver.findElement(By.cssSelector(CREATING_PRODUCT_LABEL_CSS));
     }
 
-    public void enterProductName(String productNameValue) {
-        WebElement productNameInput = driver.findElement(By.id(PRODUCT_NAME_INPUT_ID));
-        productNameInput.clear();
-        productNameInput.sendKeys(productNameValue);
+    public WebElement getProductNameInput() {
+        return driver.findElement(By.id(PRODUCT_NAME_INPUT_ID));
     }
 
-    public void enterProductDescription(String productDescriptionValue) {
-        WebElement productDescriptionTextarea = driver.findElement(By.id(PRODUCT_DESCRIPTION_TEXTAREA_ID));
-        productDescriptionTextarea.clear();
-        productDescriptionTextarea.sendKeys(productDescriptionValue);
+    public WebElement getProductDescriptionTextarea() {
+        return driver.findElement(By.id(PRODUCT_DESCRIPTION_TEXTAREA_ID));
     }
 
-    public void enterProductPrice(String productPriceValue) {
-        WebElement productPriceInput = driver.findElement(By.id(PRODUCT_PRICE_ID));
-        productPriceInput.clear();
-        productPriceInput.sendKeys(productPriceValue);
+    public WebElement getProductPriceInput() {
+        return driver.findElement(By.id(PRODUCT_PRICE_INPUT_ID));
     }
 
-    public String getProductNameErrorMessage() {
-        WebElement productNameErrorMessage = driver.findElement(By.id(PRODUCT_NAME_ERROR_MESSAGE_ID));
-        return productNameErrorMessage.getText();
+    public WebElement getOkButton() {
+        return driver.findElement(By.cssSelector(OK_BUTTON_CSS));
     }
 
-    public String getProductPriceErrorMessage() {
-        WebElement productPriceErrorMessage = driver.findElement(By.id(PRODUCT_PRICE_ERROR_MESSAGE_ID));
-        return productPriceErrorMessage.getText();
+    public WebElement getCancelButton() {
+        return driver.findElement(By.cssSelector(CANCEL_BUTTON_CSS));
     }
 
-    public ItemManagementPage clickOkButton() {
-        WebElement okButton = driver.findElement(By.cssSelector(OK_BUTTON_CSS));
-        okButton.click();
+    public WebElement getItemManagementTab() {
+        return driver.findElement(By.cssSelector(ITEM_MANAGEMENT_TAB_CSS));
+    }
+
+    public WebElement getProductNameErrorMessage() {
+        return driver.findElement(By.id(PRODUCT_NAME_ERROR_MESSAGE_ID));
+    }
+
+    public WebElement getProductPriceErrorMessage() {
+        return driver.findElement(By.id(PRODUCT_PRICE_ERROR_MESSAGE_ID));
+    }
+
+    // functional
+
+    public String getCreatingNewProductLabelText() {
+        return getCreatingNewProductLabel().getText();
+    }
+
+    public String getProductNameInputText() {
+        return getProductNameInput().getText();
+    }
+
+    public String getProductDescriptionTextareaText() {
+        return getProductDescriptionTextarea().getText();
+    }
+
+    public String getProductPriceInputText() {
+        return getProductPriceInput().getText();
+    }
+
+    public String getOkButtonText() {
+        return getOkButton().getText().trim();
+    }
+
+    public String getCancelButtonText() {
+        return getCancelButton().getText().trim();
+    }
+
+    public String getItemManagementTabText() {
+        return getItemManagementTab().getText();
+    }
+
+    public String getProductNameErrorMessageText() {
+        return getProductNameErrorMessage().getText();
+    }
+
+    public String getProductPriceErrorMessageText() {
+        return getProductPriceErrorMessage().getText();
+    }
+
+    public double getProductPriceInputValue() {
+        return Double.parseDouble(getProductPriceInputText());
+    }
+
+    // set Data
+
+    public AddProductPage setProductName(String productNameValue) {
+        getProductNameInput().clear();
+        getProductNameInput().sendKeys(productNameValue);
+        return this;
+    }
+
+    public AddProductPage setProductDescription(String productDescriptionValue) {
+        getProductDescriptionTextarea().clear();
+        getProductDescriptionTextarea().sendKeys(productDescriptionValue);
+        return this;
+    }
+
+    public AddProductPage setProductPrice(double productPriceValue) {
+        getProductPriceInput().clear();
+        getProductPriceInput().sendKeys(String.valueOf(productPriceValue));
+        return this;
+    }
+
+    public AddProductPage clearProductNameInput() {
+        getProductNameInput().clear();
+        return this;
+    }
+
+    public AddProductPage clearProductDescriptionTextarea() {
+        getProductDescriptionTextarea().clear();
+        return this;
+    }
+
+    public AddProductPage clearProductPriceInput() {
+        getProductPriceInput().clear();
+        return this;
+    }
+
+    public AddProductPage clickOkButton() {
+        getOkButton().click();
+        return this;
+    }
+
+    public AddProductPage clickCancelButton() {
+        getCancelButton().click();
+        return this;
+    }
+
+    // business logic
+
+    public ItemManagementPage successCreateNewProduct(String productName, String description, double price) {
+        setProductName(productName);
+        setProductDescription(description);
+        setProductPrice(price);
+        clickOkButton();
         return new ItemManagementPage(driver);
     }
 
-    public ItemManagementPage clickCancelButton() {
-        WebElement cancelButton = driver.findElement(By.cssSelector(CANCEL_BUTTON_CSS));
-        cancelButton.click();
+    public AddProductPage unsuccessCreateNewProduct(String productName, String description, double price) {
+        setProductName(productName);
+        setProductDescription(description);
+        setProductPrice(price);
+        clickOkButton();
+        return this;
+    }
+
+    public ItemManagementPage createProductAndCancel(String productName, String description, double price) {
+        setProductName(productName);
+        setProductDescription(description);
+        setProductPrice(price);
+        clickCancelButton();
         return new ItemManagementPage(driver);
     }
 
-    public ItemManagementPage clickOnItemManagementTab () {
-        driver.findElement(By.cssSelector(ITEM_MANAGEMENT_TAB_CSS)).click();
+    public ItemManagementPage goToItemManagementPage () {
+        getItemManagementTab().click();
         return new ItemManagementPage(driver);
     }
 }

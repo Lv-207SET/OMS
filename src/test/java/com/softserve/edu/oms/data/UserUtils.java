@@ -23,7 +23,7 @@ public final class UserUtils {
 
 	public List<IUser> getAllUsers(String absoluteFilePath) {
 		List<IUser> users = new ArrayList<IUser>();
-		for (List<String> row : externalData.getAllCells(absoluteFilePath)) {
+		for (List<String> row : externalData.getAllCells(absoluteFilePath, null)) {
 			if (row.get(5).toLowerCase().contains("region")
 					|| row.get(6).toLowerCase().contains("role")) {
 				continue;

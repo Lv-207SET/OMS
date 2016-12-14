@@ -37,9 +37,25 @@ public final class UserRepository {
 	}
 
 	public IUser invalidUser() {
-		return new User("abcd", "abcd", "abcd", "abcd",
+		return new User("abcdqwd", "abcd123", "abcd123", "abcd1",
 				"abcd@gmail.com", "East", "Administrator");
 	}
+
+	public IUser badMemoryUser() {
+		return new User("BadMemoryUser", "Neo", "Matrix", "paSSworD",
+				"hello@gmail.com", "East", "Supervisor");
+	}
+	
+	public IUser someUser() {
+        return new User("roman", "rrd", "rrd", "1234",
+                "rdd@g.com", "West", "Administrator");
+    }
+    
+    
+    public IUser newUser() {
+        return new User("andriy", "rrd", "rrd", "1234",
+                "rdd@g.com", "West", "Administrator");
+    }
 
 	public List<IUser> getUsersFromCsvFile() {
 		return new UserUtils().getAllUsers();

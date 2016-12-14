@@ -1,5 +1,8 @@
 package com.softserve.edu.oms.pages;
 
+import com.softserve.edu.oms.data.IUser;
+import com.softserve.edu.oms.enums.Region;
+import com.softserve.edu.oms.enums.Role;
 import com.softserve.edu.oms.enums.SelectRegionDropdownList;
 import com.softserve.edu.oms.enums.SelectRoleDropdownList;
 import org.openqa.selenium.By;
@@ -7,234 +10,281 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
+
 public class CreateNewUserPage extends ABasePage {
-    public static final String INPUT_LOGIN_ID = "login";
-    public static final String INPUT_FIRST_NAME_ID = "firstName";
-    public static final String INPUT_LAST_NAME_ID = "lastName";
-    public static final String INPUT_PASSWORD_ID = "password";
-    public static final String INPUT_CONFIRM_PASSWORD_ID = "confirmPassword";
-    public static final String INPUT_EMAIL_ID = "email";
-    public static final String SELECT_REGION_ID = "regionID";
-    public static final String SELECT_ROLE_ID = "roleID";
-    public static final String BUTTON_CREATE_CSS = "input[value=\"Create\"]";
-    public static final String BUTTON_CANCEL_CSS = "input[value=\"Cancel\"]";
-
-    public static final String ERROR_LOGIN_ID = "nameError";
-    public static final String ERROR_FIRST_NAME_ID = "firstNameError";
-    public static final String ERROR_LAST_NAME_ID = "lastNameError";
-    public static final String ERROR_PASSWORD_ID = "passwordError";
-    public static final String ERROR_CONFIRM_PASSWORD_ID = "confirmError";
-    public static final String ERROR_EMAIL_ID = "emailError";
-
-    //private WebDriver driver;
-    private WebElement inputLogin;
-    private WebElement inputFirstName;
-    private WebElement inputLastName;
-    private WebElement inputPassword;
-    private WebElement inputConfirmPassword;
-    private WebElement inputEmail;
-    private Select selectRegion;
-    private Select selectRole;
-    private WebElement buttonCreate;
-    private WebElement buttonCancel;
-    private WebElement errorLogin;
-    private WebElement errorFirstName;
-    private WebElement errorLastName;
-    private WebElement errorPassword;
-    private WebElement errorConfirmPassword;
-    private WebElement errorEmail;
+    private static final String INPUT_LOGIN_ID = "login";
+    private static final String INPUT_FIRST_NAME_ID = "firstName";
+    private static final String INPUT_LAST_NAME_ID = "lastName";
+    private static final String INPUT_PASSWORD_ID = "password";
+    private static final String INPUT_CONFIRM_PASSWORD_ID = "confirmPassword";
+    private static final String INPUT_EMAIL_ID = "email";
+    private static final String SELECT_REGION_ID = "regionID";
+    private static final String RADIO_BUTTON_ROLE_NAME = "roleID";
+    private static final String BUTTON_CREATE_CSS = "input[value=\"Create\"]";
+    private static final String BUTTON_CANCEL_CSS = "input[value=\"Cancel\"]";
+    private static final String ERROR_LOGIN_ID = "nameError";
+    private static final String ERROR_FIRST_NAME_ID = "firstNameError";
+    private static final String ERROR_LAST_NAME_ID = "lastNameError";
+    private static final String ERROR_PASSWORD_ID = "passwordError";
+    private static final String ERROR_CONFIRM_PASSWORD_ID = "confirmError";
+    private static final String ERROR_EMAIL_ID = "emailError";
 
     public CreateNewUserPage(WebDriver driver) {
         super(driver);
-        this.inputLogin = driver.findElement(By.id(INPUT_LOGIN_ID));
-        this.inputFirstName = driver.findElement(By.id(INPUT_FIRST_NAME_ID));
-        this.inputLastName = driver.findElement(By.id(INPUT_LAST_NAME_ID));
-        this.inputPassword = driver.findElement(By.id(INPUT_PASSWORD_ID));
-        this.inputConfirmPassword = driver.findElement(By.id(INPUT_CONFIRM_PASSWORD_ID));
-        this.inputEmail = driver.findElement(By.id(INPUT_EMAIL_ID));
-        this.selectRegion = new Select(driver.findElement(By.id(SELECT_REGION_ID)));
-        //this.selectRole = new Select(driver.findElement(By.id(SELECT_ROLE_ID)));
-        this.buttonCreate = driver.findElement(By.cssSelector(BUTTON_CREATE_CSS));
-        this.buttonCancel = driver.findElement(By.cssSelector(BUTTON_CANCEL_CSS));
     }
 
-    public WebDriver getDriver() {
-        return driver;
-    }
-
-    public void setDriver(WebDriver driver) {
-        this.driver = driver;
-    }
+    // get Data
 
     public WebElement getInputLogin() {
-        return inputLogin;
-    }
-
-    public void setInputLogin(WebElement inputLogin) {
-        this.inputLogin = inputLogin;
+        return this.driver.findElement(By.id(INPUT_LOGIN_ID));
     }
 
     public WebElement getInputFirstName() {
-        return inputFirstName;
-    }
-
-    public void setInputFirstName(WebElement inputFirstName) {
-        this.inputFirstName = inputFirstName;
+        return this.driver.findElement(By.id(INPUT_FIRST_NAME_ID));
     }
 
     public WebElement getInputLastName() {
-        return inputLastName;
-    }
-
-    public void setInputLastName(WebElement inputLastName) {
-        this.inputLastName = inputLastName;
+        return this.driver.findElement(By.id(INPUT_LAST_NAME_ID));
     }
 
     public WebElement getInputPassword() {
-        return inputPassword;
-    }
-
-    public void setInputPassword(WebElement inputPassword) {
-        this.inputPassword = inputPassword;
+        return  this.driver.findElement(By.id(INPUT_PASSWORD_ID));
     }
 
     public WebElement getInputConfirmPassword() {
-        return inputConfirmPassword;
-    }
-
-    public void setInputConfirmPassword(WebElement inputConfirmPassword) {
-        this.inputConfirmPassword = inputConfirmPassword;
+        return this.driver.findElement(By.id(INPUT_CONFIRM_PASSWORD_ID));
     }
 
     public WebElement getInputEmail() {
-        return inputEmail;
+        return  this.driver.findElement(By.id(INPUT_EMAIL_ID));
     }
 
-    public void setInputEmail(WebElement inputEmail) {
-        this.inputEmail = inputEmail;
+    public WebElement getDropDownRegion() {
+        return this.driver.findElement(By.id(SELECT_REGION_ID));
     }
 
-    public Select getSelectRegion() {
-        return selectRegion;
-    }
-
-    public void setSelectRegion(Select selectRegion) {
-        this.selectRegion = selectRegion;
-    }
-
-    public Select getSelectRole() {
-        return selectRole;
-    }
-
-    public void setSelectRole(Select selectRole) {
-        this.selectRole = selectRole;
+    public List<WebElement> getRadioButtonRole() {
+        return this.driver.findElements(By.name(RADIO_BUTTON_ROLE_NAME));
     }
 
     public WebElement getButtonCreate() {
-        return buttonCreate;
-    }
-
-    public void setButtonCreate(WebElement buttonCreate) {
-        this.buttonCreate = buttonCreate;
+        return this.driver.findElement(By.cssSelector(BUTTON_CREATE_CSS));
     }
 
     public WebElement getButtonCancel() {
-        return buttonCancel;
+        return this.driver.findElement(By.cssSelector(BUTTON_CANCEL_CSS));
     }
 
-    public void setButtonCancel(WebElement buttonCancel) {
-        this.buttonCancel = buttonCancel;
+    public WebElement getLoginErrorMessage() {
+        return this.driver.findElement(By.id(ERROR_LOGIN_ID));
     }
 
-    public CreateNewUserPage setLogin(String login) {
+    public WebElement getFirstNameErrorMessage() {
+        return this.driver.findElement(By.id(ERROR_FIRST_NAME_ID));
+    }
+
+    public WebElement getLastNameErrorMessage() {
+        return this.driver.findElement(By.id(ERROR_LAST_NAME_ID));
+    }
+
+    public WebElement getPasswordErrorMessage() {
+        return this.driver.findElement(By.id(ERROR_PASSWORD_ID));
+    }
+
+    public WebElement getConfirmPasswordErrorMessage() {
+        return this.driver.findElement(By.id(ERROR_CONFIRM_PASSWORD_ID));
+    }
+
+    public WebElement getEmailErrorMessage() {
+        return this.driver.findElement(By.id(ERROR_EMAIL_ID));
+    }
+
+    // functional
+
+    public String getLoginInputText() {
+        return getInputLogin().getText();
+    }
+
+    public String getFirstNameInputText() {
+        return getInputFirstName().getText();
+    }
+
+    public String getLastNameInputText() {
+        return getInputLastName().getText();
+    }
+
+    public String getPasswordInputText() {
+        return getInputPassword().getText();
+    }
+
+    public String getConfirmPasswordInputText() {
+        return getInputConfirmPassword().getText();
+    }
+
+    public String getEmailInputText() {
+        return getInputEmail().getText();
+    }
+
+    public Select getSelectRegion() {
+        return new Select(getDropDownRegion());
+    }
+
+    public String getCreateButtonText() {
+        return getButtonCreate().getText().trim();
+    }
+
+    public String getCancelButtonText() {
+        return getButtonCancel().getText().trim();
+    }
+
+    public String getLoginErrorMessageText() {
+        return getLoginErrorMessage().getText();
+    }
+
+    public String getFirstNameErrorMessageText() {
+        return getFirstNameErrorMessage().getText();
+    }
+
+    public String getLastNameErrorMessageText() {
+        return getLastNameErrorMessage().getText();
+    }
+
+    public String getPasswordErrorMessageText() {
+        return getPasswordErrorMessage().getText();
+    }
+
+    public String getConfirmPasswordErrorMessageText() {
+        return getConfirmPasswordErrorMessage().getText();
+    }
+
+    public String getEmailErrorMessageText() {
+        return getEmailErrorMessage().getText();
+    }
+
+    // set Data
+
+    public CreateNewUserPage setInputLogin(String login) {
         getInputLogin().clear();
         getInputLogin().sendKeys(login);
         return this;
     }
 
-    public CreateNewUserPage setFirstName(String firstName) {
+    public CreateNewUserPage setInputFirstName(String firstName) {
         getInputFirstName().clear();
         getInputFirstName().sendKeys(firstName);
         return this;
     }
 
-    public CreateNewUserPage setLastName(String lastName) {
+    public CreateNewUserPage setInputLastName(String lastName) {
         getInputLastName().clear();
         getInputLastName().sendKeys(lastName);
         return this;
     }
 
-    public CreateNewUserPage setPassword(String password) {
+    public CreateNewUserPage setInputPassword(String password) {
         getInputPassword().clear();
         getInputPassword().sendKeys(password);
         return this;
     }
 
-    public CreateNewUserPage setConfirmPassword(String password) {
+    public CreateNewUserPage setInputConfirmPassword(String confirmPassword) {
         getInputConfirmPassword().clear();
-        getInputConfirmPassword().sendKeys(password);
+        getInputConfirmPassword().sendKeys(confirmPassword);
         return this;
     }
 
-    public CreateNewUserPage setEmail(String email) {
+    public CreateNewUserPage setInputEmail(String email) {
         getInputEmail().clear();
         getInputEmail().sendKeys(email);
         return this;
     }
 
-    public CreateNewUserPage selectRegion(SelectRegionDropdownList region) {
-        getSelectRegion().selectByValue(region.toString());
+    public CreateNewUserPage setSelectRegion(Region region) {
+        getSelectRegion().selectByVisibleText(region.getRegionType());
         return this;
     }
 
-    public CreateNewUserPage selectRole(SelectRoleDropdownList role) {
-        getSelectRole().selectByValue(role.toString());
+    public CreateNewUserPage selectRole(Role roleId) {
+        driver.findElement(By.id(roleId.getRoleId())).click();
         return this;
     }
 
-    public CreateNewUserPage createUser() {
-        buttonCreate.click();
+    public CreateNewUserPage clearInputLogin() {
+        getInputLogin().clear();
         return this;
     }
 
-    public AdministrationPage cancel() {
-        buttonCancel.click();
+    public CreateNewUserPage clearInputFirstName() {
+        getInputFirstName().clear();
+        return this;
+    }
+
+    public CreateNewUserPage clearInputLastName() {
+        getInputLastName().clear();
+        return this;
+    }
+
+    public CreateNewUserPage clearInputPassword() {
+        getInputPassword().clear();
+        return this;
+    }
+
+    public CreateNewUserPage clearInputConfirmPassword() {
+        getInputConfirmPassword().clear();
+        return this;
+    }
+
+    public CreateNewUserPage clearInputEmail() {
+        getInputEmail().clear();
+        return this;
+    }
+
+    public CreateNewUserPage clickButtonCreate() {
+        getButtonCreate().click();
+        return this;
+    }
+
+    public CreateNewUserPage clickButtonCancel() {
+        getButtonCancel().click();
+        return this;
+    }
+
+    // business logic
+    public CreateNewUserPage setLoginData(IUser user) {
+        setInputLogin(user.getLoginname());
+        setInputFirstName(user.getFirstname());
+        setInputLastName(user.getLastname());
+        setInputPassword(user.getPassword());
+        setInputConfirmPassword(user.getPassword());
+        setInputEmail(user.getEmail());
+        setSelectRegion(Region.getRegion(user.getRegion()));
+        selectRole(Role.valueOf(user.getRole().toUpperCase()));
+        clickButtonCreate();
+        return this;
+    }
+
+
+    public AdministrationPage successCreateNewUser(IUser validUser){
+        setLoginData(validUser);
+        return new AdministrationPage(driver);
+    }
+    
+    public AdministrationPage successCreateNewUser(){
+        clickButtonCreate();
         return new AdministrationPage(driver);
     }
 
-    public String getErrorLogin() {
-        errorLogin = driver.findElement(By.id(ERROR_LOGIN_ID));
-        return errorLogin.getText();
-
-    }
-
-    public String getErrorFirstName() {
-        errorFirstName = driver.findElement(By.id(ERROR_FIRST_NAME_ID));
-        return errorFirstName.getText();
-    }
-
-    public String getErrorLastName() {
-        errorLastName = driver.findElement(By.id(ERROR_LAST_NAME_ID));
-        return errorLastName.getText();
-    }
-
-    public String getErrorPassword() {
-        errorPassword = driver.findElement(By.id(ERROR_PASSWORD_ID));
-        return errorPassword.getText();
-    }
-
-    public String getErrorConfirmPassword() {
-        errorConfirmPassword = driver.findElement(By.id(ERROR_CONFIRM_PASSWORD_ID));
-        return errorConfirmPassword.getText();
-    }
-
-    public String getErrorEmail() {
-        errorEmail = driver.findElement(By.id(ERROR_EMAIL_ID));
-        return errorEmail.getText();
-    }
-
-    public AdministrationPage createNewUser(){
-        buttonCreate.click();
+    public AdministrationPage cancelCreateNewUser(IUser someUser) {
+        setLoginData(someUser);
         return new AdministrationPage(driver);
+    }
+
+    public CreateNewUserPage acceptAlert() {
+        driver
+                .switchTo()
+                .alert()
+                .accept();
+        return this;
     }
 }

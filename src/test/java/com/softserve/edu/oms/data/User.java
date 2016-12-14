@@ -9,7 +9,11 @@ public class User implements IUser {
 	private String email;
 	private String region;
 	private String role;
-	
+
+	public User (){
+
+	}
+
 	public User(String loginname, String firstname,
 			String lastname, String password,
 			String email, String region, String role) {

@@ -3,6 +3,7 @@ package com.softserve.edu.oms.tests.vbybetc;
 import com.softserve.edu.oms.data.DBUtils;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.UserRepository;
+import com.softserve.edu.oms.enums.SQLQueries;
 import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.pages.CreateNewUserPage;
 import com.softserve.edu.oms.tests.TestRunner;
@@ -61,7 +62,8 @@ public class TC56vbTest extends TestRunner{
 
         Assert.assertTrue(newUserPageAgain.getLoginErrorMessageText().contains("already in use"));
 
-        dbUtils.deleteUserFromDB(nonExistingUser.getLoginname());
+        dbUtils.deleteUsersFromDB(SQLQueries.DELETE_FROM_USERS_WHERE_LOGIN_EQUALS.getQuery(),
+                nonExistingUser.getLoginname());
     }
 
 }

@@ -12,6 +12,7 @@ import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.UserRepository;
 import com.softserve.edu.oms.enums.Region;
 import com.softserve.edu.oms.enums.Role;
+import com.softserve.edu.oms.enums.SQLQueries;
 import com.softserve.edu.oms.pages.AdminHomePage;
 import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.pages.CreateNewUserPage;
@@ -43,14 +44,14 @@ public class TC53rrabaTest extends TestRunner{
                 CreateNewUserPage createNewUserPage = 
                         administrationPage.goToCreateNewUserPage();
 
-                createNewUserPage.setInputLogin(user.getLoginname() + user.getLoginname().charAt(i)).
-                      setInputFirstName(user.getFirstname()).
-                      setInputLastName(user.getLastname()).
-                      setInputPassword(user.getPassword()).
-                      setInputConfirmPassword(user.getPassword()).
-                      setInputEmail(user.getEmail()).
+                createNewUserPage.setLoginInput(user.getLoginname() + user.getLoginname().charAt(i)).
+                      setFirstNameInput(user.getFirstname()).
+                      setLastNameInput(user.getLastname()).
+                      setPasswordInput(user.getPassword()).
+                      setConfirmPasswordInput(user.getPassword()).
+                      setEmailInput(user.getEmail()).
                       setSelectRegion(Region.getRegion(user.getRegion())).
-                      selectRole(Role.valueOf(user.getRole().toUpperCase()));                     
+                      setSelectRole(Role.valueOf(user.getRole().toUpperCase()));                     
                                 
                 administrationPage = createNewUserPage.successCreateNewUser();
             }
@@ -61,7 +62,8 @@ public class TC53rrabaTest extends TestRunner{
     @AfterMethod
     public void tearDown() {
         DBUtils dbUtils = new DBUtils();
-        dbUtils.deleteUsersFromDB();
+        dbUtils.deleteUsersFromDB(SQLQueries.SQL_DELETE_USERS_FIRSTNAME.getQuery(),
+                UserRepository.get().someUser().getFirstname());
     }
     
     

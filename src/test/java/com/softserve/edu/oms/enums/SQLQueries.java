@@ -22,7 +22,7 @@ public enum SQLQueries {
             + " Users.Email, Regions.RegionName, Roles.RoleName from (Users join Regions on Users.RegionRef = Regions.ID)"
             + " join Roles on Users.RoleRef = Roles.ID ORDER BY RoleRef"),
     SQL_SELECT_COLUMN_NOTEXISTED_LOGIN("SELECT * FROM Users WHERE Login="),
-    SQL_DELETE_USERS_FIRSTNAME("DELETE FROM Users WHERE FirstName='rrd'"),
+    SQL_DELETE_USERS_FIRSTNAME("DELETE FROM Users WHERE FirstName="),
     SQL_SELECT_COLUMN_LASTNAME("SELECT LastName FROM Users WHERE IsUserActive=1 AND LastName LIKE 'none%'"),
     SQL_SELECT_COLUMN_LOGIN("SELECT Login FROM Users WHERE IsUserActive=1 AND Login LIKE '%none%'"),
     SQL_SELECT_COLUMN_ROLE("SELECT r.RoleName FROM Users as u JOIN Roles as r on u.RoleRef=r.ID WHERE u.IsUserActive=1 AND r.RoleName not like '%er%'");

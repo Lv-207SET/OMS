@@ -11,32 +11,10 @@ import java.util.List;
 
 public class  DBUtils implements IExternalData {
 	private static final String SQL_EXCEPTION_FOUND = "SQL Exception found";
-//	private static final String SQL_SELECT_USERS = "select Users.Login, Users.FirstName, Users.LastName,"
-//			+ " Users.Password, Users.Email, Regions.RegionName, Roles.RoleName"
-//			+ " from (Users join Regions on Users.RegionRef = Regions.ID)"
-//			+ " join Roles on Users.RoleRef = Roles.ID;";
-//	private static final String SQL_SELECT_USER_BY_LOGIN = "select Users.Login, Users.FirstName, Users.LastName,"
-//			+ " Users.Password, Users.Email, Regions.RegionName, Roles.RoleName"
-//			+ " from (Users join Regions on Users.RegionRef = Regions.ID)"
-//			+ " join Roles on Users.RoleRef = Roles.ID"
-////			+ " where Users.login=";
-//	private static final String SQL_DELETE_USERS_FIRSTNAME =  "DELETE FROM Users WHERE FirstName='rrd'";
-//	private static final String SQL_SELECT_COLUMN_LASTNAME = "SELECT LastName FROM Users WHERE IsUserActive=1 AND LastName LIKE 'none%'";
-//	private static final String SQL_SELECT_COLUMN_LOGIN = "SELECT Login FROM Users WHERE IsUserActive=1 AND Login LIKE '%none%'";
-//	private static final String SQL_SELECT_COLUMN_ROLE = "SELECT r.RoleName FROM Users as u JOIN Roles as r on u.RoleRef=r.ID WHERE u.IsUserActive=1 AND r.RoleName not like '%er%'";
-	
-//	private static final String SQL_DELETE_USER_LOGIN = "DELETE FROM Users WHERE Login=";
-//    private static final String SQL_COUNT_ALL_USERS = "SELECT count (*) FROM Users WHERE IsUserActive=1";
-
-//    private static final String SQL_SELECT_COLUMN_USER_FIVE_VALUES = "select TOP 5 Users.Login, Users.FirstName, Users.LastName,Users.Password, Users.Email, Regions.RegionName, Roles.RoleName from (Users join Regions on Users.RegionRef = Regions.ID) join Roles on Users.RoleRef = Roles.ID ORDER BY RoleRef";
-//    private static final String SQL_SELECT_COLUMN_NOTEXISTED_LOGIN = "SELECT * FROM Users WHERE Login=";
-
-
-	private String username = "db207";
+ 	private String username = "db207";
 	private String password = "db207";
 	private String url = "jdbc:jtds:sqlserver://127.0.0.1/Lv207OMS;instance=SQLEXPRESS;";
-	
-	
+		
 	private Connection createConnection(){
         Connection con;
         try {
@@ -95,19 +73,21 @@ public class  DBUtils implements IExternalData {
 		}
 		return allCells;
 	}
-
-	public void deleteUsersFromDB(){
-		Statement st = null;
-		Connection con = createConnection();
  
-		try {
-			st = con.createStatement();
-			st.execute(SQLQueries.SQL_DELETE_USERS_FIRSTNAME.getQuery());
-		    closeConnection(con, st);
-		} catch (Exception e) {
-			throw new RuntimeException(SQL_EXCEPTION_FOUND, e);
-		}
-	}
+	
+	public void deleteUsersFromDB(String sqlQuery, String value){
+        Statement st = null;
+        Connection con = createConnection();
+ 
+        try {
+            st = con.createStatement();
+            st.execute(sqlQuery + "\'" + value + "\'");
+            closeConnection(con, st);
+        } catch (Exception e) {
+            throw new RuntimeException(SQL_EXCEPTION_FOUND, e);
+        }
+    }
+ 
 
 	public List<String> getOneColumn(String nameOfColumn) {
  		List<String> listOfOneColumn = new ArrayList<>();	 
@@ -205,20 +185,7 @@ public class  DBUtils implements IExternalData {
         return logins;
     }
     
-    public void deleteUserFromDB(String userLogin) {
-
-        Statement st;
-        Connection con = createConnection();
-
-        try {
-            st = con.createStatement();
-            st.execute(SQLQueries.DELETE_FROM_USERS_WHERE_LOGIN_EQUALS.getQuery()
-                    + "\'" + userLogin + "\'");
-            closeConnection(con, st);
-        } catch (Exception e) {
-            throw new RuntimeException(SQL_EXCEPTION_FOUND, e);
-        }
-    }
+   
 
     public int countAllUsers(){ 
 

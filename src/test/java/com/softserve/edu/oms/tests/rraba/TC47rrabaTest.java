@@ -112,8 +112,7 @@ public class TC47rrabaTest extends TestRunner{
         numberOfusers =  administrationPage.getFoundUsersNumber();
         Assert.assertEquals(columnListFromDB.size(),numberOfusers);
         
-        //numberOfItems = administrationPage.getUsersPerPage();
-        numberOfItems = 5;
+        numberOfItems = administrationPage.getUsersPerPageNumber();
         
         if ((columnListFromDB.size() % numberOfItems) !=0) {
             pagesNumber = ((columnListFromDB.size() - 

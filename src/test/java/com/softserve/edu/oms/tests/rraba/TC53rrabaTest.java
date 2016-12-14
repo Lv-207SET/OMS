@@ -34,8 +34,7 @@ public class TC53rrabaTest extends TestRunner{
         numberUsers = administrationPage.getFoundUsersNumber();
         pagesCount =  administrationPage.getPagesQuantity();
         
-        //numberOfImems = administrationPage.getUsersPerPage();
-        numberOfImems = 5;
+        numberOfImems = administrationPage.getUsersPerPageNumber();
 
         if ((numberUsers % numberOfImems) != 0) {
             for (int i = 0; i < (numberOfImems - (numberUsers % numberOfImems)); i++) {

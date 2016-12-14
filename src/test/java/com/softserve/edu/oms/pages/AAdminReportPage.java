@@ -174,8 +174,7 @@ public abstract class AAdminReportPage extends ABasePage {
     }
 
     public String getShowItemsLinkText() {
-        //return driver.findElement(By.cssSelector(SHOW_ITEMS_LINK_CSS)).getText();
-        return driver.findElement(By.cssSelector(SHOW_ITEMS_LINK_CSS)).getAttribute("innerHTML");
+        return driver.findElement(By.cssSelector(SHOW_ITEMS_LINK_CSS)).getText();
     }
 
     public String getFirstNameLinkText() {
@@ -224,6 +223,7 @@ public abstract class AAdminReportPage extends ABasePage {
         return getUsersFoundSpan().getAttribute("innerHTML");
     }
 
+
  
     public int getFoundUsersNumber() {
        return Integer.parseInt(getUsersFoundText());
@@ -235,6 +235,16 @@ public abstract class AAdminReportPage extends ABasePage {
 
     public int  getCurrentPageNumber() {
         return Integer.parseInt(getPageNumberSpanText());
+    }
+    
+    public int getUsersPerPageNumber(){
+        String itemsLinkText = getShowItemsLink().getText(); 
+        int numberLinkText = Integer.parseInt(itemsLinkText.
+                substring(itemsLinkText.indexOf(" ")+1, itemsLinkText.lastIndexOf(" ")));
+        if (UsersPerPage.TEN.getResultsPerPage() == numberLinkText)
+            return UsersPerPage.FIVE.getResultsPerPage();
+        else 
+            return UsersPerPage.TEN.getResultsPerPage();
     }
 
     // Check if navigation buttons is enabled

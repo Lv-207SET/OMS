@@ -446,8 +446,8 @@ public abstract class AAdminReportPage extends ABasePage {
             user.setFirstname(tableCells.get(0).getText());
             user.setLastname(tableCells.get(1).getText());
             user.setLoginname(tableCells.get(2).getText());
-            user.setRole(tableCells.get(3).getText().toUpperCase(Locale.ENGLISH));
-            user.setRegion(tableCells.get(4).getText().toUpperCase(Locale.ENGLISH));
+            user.setRole(tableCells.get(3).getText()); 
+            user.setRegion(tableCells.get(4).getText()); 
             userListFormCurrentPage.add(user);
         }
         return userListFormCurrentPage;

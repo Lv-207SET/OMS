@@ -51,7 +51,10 @@ public final class UserRepository {
                 "rdd@g.com", "West", "Administrator");
     }
     
-    
+    	public IUser nonExistingUser() {
+		return new User("hippo", "hippopotamus", "hippopotamus", "qwerty",
+				"hippo@ui.com", "East", "Administrator");
+	}
     public IUser newUser() {
         return new User("andriy", "rrd", "rrd", "1234",
                 "rdd@g.com", "West", "Administrator");

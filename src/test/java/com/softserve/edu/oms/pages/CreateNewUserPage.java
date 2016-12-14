@@ -13,16 +13,16 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.List;
 
 public class CreateNewUserPage extends ABasePage {
-    private static final String INPUT_LOGIN_ID = "login";
-    private static final String INPUT_FIRST_NAME_ID = "firstName";
-    private static final String INPUT_LAST_NAME_ID = "lastName";
-    private static final String INPUT_PASSWORD_ID = "password";
-    private static final String INPUT_CONFIRM_PASSWORD_ID = "confirmPassword";
-    private static final String INPUT_EMAIL_ID = "email";
-    private static final String SELECT_REGION_ID = "regionID";
-    private static final String RADIO_BUTTON_ROLE_NAME = "roleID";
-    private static final String BUTTON_CREATE_CSS = "input[value=\"Create\"]";
-    private static final String BUTTON_CANCEL_CSS = "input[value=\"Cancel\"]";
+    private static final String LOGIN_INPUT_ID = "login";
+    private static final String FIRST_NAME_INPUT_ID = "firstName";
+    private static final String LAST_NAME_INPUT_ID = "lastName";
+    private static final String PASSWORD_INPUT_ID = "password";
+    private static final String CONFIRM_PASSWORD_INPUT_ID = "confirmPassword";
+    private static final String EMAIL_INPUT_ID = "email";
+    private static final String REGION_SELECT_ID = "regionID";
+    private static final String ROLE_RADIO_BUTTON_NAME = "roleID";
+    private static final String CREATE_BUTTON_CSS = "input[value=\"Create\"]";
+    private static final String CANCEL_BUTTON_CSS = "input[value=\"Cancel\"]";
     private static final String ERROR_LOGIN_ID = "nameError";
     private static final String ERROR_FIRST_NAME_ID = "firstNameError";
     private static final String ERROR_LAST_NAME_ID = "lastNameError";
@@ -36,44 +36,44 @@ public class CreateNewUserPage extends ABasePage {
 
     // get Data
 
-    public WebElement getInputLogin() {
-        return this.driver.findElement(By.id(INPUT_LOGIN_ID));
+    public WebElement getLoginInput() {
+        return this.driver.findElement(By.id(LOGIN_INPUT_ID));
     }
 
-    public WebElement getInputFirstName() {
-        return this.driver.findElement(By.id(INPUT_FIRST_NAME_ID));
+    public WebElement getFirstNameInput() {
+        return this.driver.findElement(By.id(FIRST_NAME_INPUT_ID));
     }
 
-    public WebElement getInputLastName() {
-        return this.driver.findElement(By.id(INPUT_LAST_NAME_ID));
+    public WebElement getLastNameInput() {
+        return this.driver.findElement(By.id(LAST_NAME_INPUT_ID));
     }
 
-    public WebElement getInputPassword() {
-        return  this.driver.findElement(By.id(INPUT_PASSWORD_ID));
+    public WebElement getPasswordInput() {
+        return  this.driver.findElement(By.id(PASSWORD_INPUT_ID));
     }
 
-    public WebElement getInputConfirmPassword() {
-        return this.driver.findElement(By.id(INPUT_CONFIRM_PASSWORD_ID));
+    public WebElement getConfirmPasswordInput() {
+        return this.driver.findElement(By.id(CONFIRM_PASSWORD_INPUT_ID));
     }
 
-    public WebElement getInputEmail() {
-        return  this.driver.findElement(By.id(INPUT_EMAIL_ID));
+    public WebElement getEmailInput() {
+        return  this.driver.findElement(By.id(EMAIL_INPUT_ID));
     }
 
-    public WebElement getDropDownRegion() {
-        return this.driver.findElement(By.id(SELECT_REGION_ID));
+    public WebElement getRegionDropDown() {
+        return this.driver.findElement(By.id(REGION_SELECT_ID));
     }
 
-    public List<WebElement> getRadioButtonRole() {
-        return this.driver.findElements(By.name(RADIO_BUTTON_ROLE_NAME));
+    public List<WebElement> getRoleRadioButton() {
+        return this.driver.findElements(By.name(ROLE_RADIO_BUTTON_NAME));
     }
 
-    public WebElement getButtonCreate() {
-        return this.driver.findElement(By.cssSelector(BUTTON_CREATE_CSS));
+    public WebElement getCreateButton() {
+        return this.driver.findElement(By.cssSelector(CREATE_BUTTON_CSS));
     }
 
-    public WebElement getButtonCancel() {
-        return this.driver.findElement(By.cssSelector(BUTTON_CANCEL_CSS));
+    public WebElement getCancelButton() {
+        return this.driver.findElement(By.cssSelector(CANCEL_BUTTON_CSS));
     }
 
     public WebElement getLoginErrorMessage() {
@@ -103,39 +103,39 @@ public class CreateNewUserPage extends ABasePage {
     // functional
 
     public String getLoginInputText() {
-        return getInputLogin().getText();
+        return getLoginInput().getText();
     }
 
     public String getFirstNameInputText() {
-        return getInputFirstName().getText();
+        return getFirstNameInput().getText();
     }
 
     public String getLastNameInputText() {
-        return getInputLastName().getText();
+        return getLastNameInput().getText();
     }
 
     public String getPasswordInputText() {
-        return getInputPassword().getText();
+        return getPasswordInput().getText();
     }
 
     public String getConfirmPasswordInputText() {
-        return getInputConfirmPassword().getText();
+        return getConfirmPasswordInput().getText();
     }
 
     public String getEmailInputText() {
-        return getInputEmail().getText();
+        return getEmailInput().getText();
     }
 
     public Select getSelectRegion() {
-        return new Select(getDropDownRegion());
+        return new Select(getRegionDropDown());
     }
 
     public String getCreateButtonText() {
-        return getButtonCreate().getText().trim();
+        return getCreateButton().getText().trim();
     }
 
     public String getCancelButtonText() {
-        return getButtonCancel().getText().trim();
+        return getCancelButton().getText().trim();
     }
 
     public String getLoginErrorMessageText() {
@@ -165,38 +165,38 @@ public class CreateNewUserPage extends ABasePage {
     // set Data
 
     public CreateNewUserPage setInputLogin(String login) {
-        getInputLogin().clear();
-        getInputLogin().sendKeys(login);
+        getLoginInput().clear();
+        getLoginInput().sendKeys(login);
         return this;
     }
 
     public CreateNewUserPage setInputFirstName(String firstName) {
-        getInputFirstName().clear();
-        getInputFirstName().sendKeys(firstName);
+        getFirstNameInput().clear();
+        getFirstNameInput().sendKeys(firstName);
         return this;
     }
 
     public CreateNewUserPage setInputLastName(String lastName) {
-        getInputLastName().clear();
-        getInputLastName().sendKeys(lastName);
+        getLastNameInput().clear();
+        getLastNameInput().sendKeys(lastName);
         return this;
     }
 
     public CreateNewUserPage setInputPassword(String password) {
-        getInputPassword().clear();
-        getInputPassword().sendKeys(password);
+        getPasswordInput().clear();
+        getPasswordInput().sendKeys(password);
         return this;
     }
 
     public CreateNewUserPage setInputConfirmPassword(String confirmPassword) {
-        getInputConfirmPassword().clear();
-        getInputConfirmPassword().sendKeys(confirmPassword);
+        getConfirmPasswordInput().clear();
+        getConfirmPasswordInput().sendKeys(confirmPassword);
         return this;
     }
 
     public CreateNewUserPage setInputEmail(String email) {
-        getInputEmail().clear();
-        getInputEmail().sendKeys(email);
+        getEmailInput().clear();
+        getEmailInput().sendKeys(email);
         return this;
     }
 
@@ -211,42 +211,42 @@ public class CreateNewUserPage extends ABasePage {
     }
 
     public CreateNewUserPage clearInputLogin() {
-        getInputLogin().clear();
+        getLoginInput().clear();
         return this;
     }
 
     public CreateNewUserPage clearInputFirstName() {
-        getInputFirstName().clear();
+        getFirstNameInput().clear();
         return this;
     }
 
     public CreateNewUserPage clearInputLastName() {
-        getInputLastName().clear();
+        getLastNameInput().clear();
         return this;
     }
 
     public CreateNewUserPage clearInputPassword() {
-        getInputPassword().clear();
+        getPasswordInput().clear();
         return this;
     }
 
     public CreateNewUserPage clearInputConfirmPassword() {
-        getInputConfirmPassword().clear();
+        getConfirmPasswordInput().clear();
         return this;
     }
 
     public CreateNewUserPage clearInputEmail() {
-        getInputEmail().clear();
+        getEmailInput().clear();
         return this;
     }
 
     public CreateNewUserPage clickButtonCreate() {
-        getButtonCreate().click();
+        getCreateButton().click();
         return this;
     }
 
     public CreateNewUserPage clickButtonCancel() {
-        getButtonCancel().click();
+        getCancelButton().click();
         return this;
     }
 
@@ -263,8 +263,7 @@ public class CreateNewUserPage extends ABasePage {
         clickButtonCreate();
         return this;
     }
-
-
+    
     public AdministrationPage successCreateNewUser(IUser validUser){
         setLoginData(validUser);
         return new AdministrationPage(driver);

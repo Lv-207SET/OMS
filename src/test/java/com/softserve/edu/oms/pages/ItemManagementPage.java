@@ -1,11 +1,10 @@
 package com.softserve.edu.oms.pages;
 
 import com.softserve.edu.oms.enums.FieldFilterSupervisor;
-import org.openqa.selenium.By;
+import com.softserve.edu.oms.locators.ItemManagementPageLocators;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ItemManagementPage extends ABasePage {
@@ -14,129 +13,105 @@ public class ItemManagementPage extends ABasePage {
         super(driver);
     }
 
-    private boolean showFiveItems = true;   // true - showing 5 items, false - showing 10 items in table
+    private boolean showFiveItems = true; // true - showing 5 items, false -
+                                          // showing 10 items in table
 
-    //UI Mapping
-    private final static String USER_INFO_TAB_CSS = "#nav li:nth-child(2) a";
-    private final static String PAGE_IS_APPOINTED_LABEL_CSS = "#list h2";
-    private final static String ADD_PRODUCT_LINK_CSS = "#list>a";
-    private final static String PRODUCTS_FOUND_LABEL_CSS = "#list h4:first-of-type";
-    private final static String PRODUCTS_COUNT_LABEL_ID = "recordsFound";
-    private final static String SEARCH_BY_LABEL_TAG_NAME = "legend";
-    private final static String FIELD_FILTER_LABEL_CSS = "#searchForm label";
-    private final static String FIELD_FILTER_SELECT_ID = "field";
-    private final static String SEARCH_FIELD_ID = "searchField";
-    private final static String SEARCH_BUTTON_CSS = "input[value='Search']";
-    private final static String SHOW_ITEMS_LINK_CSS = "#list p a";
-    private final static String TABLE_NAME_LINK_CSS ="th:nth-child(1) a";
-    private final static String TABLE_DESCRIPTION_LINK_CSS ="th:nth-child(2) a";
-    private final static String TABLE_PRICE_LINK_CSS ="th:nth-child(3) a";
-    private final static String TABLE_EDIT_LABEL_CSS ="th:nth-last-of-type(2)";
-    private final static String TABLE_DELETE_LABEL_CSS ="th:nth-last-of-type(1)";
-    private final static String FIRST_BUTTON_ID ="first";
-    private final static String BACKWARD__BUTTON_ID ="previous";
-    private final static String FORWARD__BUTTON_ID ="next";
-    private final static String LAST__BUTTON_ID ="last";
-    private final static String PAGE_LABEL_CSS = "#list h4:last-of-type";
-    private final static String PAGE_NUMBER_LABEL_ID = "pageNumber";
-    private final static String PAGE_COUNT_LABEL_ID = "pageCount";
-    private final static String CREATE_REPORT_LINK_CSS = "#list h4:last-of-type + a";
+    // get Elements
 
-    //get Elements
     public WebElement getUserInfoTab() {
-        return driver.findElement(By.cssSelector(USER_INFO_TAB_CSS));
+        return driver.findElement(ItemManagementPageLocators.USER_INFO_TAB_CSS.by);
     }
 
     public WebElement getPageIsAppointedLabel() {
-        return driver.findElement(By.cssSelector(PAGE_IS_APPOINTED_LABEL_CSS));
+        return driver.findElement(ItemManagementPageLocators.PAGE_IS_APPOINTED_LABEL_CSS.by);
     }
 
     public WebElement getAddProductLink() {
-        return driver.findElement(By.cssSelector(ADD_PRODUCT_LINK_CSS));
+        return driver.findElement(ItemManagementPageLocators.ADD_PRODUCT_LINK_CSS.by);
     }
 
     public WebElement getProductsFoundLabel() {
-        return driver.findElement(By.cssSelector(PRODUCTS_FOUND_LABEL_CSS));
+        return driver.findElement(ItemManagementPageLocators.PRODUCTS_FOUND_LABEL_CSS.by);
     }
 
     public WebElement getProductsCountLabel() {
-        return driver.findElement(By.id(PRODUCTS_COUNT_LABEL_ID));
+        return driver.findElement(ItemManagementPageLocators.PRODUCTS_COUNT_LABEL_ID.by);
     }
 
     public WebElement getSearchByLabel() {
-        return driver.findElement(By.tagName(SEARCH_BY_LABEL_TAG_NAME));
+        return driver.findElement(ItemManagementPageLocators.SEARCH_BY_LABEL_TAG_NAME.by);
     }
 
     public WebElement getFieldFilterLabel() {
-        return driver.findElement(By.cssSelector(FIELD_FILTER_LABEL_CSS));
+        return driver.findElement(ItemManagementPageLocators.FIELD_FILTER_LABEL_CSS.by);
     }
 
     public WebElement getFieldFilterSelect() {
-        return driver.findElement(By.id(FIELD_FILTER_SELECT_ID));
+        return driver.findElement(ItemManagementPageLocators.FIELD_FILTER_SELECT_ID.by);
     }
 
     public WebElement getSearchField() {
-        return driver.findElement(By.id(SEARCH_FIELD_ID));
+        return driver.findElement(ItemManagementPageLocators.SEARCH_FIELD_ID.by);
     }
 
     public WebElement getSearchButton() {
-        return driver.findElement(By.cssSelector(SEARCH_BUTTON_CSS));
+        return driver.findElement(ItemManagementPageLocators.SEARCH_BUTTON_CSS.by);
     }
 
     public WebElement getShowItemsLink() {
-        return driver.findElement(By.cssSelector(SHOW_ITEMS_LINK_CSS));
+        return driver.findElement(ItemManagementPageLocators.SHOW_ITEMS_LINK_CSS.by);
     }
 
     public WebElement getTableNameLink() {
-        return driver.findElement(By.cssSelector(TABLE_NAME_LINK_CSS));
+        return driver.findElement(ItemManagementPageLocators.TABLE_NAME_LINK_CSS.by);
     }
 
     public WebElement getTableDescriptionLink() {
-        return driver.findElement(By.cssSelector(TABLE_DESCRIPTION_LINK_CSS));
+        return driver.findElement(ItemManagementPageLocators.TABLE_DESCRIPTION_LINK_CSS.by);
     }
 
     public WebElement getTablePriceLink() {
-        return driver.findElement(By.cssSelector(TABLE_PRICE_LINK_CSS));
+        return driver.findElement(ItemManagementPageLocators.TABLE_PRICE_LINK_CSS.by);
     }
 
     public WebElement getTableEditLabel() {
-        return driver.findElement(By.cssSelector(TABLE_EDIT_LABEL_CSS));
+        return driver.findElement(ItemManagementPageLocators.TABLE_EDIT_LABEL_CSS.by);
     }
 
     public WebElement getTableDeleteLabel() {
-        return driver.findElement(By.cssSelector(TABLE_DELETE_LABEL_CSS));
+        return driver.findElement(ItemManagementPageLocators.TABLE_DELETE_LABEL_CSS.by);
     }
 
     public WebElement getFirstButton() {
-        return driver.findElement(By.id(FIRST_BUTTON_ID));
+        return driver.findElement(ItemManagementPageLocators.FIRST_BUTTON_ID.by);
     }
 
     public WebElement getBackwardButton() {
-        return driver.findElement(By.id(BACKWARD__BUTTON_ID));
+        return driver.findElement(ItemManagementPageLocators.BACKWARD__BUTTON_ID.by);
     }
 
     public WebElement getForwardButton() {
-        return driver.findElement(By.id(FORWARD__BUTTON_ID));
+        return driver.findElement(ItemManagementPageLocators.FORWARD__BUTTON_ID.by);
     }
 
     public WebElement getLastButton() {
-        return driver.findElement(By.id(LAST__BUTTON_ID));
+        return driver.findElement(ItemManagementPageLocators.LAST__BUTTON_ID.by);
     }
 
     public WebElement getPageLabel() {
-        return driver.findElement(By.cssSelector(PAGE_LABEL_CSS));
+        return driver.findElement(ItemManagementPageLocators.PAGE_LABEL_CSS.by);
     }
 
     public WebElement getPageNumberLabel() {
-        return driver.findElement(By.id(PAGE_NUMBER_LABEL_ID));
+        return driver.findElement(ItemManagementPageLocators.PAGE_NUMBER_LABEL_ID.by);
     }
 
     public WebElement getPageCountLabel() {
-        return driver.findElement(By.id(PAGE_COUNT_LABEL_ID));
+        return driver.findElement(ItemManagementPageLocators.PAGE_COUNT_LABEL_ID.by);
     }
 
     public WebElement getCreateReportLink() {
-        return driver.findElement(By.cssSelector(CREATE_REPORT_LINK_CSS));
+        return driver.findElement(ItemManagementPageLocators.CREATE_REPORT_LINK_CSS.by);
     }
 
     public Select getChangeFieldFilter() {
@@ -146,150 +121,98 @@ public class ItemManagementPage extends ABasePage {
     public String getChangeFieldFilterSelectedText() {
         return getChangeFieldFilter().getFirstSelectedOption().getText();
     }
-
-    //get List WebElements from table
-    //need to redo tr td:nth-child(1)
-    public List<WebElement> getListName(){
-        List<WebElement> listName = new ArrayList<>();
-        if (showFiveItems){
-            for(int i=0; i<=4; i++){
-                listName.add(i,
-                        driver.findElement(By.xpath(".//*[@id='table']/tbody/tr[" + i +"]/td[1]")));
-            }
-        } else
-            for(int i=0; i<=9; i++){
-                listName.add(i,
-                        driver.findElement(By.xpath(".//*[@id='table']/tbody/tr[" + i +"]/td[1]")));
-            }
-        return listName;
-    }
-    //need to redo tr td:nth-child(2)
-    public List<WebElement> getListDescription(){
-        List<WebElement> listDescription = new ArrayList<>();
-        if (showFiveItems){
-            for(int i=0; i<=4; i++){
-                listDescription.add(i,
-                        driver.findElement(By.xpath(".//*[@id='table']/tbody/tr[" + i +"]/td[2]")));
-            }
-        } else
-            for(int i=0; i<=9; i++){
-                listDescription.add(i,
-                        driver.findElement(By.xpath(".//*[@id='table']/tbody/tr[" + i +"]/td[2]")));
-            }
-        return listDescription;
-    }
-    //need to redo tr td:nth-child(3)
-    public List<WebElement> getListPrice(){
-        List<WebElement> listPrice = new ArrayList<>();
-        if (showFiveItems){
-            for(int i=0; i<=4; i++){
-                listPrice.add(i,
-                        driver.findElement(By.xpath(".//*[@id='table']/tbody/tr[" + i +"]/td[3]")));
-            }
-        } else
-            for(int i=0; i<=9; i++){
-                listPrice.add(i,
-                        driver.findElement(By.xpath(".//*[@id='table']/tbody/tr[" + i +"]/td[3]")));
-            }
-        return listPrice;
-    }
-    //need to redo tr td:nth-child(4)
-    public List<WebElement> getListEditLinks(){
-        List<WebElement> getListEditLinks = new ArrayList<>();
-        if (showFiveItems){
-            for(int i=0; i<=4; i++){
-                getListEditLinks.add(i,
-                        driver.findElement(By.xpath(".//*[@id='table']/tbody/tr[" + i +"]/td[4]/a")));
-            }
-        } else
-            for(int i=0; i<=9; i++){
-                getListEditLinks.add(i,
-                        driver.findElement(By.xpath(".//*[@id='table']/tbody/tr[" + i +"]/td[4]/a")));
-            }
-        return getListEditLinks;
-    }
-    //need to redo tr td:nth-child(5)
-    public List<WebElement> getListDeleteLinks(){
-        List<WebElement> getListDeleteLinks = new ArrayList<>();
-        if (showFiveItems){
-            for(int i=0; i<=4; i++){
-                getListDeleteLinks.add(i,
-                        driver.findElement(By.xpath(".//*[@id='table']/tbody/tr[" + i +"]/td[5]/a")));
-            }
-        } else
-            for(int i=0; i<=9; i++){
-                getListDeleteLinks.add(i,
-                        driver.findElement(By.xpath(".//*[@id='table']/tbody/tr[" + i +"]/td[5]/a")));
-            }
-        return getListDeleteLinks;
-    }
-
-
-    //Set Elements
+ 
+    // set Data
 
     public void setChangeFieldFilter(FieldFilterSupervisor fieldFilter) {
         getChangeFieldFilter().selectByVisibleText(fieldFilter.toString());
     }
 
-    public void clickFirstButton(){
-         getFirstButton().click();
+    public void clickFirstButton() {
+        getFirstButton().click();
     }
 
-    public void clickBackwardButton(){
-         getBackwardButton().click();
+    public void clickBackwardButton() {
+        getBackwardButton().click();
     }
 
-    public void clickForwardButton(){
+    public void clickForwardButton() {
         getForwardButton().click();
     }
 
-    public void clickLastButton(){
+    public void clickLastButton() {
         getLastButton().click();
     }
 
-    // go to another pages
-
-    public AddProductPage gotoAddProductPage(){
-         getAddProductLink().click();
-        return new AddProductPage(driver);
+    // business logic
+    
+    public List<WebElement> getListName() {
+        List<WebElement> listName = driver.findElements(ItemManagementPageLocators.COLUMN_NAME_CSS.by);
+        return listName;
     }
 
-    public CreateReportPage gotoCreateReportPage(){
-         getCreateReportLink().click();
-        return new CreateReportPage(driver);
+    public List<WebElement> getListDescription() {
+        List<WebElement> listDescription = driver.findElements(ItemManagementPageLocators.COLUMN_DESCRIPTION_CSS.by);
+        return listDescription;
     }
 
-    public EditProductPage gotoEditProductPage(int index){
-        getListEditLinks().get(index).click();
-        return new EditProductPage(driver);
+    public List<WebElement> getListPrice() {
+        List<WebElement> listPrice = driver.findElements(ItemManagementPageLocators.COLUMN_PRICE_CSS.by);
+        return listPrice;
     }
 
+    public List<WebElement> getListEditLinks() {
+        List<WebElement> getListEditLinks = driver.findElements(ItemManagementPageLocators.COLUMN_EDIT_CSS.by);
+        return getListEditLinks;
+    }
 
-    // functional
+    public List<WebElement> getListDeleteLinks() {
+        List<WebElement> getListDeleteLinks = driver.findElements(ItemManagementPageLocators.COLUMN_DELETE_CSS.by);
+        return getListDeleteLinks;
+    }
 
-    public void clickShowItemsLink(){
+    public ItemManagementPage clickShowItemsLink() {
         getShowItemsLink().click();
         showFiveItems = !showFiveItems;
+        return this;
     }
 
-    public void searchByName(String name){
+    public ItemManagementPage searchByName(String name) {
         setChangeFieldFilter(FieldFilterSupervisor.NAME);
         getFieldFilterSelect().click();
         getFieldFilterSelect().clear();
         getFieldFilterSelect().sendKeys(name);
         getSearchButton().click();
+        return this;
     }
 
-    public void searchByDescription(String description){
+    public ItemManagementPage searchByDescription(String description) {
         setChangeFieldFilter(FieldFilterSupervisor.DESCRIPTION);
         getFieldFilterSelect().click();
         getFieldFilterSelect().clear();
         getFieldFilterSelect().sendKeys(description);
         getSearchButton().click();
+        return this;
     }
 
-    public void deleteProduct(int index){
+    public ItemManagementPage deleteProduct(int index) {
         getListDeleteLinks().get(index).click();
+        return this;
+    }
+
+    public AddProductPage gotoAddProductPage() {
+        getAddProductLink().click();
+        return new AddProductPage(driver);
+    }
+
+    public CreateReportPage gotoCreateReportPage() {
+        getCreateReportLink().click();
+        return new CreateReportPage(driver);
+    }
+
+    public EditProductPage gotoEditProductPage(int index) {
+        getListEditLinks().get(index).click();
+        return new EditProductPage(driver);
     }
 
 }

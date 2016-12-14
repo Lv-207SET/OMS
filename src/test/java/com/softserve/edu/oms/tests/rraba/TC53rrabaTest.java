@@ -10,6 +10,8 @@ import org.testng.annotations.Test;
 import com.softserve.edu.oms.data.DBUtils;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.UserRepository;
+import com.softserve.edu.oms.enums.Region;
+import com.softserve.edu.oms.enums.Role;
 import com.softserve.edu.oms.pages.AdminHomePage;
 import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.pages.CreateNewUserPage;
@@ -46,9 +48,10 @@ public class TC53rrabaTest extends TestRunner{
                       setInputLastName(user.getLastname()).
                       setInputPassword(user.getPassword()).
                       setInputConfirmPassword(user.getPassword()).
-                      setInputEmail(user.getEmail()); 
-                
-                
+                      setInputEmail(user.getEmail()).
+                      setSelectRegion(Region.getRegion(user.getRegion())).
+                      selectRole(Role.valueOf(user.getRole().toUpperCase()));                     
+                                
                 administrationPage = createNewUserPage.successCreateNewUser();
             }
             numberUsers = numberUsers +(numberOfImems- (numberUsers % numberOfImems));

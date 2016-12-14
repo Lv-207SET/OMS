@@ -16,7 +16,7 @@ public enum SQLQueries {
             + " Users.Password, Users.Email, Regions.RegionName, Roles.RoleName"
             + " from (Users join Regions on Users.RegionRef = Regions.ID)"
             + " join Roles on Users.RoleRef = Roles.ID"
-            + " where Users.login="),
+            + " where IsUserActive=1 and Users.login="),
     SQL_COUNT_ALL_USERS("SELECT count (*) FROM Users WHERE IsUserActive=1"),
     SQL_SELECT_COLUMN_USER_FIVE_VALUES("select TOP 5 Users.Login, Users.FirstName, Users.LastName,Users.Password,"
             + " Users.Email, Regions.RegionName, Roles.RoleName from (Users join Regions on Users.RegionRef = Regions.ID)"

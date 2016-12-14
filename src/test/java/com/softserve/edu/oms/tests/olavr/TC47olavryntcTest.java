@@ -122,7 +122,7 @@ public class TC47olavryntcTest {
         DBUtils dbUtils = new DBUtils();
 
         int numberOfUsersWithLogin = dbUtils.getUserByLogin(VALID_NAME) == null ? 0 : 1;
-        int numberOfUsers = dbUtils.getAllCells("",null).size() - numberOfUsersWithLogin;
+        int numberOfUsers = dbUtils.countAllUsers() - numberOfUsersWithLogin;
         softAssert.assertEquals(new AdministrationPage(driver).getAllUsers().size(),numberOfUsers);
 
         softAssert.assertAll();

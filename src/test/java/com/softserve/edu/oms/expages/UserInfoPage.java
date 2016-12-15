@@ -1,4 +1,4 @@
-package com.softserve.edu.oms.tests.vbybetc;
+package com.softserve.edu.oms.expages;
 
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.UserRepository;
@@ -8,8 +8,10 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-
-public class TC41vbTest extends TestRunner {
+/**
+ * Created by Vika on 12/15/2016.
+ */
+public class UserInfoPage extends TestRunner {
 
     @DataProvider
     public Object[][] admUser() {
@@ -17,7 +19,7 @@ public class TC41vbTest extends TestRunner {
                 { UserRepository.get().adminUser() }
         };
     }
-     /**
+    /**
      * <h1>Switching tabs on UserInfo page for Admin user</h1>
      * This test validates that Admin has an ability to switch between
      * tabs on UserInfo page

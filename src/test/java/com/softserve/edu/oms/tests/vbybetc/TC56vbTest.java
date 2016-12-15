@@ -13,7 +13,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
- * <h1>Verify that Login field is case insensitive</h1>
+
  */
 public class TC56vbTest extends TestRunner{
 
@@ -43,6 +43,7 @@ public class TC56vbTest extends TestRunner{
                 .goToCreateNewUserPage();
     }
     /**
+     * <h1>Verify that Login field is case insensitive</h1>
      * This test goes to Create New User Page,
      * 1) executes SQL query to verify that nonExistingUser from UserRepository
      * really is not in DB

@@ -210,6 +210,13 @@ public class CreateNewUserPageTest extends TestRunner {
         createNewUserPage.logout();
     }
 
+    
+    /** Verify that values in 'Number of found users' and 'Page#:' links 
+     *  are properly updated after creation a new user. 
+     *  @author Roman Raba
+     *  @version 1.0
+     *  @since 16.12.16
+     */    
     @Test(dataProvider = "validUser")
     public void verifyChangePageNumber(IUser user){
 
@@ -230,6 +237,14 @@ public class CreateNewUserPageTest extends TestRunner {
         deleteUsersFromDB();
     }
     
+    
+    /** Verify that number of active registered users is aliquot to 5. 
+     *  And creates necessary number of users. 
+     *  @see CreateNewUserPageTest#verifyChangePageNumber(IUser)
+     *  @author Roman Raba
+     *  @version 1.0
+     *  @since 16.12.16
+     */
     public void verifyAndCreateUsers() {
         int numberOfImems;
 
@@ -263,7 +278,14 @@ public class CreateNewUserPageTest extends TestRunner {
             numberUsers = numberUsers +(numberOfImems- (numberUsers % numberOfImems));
         }
     }
-
+    
+    
+    /** Deletes users from DB after creation in test.
+     *  @see CreateNewUserPageTest#verifyChangePageNumber(IUser)
+     *  @author Roman Raba
+     *  @version 1.0
+     *  @since 16.12.16
+     */
     public void deleteUsersFromDB() {
         DBUtils dbUtils = new DBUtils();
         dbUtils.deleteUsersFromDB(SQLQueries.DELETE_USERS_BY_FIRSTNAME.getQuery(),

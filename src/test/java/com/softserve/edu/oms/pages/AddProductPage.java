@@ -143,7 +143,7 @@ public class AddProductPage extends ABasePage {
      * @param productName - name of creating product
      * @param description - description of creating product
      * @param price - price of creating product
-     * @return ItemManagementPage - this method returns new object of ItemManagementPage
+     * @return new object of ItemManagementPage
      * @see ItemManagementPage
      */
     public ItemManagementPage successCreateNewProduct(String productName, String description, double price) {
@@ -158,7 +158,7 @@ public class AddProductPage extends ABasePage {
      * @param productName - name of creating product
      * @param description - description of creating product
      * @param price - price of creating product
-     * @return AddProductPage - this method returns object of current page
+     * @return the same page with filled out fields and corresponding error messages
      */
     public AddProductPage unsuccessCreateNewProduct(String productName, String description, double price) {
         setProductName(productName);
@@ -172,7 +172,7 @@ public class AddProductPage extends ABasePage {
      * @param productName - name of creating product
      * @param description - description of creating product
      * @param price - price of creating product
-     * @return ItemManagementPage - this method returns new object of ItemManagementPage
+     * @return new object of ItemManagementPage
      * @see ItemManagementPage
      */
     public ItemManagementPage createProductAndCancel(String productName, String description, double price) {

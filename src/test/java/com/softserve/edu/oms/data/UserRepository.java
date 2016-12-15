@@ -66,7 +66,7 @@ public final class UserRepository {
 				"hippo@ui.com", "East", "Administrator");
 	}
     public IUser newUser() {
-        return new User("New", "WorldOrder", "rrd", "1234",
+        return new User("New", "WorldOrder", "isComing", "1234",
                 "rdd@g.com", "West", "Administrator");
     }
 

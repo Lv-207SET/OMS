@@ -5,7 +5,6 @@ import com.softserve.edu.oms.data.User;
 import com.softserve.edu.oms.enums.ConditionFilterDropdownList;
 import com.softserve.edu.oms.enums.FieldFilterDropdownList;
 import com.softserve.edu.oms.enums.UsersPerPage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -15,213 +14,205 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static com.softserve.edu.oms.locators.AAdminReportPageLocators.*;
+
 
 public abstract class AAdminReportPage extends ABasePage {
-
-    private static final String SUBHEADER_CSS = "#list h2";
-    private static final String USERS_FOUND_SPAN_ID = "usersFound";
-    private static final String SEARCH_BY_LABEL_TAG_NAME = "legend";
-    private static final String FIELD_FILTER_LABEL_CSS = "#searchForm label";
-    private static final String SELECT_FIELD_ID = "field";
-    private static final String SELECT_CONDITION_ID = "condition";
-    private static final String SEARCH_FIELD_ID = "searchField";
-    private static final String SEARCH_BUTTON_NAME = "search";
-    private static final String SHOW_ITEMS_LINK_CSS = "#list p a";
-    private static final String FIRST_NAME_LINK_CSS = "th:nth-child(1) a";
-    private static final String LAST_NAME_LINK_CSS = "th:nth-child(2) a";
-    private static final String LOGIN_LINK_CSS= "th:nth-child(3) a";
-    private static final String ROLE_LINK_CSS = "th:nth-child(4) a";
-    private static final String REGION_LINK_CSS = "th:nth-child(5) a";
-    private static final String FIRST_BUTTON_ID = "first";
-    private static final String BACKWARD_BUTTON_ID = "previous";
-    private static final String FORWARD_BUTTON_ID = "next";
-    private static final String LAST_BUTTON_ID = "last";
-    private static final String PAGE_NUMBER_SPAN_ID = "pageNumber";
-    private static final String PAGE_COUNT_SPAN_ID = "pageCount";
-    private static final String TABLE_ROWS_CSS = "#table>tbody>tr";
-    private static final String LOGINS_XPATH = ".//td[3]";
-    private static final String FIRST_NAMES_XPATH = ".//td[1]";
-    private static final String LAST_NAMES_XPATH = ".//td[2]";
-    private static final String TABLE_BODY = "tbody";
-    private static final String TR = "tr";
-    private static final String TD = "td";
-    public static final String GET_USER_BY_LOGIN = "#table tr:first-child td:first-child";
-
-
 
     public AAdminReportPage(WebDriver driver) {
         super(driver);
     }
 
-
     // get Data
 
     public WebElement getSubHeader() {
-        return driver.findElement(By.cssSelector(SUBHEADER_CSS));
+        return driver.findElement(SUBHEADER_CSS.by);
     }
 
     public WebElement getUsersFoundSpan() {
-        return driver.findElement(By.id(USERS_FOUND_SPAN_ID));
+        return driver.findElement(USERS_FOUND_SPAN_ID.by);
     }
 
     public WebElement getSearchByLabel() {
-        return driver.findElement(By.tagName(SEARCH_BY_LABEL_TAG_NAME));
+        return driver.findElement(SEARCH_BY_LABEL_TAG_NAME.by);
     }
 
     public WebElement getFieldFilterLabel() {
-        return driver.findElement(By.cssSelector(FIELD_FILTER_LABEL_CSS));
+        return driver.findElement(FIELD_FILTER_LABEL_CSS.by);
     }
 
     public Select getSelectField() {
-        return new Select(driver.findElement(By.id(SELECT_FIELD_ID)));
+        return new Select(driver.findElement(SELECT_FIELD_ID.by));
     }
 
     public Select getSelectCondition() {
-        return new Select(driver.findElement(By.id(SELECT_CONDITION_ID)));
+        return new Select(driver.findElement(SELECT_CONDITION_ID.by));
     }
 
     public WebElement getSearchFieldInput() {
-        return driver.findElement(By.id(SEARCH_FIELD_ID));
+        return driver.findElement(SEARCH_FIELD_ID.by);
     }
 
     public WebElement getSearchButton() {
-        return driver.findElement(By.name(SEARCH_BUTTON_NAME));
+        return driver.findElement(SEARCH_BUTTON_NAME.by);
     }
 
     public WebElement getShowItemsLink() {
-        return driver.findElement(By.cssSelector(SHOW_ITEMS_LINK_CSS));
+        return driver.findElement(SHOW_ITEMS_LINK_CSS.by);
     }
 
     public WebElement getFirstNameLink() {
-        return driver.findElement(By.cssSelector(FIRST_NAME_LINK_CSS));
+        return driver.findElement(FIRST_NAME_LINK_CSS.by);
     }
 
     public WebElement getLastNameLink() {
-        return driver.findElement(By.cssSelector(LAST_NAME_LINK_CSS));
+        return driver.findElement(LAST_NAME_LINK_CSS.by);
     }
 
     public WebElement getLoginLink() {
-        return driver.findElement(By.cssSelector(LOGIN_LINK_CSS));
+        return driver.findElement(LOGIN_LINK_CSS.by);
     }
 
     public WebElement getRoleLink() {
-        return driver.findElement(By.cssSelector(ROLE_LINK_CSS));
+        return driver.findElement(ROLE_LINK_CSS.by);
     }
 
     public WebElement getRegionLink() {
-        return driver.findElement(By.cssSelector(REGION_LINK_CSS));
+        return driver.findElement(REGION_LINK_CSS.by);
     }
 
     public WebElement getFirstButton() {
-        return driver.findElement(By.id(FIRST_BUTTON_ID));
+        return driver.findElement(FIRST_BUTTON_ID.by);
     }
 
     public WebElement getBackwardButton() {
-        return driver.findElement(By.id(BACKWARD_BUTTON_ID));
+        return driver.findElement(BACKWARD_BUTTON_ID.by);
     }
 
     public WebElement getForwardButton() {
-        return driver.findElement(By.id(FORWARD_BUTTON_ID));
+        return driver.findElement(FORWARD_BUTTON_ID.by);
     }
 
     public WebElement getLastButton() {
-        return driver.findElement(By.id(LAST_BUTTON_ID));
+        return driver.findElement(LAST_BUTTON_ID.by);
     }
 
     public WebElement getPageNumberSpan() {
-        return driver.findElement(By.id(PAGE_NUMBER_SPAN_ID));
+        return driver.findElement(PAGE_NUMBER_SPAN_ID.by);
     }
 
     public WebElement getPageCountSpan() {
-        return driver.findElement(By.id(PAGE_COUNT_SPAN_ID));
+        return driver.findElement(PAGE_COUNT_SPAN_ID.by);
     }
 
+    public WebElement getTableBody() {
+        return driver.findElement(TABLE_BODY_TAGNAME.by);
+    }
+
+    public WebElement getUserByLogin() {
+        return driver.findElement(GET_USER_BY_LOGIN_XPATH.by);
+    }
+
+    public List<WebElement> getLogins() {
+        return driver.findElements(LOGINS_XPATH.by);
+    }
+
+    public List<WebElement> getFirstNames() {
+        return driver.findElements(FIRST_NAMES_XPATH.by);
+    }
+
+    public List<WebElement> getLastNames() {
+        return driver.findElements(LAST_NAMES_XPATH.by);
+    }
 
     // Functional
 
     public String getSubHeaderText() {
-        return driver.findElement(By.cssSelector(SUBHEADER_CSS)).getText();
+        return getSubHeader().getText();
     }
 
     public String getUsersFoundSpanText() {
-        return driver.findElement(By.id(USERS_FOUND_SPAN_ID)).getText();
+        return getUsersFoundSpan().getText();
     }
 
     public String getSearchByLabelText() {
-        return driver.findElement(By.tagName(SEARCH_BY_LABEL_TAG_NAME)).getText();
+        return getSearchByLabel().getText();
     }
 
     public String getFieldFilterLabelText() {
-        return driver.findElement(By.cssSelector(FIELD_FILTER_LABEL_CSS)).getText();
+        return getFieldFilterLabel().getText();
     }
 
     public String getSelectFieldDefaultValue() {
-        return new Select(driver.findElement(By.id(SELECT_FIELD_ID))).getFirstSelectedOption().getText();
+        return getSelectField().getFirstSelectedOption().getText();
     }
 
     public String getSelectConditionDefaultValue() {
-        return new Select(driver.findElement(By.id(SELECT_CONDITION_ID))).getFirstSelectedOption().getText();
+        return getSelectCondition().getFirstSelectedOption().getText();
     }
 
     public String getSearchFieldInputValue() {
-        return driver.findElement(By.id(SEARCH_FIELD_ID)).getAttribute("value");
+        return getSearchFieldInput().getAttribute("value");
     }
 
     public String getSearchButtonValue() {
-        return driver.findElement(By.name(SEARCH_BUTTON_NAME)).getAttribute("value");
+        return getSearchButton().getAttribute("value");
     }
 
     public String getShowItemsLinkText() {
-        return driver.findElement(By.cssSelector(SHOW_ITEMS_LINK_CSS)).getText();
+        return getShowItemsLink().getText();
     }
 
     public String getFirstNameLinkText() {
-        return driver.findElement(By.cssSelector(FIRST_NAME_LINK_CSS)).getText();
+        return getFirstNameLink().getText();
     }
 
     public String getLastNameLinkText() {
-        return driver.findElement(By.cssSelector(LAST_NAME_LINK_CSS)).getText();
+        return getLastNameLink().getText();
     }
 
     public String getLoginLinkText() {
-        return driver.findElement(By.cssSelector(LOGIN_LINK_CSS)).getText();
+        return getLoginLink().getText();
     }
 
     public String getRoleLinkText() {
-        return driver.findElement(By.cssSelector(ROLE_LINK_CSS)).getText();
+        return getRoleLink().getText();
     }
+
     public String getRegionLinkText() {
-        return driver.findElement(By.cssSelector(REGION_LINK_CSS)).getText();
+        return getRegionLink().getText();
     }
 
     public String getFirstButtonValue() {
-        return driver.findElement(By.id(FIRST_BUTTON_ID)).getAttribute("value");
+        return getFirstButton().getAttribute("value");
     }
 
-    public String getBackwardButtonValue() {return driver.findElement(By.id(BACKWARD_BUTTON_ID)).getAttribute("value");}
+    public String getBackwardButtonValue() {return getBackwardButton().getAttribute("value");}
 
     public String getForwardButtonValue() {
-        return driver.findElement(By.id(FORWARD_BUTTON_ID)).getAttribute("value");
+        return getForwardButton().getAttribute("value");
     }
 
     public String getLastButtonValue() {
-        return driver.findElement(By.id(LAST_BUTTON_ID)).getAttribute("value");
+        return getLastButton().getAttribute("value");
     }
 
     public String getPageNumberSpanText() {
-        return driver.findElement(By.id(PAGE_NUMBER_SPAN_ID)).getText();
+        return getPageNumberSpan().getText();
     }
 
     public String getPageCountSpanText() {
-        //return driver.findElement(By.id(PAGE_COUNT_SPAN_ID)).getText();
-        return driver.findElement(By.id(PAGE_COUNT_SPAN_ID)).getAttribute("innerHTML");
+        //return getPageCountSpan().getText();
+        return getPageCountSpan().getAttribute("innerHTML");
     }
     
     public String getUsersFoundText(){
         return getUsersFoundSpan().getAttribute("innerHTML");
     }
 
-
+    public String getUserByLoginText() {
+        return getUserByLogin().getText();
+    }
  
     public int getFoundUsersNumber() {
        return Integer.parseInt(getUsersFoundText());
@@ -247,19 +238,19 @@ public abstract class AAdminReportPage extends ABasePage {
 
     // Check if navigation buttons is enabled
     public boolean isForwardButtonEnabled() {
-        return driver.findElement(By.id(FORWARD_BUTTON_ID)).isEnabled();
+        return getForwardButton().isEnabled();
     }
 
     public boolean isLastButtonEnabled() {
-        return driver.findElement(By.id(LAST_BUTTON_ID)).isEnabled();
+        return getLastButton().isEnabled();
     }
 
     public boolean isBackwardButtonEnabled() {
-        return driver.findElement(By.id(BACKWARD_BUTTON_ID)).isEnabled();
+        return getBackwardButton().isEnabled();
     }
 
     public boolean isFirstButtonEnabled() {
-        return driver.findElement(By.id(FIRST_BUTTON_ID)).isEnabled();
+        return getFirstButton().isEnabled();
     }
 
 
@@ -442,16 +433,16 @@ public abstract class AAdminReportPage extends ABasePage {
     //    Get list of users from current page
     public List<User> getUsersFormCurrentPage() {
         final List<User> userListFormCurrentPage = new ArrayList<>();
-        final WebElement table = driver.findElement(By.tagName(TABLE_BODY));
-        final List<WebElement> webElements = table.findElements(By.tagName(TR));
+        final WebElement table = getTableBody();
+        final List<WebElement> webElements = table.findElements(TR_TAGNAME.by);
         for (WebElement rows : webElements) {
-            final List<WebElement> tableCells = rows.findElements(By.tagName(TD));
+            final List<WebElement> tableCells = rows.findElements(TD_TAGNAME.by);
             User user = new User ();
             user.setFirstname(tableCells.get(0).getText());
             user.setLastname(tableCells.get(1).getText());
             user.setLoginname(tableCells.get(2).getText());
-            user.setRole(tableCells.get(3).getText()); 
-            user.setRegion(tableCells.get(4).getText()); 
+            user.setRole(tableCells.get(3).getText());
+            user.setRegion(tableCells.get(4).getText());
             userListFormCurrentPage.add(user);
         }
         return userListFormCurrentPage;
@@ -464,7 +455,7 @@ public abstract class AAdminReportPage extends ABasePage {
         List<User> usersFromCurrentPage = this.getUsersFormCurrentPage();
         while (usersFromCurrentPage != null) {
             usersOnAllPages.addAll(usersFromCurrentPage);
-            if (driver.findElement(By.id(FORWARD_BUTTON_ID)).isEnabled()) {
+            if (isForwardButtonEnabled()) {
                 clickForwardButton();
                 usersFromCurrentPage = this.getUsersFormCurrentPage();
             } else {
@@ -482,21 +473,21 @@ public abstract class AAdminReportPage extends ABasePage {
         search(login);
 
         User user = new User();
-        user.setFirstname(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText());
-        user.setLastname(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText());
-        user.setPassword(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText());
-        user.setLoginname(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText());
-        user.setEmail(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText());
-        user.setRegion(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText());
-        user.setRole(driver.findElement(By.xpath(GET_USER_BY_LOGIN)).getText());
+        user.setFirstname(getUserByLoginText());
+        user.setLastname(getUserByLoginText());
+        user.setPassword(getUserByLoginText());
+        user.setLoginname(getUserByLoginText());
+        user.setEmail(getUserByLoginText());
+        user.setRegion(getUserByLoginText());
+        user.setRole(getUserByLoginText());
 
         return user;
     }
 
     public boolean compareLogins (String SQLQuery){
-        List<WebElement> logins = driver.findElements(By.xpath(LOGINS_XPATH));
-        List<WebElement> firstNames = driver.findElements(By.xpath(FIRST_NAMES_XPATH));
-        List<WebElement> lastNames = driver.findElements(By.xpath(LAST_NAMES_XPATH));
+        List<WebElement> logins = getLogins();
+        List<WebElement> firstNames = getFirstNames();
+        List<WebElement> lastNames = getLastNames();
 
         int size = logins.size();
         String []textofLogins = new String[size];

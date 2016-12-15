@@ -3,6 +3,14 @@ package com.softserve.edu.oms.locators;
 
 import org.openqa.selenium.By;
 
+/**
+ * Enum contains locators for elements on
+ * {@link com.softserve.edu.oms.pages.HomePage}
+ * {@link com.softserve.edu.oms.pages.AdminHomePage}
+ * {@link com.softserve.edu.oms.pages.CustomerHomePage}
+ * {@link com.softserve.edu.oms.pages.MerchandiserHomePage}
+ * {@link com.softserve.edu.oms.pages.SupervisorHomePage}
+ */
 public enum UserHomePageLocators {
 
     FIRST_NAME_LABEL_CSS(By.cssSelector("fieldset tr:nth-child(1) td:last-child")),

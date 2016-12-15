@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
-import static com.softserve.edu.oms.locators.CreateNewUserPageLocators.*;
+import static com.softserve.edu.oms.locators.AUserDataPageLocators.*;
 
 /**
  * Created by User on 15.12.2016.

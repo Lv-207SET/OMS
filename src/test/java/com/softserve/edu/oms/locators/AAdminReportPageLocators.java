@@ -2,6 +2,9 @@ package com.softserve.edu.oms.locators;
 
 import org.openqa.selenium.By;
 
+/**
+ * Enum contains locators for elements on {@link com.softserve.edu.oms.pages.AAdminReportPage}.
+ */
 public enum AAdminReportPageLocators {
 
     SUBHEADER_CSS(By.cssSelector("#list h2")),

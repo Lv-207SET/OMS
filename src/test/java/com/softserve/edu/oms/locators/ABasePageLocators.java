@@ -3,6 +3,9 @@ package com.softserve.edu.oms.locators;
 
 import org.openqa.selenium.By;
 
+/**
+ * Enum contains locators for elements on {@link com.softserve.edu.oms.pages.ABasePage}.
+ */
 public enum ABasePageLocators {
 
     LOGOUT_BUTTON_CSS(By.cssSelector(".spec a")),

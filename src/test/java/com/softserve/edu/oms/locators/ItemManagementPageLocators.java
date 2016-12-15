@@ -2,6 +2,9 @@ package com.softserve.edu.oms.locators;
 
 import org.openqa.selenium.By;
 
+/**
+ * Enum contains locators for elements on {@link com.softserve.edu.oms.pages.ItemManagementPage}.
+ */
 public enum ItemManagementPageLocators {
     
      USER_INFO_TAB_CSS (By.cssSelector("#nav li:nth-child(2) a")),

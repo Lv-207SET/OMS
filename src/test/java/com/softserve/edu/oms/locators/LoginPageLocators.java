@@ -2,7 +2,9 @@ package com.softserve.edu.oms.locators;
 
 import org.openqa.selenium.By;
 
-
+/**
+ * Enum contains locators for elements on {@link com.softserve.edu.oms.pages.LoginPage}.
+ */
 public enum LoginPageLocators {
 
     ATTRIBUTE(By.name("name")),

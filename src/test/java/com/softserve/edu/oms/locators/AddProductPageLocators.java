@@ -2,6 +2,9 @@ package com.softserve.edu.oms.locators;
 
 import org.openqa.selenium.By;
 
+/**
+ * Enum contains locators for elements on {@link com.softserve.edu.oms.pages.AddProductPage}.
+ */
 public enum AddProductPageLocators {
 
     CREATING_PRODUCT_LABEL_CSS(By.cssSelector("#edit h3")),

@@ -2,7 +2,10 @@ package com.softserve.edu.oms.locators;
 
 import org.openqa.selenium.By;
 
-public enum CreateNewUserPageLocators {
+/**
+ * Enum contains locators for elements on {@link com.softserve.edu.oms.pages.AUserDataPage}.
+ */
+public enum AUserDataPageLocators {
 
     LOGIN_INPUT_ID(By.id("login")),
     FIRST_NAME_INPUT_ID(By.id("firstName")),
@@ -22,7 +25,7 @@ public enum CreateNewUserPageLocators {
     ERROR_EMAIL_ID(By.id("emailError"));
 
     public final By by;
-    CreateNewUserPageLocators(final By by){
+    AUserDataPageLocators(final By by){
         this.by = by;
     }
 }

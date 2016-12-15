@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 /**
  * Created by Vika on 12/15/2016.
  */
-public class UserInfoPage extends TestRunner {
+public class UserInfoPageTest extends TestRunner {
 
     @DataProvider
     public Object[][] admUser() {

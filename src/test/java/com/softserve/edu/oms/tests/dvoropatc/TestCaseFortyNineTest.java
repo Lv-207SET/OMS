@@ -1,22 +1,20 @@
 package com.softserve.edu.oms.tests.dvoropatc;
 
+/*
+    * Test verifies that validation on empty mandatory fields works while
+   * creating new user
+    * */
+
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.UserRepository;
 import com.softserve.edu.oms.pages.AdminHomePage;
 import com.softserve.edu.oms.pages.CreateNewUserPage;
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-
-    /*
-    * Test verifies that validation on empty mandatory fields works while
-    * creating new user
-    * */
 
 public class TestCaseFortyNineTest extends TestRunner {
 
     private static final String EXPECTED_ERROR_MESSAGE_FOR_lOGIN = "Login name cannot be blank";
-    private static final String EXPECTED_ERROR_MESSAGE_FOR_FIRST_NAME = "First name cannot be blank";
+   private static final String EXPECTED_ERROR_MESSAGE_FOR_FIRST_NAME = "First name cannot be blank";
     private static final String EXPECTED_ERROR_MESSAGE_FOR_LAST_NAME = "Last name cannot be blank";
     private static final String EXPECTED_ERROR_MESSAGE_FOR_PASSWORD = "Password cannot be shorter" +
             " than 4 and longer than 10 characters";
@@ -38,12 +36,12 @@ public class TestCaseFortyNineTest extends TestRunner {
         CreateNewUserPage omsСreateNewUserPage = omsAdminHomePage
                 .gotoAdministrationPage()
                 .goToCreateNewUserPage()
-                .createUser()
+               .createUser()
                 .alertAccept();
 
-    //  Assert that messages appear on page for all mandatory fields
+   //  Assert that messages appear on page for all mandatory fields
         Assert.assertNotNull(omsСreateNewUserPage.getErrorLogin());
-        Assert.assertNotNull(omsСreateNewUserPage.getErrorFirstName());
+       Assert.assertNotNull(omsСreateNewUserPage.getErrorFirstName());
         Assert.assertNotNull(omsСreateNewUserPage.getErrorLastName());
         Assert.assertNotNull(omsСreateNewUserPage.getErrorPassword());
         Assert.assertNotNull(omsСreateNewUserPage.getErrorEmail());
@@ -60,5 +58,4 @@ public class TestCaseFortyNineTest extends TestRunner {
         Assert.assertEquals(omsСreateNewUserPage.getErrorEmail(),
                 EXPECTED_ERROR_MESSAGE_FOR_EMAIL_ADRESS);
     }
-
 }

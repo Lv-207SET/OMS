@@ -1,22 +1,16 @@
 package com.softserve.edu.oms.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static com.softserve.edu.oms.locators.ABasePageLocators.*;
+
 public abstract class ABasePage {
 
-    private static final String LOGOUT_BUTTON_CSS = ".spec a";
-    private static final String OMS_LABEL_CSS = "#logo h1";
-    private static final String SIMPLE_SLIM_GENIUS_LABEL_CSS = "#logo h2";
-    private static final String INSPIRED_BY_GOOGLE_LINK_CSS = "#footer a";
-    private static final String USER_INFO_TAB_CSS = "*[href=\"/OMS/userInfo.htm\"]";
-
     protected WebDriver driver;
-
 
     ABasePage(WebDriver driver) {
         this.driver = driver;
@@ -25,25 +19,24 @@ public abstract class ABasePage {
     // get Data
 
     public WebElement getLogoutButton() {
-        return driver.findElement(By.cssSelector(LOGOUT_BUTTON_CSS));
+        return driver.findElement(LOGOUT_BUTTON_CSS.by);
     }
 
     public WebElement getOmsLabel() {
-        return driver.findElement(By.cssSelector(OMS_LABEL_CSS));
+        return driver.findElement(OMS_LABEL_CSS.by);
     }
 
     public WebElement getSimpleSlimGeniusLabel() {
-        return driver.findElement(By.cssSelector(SIMPLE_SLIM_GENIUS_LABEL_CSS));
+        return driver.findElement(SIMPLE_SLIM_GENIUS_LABEL_CSS.by);
     }
 
     public WebElement getInspiredByGoogleLink() {
-        return driver.findElement(By.cssSelector(INSPIRED_BY_GOOGLE_LINK_CSS));
+        return driver.findElement(INSPIRED_BY_GOOGLE_LINK_CSS.by);
     }
 
     public WebElement getUserInfoTab() {
-        return driver.findElement(By.cssSelector(USER_INFO_TAB_CSS));
+        return driver.findElement(USER_INFO_TAB_CSS.by);
     }
-
 
     // Functional
 
@@ -67,18 +60,15 @@ public abstract class ABasePage {
     // set Data
 
     public void clickLogoutButton() {
-        driver.findElement(By.cssSelector(LOGOUT_BUTTON_CSS))
-                .click();
+        getLogoutButton().click();
     }
 
     public void clickInspiredByGoogleLink() {
-        driver.findElement(By.cssSelector(INSPIRED_BY_GOOGLE_LINK_CSS))
-                .click();
+        getInspiredByGoogleLink().click();
     }
 
     public void clickUserInfoTab() {
-        driver.findElement(By.cssSelector(USER_INFO_TAB_CSS))
-                .click();
+        getUserInfoTab().click();
     }
 
     // Business Logic
@@ -97,7 +87,7 @@ public abstract class ABasePage {
         WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver, 10)
                 .ignoring(StaleElementReferenceException.class);
         wait.until((ExpectedCondition<Boolean>) webDriver -> {
-            WebElement element = webDriver.findElement(By.cssSelector(INSPIRED_BY_GOOGLE_LINK_CSS));
+            WebElement element = webDriver.findElement(INSPIRED_BY_GOOGLE_LINK_CSS.by);
             return element != null && element.isDisplayed();
         });
         return this;

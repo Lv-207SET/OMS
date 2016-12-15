@@ -7,7 +7,11 @@ public enum LoginPageLocators {
 
     ATTRIBUTE(LocatorType.NAME, "name"),
     LOGIN_INPUT_FIELD(LocatorType.NAME, "j_username"),
-    PASSWORD_INPUT_FIELD(LocatorType.NAME, "j_password");
+    PASSWORD_INPUT_FIELD(LocatorType.NAME, "j_password"),
+    LOGIN_BUTTON(LocatorType.NAME, "submit" ),
+    RESET_BUTTON(LocatorType.NAME, "reset"),
+    REMEMBER_ME_CHECKBOX(LocatorType.NAME, "_spring_security_remember_me");
+
 
     private LocatorType locatorType;
     private String locator;

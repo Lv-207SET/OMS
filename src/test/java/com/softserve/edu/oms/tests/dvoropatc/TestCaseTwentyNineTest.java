@@ -19,7 +19,7 @@ public class TestCaseTwentyNineTest extends TestRunner {
     @DataProvider
     public Object[][] notExistUser() {
         return new Object[][] {
-                {UserRepository.get().notExistingUser() }
+                {UserRepository.get().nonExistingUser() }
         };
     }
 
@@ -33,4 +33,3 @@ public class TestCaseTwentyNineTest extends TestRunner {
                 .getBadCredentialsErrorMessageText(), EXPECTED_ERROR_MESSAGE);
     }
 }
-/

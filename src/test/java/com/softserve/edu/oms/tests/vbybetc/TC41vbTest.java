@@ -8,7 +8,9 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-
+/**
+ * <h1>Switching tabs on UserInfo page for Admin user</h1>
+ */
 public class TC41vbTest extends TestRunner {
 
     @DataProvider
@@ -17,6 +19,16 @@ public class TC41vbTest extends TestRunner {
                 { UserRepository.get().adminUser() }
         };
     }
+
+    /**
+     * This test validates that Admin has an ability to switch between
+     * tabs on UserInfo page
+     *
+     * @author Viktoriia Bybel
+     * @version 1.0
+     * @since 15.12.16
+     * @param admUser
+     */
 
     @Test(dataProvider = "admUser")
     public void TabSwitchingTest(IUser admUser) {

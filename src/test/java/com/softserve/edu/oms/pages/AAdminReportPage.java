@@ -459,6 +459,7 @@ public abstract class AAdminReportPage extends ABasePage {
 
     // Get all users list from search result
     public List<User> getAllUsers() {
+        clickFirstButton();
         final List<User> usersOnAllPages = new ArrayList<>();
         List<User> usersFromCurrentPage = this.getUsersFormCurrentPage();
         while (usersFromCurrentPage != null) {

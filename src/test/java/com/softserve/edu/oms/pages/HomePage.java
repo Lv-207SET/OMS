@@ -1,19 +1,11 @@
 package com.softserve.edu.oms.pages;
 
+import com.softserve.edu.oms.locators.UserHomePageLocators;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class HomePage extends ABasePage {
-
-	private static final String FIRST_NAME_LABEL_CSS = "fieldset tr:nth-child(1) td:last-child";
-	private static final String LAST_NAME_LABEL_CSS = "fieldset tr:nth-child(2) td:last-child";
-	private static final String ROLE_LABEL_CSS = "fieldset tr:nth-child(4) td:last-child";
-	private static final String ENG_LANG_LINK_XPATH = "//a[contains(@href, 'en_US')]";
-	private static final String UKR_LANG_LINK_XPATH = "//a[contains(@href, 'uk_UA')]";
-
-
-
 
 	public HomePage(WebDriver driver) {
 		super(driver);
@@ -24,23 +16,23 @@ public class HomePage extends ABasePage {
 	// get Data
 
 	public WebElement getFirstname() {
-		return driver.findElement(By.cssSelector(FIRST_NAME_LABEL_CSS));
+		return driver.findElement(UserHomePageLocators.FIRST_NAME_LABEL_CSS.by);
 	}
 	
 	public WebElement getLastname() {
-		return driver.findElement(By.cssSelector(LAST_NAME_LABEL_CSS));
+		return driver.findElement(UserHomePageLocators.LAST_NAME_LABEL_CSS.by);
 	}
 	
 	public WebElement getRole() {
-		return driver.findElement(By.cssSelector(ROLE_LABEL_CSS));
+		return driver.findElement(UserHomePageLocators.ROLE_LABEL_CSS.by);
 	}
 
 	public WebElement getEngLangLink() {
-		return driver.findElement(By.xpath(ENG_LANG_LINK_XPATH));
+		return driver.findElement(UserHomePageLocators.ENG_LANG_LINK_XPATH.by);
 	}
 
 	public WebElement getUkrLangLink() {
-		return driver.findElement(By.xpath(UKR_LANG_LINK_XPATH));
+		return driver.findElement(UserHomePageLocators.UKR_LANG_LINK_XPATH.by);
 	}
 
 
@@ -101,11 +93,7 @@ public class HomePage extends ABasePage {
 
 			default:
 				return new HomePage(driver);
-
 		}
 	}
-
-
-
 
 }

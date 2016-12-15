@@ -1,13 +1,12 @@
 package com.softserve.edu.oms.pages;
 
 
+import com.softserve.edu.oms.locators.UserHomePageLocators;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class CustomerHomePage extends HomePage{
-
-    private final static String ORDERING_TAB_XPATH = "//a[contains(@href, 'order.htm')]";
 
     public CustomerHomePage(WebDriver driver){
         super(driver);
@@ -17,7 +16,7 @@ public class CustomerHomePage extends HomePage{
     // get Data
 
     public WebElement getOrderingTab(){
-        return driver.findElement(By.xpath(ORDERING_TAB_XPATH));
+        return driver.findElement(UserHomePageLocators.ORDERING_TAB_XPATH.by);
     }
 
 

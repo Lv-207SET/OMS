@@ -1,13 +1,12 @@
 package com.softserve.edu.oms.pages;
 
 
+import com.softserve.edu.oms.locators.UserHomePageLocators;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class SupervisorHomePage extends HomePage{
-
-    private static final String ITEM_MANAGEMENT_TAB_XPATH = "//a[contains(@href, 'itemManagement.htm')]";
 
     public SupervisorHomePage (WebDriver driver){
         super(driver);
@@ -16,7 +15,7 @@ public class SupervisorHomePage extends HomePage{
     // get Data
 
     public WebElement getItemManagementTab() {
-        return driver.findElement(By.xpath(ITEM_MANAGEMENT_TAB_XPATH));
+        return driver.findElement(UserHomePageLocators.ITEM_MANAGEMENT_TAB_XPATH.by);
     }
 
 

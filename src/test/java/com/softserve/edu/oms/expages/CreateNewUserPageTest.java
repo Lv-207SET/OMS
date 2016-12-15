@@ -19,21 +19,17 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import static com.softserve.edu.oms.enums.ErrorMessagesEnum.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-/**
- * Created by Vika on 12/15/2016.
- */
+
 public class CreateNewUserPageTest extends TestRunner {
 
-    private static final String FIRST_NAME_ERROR_MESSAGE
-            = "First name cannot contain digits";
-    private static final String lLAST_NAME_ERROR_MESSAGE = "Last name cannot contain digits";
+
     private AdminHomePage adminHomePage;
     private AdministrationPage administrationPage;
     private CreateNewUserPage createNewUserPage;
     private DBUtils dbUtils;
-    private final static String ERROR_MESSAGE = "Confirm password has to be equal to password";
     private int pagesCount;
     private int numberUsers;
 
@@ -126,8 +122,10 @@ public class CreateNewUserPageTest extends TestRunner {
         createNewUserPage.setLoginData(user);
         driver.switchTo().alert().accept();
 
-        assertThat(createNewUserPage.getFirstNameErrorMessageText(), CoreMatchers.equalTo(FIRST_NAME_ERROR_MESSAGE));
-        assertThat(createNewUserPage.getLastNameErrorMessageText(), CoreMatchers.equalTo(lLAST_NAME_ERROR_MESSAGE));
+        assertThat(createNewUserPage.getFirstNameErrorMessageText(),
+                CoreMatchers.equalTo(FIRST_NAME_ERROR_MESSAGE.message));
+        assertThat(createNewUserPage.getLastNameErrorMessageText(),
+                CoreMatchers.equalTo(LAST_NAME_ERROR_MESSAGE.message));
         DBUtils dbUtils = new DBUtils();
         assertThat(dbUtils.getUserByLogin(user.getLoginname()), CoreMatchers.equalTo(null));
     }
@@ -163,13 +161,13 @@ public class CreateNewUserPageTest extends TestRunner {
      * just for login
      * @param admUser
      */
-    @Test(dataProvider = "adminUser")
-    public void PreconditionTest(IUser admUser) {
-
-        CreateNewUserPage adminHomePage = loginPage.successAdminLogin(admUser)
-                .clickAdministrationTab()
-                .goToCreateNewUserPage();
-    }
+//    @Test(dataProvider = "adminUser")
+//    public void PreconditionTest(IUser admUser) {
+//
+//        CreateNewUserPage adminHomePage = loginPage.successAdminLogin(admUser)
+//                .clickAdministrationTab()
+//                .goToCreateNewUserPage();
+//    }
     /**
      * <h1>Verify that Login field is case insensitive</h1>
      * This test goes to Create New User Page,
@@ -247,7 +245,7 @@ public class CreateNewUserPageTest extends TestRunner {
         createNewUserPage.acceptAlert();
 
         Assert.assertTrue(createNewUserPage.getConfirmPasswordErrorMessage().isDisplayed()
-                && createNewUserPage.getConfirmPasswordErrorMessageText().equals(ERROR_MESSAGE));
+                && createNewUserPage.getConfirmPasswordErrorMessageText().equals(CONFIRM_PASSWORD_ERROR_MESSAGE.message));
         assertThat(dbUtils.getUserByLogin(newUser.getLoginname()), CoreMatchers.equalTo(null));
     }
 

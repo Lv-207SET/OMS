@@ -11,15 +11,11 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import static com.softserve.edu.oms.enums.ErrorMessagesEnum.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-/**
- * Created by Vika on 12/15/2016.
- */
 public class LoginPageTest extends TestRunner{
 
-    private static final String ERROR_MESSAGE = "Your login attempt was not successful, try again.\n" + "\n" +
-            "Reason: Bad credentials.";
     private SoftAssert softAssert = new SoftAssert();
 
     @DataProvider
@@ -35,7 +31,7 @@ public class LoginPageTest extends TestRunner{
                 .loginWithEmptyCredentials()
                 .getBadCredentialsErrorMessageText();
 
-        assertThat(currentErrorMessage, CoreMatchers.equalTo(ERROR_MESSAGE));
+        assertThat(currentErrorMessage, CoreMatchers.equalTo(ERROR_MESSAGE.message));
     }
 
     @Test(dataProvider = "someUser")

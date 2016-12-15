@@ -11,6 +11,9 @@ import com.softserve.edu.oms.pages.AdminHomePage;
 import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.pages.CreateNewUserPage;
 import com.softserve.edu.oms.tests.TestRunner;
+
+import ru.yandex.qatools.allure.annotations.Step;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.hamcrest.CoreMatchers;
 import org.testng.Assert;
@@ -68,6 +71,7 @@ public class CreateNewUserPageTest extends TestRunner {
 
     
     @Test(dataProvider = "invalidUsers")
+    @Step("createInvalidNewUserTest")
     public void createInvalidNewUserTest (User user){
         IUser admin = UserRepository.get().adminUser();
         AdministrationPage administrationPage = loginPage
@@ -87,6 +91,7 @@ public class CreateNewUserPageTest extends TestRunner {
     }
 
     @Test
+    @Step("cancelCreateUserTest")
     public void cancelCreateUserTest() {
         IUser user = UserRepository.get().adminUser();
         Assert.assertEquals(loginPage.getLoginnameInputText(), "");
@@ -146,6 +151,7 @@ public class CreateNewUserPageTest extends TestRunner {
      */
 
     @Test(dataProvider = "nonExistingUser", dependsOnMethods = "PreconditionTest")
+    @Step("UniqueUserCreatingTest")
     public void UniqueUserCreatingTest(IUser nonExistingUser)  {
 
         DBUtils dbUtils = new DBUtils();
@@ -187,6 +193,7 @@ public class CreateNewUserPageTest extends TestRunner {
     }
 
     @Test(dataProvider = "badMemoryUser", dependsOnMethods = "setTestPreconditions")
+    @Step("verifyErrorMsgUserWithNotConfirmedPassword")
     public void verifyErrorMsgUserWithNotConfirmedPassword(IUser newUser) {
         dbUtils = new DBUtils();
         assertThat(dbUtils.getUserByLogin(newUser.getLoginname()), CoreMatchers.equalTo(null));
@@ -218,6 +225,7 @@ public class CreateNewUserPageTest extends TestRunner {
      *  @since 16.12.16
      */    
     @Test(dataProvider = "validUser")
+    @Step("verifyChangePageNumber")
     public void verifyChangePageNumber(IUser user){
 
         int newNumberOfUsers;

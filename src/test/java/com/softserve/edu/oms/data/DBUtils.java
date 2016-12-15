@@ -18,7 +18,6 @@ import java.util.List;
  * 
  */
 public class  DBUtils implements IExternalData {
-	private static final String SQL_EXCEPTION_FOUND = "SQL Exception found";
  	private String username = "db207";
 	private String password = "db207";
 	private String url = "jdbc:jtds:sqlserver://127.0.0.1/Lv207OMS;instance=SQLEXPRESS;";
@@ -32,7 +31,7 @@ public class  DBUtils implements IExternalData {
             DriverManager.registerDriver(new net.sourceforge.jtds.jdbc.Driver());
             con = DriverManager.getConnection(url, username, password);
         } catch (Exception e) {
-            throw new RuntimeException(SQL_EXCEPTION_FOUND, e);
+            throw new RuntimeException(ErrorMessagesEnum.SQL_EXCEPTION_MESSAGE.message, e);
         }
         return con;
     }
@@ -90,7 +89,7 @@ public class  DBUtils implements IExternalData {
 			}
 			closeConnection(con, st, rs);
 		} catch (Exception e) {
-			throw new RuntimeException(SQL_EXCEPTION_FOUND, e);
+			throw new RuntimeException(ErrorMessagesEnum.SQL_EXCEPTION_MESSAGE.message, e);
 		}
 		return allCells;
 	}
@@ -109,7 +108,7 @@ public class  DBUtils implements IExternalData {
             st.execute(sqlQuery + "\'" + value + "\'");
             closeConnection(con, st);
         } catch (Exception e) {
-            throw new RuntimeException(SQL_EXCEPTION_FOUND, e);
+            throw new RuntimeException(ErrorMessagesEnum.SQL_EXCEPTION_MESSAGE.message, e);
         }
     }
  
@@ -141,7 +140,7 @@ public class  DBUtils implements IExternalData {
 			}
 		  closeConnection(con, st, rs);
 		} catch (Exception e) {
-			throw new RuntimeException(SQL_EXCEPTION_FOUND, e);
+			throw new RuntimeException(ErrorMessagesEnum.SQL_EXCEPTION_MESSAGE.message, e);
 		}
 		return listOfOneColumn;
 	}
@@ -194,7 +193,7 @@ public class  DBUtils implements IExternalData {
 		  closeConnection(con, st, rs);
 //		} catch (java.sql.SQLException e) {
 		}  catch (Exception e) {
-			throw new RuntimeException(SQL_EXCEPTION_FOUND, e);
+			throw new RuntimeException(ErrorMessagesEnum.SQL_EXCEPTION_MESSAGE.message, e);
 		}
 		return user;
 	}
@@ -219,7 +218,7 @@ public class  DBUtils implements IExternalData {
             }
           closeConnection(con, st, rs);
         } catch (Exception e) {
-            throw new RuntimeException(SQL_EXCEPTION_FOUND, e);
+            throw new RuntimeException(ErrorMessagesEnum.SQL_EXCEPTION_MESSAGE.message, e);
         }
         return logins;
     }
@@ -281,7 +280,7 @@ public class  DBUtils implements IExternalData {
             closeConnection(con, st,rs);
 
         } catch (Exception e) {
-            throw new RuntimeException(SQL_EXCEPTION_FOUND, e);
+            throw new RuntimeException(ErrorMessagesEnum.SQL_EXCEPTION_MESSAGE.message, e);
         }
 
         return users;

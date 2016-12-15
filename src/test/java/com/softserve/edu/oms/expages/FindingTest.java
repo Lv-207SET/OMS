@@ -13,6 +13,7 @@ import com.softserve.edu.oms.data.User;
 import com.softserve.edu.oms.data.UserRepository;
 import com.softserve.edu.oms.enums.ConditionFilterDropdownList;
 import com.softserve.edu.oms.enums.FieldFilterDropdownList;
+import com.softserve.edu.oms.enums.LabelsNamesEnum;
 import com.softserve.edu.oms.enums.SQLQueries;
 import com.softserve.edu.oms.pages.AdminHomePage;
 import com.softserve.edu.oms.pages.AdministrationPage;
@@ -22,12 +23,7 @@ import com.softserve.edu.oms.tests.TestRunner;
 public class FindingTest extends TestRunner{
     
     private AdministrationPage administrationPage;
-    private final static String SEARCH_TEXT_NONE = "none";
-    private final static String SEARCH_TEXT_ER = "er";
-    private final static String byLastName = "lastName";
-    private final static String byLoginName = "login";
-    private final static String byRole = "role";
-    
+   
     @BeforeMethod 
     public void setUp() {
         AdminHomePage adminHomePage = 
@@ -50,7 +46,7 @@ public class FindingTest extends TestRunner{
         administrationPage.filterAndSearch(
                 FieldFilterDropdownList.LAST_NAME, 
                 ConditionFilterDropdownList.START_WITH, 
-                SEARCH_TEXT_NONE);
+                LabelsNamesEnum.SEARCH_TEXT_NONE.name);
         
         for(User user:administrationPage.getAllUsers()){
             columnListFromTable.add(user.getLastname());
@@ -58,7 +54,9 @@ public class FindingTest extends TestRunner{
  
         dbUtils = new DBUtils();
         columnListFromDB = dbUtils.getOneColumn(SQLQueries.GET_LASTNAME_LIKE.getQuery(),
-                byLastName, SEARCH_TEXT_NONE, SEARCH_TEXT_ER);
+                LabelsNamesEnum.BY_LAST_NAME.name, 
+                LabelsNamesEnum.SEARCH_TEXT_NONE.name, 
+                LabelsNamesEnum.SEARCH_TEXT_ER.name);
 
         Assert.assertTrue(columnListFromTable.equals(columnListFromDB));   
      }
@@ -73,7 +71,7 @@ public class FindingTest extends TestRunner{
         administrationPage.filterAndSearch(
                 FieldFilterDropdownList.LOGIN, 
                 ConditionFilterDropdownList.CONTAINS, 
-                SEARCH_TEXT_NONE);
+                LabelsNamesEnum.SEARCH_TEXT_NONE.name);
 
         for(User user:administrationPage.getAllUsers()){
             columnListFromTable.add(user.getLoginname());
@@ -81,7 +79,9 @@ public class FindingTest extends TestRunner{
 
         dbUtils = new DBUtils();
         columnListFromDB = dbUtils.getOneColumn(SQLQueries.GET_LOGIN_LIKE.getQuery(),
-                byLoginName, SEARCH_TEXT_NONE, SEARCH_TEXT_ER);
+                LabelsNamesEnum.BY_LOGIN_NAME.name, 
+                LabelsNamesEnum.SEARCH_TEXT_NONE.name, 
+                LabelsNamesEnum.SEARCH_TEXT_ER.name);
 
         Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
     }
@@ -100,7 +100,7 @@ public class FindingTest extends TestRunner{
         administrationPage.filterAndSearch(
                 FieldFilterDropdownList.ROLE, 
                 ConditionFilterDropdownList.DOES_NOT_CONTAIN, 
-                SEARCH_TEXT_ER);
+                LabelsNamesEnum.SEARCH_TEXT_ER.name);
 
         columnListFromTable = new ArrayList<>();
         for(User user:administrationPage.getAllUsers()){
@@ -109,7 +109,9 @@ public class FindingTest extends TestRunner{
 
         dbUtils = new DBUtils();
         columnListFromDB = dbUtils.getOneColumn(SQLQueries.GET_ROLE_NOT_LIKE.getQuery(),
-                byRole, SEARCH_TEXT_NONE, SEARCH_TEXT_ER);
+                LabelsNamesEnum.BY_ROLE.name, 
+                LabelsNamesEnum.SEARCH_TEXT_NONE.name, 
+                LabelsNamesEnum.SEARCH_TEXT_ER.name);
 
         Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
  

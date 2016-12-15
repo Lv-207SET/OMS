@@ -1,11 +1,3 @@
-/*
- * @(#)Example.java 1.00 2016/12/15 
- *
- * Copyright (c) 1993-2016 Softserve, Inc.
- *
- * This software is the confidential and proprietary information of Softserve.
- */
-
 package com.softserve.edu.oms.data;
 
 import com.softserve.edu.oms.enums.*;
@@ -20,8 +12,9 @@ import java.util.List;
 /**
  * Class which is responsible for communication with database.  
  * 
- * @version  1.82 11 December 2016
- * @author  Raba Roman
+ * @version  1.0
+ * @since 15.12.16
+ * @author  Roman Raba 
  * 
  */
 public class  DBUtils implements IExternalData {

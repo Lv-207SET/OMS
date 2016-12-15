@@ -1,9 +1,9 @@
 package com.softserve.edu.oms.pages;
 
-import com.softserve.edu.oms.locators.AddProductPageLocators;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import static com.softserve.edu.oms.locators.AddProductPageLocators.*;
 
 public class AddProductPage extends ABasePage {
 
@@ -14,39 +14,35 @@ public class AddProductPage extends ABasePage {
     // get Data
 
     public WebElement getCreatingNewProductLabel() {
-        return driver.findElement(AddProductPageLocators.CREATING_PRODUCT_LABEL_CSS.by);
+        return driver.findElement(CREATING_PRODUCT_LABEL_CSS.by);
     }
 
     public WebElement getProductNameInput() {
-        return driver.findElement(AddProductPageLocators.PRODUCT_NAME_INPUT_ID.by);
+        return driver.findElement(PRODUCT_NAME_INPUT_ID.by);
     }
 
     public WebElement getProductDescriptionTextarea() {
-        return driver.findElement(AddProductPageLocators.PRODUCT_DESCRIPTION_TEXTAREA_ID.by);
+        return driver.findElement(PRODUCT_DESCRIPTION_TEXTAREA_ID.by);
     }
 
     public WebElement getProductPriceInput() {
-        return driver.findElement(AddProductPageLocators.PRODUCT_PRICE_INPUT_ID.by);
+        return driver.findElement(PRODUCT_PRICE_INPUT_ID.by);
     }
 
     public WebElement getOkButton() {
-        return driver.findElement(AddProductPageLocators.OK_BUTTON_CSS.by);
+        return driver.findElement(OK_BUTTON_CSS.by);
     }
 
     public WebElement getCancelButton() {
-        return driver.findElement(AddProductPageLocators.CANCEL_BUTTON_CSS.by);
-    }
-
-    public WebElement getItemManagementTab() {
-        return driver.findElement(AddProductPageLocators.ITEM_MANAGEMENT_TAB_CSS.by);
+        return driver.findElement(CANCEL_BUTTON_CSS.by);
     }
 
     public WebElement getProductNameErrorMessage() {
-        return driver.findElement(AddProductPageLocators.PRODUCT_NAME_ERROR_MESSAGE_ID.by);
+        return driver.findElement(PRODUCT_NAME_ERROR_MESSAGE_ID.by);
     }
 
     public WebElement getProductPriceErrorMessage() {
-        return driver.findElement(AddProductPageLocators.PRODUCT_PRICE_ERROR_MESSAGE_ID.by);
+        return driver.findElement(PRODUCT_PRICE_ERROR_MESSAGE_ID.by);
     }
 
     // functional
@@ -73,10 +69,6 @@ public class AddProductPage extends ABasePage {
 
     public String getCancelButtonText() {
         return getCancelButton().getText().trim();
-    }
-
-    public String getItemManagementTabText() {
-        return getItemManagementTab().getText();
     }
 
     public String getProductNameErrorMessageText() {
@@ -159,11 +151,6 @@ public class AddProductPage extends ABasePage {
         setProductDescription(description);
         setProductPrice(price);
         clickCancelButton();
-        return new ItemManagementPage(driver);
-    }
-
-    public ItemManagementPage goToItemManagementPage () {
-        getItemManagementTab().click();
         return new ItemManagementPage(driver);
     }
 }

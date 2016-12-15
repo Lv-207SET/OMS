@@ -1,6 +1,5 @@
 package com.softserve.edu.oms.locators;
 
-
 import org.openqa.selenium.By;
 
 public enum AddProductPageLocators {
@@ -11,7 +10,6 @@ public enum AddProductPageLocators {
     PRODUCT_PRICE_INPUT_ID(By.id("price")),
     OK_BUTTON_CSS(By.cssSelector("[value='OK']")),
     CANCEL_BUTTON_CSS(By.cssSelector("[value='Cancel']")),
-    ITEM_MANAGEMENT_TAB_CSS(By.cssSelector("#nav .cur a")),
     PRODUCT_NAME_ERROR_MESSAGE_ID(By.id("productName.errors")),
     PRODUCT_PRICE_ERROR_MESSAGE_ID(By.id("productPrice.errors"));
 

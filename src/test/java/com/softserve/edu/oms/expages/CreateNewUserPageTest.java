@@ -14,8 +14,6 @@ import com.softserve.edu.oms.tests.TestRunner;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.hamcrest.CoreMatchers;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -36,7 +34,7 @@ public class CreateNewUserPageTest extends TestRunner {
 
     @DataProvider
     public Object[][] validUser() {
-        return new Object[][] { { UserRepository.get().newUser()},
+        return new Object[][] { { UserRepository.get().userForDelete()},
         };
     }
 
@@ -68,49 +66,7 @@ public class CreateNewUserPageTest extends TestRunner {
         };
     }
 
-
-    @BeforeMethod
-    public void setUp() {
-        int numberOfImems;
-
-        IUser user = UserRepository.get().someUser();
-
-        AdminHomePage adminHomePage =
-                loginPage.successAdminLogin(UserRepository.get().adminUser());
-        administrationPage =
-                adminHomePage.gotoAdministrationPage();
-        numberUsers = administrationPage.getFoundUsersNumber();
-        pagesCount =  administrationPage.getPagesQuantity();
-
-        numberOfImems = administrationPage.getUsersPerPageNumber();
-
-        if ((numberUsers % numberOfImems) != 0) {
-            for (int i = 0; i < (numberOfImems - (numberUsers % numberOfImems)); i++) {
-                CreateNewUserPage createNewUserPage =
-                        administrationPage.goToCreateNewUserPage();
-
-                createNewUserPage.setLoginInput(user.getLoginname() + user.getLoginname().charAt(i)).
-                        setFirstNameInput(user.getFirstname()).
-                        setLastNameInput(user.getLastname()).
-                        setPasswordInput(user.getPassword()).
-                        setConfirmPasswordInput(user.getPassword()).
-                        setEmailInput(user.getEmail()).
-                        setSelectRegion(Region.getRegion(user.getRegion())).
-                        setSelectRole(Role.valueOf(user.getRole().toUpperCase()));
-
-                administrationPage = createNewUserPage.successCreateNewUser();
-            }
-            numberUsers = numberUsers +(numberOfImems- (numberUsers % numberOfImems));
-        }
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        DBUtils dbUtils = new DBUtils();
-        dbUtils.deleteUsersFromDB(SQLQueries.DELETE_USERS_BY_FIRSTNAME.getQuery(),
-                UserRepository.get().someUser().getFirstname());
-    }
-
+    
     @Test(dataProvider = "invalidUsers")
     public void createInvalidNewUserTest (User user){
         IUser admin = UserRepository.get().adminUser();
@@ -260,15 +216,58 @@ public class CreateNewUserPageTest extends TestRunner {
         int newNumberOfUsers;
         int newPagesCount;
 
+        verifyAndCreateUsers();
+        
         CreateNewUserPage createNewUserPage =
                 administrationPage.goToCreateNewUserPage();
 
         administrationPage = createNewUserPage.successCreateNewUser(user);
         newNumberOfUsers = Integer.valueOf(administrationPage.getFoundUsersNumber());
         newPagesCount = Integer.valueOf(administrationPage.getPagesQuantity());
-        org.junit.Assert.assertEquals(numberUsers + 1, newNumberOfUsers);
-        org.junit.Assert.assertEquals(pagesCount + 1, newPagesCount);
+        Assert.assertEquals(numberUsers + 1, newNumberOfUsers);
+        Assert.assertEquals(pagesCount + 1, newPagesCount);
+        
+        deleteUsersFromDB();
+    }
+    
+    public void verifyAndCreateUsers() {
+        int numberOfImems;
 
+        IUser user = UserRepository.get().someUser();
+
+        AdminHomePage adminHomePage =
+                loginPage.successAdminLogin(UserRepository.get().adminUser());
+        administrationPage =
+                adminHomePage.gotoAdministrationPage();
+        numberUsers = administrationPage.getFoundUsersNumber();
+        pagesCount =  administrationPage.getPagesQuantity();
+
+        numberOfImems = administrationPage.getUsersPerPageNumber();
+
+        if ((numberUsers % numberOfImems) != 0) {
+            for (int i = 0; i < (numberOfImems - (numberUsers % numberOfImems)); i++) {
+                CreateNewUserPage createNewUserPage =
+                        administrationPage.goToCreateNewUserPage();
+
+                createNewUserPage.setLoginInput(user.getLoginname() + user.getLoginname().charAt(i)).
+                        setFirstNameInput(user.getFirstname()).
+                        setLastNameInput(user.getLastname()).
+                        setPasswordInput(user.getPassword()).
+                        setConfirmPasswordInput(user.getPassword()).
+                        setEmailInput(user.getEmail()).
+                        setSelectRegion(Region.getRegion(user.getRegion())).
+                        setSelectRole(Role.valueOf(user.getRole().toUpperCase()));
+
+                administrationPage = createNewUserPage.successCreateNewUser();
+            }
+            numberUsers = numberUsers +(numberOfImems- (numberUsers % numberOfImems));
+        }
+    }
+
+    public void deleteUsersFromDB() {
+        DBUtils dbUtils = new DBUtils();
+        dbUtils.deleteUsersFromDB(SQLQueries.DELETE_USERS_BY_FIRSTNAME.getQuery(),
+                UserRepository.get().someUser().getFirstname());
     }
 
 

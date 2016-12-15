@@ -60,6 +60,11 @@ public final class UserRepository {
         return new User("roman", "rrd", "rrd", "1234",
                 "rdd@g.com", "West", "Administrator");
     }
+	
+	public IUser userForDelete() {
+        return new User("andriy", "rrd", "rrd", "1234",
+                "rdd@g.com", "West", "Administrator");
+    }
     
 	public IUser nonExistingUser() {
 		return new User("hippo", "hippopotamus", "hippopotamus", "qwerty",

@@ -12,12 +12,10 @@ import org.hamcrest.CoreMatchers;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import static com.softserve.edu.oms.enums.ErrorMessagesEnum.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class CreateInvalidNewUserTest extends TestRunner {
-    private static final String FIRST_NAME_ERROR_MESSAGE
-            = "First name cannot contain digits";
-    private static final String lLAST_NAME_ERROR_MESSAGE = "Last name cannot contain digits";
 
     @DataProvider
 	public Object[][] invalidUsers() {
@@ -37,10 +35,14 @@ public class CreateInvalidNewUserTest extends TestRunner {
                 administrationPage.goToCreateNewUserPage();
         createNewUserPage.setLoginData(user);
 
-        assertThat(createNewUserPage.getFirstNameErrorMessageText(), CoreMatchers.equalTo(FIRST_NAME_ERROR_MESSAGE));
-        assertThat(createNewUserPage.getLastNameErrorMessageText(), CoreMatchers.equalTo(lLAST_NAME_ERROR_MESSAGE));
+        assertThat(createNewUserPage.getFirstNameErrorMessageText(),
+                CoreMatchers.equalTo(FIRST_NAME_ERROR_MESSAGE.message));
+
+        assertThat(createNewUserPage.getLastNameErrorMessageText(),
+                CoreMatchers.equalTo(LAST_NAME_ERROR_MESSAGE.message));
 
         DBUtils dbUtils = new DBUtils();
+
         assertThat(dbUtils.getUserByLogin(user.getLoginname()), CoreMatchers.equalTo(null));
     }
 

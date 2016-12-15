@@ -19,21 +19,17 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import static com.softserve.edu.oms.enums.ErrorMessagesEnum.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-/**
- * Created by Vika on 12/15/2016.
- */
+
 public class CreateNewUserPageTest extends TestRunner {
 
-    private static final String FIRST_NAME_ERROR_MESSAGE
-            = "First name cannot contain digits";
-    private static final String lLAST_NAME_ERROR_MESSAGE = "Last name cannot contain digits";
+
     private AdminHomePage adminHomePage;
     private AdministrationPage administrationPage;
     private CreateNewUserPage createNewUserPage;
     private DBUtils dbUtils;
-    private final static String ERROR_MESSAGE = "Confirm password has to be equal to password";
     private int pagesCount;
     private int numberUsers;
 
@@ -73,103 +69,103 @@ public class CreateNewUserPageTest extends TestRunner {
     }
 
 
-    @BeforeMethod
-    public void setUp() {
-        int numberOfImems;
+//    @BeforeMethod
+//    public void setUp() {
+//        int numberOfImems;
+//
+//        IUser user = UserRepository.get().someUser();
+//
+//        AdminHomePage adminHomePage =
+//                loginPage.successAdminLogin(UserRepository.get().adminUser());
+//        administrationPage =
+//                adminHomePage.gotoAdministrationPage();
+//        numberUsers = administrationPage.getFoundUsersNumber();
+//        pagesCount =  administrationPage.getPagesQuantity();
+//
+//        numberOfImems = administrationPage.getUsersPerPageNumber();
+//
+//        if ((numberUsers % numberOfImems) != 0) {
+//            for (int i = 0; i < (numberOfImems - (numberUsers % numberOfImems)); i++) {
+//                CreateNewUserPage createNewUserPage =
+//                        administrationPage.goToCreateNewUserPage();
+//
+//                createNewUserPage.setLoginInput(user.getLoginname() + user.getLoginname().charAt(i)).
+//                        setFirstNameInput(user.getFirstname()).
+//                        setLastNameInput(user.getLastname()).
+//                        setPasswordInput(user.getPassword()).
+//                        setConfirmPasswordInput(user.getPassword()).
+//                        setEmailInput(user.getEmail()).
+//                        setSelectRegion(Region.getRegion(user.getRegion())).
+//                        setSelectRole(Role.valueOf(user.getRole().toUpperCase()));
+//
+//                administrationPage = createNewUserPage.successCreateNewUser();
+//            }
+//            numberUsers = numberUsers +(numberOfImems- (numberUsers % numberOfImems));
+//        }
+//    }
 
-        IUser user = UserRepository.get().someUser();
+//    @AfterMethod
+//    public void tearDown() {
+//        DBUtils dbUtils = new DBUtils();
+//        dbUtils.deleteUsersFromDB(SQLQueries.SQL_DELETE_USERS_FIRSTNAME.getQuery(),
+//                UserRepository.get().someUser().getFirstname());
+//    }
+//
+//    @Test(dataProvider = "invalidUsers")
+//    public void createInvalidNewUserTest (User user){
+//        IUser admin = UserRepository.get().adminUser();
+//        AdministrationPage administrationPage = loginPage
+//                .successAdminLogin(admin)
+//                .gotoAdministrationPage();
+//        CreateNewUserPage createNewUserPage =
+//                administrationPage.goToCreateNewUserPage();
+//        createNewUserPage.setLoginData(user);
+//        assertThat(createNewUserPage.getFirstNameErrorMessageText(),
+//                CoreMatchers.equalTo(FIRST_NAME_ERROR_MESSAGE.message));
+//        assertThat(createNewUserPage.getLastNameErrorMessageText(),
+//                CoreMatchers.equalTo(LAST_NAME_ERROR_MESSAGE.message));
+//        DBUtils dbUtils = new DBUtils();
+//        assertThat(dbUtils.getUserByLogin(user.getLoginname()), CoreMatchers.equalTo(null));
+//    }
 
-        AdminHomePage adminHomePage =
-                loginPage.successAdminLogin(UserRepository.get().adminUser());
-        administrationPage =
-                adminHomePage.gotoAdministrationPage();
-        numberUsers = administrationPage.getFoundUsersNumber();
-        pagesCount =  administrationPage.getPagesQuantity();
-
-        numberOfImems = administrationPage.getUsersPerPageNumber();
-
-        if ((numberUsers % numberOfImems) != 0) {
-            for (int i = 0; i < (numberOfImems - (numberUsers % numberOfImems)); i++) {
-                CreateNewUserPage createNewUserPage =
-                        administrationPage.goToCreateNewUserPage();
-
-                createNewUserPage.setLoginInput(user.getLoginname() + user.getLoginname().charAt(i)).
-                        setFirstNameInput(user.getFirstname()).
-                        setLastNameInput(user.getLastname()).
-                        setPasswordInput(user.getPassword()).
-                        setConfirmPasswordInput(user.getPassword()).
-                        setEmailInput(user.getEmail()).
-                        setSelectRegion(Region.getRegion(user.getRegion())).
-                        setSelectRole(Role.valueOf(user.getRole().toUpperCase()));
-
-                administrationPage = createNewUserPage.successCreateNewUser();
-            }
-            numberUsers = numberUsers +(numberOfImems- (numberUsers % numberOfImems));
-        }
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        DBUtils dbUtils = new DBUtils();
-        dbUtils.deleteUsersFromDB(SQLQueries.SQL_DELETE_USERS_FIRSTNAME.getQuery(),
-                UserRepository.get().someUser().getFirstname());
-    }
-
-    @Test(dataProvider = "invalidUsers")
-    public void createInvalidNewUserTest (User user){
-        IUser admin = UserRepository.get().adminUser();
-        AdministrationPage administrationPage = loginPage
-                .successAdminLogin(admin)
-                .gotoAdministrationPage();
-        CreateNewUserPage createNewUserPage =
-                administrationPage.goToCreateNewUserPage();
-        createNewUserPage.setLoginData(user);
-        driver.switchTo().alert().accept();
-
-        assertThat(createNewUserPage.getFirstNameErrorMessageText(), CoreMatchers.equalTo(FIRST_NAME_ERROR_MESSAGE));
-        assertThat(createNewUserPage.getLastNameErrorMessageText(), CoreMatchers.equalTo(lLAST_NAME_ERROR_MESSAGE));
-        DBUtils dbUtils = new DBUtils();
-        assertThat(dbUtils.getUserByLogin(user.getLoginname()), CoreMatchers.equalTo(null));
-    }
-
-    @Test
-    public void cancelCreateUserTest() {
-        IUser user = UserRepository.get().adminUser();
-        Assert.assertEquals(loginPage.getLoginnameInputText(), "");
-        Assert.assertEquals(loginPage.getPasswordInputText(), "");
-        loginPage.setLoginnameInput(user.getLoginname());
-        loginPage.setPasswordInput(user.getPassword());
-        loginPage.clickSubmitButton();
-        AdminHomePage adminHomePage = new AdminHomePage(driver);
-        adminHomePage.clickAdministrationTab();
-        AdministrationPage adminPage = new AdministrationPage(driver);
-        CreateNewUserPage createPage = adminPage.goToCreateNewUserPage();
-        DBUtils dbUtils = new DBUtils();
-        user = UserRepository.get().invalidUser();
-        Assert.assertNull(dbUtils.getUserByLogin(user.getLoginname()));
-        createPage.setLoginInput(user.getLoginname())
-                .setFirstNameInput(user.getFirstname())
-                .setLastNameInput(user.getLastname())
-                .setEmailInput(user.getEmail())
-                .setPasswordInput(user.getPassword())
-                .setConfirmPasswordInput(user.getPassword())
-                .clickCancelButton();
-        Assert.assertNull(dbUtils.getUserByLogin(user.getLoginname()));
-        //Assert.assertAll();
-
-    }
+//    @Test
+//    public void cancelCreateUserTest() {
+//        IUser user = UserRepository.get().adminUser();
+//        Assert.assertEquals(loginPage.getLoginnameInputText(), "");
+//        Assert.assertEquals(loginPage.getPasswordInputText(), "");
+//        loginPage.setLoginnameInput(user.getLoginname());
+//        loginPage.setPasswordInput(user.getPassword());
+//        loginPage.clickSubmitButton();
+//        AdminHomePage adminHomePage = new AdminHomePage(driver);
+//        adminHomePage.clickAdministrationTab();
+//        AdministrationPage adminPage = new AdministrationPage(driver);
+//        CreateNewUserPage createPage = adminPage.goToCreateNewUserPage();
+//        DBUtils dbUtils = new DBUtils();
+//        user = UserRepository.get().invalidUser();
+//        Assert.assertNull(dbUtils.getUserByLogin(user.getLoginname()));
+//        createPage.setLoginInput(user.getLoginname())
+//                .setFirstNameInput(user.getFirstname())
+//                .setLastNameInput(user.getLastname())
+//                .setEmailInput(user.getEmail())
+//                .setPasswordInput(user.getPassword())
+//                .setConfirmPasswordInput(user.getPassword())
+//                .clickCancelButton();
+//        Assert.assertNull(dbUtils.getUserByLogin(user.getLoginname()));
+//        //Assert.assertAll();
+//
+//    }
 
     /**
      * just for login
      * @param admUser
      */
-    @Test(dataProvider = "adminUser")
-    public void PreconditionTest(IUser admUser) {
-
-        CreateNewUserPage adminHomePage = loginPage.successAdminLogin(admUser)
-                .clickAdministrationTab()
-                .goToCreateNewUserPage();
-    }
+//    @Test(dataProvider = "adminUser")
+//    public void PreconditionTest(IUser admUser) {
+//
+//        CreateNewUserPage adminHomePage = loginPage.successAdminLogin(admUser)
+//                .clickAdministrationTab()
+//                .goToCreateNewUserPage();
+//    }
     /**
      * <h1>Verify that Login field is case insensitive</h1>
      * This test goes to Create New User Page,
@@ -247,7 +243,7 @@ public class CreateNewUserPageTest extends TestRunner {
         createNewUserPage.acceptAlert();
 
         Assert.assertTrue(createNewUserPage.getConfirmPasswordErrorMessage().isDisplayed()
-                && createNewUserPage.getConfirmPasswordErrorMessageText().equals(ERROR_MESSAGE));
+                && createNewUserPage.getConfirmPasswordErrorMessageText().equals(CONFIRM_PASSWORD_ERROR_MESSAGE.message));
         assertThat(dbUtils.getUserByLogin(newUser.getLoginname()), CoreMatchers.equalTo(null));
     }
 

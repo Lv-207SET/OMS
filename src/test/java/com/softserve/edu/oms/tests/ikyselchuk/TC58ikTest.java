@@ -12,6 +12,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import static com.softserve.edu.oms.enums.ErrorMessagesEnum.CONFIRM_PASSWORD_ERROR_MESSAGE;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TC58ikTest extends TestRunner{
@@ -20,7 +21,6 @@ public class TC58ikTest extends TestRunner{
     private AdministrationPage administrationPage;
     private CreateNewUserPage createNewUserPage;
     private DBUtils dbUtils;
-    private final static String ERROR_MESSAGE = "Confirm password has to be equal to password";
 
     @DataProvider
     public Object[][] adminUser() {
@@ -58,7 +58,7 @@ public class TC58ikTest extends TestRunner{
         createNewUserPage.acceptAlert();
 
         Assert.assertTrue(createNewUserPage.getConfirmPasswordErrorMessage().isDisplayed()
-                && createNewUserPage.getConfirmPasswordErrorMessageText().equals(ERROR_MESSAGE));
+                && createNewUserPage.getConfirmPasswordErrorMessageText().equals(CONFIRM_PASSWORD_ERROR_MESSAGE.message));
         assertThat(dbUtils.getUserByLogin(newUser.getLoginname()), CoreMatchers.equalTo(null));
     }
 

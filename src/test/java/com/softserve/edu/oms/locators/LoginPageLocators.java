@@ -10,7 +10,8 @@ public enum LoginPageLocators {
     PASSWORD_INPUT_FIELD(By.name("j_password")),
     LOGIN_BUTTON(By.name("submit")),
     RESET_BUTTON(By.name("reset")),
-    REMEMBER_ME_CHECKBOX(By.name("_spring_security_remember_me"));
+    REMEMBER_ME_CHECKBOX(By.name("_spring_security_remember_me")),
+    BAD_CREDENTIALS_ERROR_MESSAGE_CSS(By.cssSelector("#edit>fieldset>font"));
 
 
     public final By by;

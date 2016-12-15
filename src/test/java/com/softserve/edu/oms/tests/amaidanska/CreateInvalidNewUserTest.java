@@ -29,16 +29,17 @@ public class CreateInvalidNewUserTest extends TestRunner {
     @Test(dataProvider = "invalidUsers")
     public void createInvalidNewUserTest (User user){
         IUser admin = UserRepository.get().adminUser();
+
         AdministrationPage administrationPage = loginPage
                 .successAdminLogin(admin)
                 .gotoAdministrationPage();
         CreateNewUserPage createNewUserPage =
                 administrationPage.goToCreateNewUserPage();
         createNewUserPage.setLoginData(user);
-        driver.switchTo().alert().accept();
 
         assertThat(createNewUserPage.getFirstNameErrorMessageText(), CoreMatchers.equalTo(FIRST_NAME_ERROR_MESSAGE));
         assertThat(createNewUserPage.getLastNameErrorMessageText(), CoreMatchers.equalTo(lLAST_NAME_ERROR_MESSAGE));
+
         DBUtils dbUtils = new DBUtils();
         assertThat(dbUtils.getUserByLogin(user.getLoginname()), CoreMatchers.equalTo(null));
     }

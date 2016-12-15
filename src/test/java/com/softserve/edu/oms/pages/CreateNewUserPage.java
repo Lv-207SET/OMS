@@ -3,13 +3,14 @@ package com.softserve.edu.oms.pages;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.enums.Region;
 import com.softserve.edu.oms.enums.Role;
-import com.softserve.edu.oms.locators.CreateNewUserPageLocators;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
+
+import static com.softserve.edu.oms.locators.CreateNewUserPageLocators.*;
 
 public class CreateNewUserPage extends ABasePage {
 
@@ -20,67 +21,67 @@ public class CreateNewUserPage extends ABasePage {
     // get Data
 
     public WebElement getLoginInput() {
-        return this.driver.findElement(CreateNewUserPageLocators.LOGIN_INPUT_ID.by);
+        return this.driver.findElement(LOGIN_INPUT_ID.by);
     }
 
     public WebElement getFirstNameInput() {
-        return this.driver.findElement(CreateNewUserPageLocators.FIRST_NAME_INPUT_ID.by);
+        return this.driver.findElement(FIRST_NAME_INPUT_ID.by);
     }
 
     public WebElement getLastNameInput() {
-        return this.driver.findElement(CreateNewUserPageLocators.LAST_NAME_INPUT_ID.by);
+        return this.driver.findElement(LAST_NAME_INPUT_ID.by);
     }
 
     public WebElement getPasswordInput() {
-        return  this.driver.findElement(CreateNewUserPageLocators.PASSWORD_INPUT_ID.by);
+        return  this.driver.findElement(PASSWORD_INPUT_ID.by);
     }
 
     public WebElement getConfirmPasswordInput() {
-        return this.driver.findElement(CreateNewUserPageLocators.CONFIRM_PASSWORD_INPUT_ID.by);
+        return this.driver.findElement(CONFIRM_PASSWORD_INPUT_ID.by);
     }
 
     public WebElement getEmailInput() {
-        return  this.driver.findElement(CreateNewUserPageLocators.EMAIL_INPUT_ID.by);
+        return  this.driver.findElement(EMAIL_INPUT_ID.by);
     }
 
     public WebElement getRegionDropDown() {
-        return this.driver.findElement(CreateNewUserPageLocators.REGION_SELECT_ID.by);
+        return this.driver.findElement(REGION_SELECT_ID.by);
     }
 
     public List<WebElement> getRoleRadioButton() {
-        return this.driver.findElements(CreateNewUserPageLocators.ROLE_RADIO_BUTTON_NAME.by);
+        return this.driver.findElements(ROLE_RADIO_BUTTON_NAME.by);
     }
 
     public WebElement getCreateButton() {
-        return this.driver.findElement(CreateNewUserPageLocators.CREATE_BUTTON_CSS.by);
+        return this.driver.findElement(CREATE_BUTTON_CSS.by);
     }
 
     public WebElement getCancelButton() {
-        return this.driver.findElement(CreateNewUserPageLocators.CANCEL_BUTTON_CSS.by);
+        return this.driver.findElement(CANCEL_BUTTON_CSS.by);
     }
 
     public WebElement getLoginErrorMessage() {
-        return this.driver.findElement(CreateNewUserPageLocators.ERROR_LOGIN_ID.by);
+        return this.driver.findElement(ERROR_LOGIN_ID.by);
     }
 
     public WebElement getFirstNameErrorMessage() {
-        return this.driver.findElement(CreateNewUserPageLocators.ERROR_FIRST_NAME_ID.by);
+        return this.driver.findElement(ERROR_FIRST_NAME_ID.by);
     }
 
     public WebElement getLastNameErrorMessage() {
-        return this.driver.findElement(CreateNewUserPageLocators.ERROR_LAST_NAME_ID.by);
+        return this.driver.findElement(ERROR_LAST_NAME_ID.by);
     }
 
     public WebElement getPasswordErrorMessage() {
-        return this.driver.findElement(CreateNewUserPageLocators.ERROR_PASSWORD_ID.by);
+        return this.driver.findElement(ERROR_PASSWORD_ID.by);
     }
 
     public WebElement getConfirmPasswordErrorMessage() {
-        return this.driver.findElement(CreateNewUserPageLocators.ERROR_CONFIRM_PASSWORD_ID.by);
+        return this.driver.findElement(ERROR_CONFIRM_PASSWORD_ID.by);
     }
 
     public WebElement getEmailErrorMessage() {
-        return this.driver.findElement(CreateNewUserPageLocators.ERROR_EMAIL_ID.by);
+        return this.driver.findElement(ERROR_EMAIL_ID.by);
     }
 
     // functional

@@ -83,7 +83,7 @@ public class  DBUtils implements IExternalData {
       
 		try {
 			st = con.createStatement();
-			rs = st.executeQuery(SQLQueries.SQL_SELECT_USERS.getQuery());
+			rs = st.executeQuery(SQLQueries.GET_ALL_USERS_JOIN_ROLE.getQuery());
 			columnCount = rs.getMetaData().getColumnCount();
 			//
 			while (rs.next()) {
@@ -166,7 +166,7 @@ public class  DBUtils implements IExternalData {
 	 
 		try {
 			st = con.createStatement();
-			String query=SQLQueries.SQL_SELECT_USER_BY_LOGIN.getQuery() +"\'"+ login+"\';";
+			String query=SQLQueries.GET_USER_BY_LOGIN_JOIN_ROLE.getQuery() +"\'"+ login+"\';";
 			System.out.println(query);
 			rs = st.executeQuery(query);
 			columnCount = rs.getMetaData().getColumnCount();
@@ -245,7 +245,7 @@ public class  DBUtils implements IExternalData {
 
         try {
             st = con.createStatement();
-            rs = st.executeQuery(SQLQueries.SQL_COUNT_ALL_USERS.getQuery());
+            rs = st.executeQuery(SQLQueries.COUNT_ALL_USERS.getQuery());
             
             rs.next();
             userCount = rs.getInt(1);
@@ -271,7 +271,7 @@ public class  DBUtils implements IExternalData {
 
         try {
             st = con.createStatement();
-            rs = st.executeQuery(SQLQueries.SQL_SELECT_COLUMN_USER_FIVE_VALUES.getQuery());
+            rs = st.executeQuery(SQLQueries.GET_5_USERS_JOIN_ROLE.getQuery());
 
             while (rs.next()) {
                 User user = new User(

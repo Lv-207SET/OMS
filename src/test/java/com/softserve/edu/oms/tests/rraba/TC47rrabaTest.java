@@ -57,7 +57,7 @@ public class TC47rrabaTest extends TestRunner{
            }
  
         dbUtils = new DBUtils();
-        columnListFromDB = dbUtils.getOneColumn(SQLQueries.SQL_SELECT_COLUMN_LASTNAME.getQuery(),
+        columnListFromDB = dbUtils.getOneColumn(SQLQueries.GET_LASTNAME_LIKE.getQuery(),
                 byLastName, SEARCH_TEXT_NONE, SEARCH_TEXT_ER);
 
         Assert.assertTrue(columnListFromTable.equals(columnListFromDB));   
@@ -80,7 +80,7 @@ public class TC47rrabaTest extends TestRunner{
         }
 
         dbUtils = new DBUtils();
-        columnListFromDB = dbUtils.getOneColumn(SQLQueries.SQL_SELECT_COLUMN_LOGIN.getQuery(),
+        columnListFromDB = dbUtils.getOneColumn(SQLQueries.GET_LOGIN_LIKE.getQuery(),
                 byLoginName, SEARCH_TEXT_NONE, SEARCH_TEXT_ER);
 
         Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
@@ -108,7 +108,7 @@ public class TC47rrabaTest extends TestRunner{
         }
 
         dbUtils = new DBUtils();
-        columnListFromDB = dbUtils.getOneColumn(SQLQueries.SQL_SELECT_COLUMN_ROLE.getQuery(),
+        columnListFromDB = dbUtils.getOneColumn(SQLQueries.GET_ROLE_NOT_LIKE.getQuery(),
                 byRole, SEARCH_TEXT_NONE, SEARCH_TEXT_ER);
 
         Assert.assertTrue(columnListFromTable.equals(columnListFromDB));

@@ -111,7 +111,7 @@ public class CreateNewUserPageTest extends TestRunner {
     @AfterMethod
     public void tearDown() {
         DBUtils dbUtils = new DBUtils();
-        dbUtils.deleteUsersFromDB(SQLQueries.SQL_DELETE_USERS_FIRSTNAME.getQuery(),
+        dbUtils.deleteUsersFromDB(SQLQueries.DELETE_USERS_BY_FIRSTNAME.getQuery(),
                 UserRepository.get().someUser().getFirstname());
     }
 
@@ -219,7 +219,7 @@ public class CreateNewUserPageTest extends TestRunner {
 
             Assert.assertTrue(newUserPageAgain.getLoginErrorMessageText().contains("already in use"));
 
-            dbUtils.deleteUsersFromDB(SQLQueries.DELETE_FROM_USERS_WHERE_LOGIN_EQUALS.getQuery(),
+            dbUtils.deleteUsersFromDB(SQLQueries.DELETE_USER_BY_LOGIN.getQuery(),
                     nonExistingUser.getLoginname());
         }
     }

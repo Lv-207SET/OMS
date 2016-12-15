@@ -3,6 +3,7 @@ package com.softserve.edu.oms.pages;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.enums.Region;
 import com.softserve.edu.oms.enums.Role;
+import com.softserve.edu.oms.locators.CreateNewUserPageLocators;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,22 +12,6 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.List;
 
 public class CreateNewUserPage extends ABasePage {
-    private static final String LOGIN_INPUT_ID = "login";
-    private static final String FIRST_NAME_INPUT_ID = "firstName";
-    private static final String LAST_NAME_INPUT_ID = "lastName";
-    private static final String PASSWORD_INPUT_ID = "password";
-    private static final String CONFIRM_PASSWORD_INPUT_ID = "confirmPassword";
-    private static final String EMAIL_INPUT_ID = "email";
-    private static final String REGION_SELECT_ID = "regionID";
-    private static final String ROLE_RADIO_BUTTON_NAME = "roleID";
-    private static final String CREATE_BUTTON_CSS = "input[value=\"Create\"]";
-    private static final String CANCEL_BUTTON_CSS = "input[value=\"Cancel\"]";
-    private static final String ERROR_LOGIN_ID = "nameError";
-    private static final String ERROR_FIRST_NAME_ID = "firstNameError";
-    private static final String ERROR_LAST_NAME_ID = "lastNameError";
-    private static final String ERROR_PASSWORD_ID = "passwordError";
-    private static final String ERROR_CONFIRM_PASSWORD_ID = "confirmError";
-    private static final String ERROR_EMAIL_ID = "emailError";
 
     public CreateNewUserPage(WebDriver driver) {
         super(driver);
@@ -35,67 +20,67 @@ public class CreateNewUserPage extends ABasePage {
     // get Data
 
     public WebElement getLoginInput() {
-        return this.driver.findElement(By.id(LOGIN_INPUT_ID));
+        return this.driver.findElement(CreateNewUserPageLocators.LOGIN_INPUT_ID.by);
     }
 
     public WebElement getFirstNameInput() {
-        return this.driver.findElement(By.id(FIRST_NAME_INPUT_ID));
+        return this.driver.findElement(CreateNewUserPageLocators.FIRST_NAME_INPUT_ID.by);
     }
 
     public WebElement getLastNameInput() {
-        return this.driver.findElement(By.id(LAST_NAME_INPUT_ID));
+        return this.driver.findElement(CreateNewUserPageLocators.LAST_NAME_INPUT_ID.by);
     }
 
     public WebElement getPasswordInput() {
-        return  this.driver.findElement(By.id(PASSWORD_INPUT_ID));
+        return  this.driver.findElement(CreateNewUserPageLocators.PASSWORD_INPUT_ID.by);
     }
 
     public WebElement getConfirmPasswordInput() {
-        return this.driver.findElement(By.id(CONFIRM_PASSWORD_INPUT_ID));
+        return this.driver.findElement(CreateNewUserPageLocators.CONFIRM_PASSWORD_INPUT_ID.by);
     }
 
     public WebElement getEmailInput() {
-        return  this.driver.findElement(By.id(EMAIL_INPUT_ID));
+        return  this.driver.findElement(CreateNewUserPageLocators.EMAIL_INPUT_ID.by);
     }
 
     public WebElement getRegionDropDown() {
-        return this.driver.findElement(By.id(REGION_SELECT_ID));
+        return this.driver.findElement(CreateNewUserPageLocators.REGION_SELECT_ID.by);
     }
 
     public List<WebElement> getRoleRadioButton() {
-        return this.driver.findElements(By.name(ROLE_RADIO_BUTTON_NAME));
+        return this.driver.findElements(CreateNewUserPageLocators.ROLE_RADIO_BUTTON_NAME.by);
     }
 
     public WebElement getCreateButton() {
-        return this.driver.findElement(By.cssSelector(CREATE_BUTTON_CSS));
+        return this.driver.findElement(CreateNewUserPageLocators.CREATE_BUTTON_CSS.by);
     }
 
     public WebElement getCancelButton() {
-        return this.driver.findElement(By.cssSelector(CANCEL_BUTTON_CSS));
+        return this.driver.findElement(CreateNewUserPageLocators.CANCEL_BUTTON_CSS.by);
     }
 
     public WebElement getLoginErrorMessage() {
-        return this.driver.findElement(By.id(ERROR_LOGIN_ID));
+        return this.driver.findElement(CreateNewUserPageLocators.ERROR_LOGIN_ID.by);
     }
 
     public WebElement getFirstNameErrorMessage() {
-        return this.driver.findElement(By.id(ERROR_FIRST_NAME_ID));
+        return this.driver.findElement(CreateNewUserPageLocators.ERROR_FIRST_NAME_ID.by);
     }
 
     public WebElement getLastNameErrorMessage() {
-        return this.driver.findElement(By.id(ERROR_LAST_NAME_ID));
+        return this.driver.findElement(CreateNewUserPageLocators.ERROR_LAST_NAME_ID.by);
     }
 
     public WebElement getPasswordErrorMessage() {
-        return this.driver.findElement(By.id(ERROR_PASSWORD_ID));
+        return this.driver.findElement(CreateNewUserPageLocators.ERROR_PASSWORD_ID.by);
     }
 
     public WebElement getConfirmPasswordErrorMessage() {
-        return this.driver.findElement(By.id(ERROR_CONFIRM_PASSWORD_ID));
+        return this.driver.findElement(CreateNewUserPageLocators.ERROR_CONFIRM_PASSWORD_ID.by);
     }
 
     public WebElement getEmailErrorMessage() {
-        return this.driver.findElement(By.id(ERROR_EMAIL_ID));
+        return this.driver.findElement(CreateNewUserPageLocators.ERROR_EMAIL_ID.by);
     }
 
     // functional

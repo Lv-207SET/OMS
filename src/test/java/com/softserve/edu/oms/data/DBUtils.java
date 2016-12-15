@@ -1,3 +1,11 @@
+/*
+ * @(#)Example.java 1.00 2016/12/15 
+ *
+ * Copyright (c) 1993-2016 Softserve, Inc.
+ *
+ * This software is the confidential and proprietary information of Softserve.
+ */
+
 package com.softserve.edu.oms.data;
 
 import com.softserve.edu.oms.enums.SQLQueries;
@@ -9,12 +17,22 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class which is responsible for communication with database.  
+ * 
+ * @version  1.82 11 December 2016
+ * @author  Raba Roman
+ * 
+ */
 public class  DBUtils implements IExternalData {
 	private static final String SQL_EXCEPTION_FOUND = "SQL Exception found";
  	private String username = "db207";
 	private String password = "db207";
 	private String url = "jdbc:jtds:sqlserver://127.0.0.1/Lv207OMS;instance=SQLEXPRESS;";
-		
+	
+	
+	/** Method, which creates connection with Database.
+     */
 	private Connection createConnection(){
         Connection con;
         try {
@@ -27,11 +45,17 @@ public class  DBUtils implements IExternalData {
     }
 
     
+	/** Method, which closes connection with Database.
+	 * @see DBUtils#closeConnection(Connection, Statement, ResultSet)
+     */
     private void closeConnection(Connection con, Statement st) throws Exception{
             closeConnection(con, st, null);
     }
     
     
+    /** Method, which closes connection with Database.
+     * @see DBUtils#closeConnection(Connection, Statement)
+     */
     private void closeConnection(Connection con, Statement st, ResultSet rs) throws Exception {
         if (rs != null) {
             rs.close();
@@ -45,6 +69,10 @@ public class  DBUtils implements IExternalData {
     }
 
     
+    /** Method, which creates list of list string type from Database by sqlquery. 
+     * @param absoluteFilePath - path to file
+     * @param name - sheet name 
+     */
 	public List<List<String>> getAllCells(String absoluteFilePath, String name) {
 		List<List<String>> allCells = new ArrayList<List<String>>();
 		List<String> rowCells = null;
@@ -75,6 +103,10 @@ public class  DBUtils implements IExternalData {
 	}
  
 	
+	/** Method, which deletes user or users from Database by sqlquery. 
+     * @param sqlQuery - query 
+     * @param value - value which adds to sqlquery and responsibles to Login or FirstName etc.   
+     */
 	public void deleteUsersFromDB(String sqlQuery, String value){
         Statement st = null;
         Connection con = createConnection();
@@ -89,6 +121,12 @@ public class  DBUtils implements IExternalData {
     }
  
 
+	/** Method, which gets list of string type from Database by sqlquery
+	 * which is responsible for one column from table. 
+     * @param sqlQuery - query 
+     * @param value1 - value for adding to sqlquery
+     * @param value2 - value for adding to sqlquery  
+     */
 	public List<String> getOneColumn(String sqlQuery, String nameOfColumn, String value1, String value2) {
  		List<String> listOfOneColumn = new ArrayList<>();	 
 		Statement st = null;
@@ -116,6 +154,9 @@ public class  DBUtils implements IExternalData {
 	}
 
 	
+	/** Method, which gets user from Database by sqlquery. 
+     * @param login - value of Login
+     */
 	public User getUserByLogin(String login) {
 		User user = null;
 		Statement st = null;
@@ -166,6 +207,10 @@ public class  DBUtils implements IExternalData {
 	}
 
 	
+	/** Method, which gets list of string type from Database by sqlquery
+	 * which is responsible for column Login from table. 
+     * @param sqlQuery - query 
+     */
     public List<String> getLogins(String sqlQuery){
         List<String> logins = new ArrayList<>();
         Statement st = null;
@@ -188,6 +233,8 @@ public class  DBUtils implements IExternalData {
     
    
 
+    /** Method, which gets number of users from Database by sqlquery.
+     */
     public int countAllUsers(){ 
 
         Statement st = null;
@@ -211,6 +258,9 @@ public class  DBUtils implements IExternalData {
         return userCount;
     }
 
+    
+    /** Method, which gets list of first five users from Database by sqlquery.
+     */
     public List<User> getTopFiveUsers() {
 
         List<User> users = new ArrayList<>();
@@ -244,6 +294,10 @@ public class  DBUtils implements IExternalData {
         return users;
     }
 
+    
+    
+    /** Method, which verifies if the user is in Database by sqlquery.
+     */
     public boolean verifyThatUserIsInDB(String loginOfUser){ 
 
         Statement st;

@@ -3,7 +3,7 @@
 //
 //import com.softserve.edu.oms.data.DBUtils;
 //import com.softserve.edu.oms.data.IUser;
-//import com.softserve.edu.oms.data.SQLQueries;
+//import com.softserve.edu.oms.enums.SQLQueries;
 //import com.softserve.edu.oms.data.UserRepository;
 //import org.testng.Assert;
 //import org.testng.annotations.DataProvider;
@@ -41,7 +41,7 @@
 //
 //    @Test(dataProvider = "Users")
 //    public void createAndDeleteNewUser(IUser admUser, IUser newUser){
-//        logInPage.logout()
+//        loginPage.logout()
 //                .successAdminLogin(admUser)
 //                .gotoAdministrationPage()
 //                .goToCreateNewUserPage()

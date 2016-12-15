@@ -15,9 +15,45 @@ public class EditUserPage  extends AUserDataPage {
         super(driver);
     }
 
+    //set Data
     public EditUserPage setLoginInput(String login) {
         getLoginInput().clear();
         getLoginInput().sendKeys(login);
+        return this;
+    }
+
+    public EditUserPage setFirstNameInput(String firstName) {
+        super.setFirstNameInput(firstName);
+        return this;
+    }
+
+    public EditUserPage setLastNameInput(String lastName) {
+        super.setLastNameInput(lastName);
+        return this;
+    }
+
+    public EditUserPage setPasswordInput(String password) {
+        super.setPasswordInput(password);
+        return this;
+    }
+
+    public EditUserPage setConfirmPasswordInput(String confirmPassword) {
+        super.setConfirmPasswordInput(confirmPassword);
+        return this;
+    }
+
+    public EditUserPage setEmailInput(String email) {
+        super.setEmailInput(email);
+        return this;
+    }
+
+    public EditUserPage setSelectRegion(Region region) {
+        super.setSelectRegion(region);
+        return this;
+    }
+
+    public EditUserPage setSelectRole(Role roleId) {
+        super.setSelectRole(roleId);
         return this;
     }
 
@@ -25,15 +61,44 @@ public class EditUserPage  extends AUserDataPage {
         getLoginInput().clear();
         return this;
     }
+
+    public  EditUserPage clearFirstNameInput() {
+        super.clearFirstNameInput();
+        return this;
+    }
+
+    public EditUserPage clearLastNameInput() {
+        super.clearLastNameInput();
+        return this;
+    }
+
+    public EditUserPage clearPasswordInput() {
+        super.clearPasswordInput();
+        return this;
+    }
+
+    public EditUserPage clearConfirmPasswordInput() {
+        super.clearConfirmPasswordInput();
+        return this;
+    }
+
+    public EditUserPage clearEmailInput() {
+        super.clearEmailInput();
+        return this;
+    }
+
+    public EditUserPage clickCreateButton() {
+        super.clickCreateButton();
+        return this;
+    }
+
+    public EditUserPage  clickCancelButton() {
+        super.clickCancelButton();
+        return this;
+    }
     // business logic
     public EditUserPage setLoginData(IUser user) {
-        setFirstNameInput(user.getFirstname());
-        setLastNameInput(user.getLastname());
-        setPasswordInput(user.getPassword());
-        setConfirmPasswordInput(user.getPassword());
-        setEmailInput(user.getEmail());
-        setSelectRegion(Region.getRegion(user.getRegion()));
-        setSelectRole(Role.valueOf(user.getRole().toUpperCase()));
+        super.setData(user);
         return this;
     }
 

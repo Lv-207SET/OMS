@@ -10,7 +10,6 @@ import com.softserve.edu.oms.data.UserRepository;
 import com.softserve.edu.oms.pages.AdminHomePage;
 import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.pages.CreateNewUserPage;
-import com.softserve.edu.oms.pages.LoginPage;
 import com.softserve.edu.oms.tests.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -27,7 +26,7 @@ public class CancelCreateUserTest extends TestRunner {
         AdminHomePage adminHomePage = new AdminHomePage(driver);
         adminHomePage.clickAdministrationTab();
         AdministrationPage adminPage = new AdministrationPage(driver);
-        CreateNewUserPage createPage = adminPage.goToCreateNewUserPage();
+        CreateNewUserPage createPage = adminPage.gotoCreateNewUserPage();
         DBUtils dbUtils = new DBUtils();
         user = UserRepository.get().invalidUser();
         Assert.assertNull(dbUtils.getUserByLogin(user.getLoginname()));

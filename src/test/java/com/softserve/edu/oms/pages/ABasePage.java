@@ -84,6 +84,11 @@ public abstract class ABasePage {
     }
 
     public ABasePage waitForLoad() {
+        try {
+            Thread.sleep(2000       );
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver, 10)
                 .ignoring(StaleElementReferenceException.class);
         wait.until((ExpectedCondition<Boolean>) webDriver -> {

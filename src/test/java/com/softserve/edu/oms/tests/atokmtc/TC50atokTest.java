@@ -43,7 +43,7 @@ public class TC50atokTest extends TestRunner {
                 .successAdminLogin(admUser)
                 .gotoAdministrationPage()
                 .waitForLoad()
-                .goToCreateNewUserPage()
+                .gotoCreateNewUserPage()
                 .waitForLoad()
                 .setLoginData(newUser)
                 .successCreateNewUser()

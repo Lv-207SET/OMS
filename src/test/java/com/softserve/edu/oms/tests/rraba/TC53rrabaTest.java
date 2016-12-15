@@ -42,7 +42,7 @@ public class TC53rrabaTest extends TestRunner{
         if ((numberUsers % numberOfImems) != 0) {
             for (int i = 0; i < (numberOfImems - (numberUsers % numberOfImems)); i++) {
                 CreateNewUserPage createNewUserPage = 
-                        administrationPage.goToCreateNewUserPage();
+                        administrationPage.gotoCreateNewUserPage();
 
                 createNewUserPage.setLoginInput(user.getLoginname() + user.getLoginname().charAt(i)).
                       setFirstNameInput(user.getFirstname()).
@@ -81,7 +81,7 @@ public class TC53rrabaTest extends TestRunner{
         int newPagesCount;
 
         CreateNewUserPage createNewUserPage = 
-                administrationPage.goToCreateNewUserPage();
+                administrationPage.gotoCreateNewUserPage();
  
         administrationPage = createNewUserPage.successCreateNewUser(user);
         newNumberOfUsers = Integer.valueOf(administrationPage.getFoundUsersNumber());

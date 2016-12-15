@@ -40,7 +40,7 @@ public class TC58ikTest extends TestRunner{
     public void setTestPreconditions(IUser admin) {
         adminHomePage = loginPage.successAdminLogin(admin);
         administrationPage = adminHomePage.gotoAdministrationPage();
-        createNewUserPage = administrationPage.goToCreateNewUserPage();
+        createNewUserPage = administrationPage.gotoCreateNewUserPage();
     }
 
     @Test(dataProvider = "badMemoryUser", dependsOnMethods = "setTestPreconditions")

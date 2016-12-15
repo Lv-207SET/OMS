@@ -74,7 +74,7 @@ public class CreateNewUserPageTest extends TestRunner {
                 .successAdminLogin(admin)
                 .gotoAdministrationPage();
         CreateNewUserPage createNewUserPage =
-                administrationPage.goToCreateNewUserPage();
+                administrationPage.gotoCreateNewUserPage();
         createNewUserPage.setLoginData(user);
         driver.switchTo().alert().accept();
 
@@ -97,7 +97,7 @@ public class CreateNewUserPageTest extends TestRunner {
         AdminHomePage adminHomePage = new AdminHomePage(driver);
         adminHomePage.clickAdministrationTab();
         AdministrationPage adminPage = new AdministrationPage(driver);
-        CreateNewUserPage createPage = adminPage.goToCreateNewUserPage();
+        CreateNewUserPage createPage = adminPage.gotoCreateNewUserPage();
         DBUtils dbUtils = new DBUtils();
         user = UserRepository.get().invalidUser();
         Assert.assertNull(dbUtils.getUserByLogin(user.getLoginname()));
@@ -122,7 +122,7 @@ public class CreateNewUserPageTest extends TestRunner {
 //
 //        CreateNewUserPage adminHomePage = loginPage.successAdminLogin(admUser)
 //                .clickAdministrationTab()
-//                .goToCreateNewUserPage();
+//                .gotoCreateNewUserPage();
 //    }
     /**
      * <h1>Verify that Login field is case insensitive</h1>
@@ -169,7 +169,7 @@ public class CreateNewUserPageTest extends TestRunner {
         if (!(dbUtils.verifyThatUserIsInDB(nonExistingLogin))) {
 
             CreateNewUserPage newUserPageAgain = new AdministrationPage(driver)
-                    .goToCreateNewUserPage().setLoginInput(nonExistingLogin.toUpperCase());
+                    .gotoCreateNewUserPage().setLoginInput(nonExistingLogin.toUpperCase());
 
             Assert.assertTrue(newUserPageAgain.getLoginErrorMessageText().contains("already in use"));
 
@@ -183,7 +183,7 @@ public class CreateNewUserPageTest extends TestRunner {
     public void setTestPreconditions(IUser admin) {
         adminHomePage = loginPage.successAdminLogin(admin);
         administrationPage = adminHomePage.gotoAdministrationPage();
-        createNewUserPage = administrationPage.goToCreateNewUserPage();
+        createNewUserPage = administrationPage.gotoCreateNewUserPage();
     }
 
     @Test(dataProvider = "badMemoryUser", dependsOnMethods = "setTestPreconditions")
@@ -226,7 +226,7 @@ public class CreateNewUserPageTest extends TestRunner {
         verifyAndCreateUsers();
         
         CreateNewUserPage createNewUserPage =
-                administrationPage.goToCreateNewUserPage();
+                administrationPage.gotoCreateNewUserPage();
 
         administrationPage = createNewUserPage.successCreateNewUser(user);
         newNumberOfUsers = Integer.valueOf(administrationPage.getFoundUsersNumber());
@@ -262,7 +262,7 @@ public class CreateNewUserPageTest extends TestRunner {
         if ((numberUsers % numberOfImems) != 0) {
             for (int i = 0; i < (numberOfImems - (numberUsers % numberOfImems)); i++) {
                 CreateNewUserPage createNewUserPage =
-                        administrationPage.goToCreateNewUserPage();
+                        administrationPage.gotoCreateNewUserPage();
 
                 createNewUserPage.setLoginInput(user.getLoginname() + user.getLoginname().charAt(i)).
                         setFirstNameInput(user.getFirstname()).

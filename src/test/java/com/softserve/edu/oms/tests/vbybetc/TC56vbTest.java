@@ -40,7 +40,7 @@ public class TC56vbTest extends TestRunner{
 
         CreateNewUserPage adminHomePage = loginPage.successAdminLogin(admUser)
                 .clickAdministrationTab()
-                .goToCreateNewUserPage();
+                .gotoCreateNewUserPage();
     }
     /**
      * <h1>Verify that Login field is case insensitive</h1>
@@ -87,7 +87,7 @@ public class TC56vbTest extends TestRunner{
         if (!(dbUtils.verifyThatUserIsInDB(nonExistingLogin))) {
 
             CreateNewUserPage newUserPageAgain = new AdministrationPage(driver)
-                    .goToCreateNewUserPage().setLoginInput(nonExistingLogin.toUpperCase());
+                    .gotoCreateNewUserPage().setLoginInput(nonExistingLogin.toUpperCase());
 
             Assert.assertTrue(newUserPageAgain.getLoginErrorMessageText().contains("already in use"));
 

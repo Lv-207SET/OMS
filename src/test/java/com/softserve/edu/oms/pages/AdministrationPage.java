@@ -26,7 +26,7 @@ public class AdministrationPage extends AAdminReportPage {
 
 	//  User as role an "Administrator" goes from tab "Administration" to
 	//  "Create New User" page by using this method
-	public CreateNewUserPage goToCreateNewUserPage() {
+	public CreateNewUserPage gotoCreateNewUserPage() {
 		driver.findElement(By.cssSelector(GO_TO_CREATE_NEW_USER_PAGE_CSS)).click();
 		return new CreateNewUserPage(this.driver);
 	}

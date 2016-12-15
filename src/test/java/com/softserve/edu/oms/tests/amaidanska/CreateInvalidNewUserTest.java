@@ -32,7 +32,7 @@ public class CreateInvalidNewUserTest extends TestRunner {
                 .successAdminLogin(admin)
                 .gotoAdministrationPage();
         CreateNewUserPage createNewUserPage =
-                administrationPage.goToCreateNewUserPage();
+                administrationPage.gotoCreateNewUserPage();
         createNewUserPage.setLoginData(user);
 
         assertThat(createNewUserPage.getFirstNameErrorMessageText(),

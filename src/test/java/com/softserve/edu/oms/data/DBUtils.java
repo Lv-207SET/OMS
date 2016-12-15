@@ -8,7 +8,7 @@
 
 package com.softserve.edu.oms.data;
 
-import com.softserve.edu.oms.enums.SQLQueries;
+import com.softserve.edu.oms.enums.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -307,7 +307,7 @@ public class  DBUtils implements IExternalData {
 
         try{
             st = con.createStatement();
-            rs = st.executeQuery(SQLQueries.SQL_SELECT_COLUMN_NOTEXISTED_LOGIN.getQuery() + "\'" + loginOfUser + "\'");
+            rs = st.executeQuery(SQLQueries.GET_USER_BY_LOGIN.getQuery() + "\'" + loginOfUser + "\'");
             userIsInDB = rs.next();
             closeConnection(con, st,rs);
         }catch (Exception e) {

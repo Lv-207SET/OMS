@@ -72,6 +72,13 @@ public class HomePage extends ABasePage {
 	}
 
 
+	@Override
+	public HomePage waitForLoad(){
+		super.waitForLoad();
+		return this;
+	}
+
+
 	// Business Logic
 
 	@Override

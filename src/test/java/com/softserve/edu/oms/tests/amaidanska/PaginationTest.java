@@ -8,12 +8,13 @@ import com.softserve.edu.oms.tests.TestRunner;
 import org.hamcrest.CoreMatchers;
 import org.testng.annotations.Test;
 
+import static com.softserve.edu.oms.enums.LabelsNamesEnum.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertTrue;
 
 public class PaginationTest extends TestRunner{
 
-    private static final String SHOW_ITEMS_LINK_NAME = "Show 10 items";
+
     @Test
     public void paginationTest() {
         IUser admin = UserRepository.get().adminUser();
@@ -25,7 +26,7 @@ public class PaginationTest extends TestRunner{
                 CoreMatchers.equalTo(UsersPerPage.FIVE.getResultsPerPage()));
         assertTrue(administrationPage.showItemsLinkIsDisplayed());
         assertThat(administrationPage.getShowItemsLinkText(),
-                CoreMatchers.equalTo(SHOW_ITEMS_LINK_NAME));
+                CoreMatchers.equalTo(SHOW_10_ITEMS_LINK.name));
 
         double pagesNumber = administrationPage.getFoundUsersNumber() / (UsersPerPage.FIVE.getResultsPerPage() * 1.0);
         assertThat(administrationPage.getPagesQuantity(), CoreMatchers.equalTo((int)Math.ceil(pagesNumber)));

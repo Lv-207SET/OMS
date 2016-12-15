@@ -5,41 +5,18 @@ import org.openqa.selenium.By;
 
 public enum LoginPageLocators {
 
-    ATTRIBUTE(LocatorType.NAME, "name"),
-    LOGIN_INPUT_FIELD(LocatorType.NAME, "j_username"),
-    PASSWORD_INPUT_FIELD(LocatorType.NAME, "j_password"),
-    LOGIN_BUTTON(LocatorType.NAME, "submit" ),
-    RESET_BUTTON(LocatorType.NAME, "reset"),
-    REMEMBER_ME_CHECKBOX(LocatorType.NAME, "_spring_security_remember_me");
+    ATTRIBUTE(By.name("name")),
+    LOGIN_INPUT_FIELD(By.name("j_username") ),
+    PASSWORD_INPUT_FIELD(By.name("j_password")),
+    LOGIN_BUTTON(By.name("submit")),
+    RESET_BUTTON(By.name("reset")),
+    REMEMBER_ME_CHECKBOX(By.name("_spring_security_remember_me"));
 
 
-    private LocatorType locatorType;
-    private String locator;
+    public final By by;
 
-    LoginPageLocators(LocatorType locatorType, String locator){
-        this.locatorType = locatorType;
-        this.locator = locator;
-
+    LoginPageLocators(final By by){
+        this.by = by;
     }
 
-    public By getBy(){
-        switch(locatorType) {
-            case CLASSNAME:
-                return new By.ByClassName(locator);
-            case CSS:
-                return new By.ByCssSelector(locator);
-            case ID:
-                return new By.ById(locator);
-            case LINK:
-                return new By.ByLinkText(locator);
-            case NAME:
-                return new By.ByName(locator);
-            case TAGNAME:
-                return new By.ByTagName(locator);
-            case XPATH:
-                return new By.ByXPath(locator);
-        }
-        return null;
-
-    }
 }

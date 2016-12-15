@@ -6,14 +6,9 @@ import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.oms.data.IUser;
 
-public class LoginPage extends ABasePage{
+import static com.softserve.edu.oms.locators.LoginPageLocators.*;
 
-	private static final String ATTRIBUTE_NAME = "name";
-	private static final String LOGIN_INPUT_FIELD_NAME = "j_username";
-	private static final String PASSWORD_INPUT_FIELD_NAME ="j_password";
-	private static final String LOGIN_BUTTON_NAME = "submit";
-	private static final String RESET_BUTTON_NAME = "reset";
-	private static final String REMEMBER_ME_CHECKBOX_NAME = "_spring_security_remember_me";
+public class LoginPage extends ABasePage{
 
 	public LoginPage(WebDriver driver) {
 		super(driver);
@@ -24,23 +19,23 @@ public class LoginPage extends ABasePage{
 	// get Data
 
 	public WebElement getLoginnameInput() {
-		return this.driver.findElement(By.name(LOGIN_INPUT_FIELD_NAME));
+		return this.driver.findElement(LOGIN_INPUT_FIELD.by);
 	}
 
 	public WebElement getPasswordInput() {
-		return this.driver.findElement(By.name(PASSWORD_INPUT_FIELD_NAME));
+		return this.driver.findElement(PASSWORD_INPUT_FIELD.by);
 	}
 
 	public WebElement getSubmitButton() {
-		return this.driver.findElement(By.name(LOGIN_BUTTON_NAME));
+		return this.driver.findElement(LOGIN_BUTTON.by);
 	}
 
 	public WebElement getResetButton() {
-		return this.driver.findElement(By.name(RESET_BUTTON_NAME));
+		return this.driver.findElement(RESET_BUTTON.by);
 	}
 
 	public WebElement getRememberMeCheckbox() {
-		return this.driver.findElement(By.name(REMEMBER_ME_CHECKBOX_NAME));
+		return this.driver.findElement(REMEMBER_ME_CHECKBOX.by);
 	}
 
 	// Functional
@@ -62,7 +57,8 @@ public class LoginPage extends ABasePage{
 	}
 
 	public String getRememberMeCheckboxNameAttribute() {
-		return getRememberMeCheckbox().getAttribute(ATTRIBUTE_NAME).toLowerCase().trim();
+		return getRememberMeCheckbox()
+				.getAttribute(ATTRIBUTE.name()).toLowerCase().trim();
 	}
 
 	// set Data

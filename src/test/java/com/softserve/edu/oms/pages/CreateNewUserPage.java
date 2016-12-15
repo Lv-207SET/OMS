@@ -11,6 +11,9 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
+import static com.softserve.edu.oms.locators.CreateNewUserPageLocators.FIRST_NAME_INPUT_ID;
+import static com.softserve.edu.oms.locators.CreateNewUserPageLocators.LAST_NAME_INPUT_ID;
+
 public class CreateNewUserPage extends ABasePage {
 
     public CreateNewUserPage(WebDriver driver) {
@@ -24,11 +27,11 @@ public class CreateNewUserPage extends ABasePage {
     }
 
     public WebElement getFirstNameInput() {
-        return this.driver.findElement(CreateNewUserPageLocators.FIRST_NAME_INPUT_ID.by);
+        return this.driver.findElement(FIRST_NAME_INPUT_ID.by);
     }
 
     public WebElement getLastNameInput() {
-        return this.driver.findElement(CreateNewUserPageLocators.LAST_NAME_INPUT_ID.by);
+        return this.driver.findElement(LAST_NAME_INPUT_ID.by);
     }
 
     public WebElement getPasswordInput() {

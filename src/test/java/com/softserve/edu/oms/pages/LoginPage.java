@@ -1,6 +1,5 @@
 package com.softserve.edu.oms.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -38,6 +37,10 @@ public class LoginPage extends ABasePage{
 		return this.driver.findElement(REMEMBER_ME_CHECKBOX.by);
 	}
 
+	public WebElement getBadCredentialsErrorMessage() {
+		return driver.findElement(BAD_CREDENTIALS_ERROR_MESSAGE_CSS.by);
+	}
+
 	// Functional
 	
 	public String getLoginnameInputText() {
@@ -61,6 +64,9 @@ public class LoginPage extends ABasePage{
 				.getAttribute(ATTRIBUTE.name()).toLowerCase().trim();
 	}
 
+	public String getBadCredentialsErrorMessageText() {
+		return this.getBadCredentialsErrorMessage().getText();
+	}
 	// set Data
 
 	public void setLoginnameInput(String login) {
@@ -148,17 +154,16 @@ public class LoginPage extends ABasePage{
 		return new SupervisorHomePage(driver);
 	}
 
-
-    public LoginValidatorPage unsuccessfulLogin(IUser invalidUser) {
+    public LoginPage unsuccessfulLogin(IUser invalidUser) {
     	setLoginData(invalidUser);
-		return new LoginValidatorPage(driver);
+		return this;
 	}
 
-	public LoginValidatorPage loginWithEmptyCredentials (){
+	public LoginPage loginWithEmptyCredentials (){
 		this.clearLoginnameInput();
 		this.clearPasswordInput();
 		this.clickSubmitButton();
-		return new LoginValidatorPage(driver);
+		return this;
 	}
 
 }

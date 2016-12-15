@@ -23,12 +23,7 @@ import com.softserve.edu.oms.tests.TestRunner;
 public class FindingTest extends TestRunner{
     
     private AdministrationPage administrationPage;
-//    private final static String SEARCH_TEXT_NONE = "none";
-//    private final static String SEARCH_TEXT_ER = "er";
-//    private final static String byLastName = "lastName";
-//    private final static String byLoginName = "login";
-//    private final static String byRole = "role";
-    
+   
     @BeforeMethod 
     public void setUp() {
         AdminHomePage adminHomePage = 

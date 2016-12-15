@@ -5,13 +5,22 @@ import org.openqa.selenium.WebElement;
 
 import static com.softserve.edu.oms.locators.AddProductPageLocators.*;
 
+/**
+ * PageObject class that represents Add Product page.
+ *
+ * @version 1.0
+ * @since 15.12.16
+ * @author Iryna Kyselchuk
+ *
+ */
 public class AddProductPage extends ABasePage {
 
+    /** Class constructor */
     public AddProductPage(WebDriver driver) {
         super(driver);
     }
 
-    // get Data
+    // get Elements
 
     public WebElement getCreatingNewProductLabel() {
         return driver.findElement(CREATING_PRODUCT_LABEL_CSS.by);
@@ -45,7 +54,7 @@ public class AddProductPage extends ABasePage {
         return driver.findElement(PRODUCT_PRICE_ERROR_MESSAGE_ID.by);
     }
 
-    // functional
+    // functional getters
 
     public String getCreatingNewProductLabelText() {
         return getCreatingNewProductLabel().getText();
@@ -130,6 +139,13 @@ public class AddProductPage extends ABasePage {
 
     // business logic
 
+    /** Method for creating new product with valid parameters
+     * @param productName - name of creating product
+     * @param description - description of creating product
+     * @param price - price of creating product
+     * @return ItemManagementPage - this method returns new object of ItemManagementPage
+     * @see ItemManagementPage
+     */
     public ItemManagementPage successCreateNewProduct(String productName, String description, double price) {
         setProductName(productName);
         setProductDescription(description);
@@ -138,6 +154,12 @@ public class AddProductPage extends ABasePage {
         return new ItemManagementPage(driver);
     }
 
+    /** Method for attempt create new product with invalid parameters
+     * @param productName - name of creating product
+     * @param description - description of creating product
+     * @param price - price of creating product
+     * @return AddProductPage - this method returns object of current page
+     */
     public AddProductPage unsuccessCreateNewProduct(String productName, String description, double price) {
         setProductName(productName);
         setProductDescription(description);
@@ -146,6 +168,13 @@ public class AddProductPage extends ABasePage {
         return this;
     }
 
+    /** Method for attempt create new product, but cancel it
+     * @param productName - name of creating product
+     * @param description - description of creating product
+     * @param price - price of creating product
+     * @return ItemManagementPage - this method returns new object of ItemManagementPage
+     * @see ItemManagementPage
+     */
     public ItemManagementPage createProductAndCancel(String productName, String description, double price) {
         setProductName(productName);
         setProductDescription(description);

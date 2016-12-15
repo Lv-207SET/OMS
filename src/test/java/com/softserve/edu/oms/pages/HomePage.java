@@ -1,9 +1,9 @@
 package com.softserve.edu.oms.pages;
 
-import com.softserve.edu.oms.locators.UserHomePageLocators;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import static com.softserve.edu.oms.locators.UserHomePageLocators.*;
 
 public class HomePage extends ABasePage {
 
@@ -16,23 +16,23 @@ public class HomePage extends ABasePage {
 	// get Data
 
 	public WebElement getFirstname() {
-		return driver.findElement(UserHomePageLocators.FIRST_NAME_LABEL_CSS.by);
+		return driver.findElement(FIRST_NAME_LABEL_CSS.by);
 	}
 	
 	public WebElement getLastname() {
-		return driver.findElement(UserHomePageLocators.LAST_NAME_LABEL_CSS.by);
+		return driver.findElement(LAST_NAME_LABEL_CSS.by);
 	}
 	
 	public WebElement getRole() {
-		return driver.findElement(UserHomePageLocators.ROLE_LABEL_CSS.by);
+		return driver.findElement(ROLE_LABEL_CSS.by);
 	}
 
 	public WebElement getEngLangLink() {
-		return driver.findElement(UserHomePageLocators.ENG_LANG_LINK_XPATH.by);
+		return driver.findElement(ENG_LANG_LINK_XPATH.by);
 	}
 
 	public WebElement getUkrLangLink() {
-		return driver.findElement(UserHomePageLocators.UKR_LANG_LINK_XPATH.by);
+		return driver.findElement(UKR_LANG_LINK_XPATH.by);
 	}
 
 

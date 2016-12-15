@@ -49,6 +49,7 @@ public class TC50atokTest extends TestRunner {
                 .successCreateNewUser()
                 .waitForLoad()
                 .filterAndSearch(FieldFilterDropdownList.LOGIN, ConditionFilterDropdownList.EQUALS, newUser.getLoginname())
+                .waitForLoad()
                 .getAllUsers();
 
         if(users.size()>1)

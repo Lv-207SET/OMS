@@ -36,6 +36,16 @@ public final class UserRepository {
 				"mail@gmail.com", "East", "Customer");
 	}
 
+	public IUser merchandiserUser() {
+		return new User("login2", "firstName2", "lastName2", "qwerty",
+				"mail@gmail.com", "East", "Merchandiser");
+	}
+
+	public IUser supervisorUser() {
+		return new User("login3", "firstName3", "lastName3", "qwerty",
+				"mail@gmail.com", "East", "Supervisor");
+	}
+
 	public IUser invalidUser() {
 		return new User("abcdqwd", "abcd123", "abcd123", "abcd1",
 				"abcd@gmail.com", "East", "Administrator");
@@ -51,14 +61,18 @@ public final class UserRepository {
                 "rdd@g.com", "West", "Administrator");
     }
     
-    	public IUser nonExistingUser() {
+	public IUser nonExistingUser() {
 		return new User("hippo", "hippopotamus", "hippopotamus", "qwerty",
 				"hippo@ui.com", "East", "Administrator");
 	}
     public IUser newUser() {
-        return new User("andriy", "rrd", "rrd", "1234",
+        return new User("New", "WorldOrder", "rrd", "1234",
                 "rdd@g.com", "West", "Administrator");
     }
+
+	public IUser
+
+
 
 	public List<IUser> getUsersFromExcelFile() {
 		return new UserUtils("/users.xlsx", new ExcelUtils()).getAllUsers();

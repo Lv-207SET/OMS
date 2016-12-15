@@ -3,12 +3,7 @@ package com.softserve.edu.oms.pages;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.enums.Region;
 import com.softserve.edu.oms.enums.Role;
-import com.softserve.edu.oms.enums.SelectRegionDropdownList;
-import com.softserve.edu.oms.enums.SelectRoleDropdownList;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 public class EditUserPage  extends AUserDataPage {
     public EditUserPage (WebDriver driver) {
@@ -98,7 +93,7 @@ public class EditUserPage  extends AUserDataPage {
     }
     // business logic
     public EditUserPage setLoginData(IUser user) {
-        super.setData(user);
+        super.setLoginData(user);
         return this;
     }
 

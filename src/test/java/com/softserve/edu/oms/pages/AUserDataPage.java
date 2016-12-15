@@ -224,7 +224,7 @@ public abstract class AUserDataPage extends ABasePage {
         return this;
     }
 
-    public AUserDataPage setData(IUser user) {
+    public AUserDataPage setLoginData(IUser user) {
         setFirstNameInput(user.getFirstname());
         setLastNameInput(user.getLastname());
         setPasswordInput(user.getPassword());
@@ -235,6 +235,12 @@ public abstract class AUserDataPage extends ABasePage {
         return this;
     }
 
+    // ???
+    public AdministrationPage successCreateNewUser() {
+        clickCreateButton();
+        return new AdministrationPage(driver);
+    }
+    
     public AUserDataPage acceptAlert() {
         driver
                 .switchTo()

@@ -1,5 +1,6 @@
 package com.softserve.edu.oms.pages;
 
+import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.enums.Region;
 import com.softserve.edu.oms.enums.Role;
 import org.openqa.selenium.By;
@@ -187,10 +188,6 @@ public abstract class AUserDataPage extends ABasePage {
         return this;
     }
 
-    abstract AUserDataPage setLoginInput(String login);
-
-    abstract AUserDataPage clearLoginInput();
-
 
     public AUserDataPage clearFirstNameInput() {
         getFirstNameInput().clear();
@@ -227,6 +224,23 @@ public abstract class AUserDataPage extends ABasePage {
         return this;
     }
 
+    public AUserDataPage setLoginData(IUser user) {
+        setFirstNameInput(user.getFirstname());
+        setLastNameInput(user.getLastname());
+        setPasswordInput(user.getPassword());
+        setConfirmPasswordInput(user.getPassword());
+        setEmailInput(user.getEmail());
+        setSelectRegion(Region.getRegion(user.getRegion()));
+        setSelectRole(Role.valueOf(user.getRole().toUpperCase()));
+        return this;
+    }
+
+    // ???
+    public AdministrationPage successCreateNewUser() {
+        clickCreateButton();
+        return new AdministrationPage(driver);
+    }
+    
     public AUserDataPage acceptAlert() {
         driver
                 .switchTo()

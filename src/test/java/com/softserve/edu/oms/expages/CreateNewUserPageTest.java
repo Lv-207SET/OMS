@@ -122,8 +122,10 @@ public class CreateNewUserPageTest extends TestRunner {
         createNewUserPage.setLoginData(user);
         driver.switchTo().alert().accept();
 
-        assertThat(createNewUserPage.getFirstNameErrorMessageText(), CoreMatchers.equalTo(FIRST_NAME_ERROR_MESSAGE));
-        assertThat(createNewUserPage.getLastNameErrorMessageText(), CoreMatchers.equalTo(lLAST_NAME_ERROR_MESSAGE));
+        assertThat(createNewUserPage.getFirstNameErrorMessageText(),
+                CoreMatchers.equalTo(FIRST_NAME_ERROR_MESSAGE.message));
+        assertThat(createNewUserPage.getLastNameErrorMessageText(),
+                CoreMatchers.equalTo(LAST_NAME_ERROR_MESSAGE.message));
         DBUtils dbUtils = new DBUtils();
         assertThat(dbUtils.getUserByLogin(user.getLoginname()), CoreMatchers.equalTo(null));
     }

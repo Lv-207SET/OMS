@@ -21,6 +21,23 @@ public class TC45vbTest extends TestRunner{
         };
     }
 
+    /**
+     * <h1>Correct info on Administation Page is displayed</h1>
+     * This test goes to Administration Page
+     * 1) reads the quantity of found users,
+     * 2) executes the SQL query for finding the quantity of user from DB
+     * 3) compares these two parameters
+     * 4) then reads all rows from the table on page
+     * 5) executes the SQL query to read the same from DB
+     * 6) compares the two lists created in 4) and 5)
+     *
+     *<p>Note: the quantity of rows is 5 not 10 rows</p>
+     *
+     * @author Viktoriia Bybel
+     * @version 1.0
+     * @since 15.12.16
+     * @param admUser
+     */
     @Test(dataProvider = "admUser")
     public void CorrectUserDisplayingTest(IUser admUser) {
         int numberOfFoundUsersFromDB;

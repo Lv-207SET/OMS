@@ -15,7 +15,7 @@ public enum ErrorMessagesEnum {
     EXPECTED_ERROR_MESSAGE_FOR_FIRST_NAME_TC49("First name cannot be blank"),
     EXPECTED_ERROR_MESSAGE_FOR_LAST_NAME_TC49("Last name cannot be blank"),
     EXPECTED_ERROR_MESSAGE_FOR_PASSWORD_TC49("Password cannot be shorter than 4 and longer than 10 characters"),
-    EXPECTED_ERROR_MESSAGE_FOR_EMAIL_ADRESS_TC49("Incorrect format of Email Address"),
+    EXPECTED_ERROR_MESSAGE_FOR_EMAIL_ADDRESS_TC49("Incorrect format of Email Address"),
 
     //    Expected results for test case 51
     EXPECTED_ERROR_MESSAGE_FOR_lOGIN_TC51("Login name is too long"),

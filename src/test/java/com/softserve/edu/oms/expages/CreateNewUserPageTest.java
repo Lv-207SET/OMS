@@ -158,7 +158,7 @@ public class CreateNewUserPageTest extends TestRunner {
         Assert.assertEquals(omsСreateNewUserPage.getPasswordErrorMessageText(),
                 EXPECTED_ERROR_MESSAGE_FOR_PASSWORD_TC49.message);
         Assert.assertEquals(omsСreateNewUserPage.getEmailErrorMessageText(),
-                EXPECTED_ERROR_MESSAGE_FOR_EMAIL_ADRESS_TC49.message);
+                EXPECTED_ERROR_MESSAGE_FOR_EMAIL_ADDRESS_TC49.message);
     }
 
     @Test(dataProvider = "invalidUsers")

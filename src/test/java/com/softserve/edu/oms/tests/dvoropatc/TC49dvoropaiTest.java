@@ -8,11 +8,6 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-    /*
-     * Test verifies that validation on empty mandatory fields works while
-     * creating new user
-    * */
-
 public class TC49dvoropaiTest extends com.softserve.edu.oms.tests.TestRunner {
 
     private static final String EXPECTED_ERROR_MESSAGE_FOR_lOGIN = "Login name cannot be blank";
@@ -32,6 +27,15 @@ public class TC49dvoropaiTest extends com.softserve.edu.oms.tests.TestRunner {
         };
     }
 
+    /**
+     * Test verifies that validation on empty mandatory fields works while
+     * creating new user
+     *
+     * Based on LVSETOMS-49 in Jira
+     *
+     * @author Dmytro Voropai
+     * @param validUserAdministrator {@link com.softserve.edu.oms.data.UserRepository}
+     */
     @Test(dataProvider = "validUserAdministrator", alwaysRun = true)
     public void verifyErrorMessagesDuringUserCreation(IUser validUserAdministrator) {
         AdminHomePage omsAdminHomePage = loginPage.successAdminLogin(validUserAdministrator);

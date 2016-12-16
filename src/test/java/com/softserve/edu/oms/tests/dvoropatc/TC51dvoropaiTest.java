@@ -10,11 +10,6 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-    /*
-    * This test case verifies that error messages appear when trying to create
-    * a new user with too long login, first /last name (longer than 13 characters)
-    * and password (longer than 10 characters).
-    * */
 
 public class TC51dvoropaiTest extends TestRunner{
 
@@ -36,8 +31,18 @@ public class TC51dvoropaiTest extends TestRunner{
         };
     }
 
+    /**
+     * This test case verifies that error messages appear when trying to create
+     * a new user with too long login, first /last name (longer than 13 characters)
+     * and password (longer than 10 character
+     *
+     * Based on LVSETOMS-51 in Jira
+     *
+     * @author Dmytro Voropai
+     * @param validUserAdministrator {@link com.softserve.edu.oms.data.UserRepository}
+     */
     @Test(dataProvider = "validUserAdministrator",alwaysRun = true)
-    public void verifyCreateNewUserWithToLognData(IUser validUserAdministrator){
+    public void verifyCreateNewUserWithTooLognData(IUser validUserAdministrator){
         AdminHomePage omsAdminHomePage = loginPage.successAdminLogin(validUserAdministrator);
         CreateNewUserPage omsСreateNewUserPage = omsAdminHomePage
                 .gotoAdministrationPage()

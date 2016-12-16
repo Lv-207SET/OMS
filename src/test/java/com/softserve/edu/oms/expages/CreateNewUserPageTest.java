@@ -28,7 +28,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class CreateNewUserPageTest extends TestRunner {
 
-
+    //   Expected results for test case 49
     private static final String EXPECTED_ERROR_MESSAGE_FOR_lOGIN_TC49 = "Login name cannot be blank";
     private static final String EXPECTED_ERROR_MESSAGE_FOR_FIRST_NAME_TC49 = "First name cannot be blank";
     private static final String EXPECTED_ERROR_MESSAGE_FOR_LAST_NAME_TC49 = "Last name cannot be blank";
@@ -37,6 +37,7 @@ public class CreateNewUserPageTest extends TestRunner {
     private static final String EXPECTED_ERROR_MESSAGE_FOR_EMAIL_ADRESS_TC49 = "Incorrect format of " +
             "Email Address";
 
+    //    Expected results for test case 51
     private static final String EXPECTED_ERROR_MESSAGE_FOR_lOGIN_TC51 = "Login name is too long";
     private static final String EXPECTED_ERROR_MESSAGE_FOR_FIRST_NAME_TC51 = "First name is too long";
     private static final String EXPECTED_ERROR_MESSAGE_FOR_LAST_NAME_TC51 = "Last name is too long";
@@ -93,9 +94,11 @@ public class CreateNewUserPageTest extends TestRunner {
         };
     }
 
-
-    // Provides login and password of registered user
-    // with an "Administrator" role
+    /**
+     * Provides login and password of registered user
+     * with an "Administrator" role
+     * @return user from UserRepository
+     */
     @DataProvider
     public Object[][] validUserAdministrator() {
         return new Object[][] {
@@ -103,9 +106,18 @@ public class CreateNewUserPageTest extends TestRunner {
         };
     }
 
-
+    /**
+     * This test case verifies that error messages appear when trying to create
+     * a new user with too long login, first /last name (longer than 13 characters)
+     * and password (longer than 10 character
+     *
+     * Based on LVSETOMS-51 in Jira
+     *
+     * @author Dmytro Voropai
+     * @param validUserAdministrator {@link com.softserve.edu.oms.data.UserRepository}
+     */
     @Test(dataProvider = "validUserAdministrator",alwaysRun = true)
-    public void verifyCreateNewUserWithToLognData(IUser validUserAdministrator){
+    public void verifyCreateNewUserWithTooLognData(IUser validUserAdministrator){
         AdminHomePage omsAdminHomePage = loginPage.successAdminLogin(validUserAdministrator);
         CreateNewUserPage omsСreateNewUserPage = omsAdminHomePage
                 .gotoAdministrationPage()
@@ -128,7 +140,15 @@ public class CreateNewUserPageTest extends TestRunner {
         Assert.assertNull(dbUtils.getUserByLogin(userWithLongCredentials.getLoginname()));
     }
 
-
+    /**
+     * Test verifies that validation on empty mandatory fields works while
+     * creating new user
+     *
+     * Based on LVSETOMS-49 in Jira
+     *
+     * @author Dmytro Voropai
+     * @param validUserAdministrator {@link com.softserve.edu.oms.data.UserRepository}
+     */
     @Test(dataProvider = "validUserAdministrator", alwaysRun = true)
     public void verifyErrorMessagesDuringUserCreation(IUser validUserAdministrator) {
         AdminHomePage omsAdminHomePage = loginPage.successAdminLogin(validUserAdministrator);

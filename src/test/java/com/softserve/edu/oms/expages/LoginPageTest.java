@@ -14,19 +14,19 @@ import org.testng.asserts.SoftAssert;
 import static com.softserve.edu.oms.enums.ErrorMessagesEnum.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class LoginPageTest extends TestRunner{
+public class LoginPageTest extends TestRunner {
 
     private SoftAssert softAssert = new SoftAssert();
 
     @DataProvider
     public Object[][] someUser() {
-        return new Object[][] {
-                { UserRepository.get().invalidUser() }
+        return new Object[][]{
+                {UserRepository.get().invalidUser()}
         };
     }
 
     @Test
-    public void loginWithEmptyCredentials (){
+    public void loginWithEmptyCredentials() {
         String currentErrorMessage = loginPage
                 .loginWithEmptyCredentials()
                 .getBadCredentialsErrorMessageText();
@@ -45,23 +45,37 @@ public class LoginPageTest extends TestRunner{
                 .getPasswordInputText()
                 .isEmpty());
     }
-
+    /**
+     * Verify that after check "Remember me" checkbox
+     * entered login and password save in input fields
+     * after logout
+     *
+     * @author Oleh Lavrynenko
+     * @version 1.0
+     * @since 16.12.16
+     */
     @Test
     public void rememberMeTest() {
-        IUser user= UserRepository.get().adminUser();
+        IUser user = UserRepository.get().adminUser();
+
         Assert.assertEquals(loginPage.getLoginnameInputText(), "");
         Assert.assertEquals(loginPage.getPasswordInputText(), "");
+
         loginPage.setLoginnameInput(user.getLoginname());
         loginPage.setPasswordInput(user.getPassword());
         loginPage.clickgetRememberMeCheckbox();
         loginPage.clickSubmitButton();
+
         HomePage homePage = new HomePage(driver);
+
         Assert.assertEquals(homePage.getFirstnameText(), user.getFirstname());
         Assert.assertEquals(homePage.getLastnameText(), user.getLastname());
+
         homePage.clickLogoutButton();
         loginPage = new LoginPage(driver);
-        softAssert.assertEquals(loginPage.getLoginnameInputText(),user.getLoginname());
-        softAssert.assertEquals(loginPage.getPasswordInputText().length(),user.getPassword().length());
+
+        softAssert.assertEquals(loginPage.getLoginnameInputText(), user.getLoginname());
+        softAssert.assertEquals(loginPage.getPasswordInputText().length(), user.getPassword().length());
         softAssert.assertAll();
 
     }

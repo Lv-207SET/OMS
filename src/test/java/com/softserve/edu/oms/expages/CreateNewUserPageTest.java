@@ -37,42 +37,42 @@ public class CreateNewUserPageTest extends TestRunner {
 
     @DataProvider
     public Object[][] validUser() {
-        return new Object[][] { { UserRepository.get().userForDelete()},
+        return new Object[][]{{UserRepository.get().userForDelete()},
         };
     }
 
     @DataProvider
     public Object[][] invalidUsers() {
-        return new Object[][] {
-                { UserRepository.get().invalidUser() }
+        return new Object[][]{
+                {UserRepository.get().invalidUser()}
         };
     }
 
     @DataProvider
     public Object[][] adminUser() {
-        return new Object[][] {
-                { UserRepository.get().adminUser() }
+        return new Object[][]{
+                {UserRepository.get().adminUser()}
         };
     }
 
     @DataProvider
     public Object[][] badMemoryUser() {
-        return new Object[][] {
-                { UserRepository.get().badMemoryUser() }
+        return new Object[][]{
+                {UserRepository.get().badMemoryUser()}
         };
     }
 
     @DataProvider
     public Object[][] nonExistingUser() {
-        return new Object[][] {
-                { UserRepository.get().nonExistingUser() }
+        return new Object[][]{
+                {UserRepository.get().nonExistingUser()}
         };
     }
 
-    
+
     @Test(dataProvider = "invalidUsers")
     @Step("createInvalidNewUserTest")
-    public void createInvalidNewUserTest (User user){
+    public void createInvalidNewUserTest(User user) {
         IUser admin = UserRepository.get().adminUser();
         AdministrationPage administrationPage = loginPage
                 .successAdminLogin(admin)
@@ -90,22 +90,34 @@ public class CreateNewUserPageTest extends TestRunner {
         assertThat(dbUtils.getUserByLogin(user.getLoginname()), CoreMatchers.equalTo(null));
     }
 
+    /**
+     * Verify that a new user isn't created after
+     * click "Cancel" button on Create New User Page
+     *
+     * @author Oleh Lavrynenko
+     * @version 1.0
+     * @since 16.12.16
+     */
     @Test
     @Step("cancelCreateUserTest")
     public void cancelCreateUserTest() {
         IUser user = UserRepository.get().adminUser();
+        AdminHomePage adminHomePage = new AdminHomePage(driver);
+        AdministrationPage adminPage = new AdministrationPage(driver);
+        DBUtils dbUtils = new DBUtils();
+
         Assert.assertEquals(loginPage.getLoginnameInputText(), "");
         Assert.assertEquals(loginPage.getPasswordInputText(), "");
         loginPage.setLoginnameInput(user.getLoginname());
         loginPage.setPasswordInput(user.getPassword());
         loginPage.clickSubmitButton();
-        AdminHomePage adminHomePage = new AdminHomePage(driver);
+
         adminHomePage.clickAdministrationTab();
-        AdministrationPage adminPage = new AdministrationPage(driver);
         CreateNewUserPage createPage = adminPage.gotoCreateNewUserPage();
-        DBUtils dbUtils = new DBUtils();
+
         user = UserRepository.get().invalidUser();
         Assert.assertNull(dbUtils.getUserByLogin(user.getLoginname()));
+
         createPage.setLoginInput(user.getLoginname())
                 .setFirstNameInput(user.getFirstname())
                 .setLastNameInput(user.getLastname())
@@ -114,8 +126,6 @@ public class CreateNewUserPageTest extends TestRunner {
                 .setConfirmPasswordInput(user.getPassword())
                 .clickCancelButton();
         Assert.assertNull(dbUtils.getUserByLogin(user.getLoginname()));
-        //Assert.assertAll();
-
     }
 
     /**
@@ -129,6 +139,7 @@ public class CreateNewUserPageTest extends TestRunner {
 //                .clickAdministrationTab()
 //                .gotoCreateNewUserPage();
 //    }
+
     /**
      * <h1>Verify that Login field is case insensitive</h1>
      * This test goes to Create New User Page,
@@ -139,26 +150,26 @@ public class CreateNewUserPageTest extends TestRunner {
      * 4) the fields "Role" and "Region" are not used, and leave as default
      * 5) the same Login, but in reverse case is set in Login field
      * 6) error message should appear - if so test passed
-     *
+     * <p/>
      * <p>Note: there are two data providers and thus two tests, because
      * first we login as Admin and then trying to create New User</p>
      *
+     * @param nonExistingUser
      * @author Viktoriia Bybel
      * @version 1.0
-     * @since 15.12.16
-     * @param nonExistingUser
      * @see UserRepository
+     * @since 15.12.16
      */
 
     @Test(dataProvider = "nonExistingUser", dependsOnMethods = "PreconditionTest")
     @Step("UniqueUserCreatingTest")
-    public void UniqueUserCreatingTest(IUser nonExistingUser)  {
+    public void UniqueUserCreatingTest(IUser nonExistingUser) {
 
         DBUtils dbUtils = new DBUtils();
 
         String nonExistingLogin = nonExistingUser.getLoginname();
 
-        while(dbUtils.verifyThatUserIsInDB(nonExistingLogin)) {
+        while (dbUtils.verifyThatUserIsInDB(nonExistingLogin)) {
             nonExistingLogin = RandomStringUtils.random(5, true, false).toLowerCase();
         }
 
@@ -217,22 +228,24 @@ public class CreateNewUserPageTest extends TestRunner {
         createNewUserPage.logout();
     }
 
-    
-    /** Verify that values in 'Number of found users' and 'Page#:' links 
-     *  are properly updated after creation a new user. 
-     *  @author Roman Raba
-     *  @version 1.0
-     *  @since 16.12.16
-     */    
+
+    /**
+     * Verify that values in 'Number of found users' and 'Page#:' links
+     * are properly updated after creation a new user.
+     *
+     * @author Roman Raba
+     * @version 1.0
+     * @since 16.12.16
+     */
     @Test(dataProvider = "validUser")
     @Step("verifyChangePageNumber")
-    public void verifyChangePageNumber(IUser user){
+    public void verifyChangePageNumber(IUser user) {
 
         int newNumberOfUsers;
         int newPagesCount;
 
         verifyAndCreateUsers();
-        
+
         CreateNewUserPage createNewUserPage =
                 administrationPage.gotoCreateNewUserPage();
 
@@ -241,17 +254,19 @@ public class CreateNewUserPageTest extends TestRunner {
         newPagesCount = Integer.valueOf(administrationPage.getPagesQuantity());
         Assert.assertEquals(numberUsers + 1, newNumberOfUsers);
         Assert.assertEquals(pagesCount + 1, newPagesCount);
-        
+
         deleteUsersFromDB();
     }
-    
-    
-    /** Verify that number of active registered users is aliquot to 5. 
-     *  And creates necessary number of users. 
-     *  @see CreateNewUserPageTest#verifyChangePageNumber(IUser)
-     *  @author Roman Raba
-     *  @version 1.0
-     *  @since 16.12.16
+
+
+    /**
+     * Verify that number of active registered users is aliquot to 5.
+     * And creates necessary number of users.
+     *
+     * @author Roman Raba
+     * @version 1.0
+     * @see CreateNewUserPageTest#verifyChangePageNumber(IUser)
+     * @since 16.12.16
      */
     public void verifyAndCreateUsers() {
         int numberOfImems;
@@ -263,7 +278,7 @@ public class CreateNewUserPageTest extends TestRunner {
         administrationPage =
                 adminHomePage.gotoAdministrationPage();
         numberUsers = administrationPage.getFoundUsersNumber();
-        pagesCount =  administrationPage.getPagesQuantity();
+        pagesCount = administrationPage.getPagesQuantity();
 
         numberOfImems = administrationPage.getUsersPerPageNumber();
 
@@ -283,23 +298,24 @@ public class CreateNewUserPageTest extends TestRunner {
 
                 administrationPage = createNewUserPage.successCreateNewUser();
             }
-            numberUsers = numberUsers +(numberOfImems- (numberUsers % numberOfImems));
+            numberUsers = numberUsers + (numberOfImems - (numberUsers % numberOfImems));
         }
     }
-    
-    
-    /** Deletes users from DB after creation in test.
-     *  @see CreateNewUserPageTest#verifyChangePageNumber(IUser)
-     *  @author Roman Raba
-     *  @version 1.0
-     *  @since 16.12.16
+
+
+    /**
+     * Deletes users from DB after creation in test.
+     *
+     * @author Roman Raba
+     * @version 1.0
+     * @see CreateNewUserPageTest#verifyChangePageNumber(IUser)
+     * @since 16.12.16
      */
     public void deleteUsersFromDB() {
         DBUtils dbUtils = new DBUtils();
         dbUtils.deleteUsersFromDB(SQLQueries.DELETE_USERS_BY_FIRSTNAME.getQuery(),
                 UserRepository.get().someUser().getFirstname());
     }
-
 
 
 }

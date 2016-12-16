@@ -24,7 +24,13 @@ import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.tests.TestRunner;
 import org.testng.asserts.SoftAssert;
 
-
+/**
+ * Test class which verifies search function on Administration page.  
+ * @version  1.0
+ * @since 16.12.16
+ * @author  Oleh Lavrynenko, Roman Raba 
+ * 
+ */
 public class FindingTest extends TestRunner{
     private SoftAssert softAssert = new SoftAssert();
     private AdministrationPage administrationPage;
@@ -44,101 +50,6 @@ public class FindingTest extends TestRunner{
         administrationPage.logout();
     }
      
-    @Test 
-    public void verifySearchLastName(){
-        List<String> columnListFromTable = new ArrayList<>();
-        List<String> columnListFromDB;       
-        DBUtils dbUtils;
-        
-        administrationPage.filterAndSearch(
-                FieldFilterDropdownList.LAST_NAME, 
-                ConditionFilterDropdownList.START_WITH, 
-                LabelsNamesEnum.SEARCH_TEXT_NONE.name);
-        
-        for(User user:administrationPage.getAllUsers()){
-            columnListFromTable.add(user.getLastname());
-           }
- 
-        dbUtils = new DBUtils();
-        columnListFromDB = dbUtils.getOneColumn(SQLQueries.GET_LASTNAME_LIKE.getQuery(),
-                LabelsNamesEnum.BY_LAST_NAME.name, 
-                LabelsNamesEnum.SEARCH_TEXT_NONE.name, 
-                LabelsNamesEnum.SEARCH_TEXT_ER.name);
-
-        Assert.assertTrue(columnListFromTable.equals(columnListFromDB));   
-     }
-    
-   
-    @Test 
-    public void verifySearchLoginName(){
-        List<String> columnListFromTable = new ArrayList<>();
-        List<String> columnListFromDB;       
-        DBUtils dbUtils;
-        
-        administrationPage.filterAndSearch(
-                FieldFilterDropdownList.LOGIN, 
-                ConditionFilterDropdownList.CONTAINS, 
-                LabelsNamesEnum.SEARCH_TEXT_NONE.name);
-
-        for(User user:administrationPage.getAllUsers()){
-            columnListFromTable.add(user.getLoginname());
-        }
-
-        dbUtils = new DBUtils();
-        columnListFromDB = dbUtils.getOneColumn(SQLQueries.GET_LOGIN_LIKE.getQuery(),
-                LabelsNamesEnum.BY_LOGIN_NAME.name, 
-                LabelsNamesEnum.SEARCH_TEXT_NONE.name, 
-                LabelsNamesEnum.SEARCH_TEXT_ER.name);
-
-        Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
-    }
-
-
-   @Test 
-    public void verifySearchRole(){
-       List<String> columnListFromTable = new ArrayList<>();
-       List<String> columnListFromDB;       
-       DBUtils dbUtils;
-       int numberOfusers;
-       int pagesNumber;
-       int newPagesCount;
-       int numberOfItems;
-        
-        administrationPage.filterAndSearch(
-                FieldFilterDropdownList.ROLE, 
-                ConditionFilterDropdownList.DOES_NOT_CONTAIN, 
-                LabelsNamesEnum.SEARCH_TEXT_ER.name);
-
-        columnListFromTable = new ArrayList<>();
-        for(User user:administrationPage.getAllUsers()){
-            columnListFromTable.add(user.getRole());
-        }
-
-        dbUtils = new DBUtils();
-        columnListFromDB = dbUtils.getOneColumn(SQLQueries.GET_ROLE_NOT_LIKE.getQuery(),
-                LabelsNamesEnum.BY_ROLE.name, 
-                LabelsNamesEnum.SEARCH_TEXT_NONE.name, 
-                LabelsNamesEnum.SEARCH_TEXT_ER.name);
-
-        Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
- 
-        numberOfusers =  administrationPage.getFoundUsersNumber();
-        Assert.assertEquals(columnListFromDB.size(),numberOfusers);
-        
-        numberOfItems = administrationPage.getUsersPerPageNumber();
-        
-        if ((columnListFromDB.size() % numberOfItems) !=0) {
-            pagesNumber = ((columnListFromDB.size() - 
-                    (columnListFromDB.size() % numberOfItems)) / numberOfItems)+1;
-        }
-            else{
-            pagesNumber = columnListFromDB.size() / numberOfItems;
-        }
-
-        newPagesCount = Integer.valueOf(administrationPage.getPagesQuantity());
-        Assert.assertEquals(pagesNumber,newPagesCount);
- 
-    }
 
     @Test
     public void testOptionValues() {
@@ -196,6 +107,124 @@ public class FindingTest extends TestRunner{
         int numberOfUsers = dbUtils.countAllUsers() - numberOfUsersWithLogin;
         softAssert.assertEquals(new AdministrationPage(driver).getAllUsers().size(),numberOfUsers);
         softAssert.assertAll();
+    }
+   
+    
+    /**
+     * Verify that search by "Last Name" and "starts with" work correctly.
+     *
+     * @author Roman Raba
+     * @version 1.0
+     * @since 16.12.16
+     */
+    @Test 
+    public void verifySearchLastName(){
+        List<String> columnListFromTable = new ArrayList<>();
+        List<String> columnListFromDB;       
+        DBUtils dbUtils;
+        
+        administrationPage.filterAndSearch(
+                FieldFilterDropdownList.LAST_NAME, 
+                ConditionFilterDropdownList.START_WITH, 
+                LabelsNamesEnum.SEARCH_TEXT_NONE.name);
+        
+        for(User user:administrationPage.getAllUsers()){
+            columnListFromTable.add(user.getLastname());
+           }
+ 
+        dbUtils = new DBUtils();
+        columnListFromDB = dbUtils.getOneColumn(SQLQueries.GET_LASTNAME_LIKE.getQuery(),
+                LabelsNamesEnum.BY_LAST_NAME.name, 
+                LabelsNamesEnum.SEARCH_TEXT_NONE.name, 
+                LabelsNamesEnum.SEARCH_TEXT_ER.name);
+
+        Assert.assertTrue(columnListFromTable.equals(columnListFromDB));   
+     }
+    
+   
+    /**
+     * Verify that search by "Login Name" and "contains" work correctly.
+     *
+     * @author Roman Raba
+     * @version 1.0
+     * @since 16.12.16
+     */
+    @Test 
+    public void verifySearchLoginName(){
+        List<String> columnListFromTable = new ArrayList<>();
+        List<String> columnListFromDB;       
+        DBUtils dbUtils;
+        
+        administrationPage.filterAndSearch(
+                FieldFilterDropdownList.LOGIN, 
+                ConditionFilterDropdownList.CONTAINS, 
+                LabelsNamesEnum.SEARCH_TEXT_NONE.name);
+
+        for(User user:administrationPage.getAllUsers()){
+            columnListFromTable.add(user.getLoginname());
+        }
+
+        dbUtils = new DBUtils();
+        columnListFromDB = dbUtils.getOneColumn(SQLQueries.GET_LOGIN_LIKE.getQuery(),
+                LabelsNamesEnum.BY_LOGIN_NAME.name, 
+                LabelsNamesEnum.SEARCH_TEXT_NONE.name, 
+                LabelsNamesEnum.SEARCH_TEXT_ER.name);
+
+        Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
+    }
+
+
+    /**
+     * Verify that search by "Role" and "does not contain" work correctly.
+     *
+     * @author Roman Raba
+     * @version 1.0
+     * @since 16.12.16
+     */
+   @Test 
+    public void verifySearchRole(){
+       List<String> columnListFromTable = new ArrayList<>();
+       List<String> columnListFromDB;       
+       DBUtils dbUtils;
+       int numberOfusers;
+       int pagesNumber;
+       int newPagesCount;
+       int numberOfItems;
+        
+        administrationPage.filterAndSearch(
+                FieldFilterDropdownList.ROLE, 
+                ConditionFilterDropdownList.DOES_NOT_CONTAIN, 
+                LabelsNamesEnum.SEARCH_TEXT_ER.name);
+
+        columnListFromTable = new ArrayList<>();
+        for(User user:administrationPage.getAllUsers()){
+            columnListFromTable.add(user.getRole());
+        }
+
+        dbUtils = new DBUtils();
+        columnListFromDB = dbUtils.getOneColumn(SQLQueries.GET_ROLE_NOT_LIKE.getQuery(),
+                LabelsNamesEnum.BY_ROLE.name, 
+                LabelsNamesEnum.SEARCH_TEXT_NONE.name, 
+                LabelsNamesEnum.SEARCH_TEXT_ER.name);
+
+        Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
+ 
+        numberOfusers =  administrationPage.getFoundUsersNumber();
+        Assert.assertEquals(columnListFromDB.size(),numberOfusers);
+        
+        numberOfItems = administrationPage.getUsersPerPageNumber();
+        
+        if ((columnListFromDB.size() % numberOfItems) !=0) {
+            pagesNumber = ((columnListFromDB.size() - 
+                    (columnListFromDB.size() % numberOfItems)) / numberOfItems)+1;
+        }
+            else{
+            pagesNumber = columnListFromDB.size() / numberOfItems;
+        }
+
+        newPagesCount = Integer.valueOf(administrationPage.getPagesQuantity());
+        Assert.assertEquals(pagesNumber,newPagesCount);
+ 
     }
 
 }

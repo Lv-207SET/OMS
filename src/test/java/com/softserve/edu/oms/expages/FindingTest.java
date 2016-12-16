@@ -1,8 +1,12 @@
 package com.softserve.edu.oms.expages;
  
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.softserve.edu.oms.data.IUser;
 import org.junit.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -18,12 +22,15 @@ import com.softserve.edu.oms.enums.SQLQueries;
 import com.softserve.edu.oms.pages.AdminHomePage;
 import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.tests.TestRunner;
- 
+import org.testng.asserts.SoftAssert;
+
 
 public class FindingTest extends TestRunner{
-    
+    private SoftAssert softAssert = new SoftAssert();
     private AdministrationPage administrationPage;
-   
+    private final String TOO_LONG_NAME="zxcvbnm asdfghjk qwertyuio pxmfjfn jvnvkh";
+    private final String VALID_NAME=UserRepository.get().adminUser().getLoginname();
+
     @BeforeMethod 
     public void setUp() {
         AdminHomePage adminHomePage = 
@@ -131,6 +138,64 @@ public class FindingTest extends TestRunner{
         newPagesCount = Integer.valueOf(administrationPage.getPagesQuantity());
         Assert.assertEquals(pagesNumber,newPagesCount);
  
+    }
+
+    @Test
+    public void testOptionValues() {
+        softAssert=new SoftAssert();
+        softAssert.assertEquals(administrationPage.getSelectFieldDefaultValue(), FieldFilterDropdownList.FIRST_NAME.getFieldName());
+        softAssert.assertEquals(administrationPage.getSelectFieldOptions(), new HashSet<>(Arrays.asList(FieldFilterDropdownList.values()))
+                .stream()
+                .map(p -> p.getFieldName().toLowerCase()).collect(Collectors.toSet()));
+        softAssert.assertEquals(administrationPage.getSelectConditionDefaultValue(), ConditionFilterDropdownList.EQUALS.getNameOfConditionFilterField());
+        softAssert.assertEquals(administrationPage.getSelectConditionOptions(),
+                new HashSet<>(Arrays.asList(ConditionFilterDropdownList.values()))
+                        .stream()
+                        .map(condition-> condition.getNameOfConditionFilterField()).collect(Collectors.toSet()));
+        softAssert.assertAll();
+    }
+    //@Test(dataProvider = "validUsers")
+    public void verifySearchTooLongName(IUser admin) {
+        softAssert=new SoftAssert();
+        administrationPage.clickSearchButton();
+        administrationPage.filterAndSearch(FieldFilterDropdownList.FIRST_NAME, ConditionFilterDropdownList.EQUALS, TOO_LONG_NAME);
+
+        DBUtils dbUtils = new DBUtils();
+        int numberOfUsers = dbUtils.getAllCells("","").size();
+
+        softAssert.assertEquals(administrationPage.getAllUsers().size(),numberOfUsers );
+        softAssert.assertAll();
+
+    }
+
+    @Test
+    public void verifySearchByEquals() {
+        softAssert=new SoftAssert();
+
+        administrationPage.clickSearchButton();
+        administrationPage.filterAndSearch(FieldFilterDropdownList.LOGIN, ConditionFilterDropdownList.EQUALS, VALID_NAME);
+
+        DBUtils dbUtils = new DBUtils();
+        int numberOfUsers = dbUtils.getUserByLogin(VALID_NAME) == null ? 0 : 1;
+        softAssert.assertEquals(administrationPage.getAllUsers().size(),numberOfUsers );
+        softAssert.assertAll();
+    }
+
+    @Test
+    public void verifySearchByNotEquals() {
+        softAssert=new SoftAssert();
+
+        administrationPage.clickSearchButton();
+        administrationPage.selectField(FieldFilterDropdownList.LOGIN);
+        administrationPage.selectConditionByIndex(1);
+        administrationPage.search(VALID_NAME);
+
+        DBUtils dbUtils = new DBUtils();
+
+        int numberOfUsersWithLogin = dbUtils.getUserByLogin(VALID_NAME) == null ? 0 : 1;
+        int numberOfUsers = dbUtils.countAllUsers() - numberOfUsersWithLogin;
+        softAssert.assertEquals(new AdministrationPage(driver).getAllUsers().size(),numberOfUsers);
+        softAssert.assertAll();
     }
 
 }

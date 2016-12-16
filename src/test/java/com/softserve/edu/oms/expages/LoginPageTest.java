@@ -18,6 +18,10 @@ public class LoginPageTest extends TestRunner{
 
     private SoftAssert softAssert = new SoftAssert();
 
+    /**
+     * DataProvider for verification 'Reset' button functionality
+     * @return user from UserRepository
+     */
     @DataProvider
     public Object[][] someUser() {
         return new Object[][] {
@@ -34,6 +38,16 @@ public class LoginPageTest extends TestRunner{
         assertThat(currentErrorMessage, CoreMatchers.equalTo(ERROR_MESSAGE.message));
     }
 
+    /**
+     * This test verifies that entered values in 'User' and 'Password' fields
+     * are cleared by clicking on 'Reset' button
+     *
+     * Based on LVSETOMS-37 in Jira
+     *
+     * @author Iryna Kyselchuk
+     * @since 16.12.16
+     * @param someUser {@link com.softserve.edu.oms.data.UserRepository}
+     */
     @Test(dataProvider = "someUser")
     public void verifyResetButtonFunctionality(IUser someUser) {
 

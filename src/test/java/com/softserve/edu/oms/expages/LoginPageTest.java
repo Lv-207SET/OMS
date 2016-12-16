@@ -16,9 +16,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class LoginPageTest extends TestRunner {
 
-    private static final String EXPECTED_ERROR_MESSAGE = "Such user does not exist " +
-            "in the system - please try again";
-
     private SoftAssert softAssert = new SoftAssert();
 
     /**
@@ -69,7 +66,7 @@ public class LoginPageTest extends TestRunner {
                 .getBadCredentialsErrorMessageText());
 //      Check if error message is the same as was expected
         Assert.assertEquals(loginPage.unsuccessfulLogin(notExistUser)
-                .getBadCredentialsErrorMessageText(), EXPECTED_ERROR_MESSAGE);
+                .getBadCredentialsErrorMessageText(), EXPECTED_ERROR_MESSAGE_TC29.message);
     }
 
     /**

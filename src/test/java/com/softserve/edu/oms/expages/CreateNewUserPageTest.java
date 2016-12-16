@@ -28,23 +28,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class CreateNewUserPageTest extends TestRunner {
 
-    //   Expected results for test case 49
-    private static final String EXPECTED_ERROR_MESSAGE_FOR_lOGIN_TC49 = "Login name cannot be blank";
-    private static final String EXPECTED_ERROR_MESSAGE_FOR_FIRST_NAME_TC49 = "First name cannot be blank";
-    private static final String EXPECTED_ERROR_MESSAGE_FOR_LAST_NAME_TC49 = "Last name cannot be blank";
-    private static final String EXPECTED_ERROR_MESSAGE_FOR_PASSWORD_TC49 = "Password cannot be shorter" +
-            " than 4 and longer than 10 characters";
-    private static final String EXPECTED_ERROR_MESSAGE_FOR_EMAIL_ADRESS_TC49 = "Incorrect format of " +
-            "Email Address";
-
-    //    Expected results for test case 51
-    private static final String EXPECTED_ERROR_MESSAGE_FOR_lOGIN_TC51 = "Login name is too long";
-    private static final String EXPECTED_ERROR_MESSAGE_FOR_FIRST_NAME_TC51 = "First name is too long";
-    private static final String EXPECTED_ERROR_MESSAGE_FOR_LAST_NAME_TC51 = "Last name is too long";
-    private static final String EXPECTED_ERROR_MESSAGE_FOR_PASSWORD_TC51 = "Password cannot be shorter" +
-            " than 4 and longer than 10 characters";
-
-
     private AdminHomePage adminHomePage;
     private AdministrationPage administrationPage;
     private CreateNewUserPage createNewUserPage;
@@ -128,13 +111,13 @@ public class CreateNewUserPageTest extends TestRunner {
 
 //        Check if correct messages appeared for required fields
         Assert.assertEquals(omsСreateNewUserPage.getLoginErrorMessageText(),
-                EXPECTED_ERROR_MESSAGE_FOR_lOGIN_TC51);
+                EXPECTED_ERROR_MESSAGE_FOR_lOGIN_TC51.message);
         Assert.assertEquals(omsСreateNewUserPage.getFirstNameErrorMessageText(),
-                EXPECTED_ERROR_MESSAGE_FOR_FIRST_NAME_TC51);
+                EXPECTED_ERROR_MESSAGE_FOR_FIRST_NAME_TC51.message);
         Assert.assertEquals(omsСreateNewUserPage.getLastNameErrorMessageText(),
-                EXPECTED_ERROR_MESSAGE_FOR_LAST_NAME_TC51);
+                EXPECTED_ERROR_MESSAGE_FOR_LAST_NAME_TC51.message);
         Assert.assertEquals(omsСreateNewUserPage.getPasswordErrorMessageText(),
-                EXPECTED_ERROR_MESSAGE_FOR_PASSWORD_TC51);
+                EXPECTED_ERROR_MESSAGE_FOR_PASSWORD_TC51.message);
 
 //        Check if user with too long credentials was not created in database
         Assert.assertNull(dbUtils.getUserByLogin(userWithLongCredentials.getLoginname()));
@@ -167,15 +150,15 @@ public class CreateNewUserPageTest extends TestRunner {
 
         //  Compare existing messages with expected
         Assert.assertEquals(omsСreateNewUserPage.getLoginErrorMessageText(),
-                EXPECTED_ERROR_MESSAGE_FOR_lOGIN_TC49);
+                EXPECTED_ERROR_MESSAGE_FOR_lOGIN_TC49.message);
         Assert.assertEquals(omsСreateNewUserPage.getFirstNameErrorMessageText(),
-                EXPECTED_ERROR_MESSAGE_FOR_FIRST_NAME_TC49);
+                EXPECTED_ERROR_MESSAGE_FOR_FIRST_NAME_TC49.message);
         Assert.assertEquals(omsСreateNewUserPage.getLastNameErrorMessageText(),
-                EXPECTED_ERROR_MESSAGE_FOR_LAST_NAME_TC49);
+                EXPECTED_ERROR_MESSAGE_FOR_LAST_NAME_TC49.message);
         Assert.assertEquals(omsСreateNewUserPage.getPasswordErrorMessageText(),
-                EXPECTED_ERROR_MESSAGE_FOR_PASSWORD_TC49);
+                EXPECTED_ERROR_MESSAGE_FOR_PASSWORD_TC49.message);
         Assert.assertEquals(omsСreateNewUserPage.getEmailErrorMessageText(),
-                EXPECTED_ERROR_MESSAGE_FOR_EMAIL_ADRESS_TC49);
+                EXPECTED_ERROR_MESSAGE_FOR_EMAIL_ADRESS_TC49.message);
     }
 
     @Test(dataProvider = "invalidUsers")

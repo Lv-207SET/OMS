@@ -22,6 +22,9 @@ import com.softserve.edu.oms.enums.SQLQueries;
 import com.softserve.edu.oms.pages.AdminHomePage;
 import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.tests.TestRunner;
+
+import ru.yandex.qatools.allure.annotations.Step;
+
 import org.testng.asserts.SoftAssert;
 
 /**
@@ -52,6 +55,7 @@ public class FindingTest extends TestRunner{
      
 
     @Test
+    @Step("testOptionValues")
     public void testOptionValues() {
         softAssert=new SoftAssert();
         softAssert.assertEquals(administrationPage.getSelectFieldDefaultValue(), FieldFilterDropdownList.FIRST_NAME.getFieldName());
@@ -80,6 +84,7 @@ public class FindingTest extends TestRunner{
     }
 
     @Test
+    @Step("verifySearchByEquals")
     public void verifySearchByEquals() {
         softAssert=new SoftAssert();
 
@@ -93,6 +98,7 @@ public class FindingTest extends TestRunner{
     }
 
     @Test
+    @Step("verifySearchByNotEquals")
     public void verifySearchByNotEquals() {
         softAssert=new SoftAssert();
 
@@ -118,6 +124,7 @@ public class FindingTest extends TestRunner{
      * @since 16.12.16
      */
     @Test 
+    @Step("verifySearchLastName")
     public void verifySearchLastName(){
         List<String> columnListFromTable = new ArrayList<>();
         List<String> columnListFromDB;       
@@ -150,6 +157,7 @@ public class FindingTest extends TestRunner{
      * @since 16.12.16
      */
     @Test 
+    @Step("verifySearchLoginName")
     public void verifySearchLoginName(){
         List<String> columnListFromTable = new ArrayList<>();
         List<String> columnListFromDB;       
@@ -182,6 +190,7 @@ public class FindingTest extends TestRunner{
      * @since 16.12.16
      */
    @Test 
+   @Step("verifySearchRole")
     public void verifySearchRole(){
        List<String> columnListFromTable = new ArrayList<>();
        List<String> columnListFromDB;       

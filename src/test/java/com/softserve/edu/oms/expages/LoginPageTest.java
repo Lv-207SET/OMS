@@ -32,7 +32,10 @@ public class LoginPageTest extends TestRunner {
         };
     }
 
-    //  Provides not register user login and password
+    /**
+     * Provides not register user login and password
+     * @return user who is not registered in system from UserRepository
+     */
     @DataProvider
     public Object[][] notExistUser() {
         return new Object[][] {
@@ -50,7 +53,15 @@ public class LoginPageTest extends TestRunner {
         assertThat(currentErrorMessage, CoreMatchers.equalTo(ERROR_MESSAGE.message));
     }
 
-
+    /**
+     * Test verifies that error message is shown when user tries to login without
+     * being registered in the system
+     *
+     * Based on LVSETOMS-29 in Jira
+     *
+     * @author Dmytro Voropai
+     * @param notExistUser {@link com.softserve.edu.oms.data.UserRepository}
+     */
     @Test(dataProvider = "notExistUser", alwaysRun = true)
     public void verifyResetButtonFunctionalityForNonRegisteredUser(IUser notExistUser) {
 //      Check if Object of String error message is not null.

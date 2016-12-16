@@ -7,10 +7,15 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
- /*
-  * Test verifies that error message is shown when user tries to login without
-  * being registered in the system
-  * */
+/**
+ * Test verifies that error message is shown when user tries to login without
+ * being registered in the system
+ *
+ * Based on LVSETOMS-29 in Jira
+ *
+ * @author Dmytro Voropai
+ * @param notExistUser {@link com.softserve.edu.oms.data.UserRepository}
+ */
 public class TC29dvoropaiTest extends TestRunner {
 
         private static final String EXPECTED_ERROR_MESSAGE = "Such user does not exist " +

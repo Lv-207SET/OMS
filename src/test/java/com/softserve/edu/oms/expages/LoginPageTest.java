@@ -16,6 +16,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class LoginPageTest extends TestRunner{
 
+    private static final String EXPECTED_ERROR_MESSAGE = "Such user does not exist " +
+            "in the system - please try again";
+
     private SoftAssert softAssert = new SoftAssert();
 
     @DataProvider
@@ -24,6 +27,16 @@ public class LoginPageTest extends TestRunner{
                 { UserRepository.get().invalidUser() }
         };
     }
+
+    //  Provides not register user login and password
+    @DataProvider
+    public Object[][] notExistUser() {
+        return new Object[][] {
+                {UserRepository.get().nonExistingUser() }
+        };
+    }
+
+
 
     @Test
     public void loginWithEmptyCredentials (){
@@ -34,16 +47,14 @@ public class LoginPageTest extends TestRunner{
         assertThat(currentErrorMessage, CoreMatchers.equalTo(ERROR_MESSAGE.message));
     }
 
-    @Test(dataProvider = "someUser")
-    public void verifyResetButtonFunctionality(IUser someUser) {
-
-        loginPage.setLoginDataAndReset(someUser);
-        Assert.assertTrue(loginPage
-                .getLoginnameInputText()
-                .isEmpty());
-        Assert.assertTrue(loginPage
-                .getPasswordInputText()
-                .isEmpty());
+    @Test(dataProvider = "notExistUser", alwaysRun = true)
+    public void verifyResetButtonFunctionality(IUser notExistUser){
+//      Check if Object of String error message is not null.
+        Assert.assertNotNull(loginPage.unsuccessfulLogin(notExistUser)
+                .getBadCredentialsErrorMessageText());
+//      Check if error message is the same as was expected
+        Assert.assertEquals(loginPage.unsuccessfulLogin(notExistUser)
+                .getBadCredentialsErrorMessageText(), EXPECTED_ERROR_MESSAGE);
     }
 
     @Test

@@ -75,8 +75,17 @@ public final class UserRepository {
                 "rdd@g.com", "West", "Administrator");
     }
 
-
-
+	public IUser UserWithLongCredentials(){
+		return new User(
+				"qwertyuiopasdfghjklz",
+				"qwertyuiopasdfghjklz",
+				"qwertyuiopasdfghjklz",
+				"211111111111112",
+				"nonlocalparties@domain.com",
+				"",
+				""
+		);
+	}
 
 
 	public List<IUser> getUsersFromExcelFile() {

@@ -2,10 +2,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
 	<test name="Test1">
-		<classes>
-			<class name="com.softserve.edu.oms.tests.dvoropatc.TestCaseTwentyNineTest"></class>
-            <class name="com.softserve.edu.oms.tests.dvoropatc.TestCaseFortyNineTest"></class>
-            <class name="com.softserve.edu.oms.tests.dvoropatc.TestCaseFiftyOneTest"></class>
-		</classes>
+
 	</test>
 </suite>

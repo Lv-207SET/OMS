@@ -27,12 +27,30 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class CreateNewUserPageTest extends TestRunner {
 
 
+    private static final String EXPECTED_ERROR_MESSAGE_FOR_lOGIN_TC49 = "Login name cannot be blank";
+    private static final String EXPECTED_ERROR_MESSAGE_FOR_FIRST_NAME_TC49 = "First name cannot be blank";
+    private static final String EXPECTED_ERROR_MESSAGE_FOR_LAST_NAME_TC49 = "Last name cannot be blank";
+    private static final String EXPECTED_ERROR_MESSAGE_FOR_PASSWORD_TC49 = "Password cannot be shorter" +
+            " than 4 and longer than 10 characters";
+    private static final String EXPECTED_ERROR_MESSAGE_FOR_EMAIL_ADRESS_TC49 = "Incorrect format of " +
+            "Email Address";
+
+    private static final String EXPECTED_ERROR_MESSAGE_FOR_lOGIN_TC51 = "Login name is too long";
+    private static final String EXPECTED_ERROR_MESSAGE_FOR_FIRST_NAME_TC51 = "First name is too long";
+    private static final String EXPECTED_ERROR_MESSAGE_FOR_LAST_NAME_TC51 = "Last name is too long";
+    private static final String EXPECTED_ERROR_MESSAGE_FOR_PASSWORD_TC51 = "Password cannot be shorter" +
+            " than 4 and longer than 10 characters";
+
+
     private AdminHomePage adminHomePage;
     private AdministrationPage administrationPage;
     private CreateNewUserPage createNewUserPage;
     private DBUtils dbUtils;
     private int pagesCount;
     private int numberUsers;
+
+    final private IUser userWithLongCredentials= UserRepository.get().UserWithLongCredentials();
+
 
 
     @DataProvider
@@ -67,6 +85,70 @@ public class CreateNewUserPageTest extends TestRunner {
         return new Object[][] {
                 { UserRepository.get().nonExistingUser() }
         };
+    }
+
+    // Provides login and password of registered user
+    // with an "Administrator" role
+    @DataProvider
+    public Object[][] validUserAdministrator() {
+        return new Object[][] {
+                {UserRepository.get().adminUser()}
+        };
+    }
+
+
+    @Test(dataProvider = "validUserAdministrator",alwaysRun = true)
+    public void verifyCreateNewUserWithToLognData(IUser validUserAdministrator){
+        AdminHomePage omsAdminHomePage = loginPage.successAdminLogin(validUserAdministrator);
+        CreateNewUserPage omsСreateNewUserPage = omsAdminHomePage
+                .gotoAdministrationPage()
+                .gotoCreateNewUserPage()
+                .setLoginData(userWithLongCredentials)
+                .clickCreateButton()
+                .acceptAlert();
+
+//        Check if correct messages appeared for required fields
+        Assert.assertEquals(omsСreateNewUserPage.getLoginErrorMessageText(),
+                EXPECTED_ERROR_MESSAGE_FOR_lOGIN_TC51);
+        Assert.assertEquals(omsСreateNewUserPage.getFirstNameErrorMessageText(),
+                EXPECTED_ERROR_MESSAGE_FOR_FIRST_NAME_TC51);
+        Assert.assertEquals(omsСreateNewUserPage.getLastNameErrorMessageText(),
+                EXPECTED_ERROR_MESSAGE_FOR_LAST_NAME_TC51);
+        Assert.assertEquals(omsСreateNewUserPage.getPasswordErrorMessageText(),
+                EXPECTED_ERROR_MESSAGE_FOR_PASSWORD_TC51);
+
+//        Check if user with too long credentials was not created in database
+        Assert.assertNull(dbUtils.getUserByLogin(userWithLongCredentials.getLoginname()));
+    }
+
+
+    @Test(dataProvider = "validUserAdministrator", alwaysRun = true)
+    public void verifyErrorMessagesDuringUserCreation(IUser validUserAdministrator) {
+        AdminHomePage omsAdminHomePage = loginPage.successAdminLogin(validUserAdministrator);
+        CreateNewUserPage omsСreateNewUserPage = omsAdminHomePage
+                .gotoAdministrationPage()
+                .gotoCreateNewUserPage()
+                .clickCreateButton()
+                .acceptAlert();
+
+        //  Assert that messages appear on page for all mandatory fields
+        Assert.assertNotNull(omsСreateNewUserPage.getLoginErrorMessageText());
+        Assert.assertNotNull(omsСreateNewUserPage.getFirstNameErrorMessageText());
+        Assert.assertNotNull(omsСreateNewUserPage.getLastNameErrorMessageText());
+        Assert.assertNotNull(omsСreateNewUserPage.getPasswordErrorMessageText());
+        Assert.assertNotNull(omsСreateNewUserPage.getEmailErrorMessageText());
+
+        //  Compare existing messages with expected
+        Assert.assertEquals(omsСreateNewUserPage.getLoginErrorMessageText(),
+                EXPECTED_ERROR_MESSAGE_FOR_lOGIN_TC49);
+        Assert.assertEquals(omsСreateNewUserPage.getFirstNameErrorMessageText(),
+                EXPECTED_ERROR_MESSAGE_FOR_FIRST_NAME_TC49);
+        Assert.assertEquals(omsСreateNewUserPage.getLastNameErrorMessageText(),
+                EXPECTED_ERROR_MESSAGE_FOR_LAST_NAME_TC49);
+        Assert.assertEquals(omsСreateNewUserPage.getPasswordErrorMessageText(),
+                EXPECTED_ERROR_MESSAGE_FOR_PASSWORD_TC49);
+        Assert.assertEquals(omsСreateNewUserPage.getEmailErrorMessageText(),
+                EXPECTED_ERROR_MESSAGE_FOR_EMAIL_ADRESS_TC49);
     }
 
     

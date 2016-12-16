@@ -25,7 +25,7 @@ public class TC29dvoropaiTest extends TestRunner {
     }
 
     @Test(dataProvider = "notExistUser", alwaysRun = true)
-    public void verifyResetButtonFunctionality(IUser notExistUser){
+    public void verifyResetButtonFunctionalityForNonRegisteredUser(IUser notExistUser){
 //      Check if Object of String error message is not null.
         Assert.assertNotNull(loginPage.unsuccessfulLogin(notExistUser)
                 .getBadCredentialsErrorMessageText());

@@ -12,6 +12,8 @@ import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.pages.CreateNewUserPage;
 import com.softserve.edu.oms.tests.TestRunner;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -73,6 +75,10 @@ public class CreateNewUserPageTest extends TestRunner {
         };
     }
 
+    /**
+     * DataProvider for verification creating new user with not confirmed password
+     * @return badMemoryUser from UserRepository
+     */
     @DataProvider
     public Object[][] badMemoryUser() {
         return new Object[][]{
@@ -277,19 +283,39 @@ public class CreateNewUserPageTest extends TestRunner {
         }
     }
 
-
-    @Test(dataProvider = "adminUser")
-    public void setTestPreconditions(IUser admin) {
+    /**
+     * Set preconditions for tests: login as Administrator role
+     * and navigate to Create New User page
+     */
+    @BeforeMethod
+    public void setTestPreconditions() {
+        IUser admin = UserRepository.get().adminUser();
         adminHomePage = loginPage.successAdminLogin(admin);
         administrationPage = adminHomePage.gotoAdministrationPage();
         createNewUserPage = administrationPage.gotoCreateNewUserPage();
     }
 
-    @Test(dataProvider = "badMemoryUser", dependsOnMethods = "setTestPreconditions")
-    @Step("verifyErrorMsgUserWithNotConfirmedPassword")
+    /**
+     * This test verifies that error message appears
+     * when trying to create a new user with
+     * different values in 'Password' and 'Confirm Password' fields
+     *
+     * Based on LVSETOMS-58 in Jira
+     *
+     * @author Iryna Kyselchuk
+     * @since 16.12.16
+     * @param newUser {@link com.softserve.edu.oms.data.UserRepository}
+     */
+    @Test(dataProvider = "badMemoryUser")
     public void verifyErrorMsgUserWithNotConfirmedPassword(IUser newUser) {
+
         dbUtils = new DBUtils();
+
+        // verify that user with chosen login does not exist
         assertThat(dbUtils.getUserByLogin(newUser.getLoginname()), CoreMatchers.equalTo(null));
+
+        // set correct data for new user account
+        // valid value in 'Confirm Password' but not the same as in 'Password' field
         createNewUserPage
                 .setLoginInput(newUser.getLoginname())
                 .setFirstNameInput(newUser.getFirstname())
@@ -300,12 +326,18 @@ public class CreateNewUserPageTest extends TestRunner {
                 .clickCreateButton();
         createNewUserPage.acceptAlert();
 
+        // verify that correct error message appears
         Assert.assertTrue(createNewUserPage.getConfirmPasswordErrorMessage().isDisplayed()
                 && createNewUserPage.getConfirmPasswordErrorMessageText().equals(CONFIRM_PASSWORD_ERROR_MESSAGE.message));
+
+        // verify that user with invalid confirm password is not created
         assertThat(dbUtils.getUserByLogin(newUser.getLoginname()), CoreMatchers.equalTo(null));
     }
 
-    @Test(dependsOnMethods = "verifyErrorMsgUserWithNotConfirmedPassword")
+    /**
+     * Logout from current page
+     */
+    @AfterMethod
     public void returnToPreviousState() {
         createNewUserPage.logout();
     }

@@ -21,6 +21,10 @@ public class LoginPageTest extends TestRunner {
 
     private SoftAssert softAssert = new SoftAssert();
 
+    /**
+     * DataProvider for verification 'Reset' button functionality
+     * @return user from UserRepository
+     */
     @DataProvider
     public Object[][] someUser() {
         return new Object[][]{
@@ -37,7 +41,6 @@ public class LoginPageTest extends TestRunner {
     }
 
 
-
     @Test
     public void loginWithEmptyCredentials() {
         String currentErrorMessage = loginPage
@@ -47,14 +50,38 @@ public class LoginPageTest extends TestRunner {
         assertThat(currentErrorMessage, CoreMatchers.equalTo(ERROR_MESSAGE.message));
     }
 
+
     @Test(dataProvider = "notExistUser", alwaysRun = true)
-    public void verifyResetButtonFunctionality(IUser notExistUser){
+    public void verifyResetButtonFunctionalityForNonRegisteredUser(IUser notExistUser) {
 //      Check if Object of String error message is not null.
         Assert.assertNotNull(loginPage.unsuccessfulLogin(notExistUser)
                 .getBadCredentialsErrorMessageText());
 //      Check if error message is the same as was expected
         Assert.assertEquals(loginPage.unsuccessfulLogin(notExistUser)
                 .getBadCredentialsErrorMessageText(), EXPECTED_ERROR_MESSAGE);
+    }
+
+    /**
+     * This test verifies that entered values in 'User' and 'Password' fields
+     * are cleared by clicking on 'Reset' button
+     *
+     * Based on LVSETOMS-37 in Jira
+     *
+     * @author Iryna Kyselchuk
+     * @since 16.12.16
+     * @param someUser {@link com.softserve.edu.oms.data.UserRepository}
+     */
+    @Test(dataProvider = "someUser")
+    public void verifyResetButtonFunctionality(IUser someUser) {
+
+        loginPage.setLoginDataAndReset(someUser);
+        Assert.assertTrue(loginPage
+                .getLoginnameInputText()
+                .isEmpty());
+        Assert.assertTrue(loginPage
+                .getPasswordInputText()
+                .isEmpty());
+
     }
     /**
      * Verify that after check "Remember me" checkbox

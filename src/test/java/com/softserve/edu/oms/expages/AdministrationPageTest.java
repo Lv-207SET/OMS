@@ -19,15 +19,17 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertTrue;
 
-/**
- * Created by Vika on 12/15/2016.
- */
+
 public class AdministrationPageTest extends TestRunner{
 
     private static final String SHOW_ITEMS_LINK_NAME = "Show 10 items";
     private AdminHomePage adminHomePage;
     private AdministrationPage administrationPage;
 
+    /**
+     * DataProvider for login and go to Administration page
+     * @return valid user with Administrator role from UserRepository
+     */
     @DataProvider
     public Object[][] adminUser() {
         return new Object[][] {
@@ -73,20 +75,34 @@ public class AdministrationPageTest extends TestRunner{
 
     }
 
+    /**
+     * This test verifies that Administrator can navigate the User table
+     * by 'First', 'Last', 'Forward' and 'Backward' buttons
+     * and current page in the pagination label changes according to navigation
+     *
+     * Based on LVSETOMS-44 in Jira
+     *
+     * @author Iryna Kyselchuk
+     * @since 16.12.16
+     * @param admin {@link com.softserve.edu.oms.data.UserRepository}
+     */
     @Test(dataProvider = "adminUser")
     public void verifyNavigationButtons(IUser admin) {
 
+        // set preconditions
         adminHomePage = loginPage.successAdminLogin(admin);
         administrationPage = adminHomePage.gotoAdministrationPage();
 
-        int numberUsersOnPage = administrationPage
-                .getQuantityOfUsersPerPage();
+        // determine the count of pages depending on count os users per page
+        int numberUsersOnPage = administrationPage.getQuantityOfUsersPerPage();
         int numberOfFoundUsers = administrationPage.getFoundUsersNumber();
         int expectedPageCount = numberOfFoundUsers / numberUsersOnPage;
         if ((numberOfFoundUsers % numberUsersOnPage) != 0) {
             expectedPageCount += 1;
         }
 
+        // verify that 'First' and 'Backward' buttons are disabled
+        // current page is: 1# of x#
         Assert.assertFalse(administrationPage.isFirstButtonEnabled()
                 && administrationPage.isBackwardButtonEnabled());
         Assert.assertTrue(administrationPage.isForwardButtonEnabled()
@@ -96,6 +112,9 @@ public class AdministrationPageTest extends TestRunner{
 
         administrationPage.clickForwardButton();
 
+        // verify that after clicking 'Forward' button:
+        // 'First', 'Backward', 'Forward' and 'Last' buttons are enabled
+        // current page is: 2# of x#
         Assert.assertTrue(administrationPage.isFirstButtonEnabled()
                 && administrationPage.isBackwardButtonEnabled()
                 && administrationPage.isForwardButtonEnabled()
@@ -104,6 +123,10 @@ public class AdministrationPageTest extends TestRunner{
 
         administrationPage.clickLastButton();
 
+        // verify that after clicking 'Last' button:
+        // 'First' and 'Backward' buttons are enabled
+        // 'Forward' and 'Last' buttons are disabled
+        // current page is: x# of x#
         Assert.assertTrue(administrationPage.isFirstButtonEnabled()
                 && administrationPage.isBackwardButtonEnabled());
         Assert.assertFalse(administrationPage.isForwardButtonEnabled()
@@ -112,6 +135,9 @@ public class AdministrationPageTest extends TestRunner{
 
         administrationPage.clickBackwardButton();
 
+        // verify that after clicking 'Backward' button:
+        // 'First', 'Backward', 'Forward' and 'Last' buttons are enabled
+        // current page is: x#-1 of x#
         Assert.assertTrue(administrationPage.isFirstButtonEnabled()
                 && administrationPage.isBackwardButtonEnabled()
                 && administrationPage.isForwardButtonEnabled()

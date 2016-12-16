@@ -9,6 +9,8 @@ import com.softserve.edu.oms.pages.CreateNewUserPage;
 import com.softserve.edu.oms.tests.TestRunner;
 import org.hamcrest.CoreMatchers;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -23,27 +25,21 @@ public class TC58ikTest extends TestRunner{
     private DBUtils dbUtils;
 
     @DataProvider
-    public Object[][] adminUser() {
-        return new Object[][] {
-                { UserRepository.get().adminUser() }
-        };
-    }
-
-    @DataProvider
     public Object[][] badMemoryUser() {
         return new Object[][] {
                 { UserRepository.get().badMemoryUser() }
         };
     }
 
-    @Test(dataProvider = "adminUser")
-    public void setTestPreconditions(IUser admin) {
+    @BeforeMethod
+    public void setTestPreconditions() {
+        IUser admin = UserRepository.get().adminUser();
         adminHomePage = loginPage.successAdminLogin(admin);
         administrationPage = adminHomePage.gotoAdministrationPage();
         createNewUserPage = administrationPage.gotoCreateNewUserPage();
     }
 
-    @Test(dataProvider = "badMemoryUser", dependsOnMethods = "setTestPreconditions")
+    @Test(dataProvider = "badMemoryUser")
     public void verifyErrorMsgUserWithNotConfirmedPassword(IUser newUser) {
         dbUtils = new DBUtils();
         assertThat(dbUtils.getUserByLogin(newUser.getLoginname()), CoreMatchers.equalTo(null));
@@ -62,7 +58,7 @@ public class TC58ikTest extends TestRunner{
         assertThat(dbUtils.getUserByLogin(newUser.getLoginname()), CoreMatchers.equalTo(null));
     }
 
-    @Test(dependsOnMethods = "verifyErrorMsgUserWithNotConfirmedPassword")
+    @AfterMethod
     public void returnToPreviousState() {
         createNewUserPage.logout();
     }

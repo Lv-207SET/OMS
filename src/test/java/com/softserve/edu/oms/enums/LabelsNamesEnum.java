@@ -6,8 +6,8 @@ public enum LabelsNamesEnum {
     SEARCH_TEXT_ER ("er"),
     BY_LAST_NAME ("lastName"),
     BY_LOGIN_NAME ("login"),
-    BY_ROLE ("role");
-
+    BY_ROLE ("role"),
+    TOO_LONG_NAME("zxcvbnm asdfghjk qwertyuio pxmfjfn jvnvkh");
     public final String name;
 
     LabelsNamesEnum (String name){

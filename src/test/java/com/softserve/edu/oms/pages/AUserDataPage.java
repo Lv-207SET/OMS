@@ -13,7 +13,7 @@ import java.util.List;
 import static com.softserve.edu.oms.locators.AUserDataPageLocators.*;
 
 /**
- * Created by User on 15.12.2016.
+ * Created by Oleh Lavrynenko on 15.12.2016.
  */
 public abstract class AUserDataPage extends ABasePage {
     AUserDataPage(WebDriver driver) {

@@ -1,5 +1,5 @@
 package com.softserve.edu.oms.expages;
- 
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -28,36 +28,42 @@ import ru.yandex.qatools.allure.annotations.Step;
 import org.testng.asserts.SoftAssert;
 
 /**
- * Test class which verifies search function on Administration page.  
- * @version  1.0
+ * Test class which verifies search function on Administration page.
+ *
+ * @author Oleh Lavrynenko, Roman Raba
+ * @version 1.0
  * @since 16.12.16
- * @author  Oleh Lavrynenko, Roman Raba 
- * 
  */
-public class FindingTest extends TestRunner{
+public class FindingTest extends TestRunner {
     private SoftAssert softAssert = new SoftAssert();
     private AdministrationPage administrationPage;
-    private final String TOO_LONG_NAME="zxcvbnm asdfghjk qwertyuio pxmfjfn jvnvkh";
-    private final String VALID_NAME=UserRepository.get().adminUser().getLoginname();
 
-    @BeforeMethod 
+    private final String VALID_NAME = UserRepository.get().adminUser().getLoginname();
+
+    @BeforeMethod
     public void setUp() {
-        AdminHomePage adminHomePage = 
+        AdminHomePage adminHomePage =
                 loginPage.successAdminLogin(UserRepository.get().adminUser());
-        administrationPage = 
+        administrationPage =
                 adminHomePage.gotoAdministrationPage();
     }
-    
+
     @AfterMethod
     public void tearDown() {
         administrationPage.logout();
     }
-     
 
+    /**
+     * Verify that searching options in dropdown lists are correct
+     *
+     * @author Oleh Lavrynenko
+     * @version 1.0
+     * @since 16.12.16
+     */
     @Test
     @Step("testOptionValues")
     public void testOptionValues() {
-        softAssert=new SoftAssert();
+        softAssert = new SoftAssert();
         softAssert.assertEquals(administrationPage.getSelectFieldDefaultValue(), FieldFilterDropdownList.FIRST_NAME.getFieldName());
         softAssert.assertEquals(administrationPage.getSelectFieldOptions(), new HashSet<>(Arrays.asList(FieldFilterDropdownList.values()))
                 .stream()
@@ -66,41 +72,57 @@ public class FindingTest extends TestRunner{
         softAssert.assertEquals(administrationPage.getSelectConditionOptions(),
                 new HashSet<>(Arrays.asList(ConditionFilterDropdownList.values()))
                         .stream()
-                        .map(condition-> condition.getNameOfConditionFilterField()).collect(Collectors.toSet()));
+                        .map(condition -> condition.getNameOfConditionFilterField()).collect(Collectors.toSet()));
         softAssert.assertAll();
     }
-    //@Test(dataProvider = "validUsers")
+
+    //@Test
     public void verifySearchTooLongName(IUser admin) {
-        softAssert=new SoftAssert();
+        softAssert = new SoftAssert();
         administrationPage.clickSearchButton();
-        administrationPage.filterAndSearch(FieldFilterDropdownList.FIRST_NAME, ConditionFilterDropdownList.EQUALS, TOO_LONG_NAME);
+        administrationPage.filterAndSearch(FieldFilterDropdownList.FIRST_NAME, ConditionFilterDropdownList.EQUALS,
+                LabelsNamesEnum.TOO_LONG_NAME.name);
 
         DBUtils dbUtils = new DBUtils();
-        int numberOfUsers = dbUtils.getAllCells("","").size();
+        int numberOfUsers = dbUtils.getAllCells("", "").size();
 
-        softAssert.assertEquals(administrationPage.getAllUsers().size(),numberOfUsers );
+        softAssert.assertEquals(administrationPage.getAllUsers().size(), numberOfUsers);
         softAssert.assertAll();
 
     }
 
+    /**
+     * Verify that search by "Login" and "equals" work correctly.
+     *
+     * @author Oleh Lavrynenko
+     * @version 1.0
+     * @since 16.12.16
+     */
     @Test
     @Step("verifySearchByEquals")
     public void verifySearchByEquals() {
-        softAssert=new SoftAssert();
+        softAssert = new SoftAssert();
 
         administrationPage.clickSearchButton();
         administrationPage.filterAndSearch(FieldFilterDropdownList.LOGIN, ConditionFilterDropdownList.EQUALS, VALID_NAME);
 
         DBUtils dbUtils = new DBUtils();
         int numberOfUsers = dbUtils.getUserByLogin(VALID_NAME) == null ? 0 : 1;
-        softAssert.assertEquals(administrationPage.getAllUsers().size(),numberOfUsers );
+        softAssert.assertEquals(administrationPage.getAllUsers().size(), numberOfUsers);
         softAssert.assertAll();
     }
 
+    /**
+     * Verify that search by "Login" and " not equals" work correctly.
+     *
+     * @author Oleh Lavrynenko
+     * @version 1.0
+     * @since 16.12.16
+     */
     @Test
     @Step("verifySearchByNotEquals")
     public void verifySearchByNotEquals() {
-        softAssert=new SoftAssert();
+        softAssert = new SoftAssert();
 
         administrationPage.clickSearchButton();
         administrationPage.selectField(FieldFilterDropdownList.LOGIN);
@@ -111,11 +133,11 @@ public class FindingTest extends TestRunner{
 
         int numberOfUsersWithLogin = dbUtils.getUserByLogin(VALID_NAME) == null ? 0 : 1;
         int numberOfUsers = dbUtils.countAllUsers() - numberOfUsersWithLogin;
-        softAssert.assertEquals(new AdministrationPage(driver).getAllUsers().size(),numberOfUsers);
+        softAssert.assertEquals(new AdministrationPage(driver).getAllUsers().size(), numberOfUsers);
         softAssert.assertAll();
     }
-   
-    
+
+
     /**
      * Verify that search by "Last Name" and "starts with" work correctly.
      *
@@ -123,32 +145,32 @@ public class FindingTest extends TestRunner{
      * @version 1.0
      * @since 16.12.16
      */
-    @Test 
+    @Test
     @Step("verifySearchLastName")
-    public void verifySearchLastName(){
+    public void verifySearchLastName() {
         List<String> columnListFromTable = new ArrayList<>();
-        List<String> columnListFromDB;       
+        List<String> columnListFromDB;
         DBUtils dbUtils;
-        
+
         administrationPage.filterAndSearch(
-                FieldFilterDropdownList.LAST_NAME, 
-                ConditionFilterDropdownList.START_WITH, 
+                FieldFilterDropdownList.LAST_NAME,
+                ConditionFilterDropdownList.START_WITH,
                 LabelsNamesEnum.SEARCH_TEXT_NONE.name);
-        
-        for(User user:administrationPage.getAllUsers()){
+
+        for (User user : administrationPage.getAllUsers()) {
             columnListFromTable.add(user.getLastname());
-           }
- 
+        }
+
         dbUtils = new DBUtils();
         columnListFromDB = dbUtils.getOneColumn(SQLQueries.GET_LASTNAME_LIKE.getQuery(),
-                LabelsNamesEnum.BY_LAST_NAME.name, 
-                LabelsNamesEnum.SEARCH_TEXT_NONE.name, 
+                LabelsNamesEnum.BY_LAST_NAME.name,
+                LabelsNamesEnum.SEARCH_TEXT_NONE.name,
                 LabelsNamesEnum.SEARCH_TEXT_ER.name);
 
-        Assert.assertTrue(columnListFromTable.equals(columnListFromDB));   
-     }
-    
-   
+        Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
+    }
+
+
     /**
      * Verify that search by "Login Name" and "contains" work correctly.
      *
@@ -156,26 +178,26 @@ public class FindingTest extends TestRunner{
      * @version 1.0
      * @since 16.12.16
      */
-    @Test 
+    @Test
     @Step("verifySearchLoginName")
-    public void verifySearchLoginName(){
+    public void verifySearchLoginName() {
         List<String> columnListFromTable = new ArrayList<>();
-        List<String> columnListFromDB;       
+        List<String> columnListFromDB;
         DBUtils dbUtils;
-        
+
         administrationPage.filterAndSearch(
-                FieldFilterDropdownList.LOGIN, 
-                ConditionFilterDropdownList.CONTAINS, 
+                FieldFilterDropdownList.LOGIN,
+                ConditionFilterDropdownList.CONTAINS,
                 LabelsNamesEnum.SEARCH_TEXT_NONE.name);
 
-        for(User user:administrationPage.getAllUsers()){
+        for (User user : administrationPage.getAllUsers()) {
             columnListFromTable.add(user.getLoginname());
         }
 
         dbUtils = new DBUtils();
         columnListFromDB = dbUtils.getOneColumn(SQLQueries.GET_LOGIN_LIKE.getQuery(),
-                LabelsNamesEnum.BY_LOGIN_NAME.name, 
-                LabelsNamesEnum.SEARCH_TEXT_NONE.name, 
+                LabelsNamesEnum.BY_LOGIN_NAME.name,
+                LabelsNamesEnum.SEARCH_TEXT_NONE.name,
                 LabelsNamesEnum.SEARCH_TEXT_ER.name);
 
         Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
@@ -189,51 +211,50 @@ public class FindingTest extends TestRunner{
      * @version 1.0
      * @since 16.12.16
      */
-   @Test 
-   @Step("verifySearchRole")
-    public void verifySearchRole(){
-       List<String> columnListFromTable = new ArrayList<>();
-       List<String> columnListFromDB;       
-       DBUtils dbUtils;
-       int numberOfusers;
-       int pagesNumber;
-       int newPagesCount;
-       int numberOfItems;
-        
+    @Test
+    @Step("verifySearchRole")
+    public void verifySearchRole() {
+        List<String> columnListFromTable = new ArrayList<>();
+        List<String> columnListFromDB;
+        DBUtils dbUtils;
+        int numberOfusers;
+        int pagesNumber;
+        int newPagesCount;
+        int numberOfItems;
+
         administrationPage.filterAndSearch(
-                FieldFilterDropdownList.ROLE, 
-                ConditionFilterDropdownList.DOES_NOT_CONTAIN, 
+                FieldFilterDropdownList.ROLE,
+                ConditionFilterDropdownList.DOES_NOT_CONTAIN,
                 LabelsNamesEnum.SEARCH_TEXT_ER.name);
 
         columnListFromTable = new ArrayList<>();
-        for(User user:administrationPage.getAllUsers()){
+        for (User user : administrationPage.getAllUsers()) {
             columnListFromTable.add(user.getRole());
         }
 
         dbUtils = new DBUtils();
         columnListFromDB = dbUtils.getOneColumn(SQLQueries.GET_ROLE_NOT_LIKE.getQuery(),
-                LabelsNamesEnum.BY_ROLE.name, 
-                LabelsNamesEnum.SEARCH_TEXT_NONE.name, 
+                LabelsNamesEnum.BY_ROLE.name,
+                LabelsNamesEnum.SEARCH_TEXT_NONE.name,
                 LabelsNamesEnum.SEARCH_TEXT_ER.name);
 
         Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
- 
-        numberOfusers =  administrationPage.getFoundUsersNumber();
-        Assert.assertEquals(columnListFromDB.size(),numberOfusers);
-        
+
+        numberOfusers = administrationPage.getFoundUsersNumber();
+        Assert.assertEquals(columnListFromDB.size(), numberOfusers);
+
         numberOfItems = administrationPage.getUsersPerPageNumber();
-        
-        if ((columnListFromDB.size() % numberOfItems) !=0) {
-            pagesNumber = ((columnListFromDB.size() - 
-                    (columnListFromDB.size() % numberOfItems)) / numberOfItems)+1;
-        }
-            else{
+
+        if ((columnListFromDB.size() % numberOfItems) != 0) {
+            pagesNumber = ((columnListFromDB.size() -
+                    (columnListFromDB.size() % numberOfItems)) / numberOfItems) + 1;
+        } else {
             pagesNumber = columnListFromDB.size() / numberOfItems;
         }
 
         newPagesCount = Integer.valueOf(administrationPage.getPagesQuantity());
-        Assert.assertEquals(pagesNumber,newPagesCount);
- 
+        Assert.assertEquals(pagesNumber, newPagesCount);
+
     }
 
 }

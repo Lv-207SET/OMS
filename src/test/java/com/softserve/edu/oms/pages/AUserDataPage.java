@@ -4,6 +4,7 @@ import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.enums.Region;
 import com.softserve.edu.oms.enums.Role;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -242,10 +243,14 @@ public abstract class AUserDataPage extends ABasePage {
     }
     
     public AUserDataPage acceptAlert() {
-        driver
-                .switchTo()
-                .alert()
-                .accept();
+        try {
+            driver
+                    .switchTo()
+                    .alert()
+                    .accept();
+        } catch (NoAlertPresentException e) {
+
+        }
         return this;
     }
 

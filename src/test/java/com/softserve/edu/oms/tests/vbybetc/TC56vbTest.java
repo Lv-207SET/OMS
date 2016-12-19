@@ -98,11 +98,6 @@ public class TC56vbTest extends TestRunner{
             CreateNewUserPage newUserPageAgain = new AdministrationPage(driver)
                     .gotoCreateNewUserPage()
                     .setLoginInput(nonExistingLogin.toUpperCase());
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         Assert.assertTrue(newUserPageAgain.getLoginErrorMessageText().contains("in use"));
 

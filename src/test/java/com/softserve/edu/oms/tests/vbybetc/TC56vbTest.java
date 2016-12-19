@@ -8,7 +8,6 @@ import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.pages.CreateNewUserPage;
 import com.softserve.edu.oms.tests.TestRunner;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.NoAlertPresentException;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -87,13 +86,8 @@ public class TC56vbTest extends TestRunner{
                 .setPasswordInput(nonExistingUser.getPassword())
                 .setConfirmPasswordInput(nonExistingUser.getPassword())
                 .setEmailInput(nonExistingUser.getEmail())
-                .clickCreateButton();
-
-            try {
-                newUserPage.acceptAlert();
-            } catch (NoAlertPresentException e) {
-
-            }
+                .clickCreateButton()
+                .acceptAlert();
 
             CreateNewUserPage newUserPageAgain = new AdministrationPage(driver)
                     .gotoCreateNewUserPage()

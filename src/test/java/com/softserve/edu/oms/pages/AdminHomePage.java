@@ -3,7 +3,8 @@ package com.softserve.edu.oms.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import static com.softserve.edu.oms.locators.UserHomePageLocators.*;
+import static com.softserve.edu.oms.locators.UserHomePageLocators.ADMINISTRATION_TAB_CSS;
+import static com.softserve.edu.oms.locators.UserHomePageLocators.ORDERING_TAB_XPATH;
 
 public class AdminHomePage extends HomePage {
 
@@ -55,6 +56,11 @@ public class AdminHomePage extends HomePage {
 	public OrderingPage gotoOrderingPage(){
 		clickOrderingTab();
 		return new OrderingPage();
+	}
+
+	public AdminHomePage waitForLoad() {
+		super.waitForLoad();
+		return this;
 	}
 
 }

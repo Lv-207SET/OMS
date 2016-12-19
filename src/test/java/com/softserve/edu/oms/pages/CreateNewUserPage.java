@@ -15,6 +15,7 @@ public class CreateNewUserPage extends AUserDataPage {
     public CreateNewUserPage setLoginInput(String login) {
         getLoginInput().clear();
         getLoginInput().sendKeys(login);
+        getFirstNameInput().sendKeys();
         return this;
     }
 

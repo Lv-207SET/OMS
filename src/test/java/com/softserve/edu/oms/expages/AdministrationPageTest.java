@@ -157,6 +157,8 @@ public class AdministrationPageTest extends TestRunner{
      *
      *<p>Note: the quantity of rows is 5 not 10 rows</p>
      *
+     * TC45
+     *
      * @author Viktoriia Bybel
      * @version 1.0
      * @since 15.12.16
@@ -175,7 +177,7 @@ public class AdministrationPageTest extends TestRunner{
         numberOfFoundUsersFromDB = dbUtils.countAllUsers();
         Assert.assertEquals(numberOfFoundUsersFromDB, numberOfFoundUsersFromPage);
 
-        List<User> usersFromPage = administrationPage.getUsersFormCurrentPage();
+        List<User> usersFromPage = administrationPage.getUsersFromCurrentPage();
 
         List<User> usersFromDB = dbUtils.getTopFiveUsers();
 

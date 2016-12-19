@@ -140,7 +140,7 @@ public class AdministrationPage extends AAdminReportPage {
 	}
 
 	public int getQuantityOfUsersPerPage (){
-		return getUsersFormCurrentPage().size();
+		return getUsersFromCurrentPage().size();
 	}
 
 

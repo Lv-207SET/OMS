@@ -8,9 +8,11 @@ import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.pages.CreateNewUserPage;
 import com.softserve.edu.oms.tests.TestRunner;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.NoAlertPresentException;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Step;
 
 /**
 
@@ -64,18 +66,21 @@ public class TC56vbTest extends TestRunner{
      */
 
     @Test(dataProvider = "nonExistingUser")
-    public void UniqueUserCreatingTest(IUser nonExistingUser)  {
+    @Step("UniqueUserCreatingTest")
+    public void UniqueUserCreatingTest(IUser nonExistingUser) {
+
 
         DBUtils dbUtils = new DBUtils();
 
         String nonExistingLogin = nonExistingUser.getLoginname();
 
-        while(dbUtils.verifyThatUserIsInDB(nonExistingLogin)) {
+        while (dbUtils.verifyThatUserIsInDB(nonExistingLogin)) {
             nonExistingLogin = RandomStringUtils.random(5, true, false).toLowerCase();
         }
 
         CreateNewUserPage newUserPage = new CreateNewUserPage(driver);
         newUserPage
+                .waitForLoad()
                 .setLoginInput(nonExistingLogin)
                 .setFirstNameInput(nonExistingUser.getFirstname())
                 .setLastNameInput(nonExistingUser.getLastname())
@@ -84,16 +89,27 @@ public class TC56vbTest extends TestRunner{
                 .setEmailInput(nonExistingUser.getEmail())
                 .clickCreateButton();
 
-        if (!(dbUtils.verifyThatUserIsInDB(nonExistingLogin))) {
+            try {
+                newUserPage.acceptAlert();
+            } catch (NoAlertPresentException e) {
+
+            }
 
             CreateNewUserPage newUserPageAgain = new AdministrationPage(driver)
-                    .gotoCreateNewUserPage().setLoginInput(nonExistingLogin.toUpperCase());
+                    .gotoCreateNewUserPage()
+                    .setLoginInput(nonExistingLogin.toUpperCase());
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-            Assert.assertTrue(newUserPageAgain.getLoginErrorMessageText().contains("already in use"));
+        Assert.assertTrue(newUserPageAgain.getLoginErrorMessageText().contains("in use"));
 
             dbUtils.deleteUsersFromDB(SQLQueries.DELETE_USER_BY_LOGIN.getQuery(),
                     nonExistingUser.getLoginname());
-        }
+
     }
+
 
 }

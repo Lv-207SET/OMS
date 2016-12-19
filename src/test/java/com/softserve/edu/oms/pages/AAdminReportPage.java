@@ -143,6 +143,7 @@ public abstract class AAdminReportPage extends ABasePage {
         return getFieldFilterLabel().getText();
     }
 
+
     public String getSelectFieldDefaultValue() {
         return getSelectField().getFirstSelectedOption().getText();
     }
@@ -431,7 +432,7 @@ public abstract class AAdminReportPage extends ABasePage {
     }
 
     //    Get list of users from current page
-    public List<User> getUsersFormCurrentPage() {
+    public List<User> getUsersFromCurrentPage() {
         final List<User> userListFormCurrentPage = new ArrayList<>();
         final WebElement table = getTableBody();
         final List<WebElement> webElements = table.findElements(TR_TAGNAME.by);
@@ -452,12 +453,12 @@ public abstract class AAdminReportPage extends ABasePage {
     public List<User> getAllUsers() {
         clickFirstButton();
         final List<User> usersOnAllPages = new ArrayList<>();
-        List<User> usersFromCurrentPage = this.getUsersFormCurrentPage();
+        List<User> usersFromCurrentPage = this.getUsersFromCurrentPage();
         while (usersFromCurrentPage != null) {
             usersOnAllPages.addAll(usersFromCurrentPage);
             if (isForwardButtonEnabled()) {
                 clickForwardButton();
-                usersFromCurrentPage = this.getUsersFormCurrentPage();
+                usersFromCurrentPage = this.getUsersFromCurrentPage();
             } else {
                 break;
             }

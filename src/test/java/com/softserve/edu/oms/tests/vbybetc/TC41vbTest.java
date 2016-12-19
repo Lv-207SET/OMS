@@ -7,6 +7,7 @@ import com.softserve.edu.oms.tests.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Step;
 
 
 public class TC41vbTest extends TestRunner {
@@ -29,16 +30,28 @@ public class TC41vbTest extends TestRunner {
      */
 
     @Test(dataProvider = "admUser")
+    @Step("TabSwitchingTest")
     public void TabSwitchingTest(IUser admUser) {
 
         AdminHomePage adminHomePage = loginPage.successAdminLogin(admUser);
-        Assert.assertTrue(adminHomePage.getUserInfoTab().isEnabled());
-        Assert.assertTrue(adminHomePage.getAdministrationTab().isDisplayed());
+        Assert.assertTrue(adminHomePage
+                .waitForLoad()
+                .getUserInfoTab()
+                .isEnabled());
+        Assert.assertTrue(adminHomePage
+                .waitForLoad()
+                .getAdministrationTab()
+                .isDisplayed());
 
-        adminHomePage.clickAdministrationTab();
+        adminHomePage
+                .gotoAdministrationPage()
+                .waitForLoad();
         Assert.assertTrue((driver.getCurrentUrl()).contains("users.htm"));
 
-        adminHomePage.clickUserInfoTab();
+        adminHomePage
+                .waitForLoad()
+                .clickUserInfoTab();
+
         Assert.assertTrue((driver.getCurrentUrl()).contains("userInfo.htm"));
     }
 }

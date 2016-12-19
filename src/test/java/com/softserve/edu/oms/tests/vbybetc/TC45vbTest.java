@@ -9,6 +9,7 @@ import com.softserve.edu.oms.tests.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
@@ -33,25 +34,33 @@ public class TC45vbTest extends TestRunner{
      *
      *<p>Note: the quantity of rows is 5 not 10 rows</p>
      *
+     * TC45
+     *
      * @author Viktoriia Bybel
      * @version 1.0
      * @since 15.12.16
      * @param admUser
      */
     @Test(dataProvider = "admUser")
+    @Step("CorrectUserDisplayingTest")
     public void CorrectUserDisplayingTest(IUser admUser) {
         int numberOfFoundUsersFromDB;
 
-        AdministrationPage administrationPage = loginPage.successAdminLogin(admUser)
-                .clickAdministrationTab();
+        AdministrationPage administrationPage = loginPage
+                .successAdminLogin(admUser)
+                .gotoAdministrationPage();
 
-        int numberOfFoundUsersFromPage = administrationPage.getFoundUsersNumber();
+        int numberOfFoundUsersFromPage = administrationPage
+                .waitForLoad()
+                .getFoundUsersNumber();
 
         DBUtils dbUtils = new DBUtils();
         numberOfFoundUsersFromDB = dbUtils.countAllUsers();
         Assert.assertEquals(numberOfFoundUsersFromDB, numberOfFoundUsersFromPage);
 
-        List<User> usersFromPage = administrationPage.getUsersFormCurrentPage();
+        List<User> usersFromPage = administrationPage
+                .waitForLoad()
+                .getUsersFromCurrentPage();
 
         List<User> usersFromDB = dbUtils.getTopFiveUsers();
 

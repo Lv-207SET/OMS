@@ -31,7 +31,7 @@
 		<!-- - - - - - Utils - - - - - -->
 		<org.apache.poi.version>3.13</org.apache.poi.version>
 		<xerces.xercesImpl.version>2.11.0</xerces.xercesImpl.version>
-		<allure.version>1.4.16</allure.version>
+		<allure.version>1.5.0</allure.version>
         <aspectj.version>1.8.5</aspectj.version>
         <xmlrun>testng.xml</xmlrun>
 	</properties>
@@ -96,13 +96,20 @@
                 </exclusion>
             </exclusions>
         </dependency>
-  <!--      
-        <dependency>
-            <groupId>com.github.detro.ghostdriver</groupId>
-            <artifactId>phantomjsdriver</artifactId>
-            <version>1.0.4</version>
-        </dependency>
- -->
+
+		<dependency>
+			<groupId>ru.yandex.qatools.allure</groupId>
+			<artifactId>allure-maven-plugin</artifactId>
+			<version>2.5</version>
+		</dependency>
+
+		<!--
+              <dependency>
+                  <groupId>com.github.detro.ghostdriver</groupId>
+                  <artifactId>phantomjsdriver</artifactId>
+                  <version>1.0.4</version>
+              </dependency>
+       -->
 	</dependencies>
 
 	<build>
@@ -162,16 +169,16 @@
 			
 			<!--Needed only to show reports locally. Run jetty:run and
             open localhost:8080 to show the report-->
-            <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.2.10.v20150310</version>
-                <configuration>
-                    <webAppSourceDirectory>${project.build.directory}/site/allure-maven-plugin</webAppSourceDirectory>
-                    <stopKey>stop</stopKey>
-                    <stopPort>1234</stopPort>
-                </configuration>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.eclipse.jetty</groupId>-->
+                <!--<artifactId>jetty-maven-plugin</artifactId>-->
+                <!--<version>9.2.10.v20150310</version>-->
+                <!--<configuration>-->
+                    <!--<webAppSourceDirectory>${project.build.directory}/site/allure-maven-plugin</webAppSourceDirectory>-->
+                    <!--<stopKey>stop</stopKey>-->
+                    <!--<stopPort>1234</stopPort>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
 		</plugins>
 	</build>
 	<reporting>
@@ -180,8 +187,11 @@
             <plugin>
                 <groupId>ru.yandex.qatools.allure</groupId>
                 <artifactId>allure-maven-plugin</artifactId>
-                <version>2.2</version>
+                <version>2.5</version>
             </plugin>
+
         </plugins>
     </reporting>
-</project>
+
+
+		</project>

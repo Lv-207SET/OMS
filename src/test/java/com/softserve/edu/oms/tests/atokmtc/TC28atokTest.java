@@ -6,6 +6,7 @@ import com.softserve.edu.oms.tests.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Step;
 
 public class TC28atokTest extends TestRunner {
 
@@ -34,6 +35,7 @@ public class TC28atokTest extends TestRunner {
         };
     }
     @Test(dataProvider = "admUser")
+    @Step
     public void assertAdministratorLogin(IUser admUser) {
         Assert.assertEquals(loginPage.logout()
                 .successAdminLogin(admUser)
@@ -42,6 +44,7 @@ public class TC28atokTest extends TestRunner {
     }
 
     @Test(dataProvider = "customerUser")
+    @Step("Check if user with customer type logs in successfully")
     public void assertCustomerLogin(IUser customerUser) {
         Assert.assertEquals(loginPage.logout()
                 .succesCustomerLogin(customerUser)
@@ -50,6 +53,7 @@ public class TC28atokTest extends TestRunner {
     }
 
     @Test(dataProvider = "merchandiserUser")
+    @Step
     public void assertMerchandiserLogin(IUser merchandiserUser) {
         Assert.assertEquals(loginPage.logout()
                 .succesMerchandiserLogin(merchandiserUser)
@@ -58,6 +62,7 @@ public class TC28atokTest extends TestRunner {
     }
 
     @Test(dataProvider = "supervisorUser")
+    @Step
     public void assertSupervisorLogin(IUser supervisorUser) {
         Assert.assertEquals(loginPage.logout()
                 .succesSupervisorLogin(supervisorUser)

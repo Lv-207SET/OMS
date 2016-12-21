@@ -18,7 +18,8 @@ public class TestRunner {
 
         System.out.println("before");
         final String driverPath = "src/test/resources/drivers/";
-        final String loginPageUrl= "http://localhost:8080/OMS/login.htm";
+        final String loginPageUrl= zchytaty_z_excelya.loginPageUrl;
+       // final String loginPageUrl= "http://localhost:8080/OMS/login.htm";
         System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver.exe");
 
         driver = new ChromeDriver();

@@ -1,4 +1,4 @@
-package com.softserve.edu.oms.tests.atokmtc;
+package com.softserve.edu.oms.tests.administration;
 
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.UserRepository;
@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import static com.softserve.edu.oms.enums.SQLQueries.*;
 
 
-public class TC46atokTEST extends TestRunner {
+public class SortByIDFirstNameLastNameTest extends TestRunner {
 
     @DataProvider
     public Object[][] admUser() {

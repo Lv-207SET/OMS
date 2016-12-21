@@ -3,7 +3,7 @@
 <suite name="Suite" preserve-order="true">
 	<test name = "LoginAsEveryUserTypeTest" preserve-order="true">
 		<classes>
-			<class name="com.softserve.edu.oms.tests.atokmtc.TC28atokTest">
+			<class name="com.softserve.edu.oms.tests.login.LoginAsEveryUserTypeTest">
 				<methods>
 					<include name="assertAdministratorLogin" />
 					<include name="assertCustomerLogin" />
@@ -15,7 +15,7 @@
 	</test>
 	<test name="SortTest" preserve-order="true">
 		<classes>
-			<class name="com.softserve.edu.oms.tests.atokmtc.TC46atokTEST" >
+			<class name="com.softserve.edu.oms.tests.administration.SortByIDFirstNameLastNameTest" >
 				<methods>
 					<include name="assertSortById" />
 					<include name="assertSortByFirstNameASC" />
@@ -28,7 +28,7 @@
 	</test>
 	<test name = "CreateAndDeleteNewUserTest" preserve-order="true">
 		<classes>
-			<class name="com.softserve.edu.oms.tests.atokmtc.TC50atokTest">
+			<class name="com.softserve.edu.oms.tests.createuser.CreateNewUserTest">
 				<methods>
 					<include name="assertNonExistence" />
 					<include name="createNewUser" />

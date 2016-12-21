@@ -18,7 +18,7 @@ public enum SQLQueries {
     GET_LASTNAME_LIKE("SELECT LastName FROM Users WHERE IsUserActive=1 AND LastName LIKE "),
     GET_LOGIN_LIKE("SELECT Login FROM Users WHERE IsUserActive=1 AND Login LIKE "),
     GET_ROLE_NOT_LIKE("SELECT r.RoleName FROM Users as u JOIN Roles as r on u.RoleRef=r.ID WHERE u.IsUserActive=1 AND r.RoleName not like "),
-    COUNT_ALL_USERS("SELECT count (*) FROM Users WHERE IsUserActive=1"),
+    COUNT_ALL_USERS("SELECT COUNT(*) FROM Users WHERE IsUserActive=1"),
     DELETE_USER_BY_LOGIN("DELETE FROM Users WHERE Users.Login="),
     DELETE_USERS_BY_FIRSTNAME("DELETE FROM Users WHERE FirstName="),
     SORT_USERS_BY_ID_ASC("SELECT * FROM Users WHERE IsUserActive=1 ORDER BY ID"),

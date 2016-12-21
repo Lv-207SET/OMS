@@ -6,6 +6,14 @@ import org.openqa.selenium.WebElement;
 import static com.softserve.edu.oms.locators.UserHomePageLocators.ADMINISTRATION_TAB_CSS;
 import static com.softserve.edu.oms.locators.UserHomePageLocators.ORDERING_TAB_XPATH;
 
+/**
+ * PageObject class that represents AdminHome page.
+ *
+ * @version 1.0
+ * @since 16.12.16
+ * @author Anastasiia Maidanska
+ *
+ */
 public class AdminHomePage extends HomePage {
 
 	public AdminHomePage(WebDriver driver) {

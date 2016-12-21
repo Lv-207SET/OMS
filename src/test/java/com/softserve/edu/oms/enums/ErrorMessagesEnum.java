@@ -21,8 +21,10 @@ public enum ErrorMessagesEnum {
     EXPECTED_ERROR_MESSAGE_FOR_lOGIN_TC51("Login name is too long"),
     EXPECTED_ERROR_MESSAGE_FOR_FIRST_NAME_TC51("First name is too long"),
     EXPECTED_ERROR_MESSAGE_FOR_LAST_NAME_TC51("Last name is too long"),
-    EXPECTED_ERROR_MESSAGE_FOR_PASSWORD_TC51 ("Password cannot be shorter than 4 and longer than 10 characters");
+    EXPECTED_ERROR_MESSAGE_FOR_PASSWORD_TC51 ("Password cannot be shorter than 4 and longer than 10 characters"),
 
+    //    Expected results for test case 56
+    EXPECTED_ERROR_MESSAGE_FOR_lOGIN_TC56("already in use");
     public final String message;
 
     ErrorMessagesEnum (final String message){

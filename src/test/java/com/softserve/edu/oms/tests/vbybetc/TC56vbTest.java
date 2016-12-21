@@ -1,6 +1,6 @@
-package com.softserve.edu.oms.tests.vbybetc;
+    package com.softserve.edu.oms.tests.vbybetc;
 
-import com.softserve.edu.oms.data.DBUtils;
+    import com.softserve.edu.oms.data.DBUtils;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.UserRepository;
 import com.softserve.edu.oms.enums.SQLQueries;
@@ -13,36 +13,15 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Step;
 
-/**
-
- */
-public class TC56vbTest extends TestRunner{
+    public class TC56vbTest extends TestRunner{
 
     @DataProvider
-    public Object[][] admUser() {
+    public Object[][] admAndNonExistingUser() {
         return new Object[][] {
-                { UserRepository.get().adminUser() }
+                { UserRepository.get().adminUser(), UserRepository.get().nonExistingUser() }
         };
     }
 
-    @DataProvider
-    public Object[][] nonExistingUser() {
-        return new Object[][] {
-                { UserRepository.get().nonExistingUser() }
-        };
-    }
-
-    /**
-     * just for login
-     * @param admUser
-     */
-    @Test(dataProvider = "admUser")
-    public void PreconditionTest(IUser admUser) {
-
-        CreateNewUserPage adminHomePage = loginPage.successAdminLogin(admUser)
-                .clickAdministrationTab()
-                .gotoCreateNewUserPage();
-    }
     /**
      * <h1>Verify that Login field is case insensitive</h1>
      * This test goes to Create New User Page,
@@ -64,19 +43,23 @@ public class TC56vbTest extends TestRunner{
      * @see UserRepository
      */
 
-    @Test(dataProvider = "nonExistingUser")
+    @Test(dataProvider = "admAndNonExistingUser")
     @Step("UniqueUserCreatingTest")
-    public void UniqueUserCreatingTest(IUser nonExistingUser) {
+    public void UniqueUserCreatingTest(IUser admUser, IUser nonExistingUser) {
 
+        //login and go to addUser.html
+        CreateNewUserPage adminHomePage = loginPage.successAdminLogin(admUser)
+                .clickAdministrationTab()
+                .gotoCreateNewUserPage();
 
+        //verifying that user do not exist or generating a new one
         DBUtils dbUtils = new DBUtils();
-
         String nonExistingLogin = nonExistingUser.getLoginname();
-
         while (dbUtils.verifyThatUserIsInDB(nonExistingLogin)) {
             nonExistingLogin = RandomStringUtils.random(5, true, false).toLowerCase();
         }
 
+        //set up a form and creating a new user
         CreateNewUserPage newUserPage = new CreateNewUserPage(driver);
         newUserPage
                 .waitForLoad()
@@ -89,16 +72,23 @@ public class TC56vbTest extends TestRunner{
                 .clickCreateButton()
                 .acceptAlert();
 
-            CreateNewUserPage newUserPageAgain = new AdministrationPage(driver)
-                    .gotoCreateNewUserPage()
-                    .setLoginInput(nonExistingLogin.toUpperCase());
+        //entering the data to verify that error message will appear
+        CreateNewUserPage newUserPageAgain = new AdministrationPage(driver)
+                .gotoCreateNewUserPage()
+                .setLoginInput(nonExistingLogin.toUpperCase())
+                .setFirstNameInput(nonExistingUser.getFirstname())
+                .setLastNameInput(nonExistingUser.getLastname())
+                .setPasswordInput(nonExistingUser.getPassword())
+                .setConfirmPasswordInput(nonExistingUser.getPassword())
+                .setEmailInput(nonExistingUser.getEmail());
 
-        Assert.assertTrue(newUserPageAgain.getLoginErrorMessageText().contains("in use"));
+        Assert.assertTrue(newUserPageAgain.getLoginError());
 
-            dbUtils.deleteUsersFromDB(SQLQueries.DELETE_USER_BY_LOGIN.getQuery(),
-                    nonExistingUser.getLoginname());
+        //delete created user from DB
+        dbUtils.deleteUsersFromDB(SQLQueries.DELETE_USER_BY_LOGIN.getQuery(),
+                nonExistingUser.getLoginname());
 
     }
 
 
-}
+    }

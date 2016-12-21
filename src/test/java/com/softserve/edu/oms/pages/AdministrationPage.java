@@ -6,6 +6,7 @@ import com.softserve.edu.oms.enums.SortingOrder;
 import com.softserve.edu.oms.enums.UsersPerPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.NoSuchElementException;
 
@@ -139,6 +140,7 @@ public class AdministrationPage extends AAdminReportPage {
 		return new EditUserPage(driver);
 	}
 
+    @Step("getQuantityOfUsersPerPage")
 	public int getQuantityOfUsersPerPage (){
 		return getUsersFromCurrentPage().size();
 	}

@@ -18,9 +18,13 @@ import java.util.List;
  * 
  */
 public class  DBUtils implements IExternalData {
- 	private String username = "db207";
-	private String password = "db207";
-	private String url = "jdbc:jtds:sqlserver://127.0.0.1/Lv207OMS;instance=SQLEXPRESS;";
+	private String username = System.getenv("db_username");
+	private String password = System.getenv("db_password");
+	private String url = System.getenv("db_url");
+
+// 	private String username = "db207";
+//	private String password = "db207";
+//	private String url = "jdbc:jtds:sqlserver://127.0.0.1/Lv207OMS;instance=SQLEXPRESS;";
 	
 	
 	/** Method, which creates connection with Database.
@@ -28,7 +32,8 @@ public class  DBUtils implements IExternalData {
 	private Connection createConnection(){
         Connection con;
         try {
-            DriverManager.registerDriver(new net.sourceforge.jtds.jdbc.Driver());
+			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            //DriverManager.registerDriver(new net.sourceforge.jtds.jdbc.Driver());
             con = DriverManager.getConnection(url, username, password);
         } catch (Exception e) {
             throw new RuntimeException(ErrorMessagesEnum.SQL_EXCEPTION_MESSAGE.message, e);

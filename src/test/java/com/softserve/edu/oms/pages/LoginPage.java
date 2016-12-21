@@ -7,37 +7,43 @@ import com.softserve.edu.oms.data.IUser;
 
 import static com.softserve.edu.oms.locators.LoginPageLocators.*;
 
+/**
+ * PageObject class that represents Login page.
+ *
+ * @version 1.0
+ * @since 16.12.16
+ * @author Anastasiia Maidanska
+ *
+ */
 public class LoginPage extends ABasePage{
 
+	/** Class constructor */
 	public LoginPage(WebDriver driver) {
 		super(driver);
 	}
 
-    // PageObject
-
-	// get Data
-
-	public WebElement getLoginnameInput() {
+	/** Getters */
+	private WebElement getLoginnameInput() {
 		return this.driver.findElement(LOGIN_INPUT_FIELD.by);
 	}
 
-	public WebElement getPasswordInput() {
+	private WebElement getPasswordInput() {
 		return this.driver.findElement(PASSWORD_INPUT_FIELD.by);
 	}
 
-	public WebElement getSubmitButton() {
+	private WebElement getSubmitButton() {
 		return this.driver.findElement(LOGIN_BUTTON.by);
 	}
 
-	public WebElement getResetButton() {
+	private WebElement getResetButton() {
 		return this.driver.findElement(RESET_BUTTON.by);
 	}
 
-	public WebElement getRememberMeCheckbox() {
+	private WebElement getRememberMeCheckbox() {
 		return this.driver.findElement(REMEMBER_ME_CHECKBOX.by);
 	}
 
-	public WebElement getBadCredentialsErrorMessage() {
+	private WebElement getBadCredentialsErrorMessage() {
 		return driver.findElement(BAD_CREDENTIALS_ERROR_MESSAGE_CSS.by);
 	}
 
@@ -67,13 +73,13 @@ public class LoginPage extends ABasePage{
 	public String getBadCredentialsErrorMessageText() {
 		return this.getBadCredentialsErrorMessage().getText();
 	}
-	// set Data
 
+	/** Setters */
 	public void setLoginnameInput(String login) {
 		getLoginnameInput().sendKeys(login);
 	}
 
-	public void setLoginnameInputClear(String login) {
+	private void setLoginnameInputClear(String login) {
 		clearLoginnameInput();
 		setLoginnameInput(login);
 	}
@@ -82,16 +88,16 @@ public class LoginPage extends ABasePage{
 		getPasswordInput().sendKeys(password);
 	}
 
-	public void setPasswordInputClear(String password) {
+	private void setPasswordInputClear(String password) {
 		clearPasswordInput();
 		setPasswordInput(password);
 	}
 
-	public void clearLoginnameInput() {
+	private void clearLoginnameInput() {
 		getLoginnameInput().clear();
 	}
 
-	public void clearPasswordInput() {
+	private void clearPasswordInput() {
 		getPasswordInput().clear();
 	}
 
@@ -107,7 +113,7 @@ public class LoginPage extends ABasePage{
 		getSubmitButton().click();
 	}
 
-	public void clickResetButton() {
+	private void clickResetButton() {
 		getResetButton().click();
 	}
 

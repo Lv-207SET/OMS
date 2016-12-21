@@ -7,6 +7,7 @@ import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.tests.TestRunner;
 import org.hamcrest.CoreMatchers;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.softserve.edu.oms.enums.LabelsNamesEnum.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -14,8 +15,9 @@ import static org.testng.Assert.assertTrue;
 
 public class PaginationTest extends TestRunner{
 
-
+    /** Verify that correct number of records displays in a table on 'Administration' tab */
     @Test
+    @Step
     public void paginationTest() {
         IUser admin = UserRepository.get().adminUser();
         AdministrationPage administrationPage = loginPage
@@ -24,7 +26,9 @@ public class PaginationTest extends TestRunner{
 
         assertThat(administrationPage.getQuantityOfUsersPerPage() ,
                 CoreMatchers.equalTo(UsersPerPage.FIVE.getResultsPerPage()));
+
         assertTrue(administrationPage.showItemsLinkIsDisplayed());
+
         assertThat(administrationPage.getShowItemsLinkText(),
                 CoreMatchers.equalTo(SHOW_10_ITEMS_LINK.name));
 

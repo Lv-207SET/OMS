@@ -11,6 +11,7 @@ import com.softserve.edu.oms.tests.TestRunner;
 import org.hamcrest.CoreMatchers;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.softserve.edu.oms.enums.ErrorMessagesEnum.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -24,16 +25,18 @@ public class CreateInvalidNewUserTest extends TestRunner {
 			};
 	}
 
+	/** This test verifies that error messages are shown
+     * when we creating new user with digits in last and first name */
     @Test(dataProvider = "invalidUsers")
+    @Step()
     public void createInvalidNewUserTest (User user){
         IUser admin = UserRepository.get().adminUser();
 
-        AdministrationPage administrationPage = loginPage
+        CreateNewUserPage createNewUserPage = loginPage
                 .successAdminLogin(admin)
-                .gotoAdministrationPage();
-        CreateNewUserPage createNewUserPage =
-                administrationPage.gotoCreateNewUserPage();
-        createNewUserPage.setLoginData(user);
+                .gotoAdministrationPage()
+                .gotoCreateNewUserPage()
+                .setLoginData(user);
 
         assertThat(createNewUserPage.getFirstNameErrorMessageText(),
                 CoreMatchers.equalTo(FIRST_NAME_ERROR_MESSAGE.message));

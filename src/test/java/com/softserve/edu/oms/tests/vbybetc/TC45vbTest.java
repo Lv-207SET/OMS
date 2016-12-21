@@ -44,26 +44,33 @@ public class TC45vbTest extends TestRunner{
     @Test(dataProvider = "admUser")
     @Step("CorrectUserDisplayingTest")
     public void CorrectUserDisplayingTest(IUser admUser) {
-        int numberOfFoundUsersFromDB;
 
+        //log in and go to users.html
         AdministrationPage administrationPage = loginPage
                 .successAdminLogin(admUser)
                 .gotoAdministrationPage();
 
+        //read a number of found users from page
         int numberOfFoundUsersFromPage = administrationPage
                 .waitForLoad()
                 .getFoundUsersNumber();
 
+        //read a number of found users from DB
         DBUtils dbUtils = new DBUtils();
-        numberOfFoundUsersFromDB = dbUtils.countAllUsers();
+        int numberOfFoundUsersFromDB = dbUtils.countAllUsers();
+
+        //verify that they are equal
         Assert.assertEquals(numberOfFoundUsersFromDB, numberOfFoundUsersFromPage);
 
+        //read all users data displayed on page
         List<User> usersFromPage = administrationPage
                 .waitForLoad()
                 .getUsersFromCurrentPage();
 
+        //read top 5 users from DB
         List<User> usersFromDB = dbUtils.getTopFiveUsers();
 
+        //verify that they are the same
         for(int i = 0; i<usersFromPage.size();i++){
             Assert.assertTrue(usersFromDB.get(i).CompareTo(usersFromPage.get(i)));
         }

@@ -1,4 +1,4 @@
-package com.softserve.edu.oms.tests.atokmtc;
+package com.softserve.edu.oms.tests.login;
 
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.UserRepository;
@@ -8,7 +8,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class TC28atokTest extends TestRunner {
+public class LoginAsEveryUserTypeTest extends TestRunner {
 
     @DataProvider
     public Object[][] admUser() {

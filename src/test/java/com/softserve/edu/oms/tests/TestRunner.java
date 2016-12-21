@@ -18,7 +18,7 @@ public class TestRunner {
 
         System.out.println("before");
         final String driverPath = "src/test/resources/drivers/";
-        final String loginPageUrl= zchytaty_z_excelya.loginPageUrl;
+        final String loginPageUrl= System.getenv("oms_loginPageUrl");
        // final String loginPageUrl= "http://localhost:8080/OMS/login.htm";
         System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver.exe");
 
@@ -31,6 +31,7 @@ public class TestRunner {
                 .manage()
                 .window()
                 .maximize();
+
 
         driver.get(loginPageUrl);
         loginPage = new LoginPage(driver);

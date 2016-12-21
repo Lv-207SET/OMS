@@ -18,9 +18,9 @@ import java.util.List;
  * 
  */
 public class  DBUtils implements IExternalData {
-	private String username = zchytaty_z_excelya.username;
-	private String password = zchytaty_z_excelya.password;
-	private String url = zchytaty_z_excelya.url;
+	private String username = System.getenv("db_username");
+	private String password = System.getenv("db_password");
+	private String url = System.getenv("db_url");
 
 // 	private String username = "db207";
 //	private String password = "db207";

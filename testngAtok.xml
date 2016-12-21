@@ -13,30 +13,30 @@
 			</class>
 		</classes>
 	</test>
-	<!--<test name="SortTest" preserve-order="true">-->
-		<!--<classes>-->
-			<!--<class name="com.softserve.edu.oms.tests.atokmtc.TC46atokTEST" >-->
-				<!--<methods>-->
-					<!--<include name="assertSortById" />-->
-					<!--<include name="assertSortByFirstNameASC" />-->
-					<!--<include name="assertSortByFirstNameDESC" />-->
-					<!--<include name="assertSortByLastNameASC" />-->
-					<!--<include name="assertSortByLastNameDESC" />-->
-				<!--</methods>-->
-			<!--</class>-->
-		<!--</classes>-->
-	<!--</test>-->
-	<!--<test name = "CreateAndDeleteNewUserTest" preserve-order="true">-->
-		<!--<classes>-->
-			<!--<class name="com.softserve.edu.oms.tests.atokmtc.TC50atokTest">-->
-				<!--<methods>-->
-					<!--<include name="assertNonExistence" />-->
-					<!--<include name="createNewUser" />-->
-					<!--<include name="deleteUser" />-->
-				<!--</methods>-->
-			<!--</class>-->
-		<!--</classes>-->
-	<!--</test>-->
+	<test name="SortTest" preserve-order="true">
+		<classes>
+			<class name="com.softserve.edu.oms.tests.atokmtc.TC46atokTEST" >
+				<methods>
+					<include name="assertSortById" />
+					<include name="assertSortByFirstNameASC" />
+					<include name="assertSortByFirstNameDESC" />
+					<include name="assertSortByLastNameASC" />
+					<include name="assertSortByLastNameDESC" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name = "CreateAndDeleteNewUserTest" preserve-order="true">
+		<classes>
+			<class name="com.softserve.edu.oms.tests.atokmtc.TC50atokTest">
+				<methods>
+					<include name="assertNonExistence" />
+					<include name="createNewUser" />
+					<include name="deleteUser" />
+				</methods>
+			</class>
+		</classes>
+	</test>
 
 	<!-- Test -->
 	<!-- - - - - - - - - - -->

@@ -27,7 +27,6 @@ public enum SQLQueries {
     SORT_USERS_BY_LASTNAME_ASC("SELECT * FROM Users WHERE IsUserActive=1 ORDER BY LastName ASC"),
     SORT_USERS_BY_LASTNAME_DESC("SELECT * FROM Users WHERE IsUserActive=1 ORDER BY LastName DESC");
 
-
     private String query;
     public String getQuery() { return query;}
     SQLQueries(String query) { this.query = query; }

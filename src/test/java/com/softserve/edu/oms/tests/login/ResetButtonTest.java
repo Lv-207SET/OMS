@@ -6,6 +6,7 @@ import com.softserve.edu.oms.tests.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Step;
 
 /**
  * This test verifies that entered user credentials values
@@ -38,6 +39,7 @@ public class ResetButtonTest extends TestRunner{
      * @param someUser {@link com.softserve.edu.oms.data.UserRepository}
      */
     @Test(dataProvider = "someUser")
+    @Step("verifyResetButtonFunctionality")
     public void verifyResetButtonFunctionality(IUser someUser) {
 
         loginPage.setLoginDataAndReset(someUser);

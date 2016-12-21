@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Step;
 
 /**
  * This test verifies that Administrator can navigate
@@ -46,8 +47,8 @@ public class NavigationButtonsTest extends TestRunner {
      * rounded to the bigger integer
      */
     @Test
+    @Step("verifyNavigationButtons")
     public void verifyNavigationButtons() {
-
         // determine the count of pages depending on count os users per page
         int numberUsersOnPage = administrationPage.getQuantityOfUsersPerPage();
         int numberOfFoundUsers = administrationPage.getFoundUsersNumber();

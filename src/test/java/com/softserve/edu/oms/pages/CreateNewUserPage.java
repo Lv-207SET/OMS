@@ -4,6 +4,7 @@ import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.enums.Region;
 import com.softserve.edu.oms.enums.Role;
 import org.openqa.selenium.WebDriver;
+import ru.yandex.qatools.allure.annotations.Step;
 
 public class CreateNewUserPage extends AUserDataPage {
 
@@ -12,6 +13,7 @@ public class CreateNewUserPage extends AUserDataPage {
     }
 
     //set data
+    @Step("setLoginInput")
     public CreateNewUserPage setLoginInput(String login) {
         getLoginInput().clear();
         getLoginInput().sendKeys(login);
@@ -19,26 +21,31 @@ public class CreateNewUserPage extends AUserDataPage {
         return this;
     }
 
+    @Step("setFirstNameInput")
     public CreateNewUserPage setFirstNameInput(String firstName) {
         super.setFirstNameInput(firstName);
         return this;
     }
 
+    @Step("setLastNameInput")
     public CreateNewUserPage setLastNameInput(String lastName) {
         super.setLastNameInput(lastName);
         return this;
     }
 
+    @Step("setPasswordInput")
     public CreateNewUserPage setPasswordInput(String password) {
         super.setPasswordInput(password);
         return this;
     }
 
+    @Step("setConfirmPasswordInput")
     public CreateNewUserPage setConfirmPasswordInput(String confirmPassword) {
         super.setConfirmPasswordInput(confirmPassword);
         return this;
     }
 
+    @Step("setEmailInput")
     public CreateNewUserPage setEmailInput(String email) {
         super.setEmailInput(email);
         return this;
@@ -84,6 +91,7 @@ public class CreateNewUserPage extends AUserDataPage {
         return this;
     }
 
+    @Step("clickCreateButton")
     public CreateNewUserPage clickCreateButton() {
         super.clickCreateButton();
         return this;

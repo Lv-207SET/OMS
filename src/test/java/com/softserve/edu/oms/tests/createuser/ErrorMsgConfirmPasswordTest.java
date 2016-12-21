@@ -13,6 +13,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.softserve.edu.oms.enums.ErrorMessagesEnum.CONFIRM_PASSWORD_ERROR_MESSAGE;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -66,6 +67,7 @@ public class ErrorMsgConfirmPasswordTest extends TestRunner{
      * @param newUser {@link com.softserve.edu.oms.data.UserRepository}
      */
     @Test(dataProvider = "badMemoryUser")
+    @Step("verifyErrorMsgUserWithNotConfirmedPassword")
     public void verifyErrorMsgUserWithNotConfirmedPassword(IUser newUser) {
 
         dbUtils = new DBUtils();

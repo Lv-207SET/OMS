@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.oms.data.IUser;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.softserve.edu.oms.locators.LoginPageLocators.*;
 
@@ -48,11 +49,13 @@ public class LoginPage extends ABasePage{
 	}
 
 	// Functional
-	
+
+	@Step("getLoginnameInputText")
 	public String getLoginnameInputText() {
 		return getLoginnameInput().getText();
 	}
 
+	@Step("getPasswordInputText")
 	public String getPasswordInputText() {
 		return getPasswordInput().getText();
 	}
@@ -129,6 +132,7 @@ public class LoginPage extends ABasePage{
 		clickSubmitButton();
 	}
 
+	@Step("setLoginDataAndReset")
 	public void setLoginDataAndReset(IUser user) {
 		setLoginnameInputClear(user.getLoginname());
 		setPasswordInputClear(user.getPassword());

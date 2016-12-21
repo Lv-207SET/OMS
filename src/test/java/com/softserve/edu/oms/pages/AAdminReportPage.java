@@ -8,6 +8,7 @@ import com.softserve.edu.oms.enums.UsersPerPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -214,15 +215,18 @@ public abstract class AAdminReportPage extends ABasePage {
     public String getUserByLoginText() {
         return getUserByLogin().getText();
     }
- 
+
+    @Step("getFoundUsersNumber")
     public int getFoundUsersNumber() {
        return Integer.parseInt(getUsersFoundText());
     }
 
+    @Step("getPagesQuantity")
     public int getPagesQuantity() {
         return Integer.parseInt(getPageCountSpanText());
     }
 
+    @Step("getCurrentPageNumber")
     public int  getCurrentPageNumber() {
         return Integer.parseInt(getPageNumberSpanText());
     }
@@ -238,18 +242,22 @@ public abstract class AAdminReportPage extends ABasePage {
     }
 
     // Check if navigation buttons is enabled
+    @Step("isForwardButtonEnabled")
     public boolean isForwardButtonEnabled() {
         return getForwardButton().isEnabled();
     }
 
+    @Step("isLastButtonEnabled")
     public boolean isLastButtonEnabled() {
         return getLastButton().isEnabled();
     }
 
+    @Step("isBackwardButtonEnabled")
     public boolean isBackwardButtonEnabled() {
         return getBackwardButton().isEnabled();
     }
 
+    @Step("isFirstButtonEnabled")
     public boolean isFirstButtonEnabled() {
         return getFirstButton().isEnabled();
     }
@@ -279,10 +287,13 @@ public abstract class AAdminReportPage extends ABasePage {
 
     public void clickFirstButton() { getFirstButton().click(); }
 
+    @Step("clickBackwardButton")
     public void clickBackwardButton() { getBackwardButton().click(); }
 
+    @Step("clickForwardButton")
     public void clickForwardButton() { getForwardButton().click(); }
 
+    @Step("clickLastButton")
     public void clickLastButton() { getLastButton().click(); }
 
     public void clickShowItemsLink() { getShowItemsLink().click(); }

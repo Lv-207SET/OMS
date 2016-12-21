@@ -128,6 +128,10 @@ public abstract class AUserDataPage extends ABasePage {
         return getLoginErrorMessage().getText();
     }
 
+    public Boolean getLoginError() {
+        return getLoginErrorMessage().isDisplayed();
+    }
+
     public String getFirstNameErrorMessageText() {
         return getFirstNameErrorMessage().getText();
     }

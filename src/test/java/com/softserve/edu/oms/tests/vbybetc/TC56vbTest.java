@@ -1,19 +1,17 @@
     package com.softserve.edu.oms.tests.vbybetc;
 
     import com.softserve.edu.oms.data.DBUtils;
-    import com.softserve.edu.oms.data.IUser;
-    import com.softserve.edu.oms.data.UserRepository;
-    import com.softserve.edu.oms.enums.SQLQueries;
-    import com.softserve.edu.oms.pages.AdministrationPage;
-    import com.softserve.edu.oms.pages.CreateNewUserPage;
-    import com.softserve.edu.oms.tests.TestRunner;
-    import org.apache.commons.lang3.RandomStringUtils;
-    import org.testng.Assert;
-    import org.testng.annotations.DataProvider;
-    import org.testng.annotations.Test;
-    import ru.yandex.qatools.allure.annotations.Step;
-
-    import static com.softserve.edu.oms.enums.ErrorMessagesEnum.EXPECTED_ERROR_MESSAGE_FOR_lOGIN_TC56;
+import com.softserve.edu.oms.data.IUser;
+import com.softserve.edu.oms.data.UserRepository;
+import com.softserve.edu.oms.enums.SQLQueries;
+import com.softserve.edu.oms.pages.AdministrationPage;
+import com.softserve.edu.oms.pages.CreateNewUserPage;
+import com.softserve.edu.oms.tests.TestRunner;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Step;
 
     public class TC56vbTest extends TestRunner{
 
@@ -84,7 +82,7 @@
                 .setConfirmPasswordInput(nonExistingUser.getPassword())
                 .setEmailInput(nonExistingUser.getEmail());
 
-        Assert.assertTrue(newUserPageAgain.getLoginErrorMessageText().contains(EXPECTED_ERROR_MESSAGE_FOR_lOGIN_TC56.message));
+        Assert.assertTrue(newUserPageAgain.getLoginError());
 
         //delete created user from DB
         dbUtils.deleteUsersFromDB(SQLQueries.DELETE_USER_BY_LOGIN.getQuery(),

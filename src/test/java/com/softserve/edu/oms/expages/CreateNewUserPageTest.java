@@ -279,7 +279,7 @@ public class CreateNewUserPageTest extends TestRunner {
             CreateNewUserPage newUserPageAgain = new AdministrationPage(driver)
                     .gotoCreateNewUserPage().setLoginInput(nonExistingLogin.toUpperCase());
 
-            Assert.assertTrue(newUserPageAgain.getLoginErrorMessageText().contains("already in use"));
+           // Assert.assertTrue(newUserPageAgain.getLoginErrorMessageText().contains("already in use"));
 
             dbUtils.deleteUsersFromDB(SQLQueries.DELETE_USER_BY_LOGIN.getQuery(),
                     nonExistingUser.getLoginname());

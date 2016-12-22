@@ -1,5 +1,8 @@
-package com.softserve.edu.oms.pages;
+    package com.softserve.edu.oms.pages;
 
-public class OrderingPage {
-
-}
+    /**
+     * this page represent future Ordering Page
+     * yet not developed
+     */
+    public class OrderingPage {
+    }

@@ -1,19 +1,19 @@
-package com.softserve.edu.oms.data;
+	package com.softserve.edu.oms.data;
 
-public interface IUser {
+	public interface IUser {
 
-	String getLoginname();
+		String getLoginname();
 
-	String getFirstname();
+		String getFirstname();
 
-	String getLastname();
+		String getLastname();
 
-	String getPassword();
+		String getPassword();
 
-	String getEmail();
+		String getEmail();
 
-	String getRegion();
+		String getRegion();
 
-	String getRole();
+		String getRole();
 
-}
+	}

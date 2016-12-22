@@ -1,4 +1,4 @@
-    package com.softserve.edu.oms.tests.vbybetc;
+    package com.softserve.edu.oms.tests.userinfo;
 
     import com.softserve.edu.oms.data.IUser;
     import com.softserve.edu.oms.data.UserRepository;
@@ -10,7 +10,7 @@
     import ru.yandex.qatools.allure.annotations.Step;
 
 
-    public class TC41vbTest extends TestRunner {
+    public class SwitchingTabsFunctionalityTest extends TestRunner {
 
     @DataProvider
     public Object[][] admUser() {

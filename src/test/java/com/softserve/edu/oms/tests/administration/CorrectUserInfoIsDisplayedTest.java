@@ -1,4 +1,4 @@
-package com.softserve.edu.oms.tests.vbybetc;
+package com.softserve.edu.oms.tests.administration;
 
 import com.softserve.edu.oms.data.DBUtils;
 import com.softserve.edu.oms.data.IUser;
@@ -13,7 +13,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class TC45vbTest extends TestRunner{
+public class CorrectUserInfoIsDisplayedTest extends TestRunner{
 
     @DataProvider
     public Object[][] admUser() {
@@ -42,8 +42,8 @@ public class TC45vbTest extends TestRunner{
      * @param admUser
      */
     @Test(dataProvider = "admUser")
-    @Step("CorrectUserDisplayingTest")
-    public void CorrectUserDisplayingTest(IUser admUser) {
+    @Step("CorrectUserInfoIsDisplayedTest")
+    public void CorrectUserInfoIsDisplayedTest(IUser admUser) {
 
         //log in and go to users.html
         AdministrationPage administrationPage = loginPage

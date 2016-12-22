@@ -2,6 +2,7 @@ package com.softserve.edu.oms.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.softserve.edu.oms.locators.UserHomePageLocators.ADMINISTRATION_TAB_CSS;
 import static com.softserve.edu.oms.locators.UserHomePageLocators.ORDERING_TAB_XPATH;
@@ -56,6 +57,7 @@ public class AdminHomePage extends HomePage {
 	
     // Business Logic
 
+	@Step("Go to Administration page")
     public AdministrationPage gotoAdministrationPage() {
     	clickAdministrationTab();
 		return new AdministrationPage(driver);

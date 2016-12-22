@@ -149,6 +149,7 @@ public class LoginPage extends ABasePage{
         return new HomePage(driver);
     }
 
+    @Step("Login as Admin")
     public AdminHomePage successAdminLogin(IUser admin) {
 		setLoginData(admin);
 		return new AdminHomePage(driver);

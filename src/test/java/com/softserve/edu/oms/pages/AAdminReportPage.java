@@ -443,6 +443,7 @@ public abstract class AAdminReportPage extends ABasePage {
     }
 
     //    Get list of users from current page
+    @Step("Get list of users from current page")
     public List<User> getUsersFromCurrentPage() {
         final List<User> userListFormCurrentPage = new ArrayList<>();
         final WebElement table = getTableBody();

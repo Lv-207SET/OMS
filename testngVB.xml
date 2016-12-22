@@ -6,11 +6,11 @@
                value="C:/Program Files (x86)/Google/Chrome/Application/chromedriver.exe" />
     <test name="Test2">
         <classes>
-            <class name="com.softserve.edu.oms.tests.vbybetc.TC41vbTest">
+            <class name="com.softserve.edu.oms.tests.userinfo.SwitchingTabsFunctionalityTest">
             </class>
-            <class name="com.softserve.edu.oms.tests.vbybetc.TC45vbTest">
+            <class name="com.softserve.edu.oms.tests.administration.CorrectUserInfoIsDisplayedTest">
             </class>
-            <class name="com.softserve.edu.oms.tests.vbybetc.TC56vbTest">
+            <class name="com.softserve.edu.oms.tests.createuser.LoginFieldIsCaseInsensitiveTest">
             </class>
         </classes>
     </test>

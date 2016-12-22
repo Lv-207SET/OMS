@@ -1,19 +1,19 @@
-    package com.softserve.edu.oms.tests.vbybetc;
+    package com.softserve.edu.oms.tests.createuser;
 
     import com.softserve.edu.oms.data.DBUtils;
-import com.softserve.edu.oms.data.IUser;
-import com.softserve.edu.oms.data.UserRepository;
-import com.softserve.edu.oms.enums.SQLQueries;
-import com.softserve.edu.oms.pages.AdministrationPage;
-import com.softserve.edu.oms.pages.CreateNewUserPage;
-import com.softserve.edu.oms.tests.TestRunner;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.testng.Assert;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Step;
+    import com.softserve.edu.oms.data.IUser;
+    import com.softserve.edu.oms.data.UserRepository;
+    import com.softserve.edu.oms.enums.SQLQueries;
+    import com.softserve.edu.oms.pages.AdministrationPage;
+    import com.softserve.edu.oms.pages.CreateNewUserPage;
+    import com.softserve.edu.oms.tests.TestRunner;
+    import org.apache.commons.lang3.RandomStringUtils;
+    import org.testng.Assert;
+    import org.testng.annotations.DataProvider;
+    import org.testng.annotations.Test;
+    import ru.yandex.qatools.allure.annotations.Step;
 
-    public class TC56vbTest extends TestRunner{
+    public class LoginFieldIsCaseInsensitiveTest extends TestRunner{
 
     @DataProvider
     public Object[][] admAndNonExistingUser() {
@@ -44,8 +44,8 @@ import ru.yandex.qatools.allure.annotations.Step;
      */
 
     @Test(dataProvider = "admAndNonExistingUser")
-    @Step("UniqueUserCreatingTest")
-    public void UniqueUserCreatingTest(IUser admUser, IUser nonExistingUser) {
+    @Step("LoginFieldIsCaseInsensitiveTest")
+    public void LoginFieldIsCaseInsensitiveTest(IUser admUser, IUser nonExistingUser) {
 
         //login and go to addUser.html
         CreateNewUserPage adminHomePage = loginPage.successAdminLogin(admUser)
@@ -88,7 +88,6 @@ import ru.yandex.qatools.allure.annotations.Step;
         dbUtils.deleteUsersFromDB(SQLQueries.DELETE_USER_BY_LOGIN.getQuery(),
                 nonExistingUser.getLoginname());
 
-    }
-
+        }
 
     }

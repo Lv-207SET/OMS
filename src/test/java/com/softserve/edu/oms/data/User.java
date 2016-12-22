@@ -1,5 +1,7 @@
 package com.softserve.edu.oms.data;
 
+import ru.yandex.qatools.allure.annotations.Step;
+
 public class User implements IUser {
 
 	private String loginname;
@@ -96,7 +98,9 @@ public class User implements IUser {
 				+"\tregion= " + region
 				+"\trole= " + role;
 	}
-	
+
+	//Compare two users
+	@Step("Compare two users")
 	public boolean CompareTo (User user){
 
 	return this.getLoginname().equals(user.getLoginname())

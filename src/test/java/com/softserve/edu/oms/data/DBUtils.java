@@ -1,6 +1,8 @@
 package com.softserve.edu.oms.data;
 
-import com.softserve.edu.oms.enums.*;
+import com.softserve.edu.oms.enums.ErrorMessagesEnum;
+import com.softserve.edu.oms.enums.SQLQueries;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -229,6 +231,7 @@ public class  DBUtils implements IExternalData {
 
     /** Method, which gets number of users from Database by sqlquery.
      */
+    @Step("Count all users in DB")
     public int countAllUsers(){ 
 
         Statement st = null;
@@ -255,6 +258,7 @@ public class  DBUtils implements IExternalData {
     
     /** Method, which gets list of first five users from Database by sqlquery.
      */
+    @Step("Get first five users from DB")
     public List<User> getTopFiveUsers() {
 
         List<User> users = new ArrayList<>();

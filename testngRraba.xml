@@ -13,7 +13,7 @@
 					<include name="verifySearchRole" />
 				</methods>
 			</class>
-			<class name="com.softserve.edu.oms.tests.administration.PaginationTest">
+			<class name="com.softserve.edu.oms.tests.administration.ChangeNumberOfUsersTest">
 				<methods>
 					<include name="verifyChangePageNumber" />
 				</methods>

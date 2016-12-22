@@ -30,9 +30,11 @@ import org.testng.asserts.SoftAssert;
 /**
  * Test class which verifies search function on Administration page.
  *
+ * Based on LVSETOMS-47 in Jira
+ * 
  * @author Oleh Lavrynenko, Roman Raba
- * @version 1.0
  * @since 16.12.16
+ * @link http://ssu-jira.softserveinc.com/browse/LVSETOMS-47
  */
 public class FindingTest extends TestRunner {
     private SoftAssert softAssert = new SoftAssert();
@@ -40,7 +42,12 @@ public class FindingTest extends TestRunner {
 
     private final String VALID_NAME = UserRepository.get().adminUser().getLoginname();
 
-   
+    
+    /**
+     * Set preconditions for test:
+     * login with Administrator role credentials
+     * and go to Administration page
+     */
     @BeforeMethod
     public void setUp() {
         AdminHomePage adminHomePage =
@@ -49,11 +56,16 @@ public class FindingTest extends TestRunner {
                 adminHomePage.gotoAdministrationPage();
     }
 
+    
+    /**
+     * Logout from session.
+     */
     @AfterMethod
     public void tearDown() {
         administrationPage.logout();
     }
 
+    
     /**
      * Verify that searching options in dropdown lists are correct
      *
@@ -141,21 +153,26 @@ public class FindingTest extends TestRunner {
         List<String> columnListFromDB;
         DBUtils dbUtils;
 
+        //Initializing search by last name
         administrationPage.filterAndSearch(
                 FieldFilterDropdownList.LAST_NAME,
                 ConditionFilterDropdownList.START_WITH,
                 LabelsNamesEnum.SEARCH_TEXT_NONE.name);
 
+        //Create list of user's last name attribute options 
+        //from table which is on Administration page.
         for (User user : administrationPage.getAllUsers()) {
             columnListFromTable.add(user.getLastname());
         }
 
+        //Get list user's last name attribute from DB
         dbUtils = new DBUtils();
         columnListFromDB = dbUtils.getOneColumn(SQLQueries.GET_LASTNAME_LIKE.getQuery(),
                 LabelsNamesEnum.BY_LAST_NAME.name,
                 LabelsNamesEnum.SEARCH_TEXT_NONE.name,
                 LabelsNamesEnum.SEARCH_TEXT_ER.name);
 
+        //Equal two lists
         Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
     }
 
@@ -171,21 +188,26 @@ public class FindingTest extends TestRunner {
         List<String> columnListFromDB;
         DBUtils dbUtils;
 
+        //Initializing search by login name
         administrationPage.filterAndSearch(
                 FieldFilterDropdownList.LOGIN,
                 ConditionFilterDropdownList.CONTAINS,
                 LabelsNamesEnum.SEARCH_TEXT_NONE.name);
 
+        //Create list of user's login name attribute options 
+        //from table which is on Administration page.
         for (User user : administrationPage.getAllUsers()) {
             columnListFromTable.add(user.getLoginname());
         }
 
+        //Get list user's login name attribute from DB
         dbUtils = new DBUtils();
         columnListFromDB = dbUtils.getOneColumn(SQLQueries.GET_LOGIN_LIKE.getQuery(),
                 LabelsNamesEnum.BY_LOGIN_NAME.name,
                 LabelsNamesEnum.SEARCH_TEXT_NONE.name,
                 LabelsNamesEnum.SEARCH_TEXT_ER.name);
 
+        //Equal two lists
         Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
     }
 
@@ -205,36 +227,42 @@ public class FindingTest extends TestRunner {
         int newPagesCount;
         int numberOfItems;
 
+      //Initializing search by role
         administrationPage.filterAndSearch(
                 FieldFilterDropdownList.ROLE,
                 ConditionFilterDropdownList.DOES_NOT_CONTAIN,
                 LabelsNamesEnum.SEARCH_TEXT_ER.name);
 
+        //Create list of user's role attribute options 
+        //from table which is on Administration page.
         columnListFromTable = new ArrayList<>();
         for (User user : administrationPage.getAllUsers()) {
             columnListFromTable.add(user.getRole());
         }
 
+        //Get list user's login name attribute from DB
         dbUtils = new DBUtils();
         columnListFromDB = dbUtils.getOneColumn(SQLQueries.GET_ROLE_NOT_LIKE.getQuery(),
                 LabelsNamesEnum.BY_ROLE.name,
                 LabelsNamesEnum.SEARCH_TEXT_NONE.name,
                 LabelsNamesEnum.SEARCH_TEXT_ER.name);
 
+        //Equal two lists
         Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
 
+        //Verify number users in table and in DB after search function apply.
         numberOfusers = administrationPage.getFoundUsersNumber();
         Assert.assertEquals(columnListFromDB.size(), numberOfusers);
 
+        //Verify that the number of records returned by script divided 
+        //by number of records displayed in the table rounded to the bigger integer.
         numberOfItems = administrationPage.getUsersPerPageNumber();
-
         if ((columnListFromDB.size() % numberOfItems) != 0) {
             pagesNumber = ((columnListFromDB.size() -
                     (columnListFromDB.size() % numberOfItems)) / numberOfItems) + 1;
         } else {
             pagesNumber = columnListFromDB.size() / numberOfItems;
         }
-
         newPagesCount = Integer.valueOf(administrationPage.getPagesQuantity());
         Assert.assertEquals(pagesNumber, newPagesCount);
 

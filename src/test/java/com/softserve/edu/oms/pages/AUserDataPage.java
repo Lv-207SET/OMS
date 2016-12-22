@@ -8,6 +8,7 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
@@ -78,6 +79,7 @@ public abstract class AUserDataPage extends ABasePage {
         return this.driver.findElement(ERROR_PASSWORD_ID.by);
     }
 
+    @Step("getConfirmPasswordErrorMessage")
     public WebElement getConfirmPasswordErrorMessage() {
         return this.driver.findElement(ERROR_CONFIRM_PASSWORD_ID.by);
     }
@@ -144,6 +146,7 @@ public abstract class AUserDataPage extends ABasePage {
         return getPasswordErrorMessage().getText();
     }
 
+    @Step("getConfirmPasswordErrorMessageText")
     public String getConfirmPasswordErrorMessageText() {
         return getConfirmPasswordErrorMessage().getText();
     }

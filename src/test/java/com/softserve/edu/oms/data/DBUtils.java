@@ -18,14 +18,11 @@ import java.util.List;
  * 
  */
 public class  DBUtils implements IExternalData {
-//	private String username = zchytaty_z_excelya.username;
-//	private String password = zchytaty_z_excelya.password;
-//	private String url = zchytaty_z_excelya.url;
 
- 	private String username = "oms_remote";
-	private String password = "Lv-207set";
-	private String url = "jdbc:mysql://35.156.235.102:3306/lv207oms";
-	
+	private String username = System.getenv("db_username");
+	private String password = System.getenv("db_password");
+	private String url = System.getenv("db_url");
+
 	
 	/** Method, which creates connection with Database.
      */

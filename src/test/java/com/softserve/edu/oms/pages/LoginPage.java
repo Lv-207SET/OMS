@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.oms.data.IUser;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.softserve.edu.oms.locators.LoginPageLocators.*;
 
@@ -17,12 +18,16 @@ import static com.softserve.edu.oms.locators.LoginPageLocators.*;
  */
 public class LoginPage extends ABasePage{
 
-	/** Class constructor */
+	/**
+	 * Class constructor
+	 */
 	public LoginPage(WebDriver driver) {
 		super(driver);
 	}
 
-	/** Getters */
+	/**
+	 * Getters
+	 */
 	private WebElement getLoginnameInput() {
 		return this.driver.findElement(LOGIN_INPUT_FIELD.by);
 	}
@@ -47,12 +52,15 @@ public class LoginPage extends ABasePage{
 		return driver.findElement(BAD_CREDENTIALS_ERROR_MESSAGE_CSS.by);
 	}
 
-	// Functional
-	
+	/**
+	 * Functional
+	 */
+	@Step("getLoginnameInputText")
 	public String getLoginnameInputText() {
 		return getLoginnameInput().getText();
 	}
 
+	@Step("getPasswordInputText")
 	public String getPasswordInputText() {
 		return getPasswordInput().getText();
 	}
@@ -74,7 +82,6 @@ public class LoginPage extends ABasePage{
 		return this.getBadCredentialsErrorMessage().getText();
 	}
 
-	/** Setters */
 	public void setLoginnameInput(String login) {
 		getLoginnameInput().sendKeys(login);
 	}
@@ -121,14 +128,16 @@ public class LoginPage extends ABasePage{
 		getRememberMeCheckbox().click();
 	}
 
-    // Business Logic
-
+	/**
+	 * Business logic
+	 */
     private void setLoginData(IUser user) {
 		setLoginnameInputClear(user.getLoginname());
 		setPasswordInputClear(user.getPassword());
 		clickSubmitButton();
 	}
 
+	@Step("setLoginDataAndReset")
 	public void setLoginDataAndReset(IUser user) {
 		setLoginnameInputClear(user.getLoginname());
 		setPasswordInputClear(user.getPassword());
@@ -145,17 +154,17 @@ public class LoginPage extends ABasePage{
 		return new AdminHomePage(driver);
 	}
 
-	public CustomerHomePage succesCustomerLogin (IUser customer){
+	public CustomerHomePage successCustomerLogin(IUser customer){
 		setLoginData(customer);
 		return new CustomerHomePage(driver);
 	}
 
-	public MerchandiserHomePage succesMerchandiserLogin (IUser merchandiser){
+	public MerchandiserHomePage successMerchandiserLogin(IUser merchandiser){
 		setLoginData(merchandiser);
 		return new MerchandiserHomePage(driver);
 	}
 
-	public SupervisorHomePage succesSupervisorLogin (IUser supervisor){
+	public SupervisorHomePage successSupervisorLogin(IUser supervisor){
 		setLoginData(supervisor);
 		return new SupervisorHomePage(driver);
 	}

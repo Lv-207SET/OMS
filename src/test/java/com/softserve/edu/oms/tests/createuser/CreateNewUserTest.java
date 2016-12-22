@@ -1,4 +1,4 @@
-package com.softserve.edu.oms.tests.atokmtc;
+package com.softserve.edu.oms.tests.createuser;
 
 
 import com.softserve.edu.oms.data.DBUtils;
@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class TC50atokTest extends TestRunner {
+public class CreateNewUserTest extends TestRunner {
 
     @DataProvider
     public Object[][] Users() {

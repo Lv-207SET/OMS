@@ -58,12 +58,12 @@ public final class UserRepository {
 	
 	public IUser someUser() {
         return new User("roman", "rrd", "rrd", "1234",
-                "rdd@g.com", "West", "Administrator");
+                "sasdasdad@fg.com", "West", "Administrator");
     }
 	
 	public IUser userForDelete() {
         return new User("andriy", "rrd", "rrd", "1234",
-                "rdd@g.com", "West", "Administrator");
+                "sasdasdad@fg.com", "West", "Administrator");
     }
     
 	public IUser nonExistingUser() {

@@ -1,4 +1,4 @@
-package com.softserve.edu.oms.tests.atokmtc;
+package com.softserve.edu.oms.tests.login;
 
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.UserRepository;
@@ -8,7 +8,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class TC28atokTest extends TestRunner {
+public class LoginAsEveryUserTypeTest extends TestRunner {
 
     @DataProvider
     public Object[][] admUser() {
@@ -47,7 +47,7 @@ public class TC28atokTest extends TestRunner {
     @Step("Check if user with customer type logs in successfully")
     public void assertCustomerLogin(IUser customerUser) {
         Assert.assertEquals(loginPage.logout()
-                .succesCustomerLogin(customerUser)
+                .successCustomerLogin(customerUser)
                 .waitForLoad()
                 .getRoleText(), customerUser.getRole());
     }
@@ -56,7 +56,7 @@ public class TC28atokTest extends TestRunner {
     @Step
     public void assertMerchandiserLogin(IUser merchandiserUser) {
         Assert.assertEquals(loginPage.logout()
-                .succesMerchandiserLogin(merchandiserUser)
+                .successMerchandiserLogin(merchandiserUser)
                 .waitForLoad()
                 .getRoleText(), merchandiserUser.getRole());
     }
@@ -65,7 +65,7 @@ public class TC28atokTest extends TestRunner {
     @Step
     public void assertSupervisorLogin(IUser supervisorUser) {
         Assert.assertEquals(loginPage.logout()
-                .succesSupervisorLogin(supervisorUser)
+                .successSupervisorLogin(supervisorUser)
                 .waitForLoad()
                 .getRoleText(), supervisorUser.getRole());
     }

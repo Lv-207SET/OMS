@@ -1,7 +1,5 @@
 package com.softserve.edu.oms.data;
 
-import java.util.List;
-
 public final class UserRepository {
 
 	private static volatile UserRepository instance = null;
@@ -20,11 +18,7 @@ public final class UserRepository {
 		return instance;
 	}
 	
-//	public IUser adminUser() {
-//		return new User("iva", "ivanka", "horoshko", "qwerty",
-//				"mail@gmail.com", "West", "Administrator");
-//	}
-	
+
 	public IUser adminUser() {
         return new User("noneiva", "noneivanka", "nonehoroshko", "qwerty",
                 "mail@gmail.com", "West", "Administrator");
@@ -86,16 +80,4 @@ public final class UserRepository {
 				""
 		);
 	}
-
-
-	public List<IUser> getUsersFromExcelFile() {
-		return new UserUtils("/users.xlsx", new ExcelUtils()).getAllUsers();
-	}
-
-	public List<IUser> getUsersFromDB() {
-		return new UserUtils("/", new DBUtils()).getAllUsers();
-	}
-
-
-
 }

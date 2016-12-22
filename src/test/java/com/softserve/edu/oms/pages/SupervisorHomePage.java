@@ -2,7 +2,6 @@ package com.softserve.edu.oms.pages;
 
 
 import com.softserve.edu.oms.locators.UserHomePageLocators;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -25,13 +24,6 @@ public class SupervisorHomePage extends HomePage{
         getItemManagementTab().click();
     }
 
-
-    // Business Logic
-
-    public ItemManagementPage gotoItemManagementPage() {
-        clickItemManagementTab();
-        return new ItemManagementPage(driver);
-    }
 
 
 }

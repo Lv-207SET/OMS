@@ -1,7 +1,8 @@
-package com.softserve.edu.oms.tests.dvoropatc;
+package com.softserve.edu.oms.tests.login;
 
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.UserRepository;
+import com.softserve.edu.oms.enums.ErrorMessagesEnum;
 import com.softserve.edu.oms.tests.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -14,12 +15,8 @@ import org.testng.annotations.Test;
  * Based on LVSETOMS-29 in Jira
  *
  * @author Dmytro Voropai
- * @param notExistUser {@link com.softserve.edu.oms.data.UserRepository}
  */
-public class TC29dvoropaiTest extends TestRunner {
-
-        private static final String EXPECTED_ERROR_MESSAGE = "Such user does not exist " +
-            "in the system - please try again";
+public class ResetButtonErrorMessagesTest extends TestRunner {
 
 //  Provides not register user login and password
     @DataProvider
@@ -30,12 +27,12 @@ public class TC29dvoropaiTest extends TestRunner {
     }
 
     @Test(dataProvider = "notExistUser", alwaysRun = true)
-    public void verifyResetButtonFunctionalityForNonRegisteredUser(IUser notExistUser){
+    public void verifyResetButtonErrorMessagesForNonRegisteredUser(IUser notExistUser){
 //      Check if Object of String error message is not null.
         Assert.assertNotNull(loginPage.unsuccessfulLogin(notExistUser)
                 .getBadCredentialsErrorMessageText());
 //      Check if error message is the same as was expected
         Assert.assertEquals(loginPage.unsuccessfulLogin(notExistUser)
-                .getBadCredentialsErrorMessageText(), EXPECTED_ERROR_MESSAGE);
+                .getBadCredentialsErrorMessageText(), ErrorMessagesEnum.EXPECTED_ERROR_MESSAGE_TC29);
     }
 }

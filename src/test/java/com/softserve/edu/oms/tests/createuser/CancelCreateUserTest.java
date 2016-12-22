@@ -1,7 +1,7 @@
-package com.softserve.edu.oms.tests.olavr;
+package com.softserve.edu.oms.tests.createuser;
 
 /**
- * Created by User on 13.12.2016.
+ * Created by Oleh Lavrynenko on 13.12.2016.
  */
 
 import com.softserve.edu.oms.data.DBUtils;
@@ -15,6 +15,14 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CancelCreateUserTest extends TestRunner {
+    /**
+     * Verify that a new user isn't created after
+     * click "Cancel" button on Create New User Page
+     *
+     * @author Oleh Lavrynenko
+     * @version 1.0
+     * @since 16.12.16
+     */
     @Test
     public void cancelCreateUserTest() {
         IUser user = UserRepository.get().adminUser();

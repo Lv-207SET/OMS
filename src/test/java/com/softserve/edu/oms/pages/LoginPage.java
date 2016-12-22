@@ -14,20 +14,15 @@ import static com.softserve.edu.oms.locators.LoginPageLocators.*;
  * @version 1.0
  * @since 16.12.16
  * @author Anastasiia Maidanska
- *
  */
 public class LoginPage extends ABasePage{
 
-	/**
-	 * Class constructor
-	 */
+	//Class constructor
 	public LoginPage(WebDriver driver) {
 		super(driver);
 	}
 
-	/**
-	 * Getters
-	 */
+	//Getters
 	private WebElement getLoginnameInput() {
 		return this.driver.findElement(LOGIN_INPUT_FIELD.by);
 	}
@@ -52,9 +47,7 @@ public class LoginPage extends ABasePage{
 		return driver.findElement(BAD_CREDENTIALS_ERROR_MESSAGE_CSS.by);
 	}
 
-	/**
-	 * Functional
-	 */
+	//Functional
 	@Step("getLoginnameInputText")
 	public String getLoginnameInputText() {
 		return getLoginnameInput().getText();
@@ -108,14 +101,6 @@ public class LoginPage extends ABasePage{
 		getPasswordInput().clear();
 	}
 
-	public void clickLoginnameInput() {
-		getLoginnameInput().click();
-	}
-
-	public void clickPasswordInput() {
-		getPasswordInput().click();
-	}
-
 	public void clickSubmitButton() {
 		getSubmitButton().click();
 	}
@@ -124,13 +109,14 @@ public class LoginPage extends ABasePage{
 		getResetButton().click();
 	}
 
-	public void clickgetRememberMeCheckbox() {
+	public void clickGetRememberMeCheckbox() {
 		getRememberMeCheckbox().click();
 	}
 
 	/**
 	 * Business logic
 	 */
+	@Step("Set Login Data")
     private void setLoginData(IUser user) {
 		setLoginnameInputClear(user.getLoginname());
 		setPasswordInputClear(user.getPassword());
@@ -144,37 +130,37 @@ public class LoginPage extends ABasePage{
 		clickResetButton();
 	}
 
-    public HomePage successUserLogin(IUser user) {
-        setLoginData(user);
-        return new HomePage(driver);
-    }
-
     @Step("Login as Admin")
     public AdminHomePage successAdminLogin(IUser admin) {
 		setLoginData(admin);
 		return new AdminHomePage(driver);
 	}
 
+	@Step("Login as Customer")
 	public CustomerHomePage successCustomerLogin(IUser customer){
 		setLoginData(customer);
 		return new CustomerHomePage(driver);
 	}
 
+	@Step("Login as Merchandiser")
 	public MerchandiserHomePage successMerchandiserLogin(IUser merchandiser){
 		setLoginData(merchandiser);
 		return new MerchandiserHomePage(driver);
 	}
 
+	@Step("Login as Supervisor")
 	public SupervisorHomePage successSupervisorLogin(IUser supervisor){
 		setLoginData(supervisor);
 		return new SupervisorHomePage(driver);
 	}
 
+	@Step("Login with invalid credentials")
     public LoginPage unsuccessfulLogin(IUser invalidUser) {
     	setLoginData(invalidUser);
 		return this;
 	}
 
+	@Step("Login with long credentials")
 	public LoginPage loginWithEmptyCredentials (){
 		this.clearLoginnameInput();
 		this.clearPasswordInput();

@@ -183,8 +183,8 @@ public class ReadDataFromFile {
 	}
 
 	/**
-	 * The main method was created to test current class. Ignore it in your
-	 * work.
+	 * The main method was created to test current class.
+	 * Ignore it in your work.
 	 *
 	 * @param args
 	 *            the arguments

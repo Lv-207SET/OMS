@@ -1,20 +1,22 @@
-package com.softserve.edu.oms.enums;
+    package com.softserve.edu.oms.enums;
 
+    /**
+     * this class represents all roles available on pages
+     */
+    public enum Role {
+        ADMINISTRATOR("roleID1"),
+        MERCHANDISER("roleID3"),
+        SUPERVISOR("roleID4"),
+        CUSTOMER("roleID2");
 
-public enum Role {
-    ADMINISTRATOR("roleID1"),
-    MERCHANDISER("roleID3"),
-    SUPERVISOR("roleID4"),
-    CUSTOMER("roleID2");
+        private String roleId;
 
-    private String roleId;
+        Role(String roleId) {
+            this.roleId = roleId;
+        }
 
-    Role(String roleId) {
-        this.roleId = roleId;
+        public String getRoleId() {
+            return roleId;
+        }
+
     }
-
-    public String getRoleId() {
-        return roleId;
-    }
-    
-}

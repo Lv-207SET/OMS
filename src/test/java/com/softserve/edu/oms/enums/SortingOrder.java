@@ -1,18 +1,21 @@
-package com.softserve.edu.oms.enums;
+    package com.softserve.edu.oms.enums;
 
-public enum SortingOrder {
-    ASCENDING("ASC"),
-    DESCENDING("DESC");
+    /**
+     * This class represents all available sorting orders
+     */
+    public enum SortingOrder {
+        ASCENDING("ASC"),
+        DESCENDING("DESC");
 
-    private String sortingOrderInColumn;
+        private String sortingOrderInColumn;
 
-    SortingOrder(String sortingOrderInColumn) {
-        this.sortingOrderInColumn = sortingOrderInColumn;
+        SortingOrder(String sortingOrderInColumn) {
+            this.sortingOrderInColumn = sortingOrderInColumn;
+        }
+
+        public String getSortingOrderInColumn() {
+            return sortingOrderInColumn;
+        }
+
+
     }
-
-    public String getSortingOrderInColumn() {
-        return sortingOrderInColumn;
-    }
-
-
-}

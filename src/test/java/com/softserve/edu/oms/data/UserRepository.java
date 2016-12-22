@@ -1,55 +1,29 @@
-package com.softserve.edu.oms.data;
+	package com.softserve.edu.oms.data;
 
-import java.util.List;
+	public final class UserRepository {
 
-public final class UserRepository {
+		private static volatile UserRepository instance = null;
 
-	private static volatile UserRepository instance = null;
+		private UserRepository() {
+		}
 
-	private UserRepository() {
-	}
-
-	public static UserRepository get() {
-		if (instance == null) {
-			synchronized (UserRepository.class) {
-				if (instance == null) {
-					instance = new UserRepository();
+		public static UserRepository get() {
+			if (instance == null) {
+				synchronized (UserRepository.class) {
+					if (instance == null) {
+						instance = new UserRepository();
+					}
 				}
 			}
+			return instance;
 		}
-		return instance;
-	}
-	
-//	public IUser adminUser() {
-//		return new User("iva", "ivanka", "horoshko", "qwerty",
-//				"mail@gmail.com", "West", "Administrator");
-//	}
-	
-	public IUser adminUser() {
-        return new User("noneiva", "noneivanka", "nonehoroshko", "qwerty",
-                "mail@gmail.com", "West", "Administrator");
-    }
-    
 
-	public IUser customerUser() {
-		return new User("login1", "firstName1", "lastName1", "qwerty",
-				"mail@gmail.com", "East", "Customer");
-	}
 
-	public IUser merchandiserUser() {
-		return new User("login2", "firstName2", "lastName2", "qwerty",
-				"mail@gmail.com", "East", "Merchandiser");
-	}
+		public IUser adminUser() {
+			return new User("noneiva", "noneivanka", "nonehoroshko", "qwerty",
+					"mail@gmail.com", "West", "Administrator");
+		}
 
-	public IUser supervisorUser() {
-		return new User("login3", "firstName3", "lastName3", "qwerty",
-				"mail@gmail.com", "East", "Supervisor");
-	}
-
-	public IUser invalidUser() {
-		return new User("abcdqwd", "abcd123", "abcd123", "abcd1",
-				"abcd@gmail.com", "East", "Administrator");
-	}
 
 	public IUser badMemoryUser() {
 		return new User("BadMemoryUser", "Neo", "Matrix", "paSSworD",
@@ -82,20 +56,28 @@ public final class UserRepository {
 				"qwertyuiopasdfghjklz",
 				"211111111111112",
 				"nonlocalparties@domain.com",
-				"",
-				""
+				"West",
+				"Administrator"
 		);
 	}
+		public IUser customerUser() {
+			return new User("login1", "firstName1", "lastName1", "qwerty",
+					"mail@gmail.com", "East", "Customer");
+		}
 
+		public IUser merchandiserUser() {
+			return new User("login2", "firstName2", "lastName2", "qwerty",
+					"mail@gmail.com", "East", "Merchandiser");
+		}
 
-	public List<IUser> getUsersFromExcelFile() {
-		return new UserUtils("/users.xlsx", new ExcelUtils()).getAllUsers();
+		public IUser supervisorUser() {
+			return new User("login3", "firstName3", "lastName3", "qwerty",
+					"mail@gmail.com", "East", "Supervisor");
+		}
+
+		public IUser invalidUser() {
+			return new User("abcdqwd", "abcd123", "abcd123", "abcd1",
+					"abcd@gmail.com", "East", "Administrator");
+		}
+
 	}
-
-	public List<IUser> getUsersFromDB() {
-		return new UserUtils("/", new DBUtils()).getAllUsers();
-	}
-
-
-
-}

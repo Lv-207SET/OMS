@@ -5,7 +5,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import com.softserve.edu.oms.pages.LoginPage;
-
 import java.util.concurrent.TimeUnit;
 
 public class TestRunner {
@@ -18,8 +17,8 @@ public class TestRunner {
 
         System.out.println("before");
         final String driverPath = "src/test/resources/drivers/";
-        final String loginPageUrl= zchytaty_z_excelya.loginPageUrl;
-       // final String loginPageUrl= "http://localhost:8080/OMS/login.htm";
+   //     final String loginPageUrl= zchytaty_z_excelya.loginPageUrl;
+        final String loginPageUrl= "http://35.156.235.102:8080/OMS/login.htm";
         System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver.exe");
 
         driver = new ChromeDriver();

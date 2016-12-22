@@ -25,6 +25,41 @@
 		}
 
 
+	public IUser badMemoryUser() {
+		return new User("BadMemoryUser", "Neo", "Matrix", "paSSworD",
+				"hello@gmail.com", "East", "Supervisor");
+	}
+	
+	public IUser someUser() {
+        return new User("roman", "rrd", "rrd", "1234",
+                "sasdasdad@fg.com", "West", "Administrator");
+    }
+	
+	public IUser userForDelete() {
+        return new User("andriy", "rrd", "rrd", "1234",
+                "sasdasdad@fg.com", "West", "Administrator");
+    }
+    
+	public IUser nonExistingUser() {
+		return new User("hippo", "hippopotamus", "hippopotamus", "qwerty",
+				"hippo@ui.com", "East", "Administrator");
+	}
+    public IUser newUser() {
+        return new User("isComing", "New", "WorldOrder", "1234",
+                "rdd@g.com", "West", "Administrator");
+    }
+
+	public IUser UserWithLongCredentials(){
+		return new User(
+				"qwertyuiopasdfghjklz",
+				"qwertyuiopasdfghjklz",
+				"qwertyuiopasdfghjklz",
+				"211111111111112",
+				"nonlocalparties@domain.com",
+				"West",
+				"Administrator"
+		);
+	}
 		public IUser customerUser() {
 			return new User("login1", "firstName1", "lastName1", "qwerty",
 					"mail@gmail.com", "East", "Customer");
@@ -45,39 +80,4 @@
 					"abcd@gmail.com", "East", "Administrator");
 		}
 
-		public IUser badMemoryUser() {
-			return new User("BadMemoryUser", "Neo", "Matrix", "paSSworD",
-					"hello@gmail.com", "East", "Supervisor");
-		}
-
-		public IUser someUser() {
-			return new User("roman", "rrd", "rrd", "1234",
-					"sasdasdad@fg.com", "West", "Administrator");
-		}
-
-		public IUser userForDelete() {
-			return new User("andriy", "rrd", "rrd", "1234",
-					"sasdasdad@fg.com", "West", "Administrator");
-		}
-
-		public IUser nonExistingUser() {
-			return new User("hippo", "hippopotamus", "hippopotamus", "qwerty",
-					"hippo@ui.com", "East", "Administrator");
-		}
-		public IUser newUser() {
-			return new User("isComing", "New", "WorldOrder", "1234",
-					"rdd@g.com", "West", "Administrator");
-		}
-
-		public IUser UserWithLongCredentials(){
-			return new User(
-					"qwertyuiopasdfghjklz",
-					"qwertyuiopasdfghjklz",
-					"qwertyuiopasdfghjklz",
-					"211111111111112",
-					"nonlocalparties@domain.com",
-					"",
-					""
-			);
-		}
 	}

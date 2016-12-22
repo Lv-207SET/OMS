@@ -9,7 +9,7 @@
                 <methods>
                     <include name="testOptionValues" />
                     <include name="verifySearchByEquals" />
-                    <include name=" verifySearchByNotEquals" />
+                    <include name="verifySearchByNotEquals" />
                 </methods>
             </class>
         </classes>

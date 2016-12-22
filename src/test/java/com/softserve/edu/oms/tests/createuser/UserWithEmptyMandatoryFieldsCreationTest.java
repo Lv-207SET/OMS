@@ -50,14 +50,14 @@ public class UserWithEmptyMandatoryFieldsCreationTest extends TestRunner {
 
     //  Compare existing messages with expected
         Assert.assertEquals(omsСreateNewUserPage.getLoginErrorMessageText(),
-                ErrorMessagesEnum.EXPECTED_ERROR_MESSAGE_FOR_lOGIN_TC49);
+                ErrorMessagesEnum.EXPECTED_ERROR_MESSAGE_FOR_lOGIN_TC49.message);
         Assert.assertEquals(omsСreateNewUserPage.getFirstNameErrorMessageText(),
-                ErrorMessagesEnum.EXPECTED_ERROR_MESSAGE_FOR_FIRST_NAME_TC49);
+                ErrorMessagesEnum.EXPECTED_ERROR_MESSAGE_FOR_FIRST_NAME_TC49.message);
         Assert.assertEquals(omsСreateNewUserPage.getLastNameErrorMessageText(),
-                ErrorMessagesEnum.EXPECTED_ERROR_MESSAGE_FOR_LAST_NAME_TC49);
+                ErrorMessagesEnum.EXPECTED_ERROR_MESSAGE_FOR_LAST_NAME_TC49.message);
         Assert.assertEquals(omsСreateNewUserPage.getPasswordErrorMessageText(),
-                ErrorMessagesEnum.EXPECTED_ERROR_MESSAGE_FOR_PASSWORD_TC49);
+                ErrorMessagesEnum.EXPECTED_ERROR_MESSAGE_FOR_PASSWORD_TC49.message);
         Assert.assertEquals(omsСreateNewUserPage.getEmailErrorMessageText(),
-                ErrorMessagesEnum.EXPECTED_ERROR_MESSAGE_FOR_EMAIL_ADDRESS_TC49);
+                ErrorMessagesEnum.EXPECTED_ERROR_MESSAGE_FOR_EMAIL_ADDRESS_TC49.message);
     }
 }

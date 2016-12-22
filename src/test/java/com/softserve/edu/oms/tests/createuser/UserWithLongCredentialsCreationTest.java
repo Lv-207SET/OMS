@@ -49,13 +49,13 @@ public class UserWithLongCredentialsCreationTest extends TestRunner{
 
 //        Check if correct messages appeared for required fields
         Assert.assertEquals(omsСreateNewUserPage.getLoginErrorMessageText(),
-                ErrorMessagesEnum.EXPECTED_ERROR_MESSAGE_FOR_lOGIN_TC51);
+                ErrorMessagesEnum.EXPECTED_ERROR_MESSAGE_FOR_lOGIN_TC51.message);
         Assert.assertEquals(omsСreateNewUserPage.getFirstNameErrorMessageText(),
-                ErrorMessagesEnum.EXPECTED_ERROR_MESSAGE_FOR_FIRST_NAME_TC51);
+                ErrorMessagesEnum.EXPECTED_ERROR_MESSAGE_FOR_FIRST_NAME_TC51.message);
         Assert.assertEquals(omsСreateNewUserPage.getLastNameErrorMessageText(),
-                ErrorMessagesEnum.EXPECTED_ERROR_MESSAGE_FOR_LAST_NAME_TC51);
+                ErrorMessagesEnum.EXPECTED_ERROR_MESSAGE_FOR_LAST_NAME_TC51.message);
         Assert.assertEquals(omsСreateNewUserPage.getPasswordErrorMessageText(),
-                ErrorMessagesEnum.EXPECTED_ERROR_MESSAGE_FOR_PASSWORD_TC51);
+                ErrorMessagesEnum.EXPECTED_ERROR_MESSAGE_FOR_PASSWORD_TC51.message);
 
 //        Check if user with too long credentials was not created in database
         Assert.assertNull(dbUtils.getUserByLogin(userWithLongCredentials.getLoginname()));

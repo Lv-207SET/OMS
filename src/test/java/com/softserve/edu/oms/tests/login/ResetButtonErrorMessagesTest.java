@@ -35,6 +35,6 @@ public class ResetButtonErrorMessagesTest extends TestRunner {
                 .getBadCredentialsErrorMessageText());
 //      Check if error message is the same as was expected
         Assert.assertEquals(loginPage.unsuccessfulLogin(notExistUser)
-                .getBadCredentialsErrorMessageText(), ErrorMessagesEnum.EXPECTED_ERROR_MESSAGE_TC29);
+                .getBadCredentialsErrorMessageText(), ErrorMessagesEnum.EXPECTED_ERROR_MESSAGE_TC29.message);
     }
 }

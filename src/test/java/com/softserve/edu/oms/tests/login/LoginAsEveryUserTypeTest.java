@@ -47,7 +47,7 @@ public class LoginAsEveryUserTypeTest extends TestRunner {
     @Step("Check if user with customer type logs in successfully")
     public void assertCustomerLogin(IUser customerUser) {
         Assert.assertEquals(loginPage.logout()
-                .succesCustomerLogin(customerUser)
+                .successCustomerLogin(customerUser)
                 .waitForLoad()
                 .getRoleText(), customerUser.getRole());
     }
@@ -56,7 +56,7 @@ public class LoginAsEveryUserTypeTest extends TestRunner {
     @Step
     public void assertMerchandiserLogin(IUser merchandiserUser) {
         Assert.assertEquals(loginPage.logout()
-                .succesMerchandiserLogin(merchandiserUser)
+                .successMerchandiserLogin(merchandiserUser)
                 .waitForLoad()
                 .getRoleText(), merchandiserUser.getRole());
     }
@@ -65,7 +65,7 @@ public class LoginAsEveryUserTypeTest extends TestRunner {
     @Step
     public void assertSupervisorLogin(IUser supervisorUser) {
         Assert.assertEquals(loginPage.logout()
-                .succesSupervisorLogin(supervisorUser)
+                .successSupervisorLogin(supervisorUser)
                 .waitForLoad()
                 .getRoleText(), supervisorUser.getRole());
     }

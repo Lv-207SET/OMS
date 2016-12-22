@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-//For XLS file: HSSFWorkbook & HSSFSheet
-//For XLSX file: XSSFSheet & XSSFSheet
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -16,28 +14,54 @@ import org.apache.poi.ss.usermodel.Row;
 import org.testng.annotations.DataProvider;
 
 
-
-//import org.apache.poi.xssf.usermodel.XSSFRow;
-
+/**
+ * The Class ReadDataFromFile. To use current class in your tests you should:
+ *  - in TestData.xls create necessary sheet with test data (e.g. users)
+ *  - write a method that creates an object required for the test (uses your xls sheet)
+ *  - create dataprovider method which invokes method described above 
+ *  
+ * @since 22.12.2016
+ * @author Bohdan Harasym
+ */
 public class ReadDataFromFile {
 
+    /** The table sheet. */
     private static HSSFSheet tableSheet;
+    
+    /** The table book. */
     private static HSSFWorkbook tableBook;
+    
+    /** The sheet cell. */
     private static HSSFCell sheetCell;
     // private static XSSFRow SheetRow;
 
+    /** The data file name. */
     private static String dataFileName = "TestData.xls";
+    
+    /** The data file path. */
     private static String dataFilePath;
 
-    // open the table
+    /**
+     * Open data file.
+     *
+     * @param SheetName the sheet name
+     * @throws Exception the exception
+     */
     private static void openDataFile(String SheetName) throws Exception {
         FileInputStream TableFile = new FileInputStream(getTestDataFilePath());
         tableBook = new HSSFWorkbook(TableFile);
         tableSheet = tableBook.getSheet(SheetName);
     }
 
-    // ---read the test data from the cell--\\
 
+    /**
+     * Gets the specific cell data.
+     *
+     * @param Row the row
+     * @param Column the column
+     * @return the specific cell data
+     * @throws Exception the exception
+     */
     public static String getSpecifficCellData(int Row, int Column) throws Exception {// todo
                                                                                      // catch
                                                                                      // exetionss
@@ -46,12 +70,26 @@ public class ReadDataFromFile {
         return CellData;
     }
 
+    /**
+     * Gets the test data file path.
+     * Do not change this method.
+     *
+     * @return the test data file path
+     */
     private static String getTestDataFilePath() {
         dataFilePath = ReadDataFromFile.class.getResource("/" + dataFileName).getPath();
         System.out.println(dataFilePath);
         return dataFilePath;
     }
 
+    /**
+     * Read all test data from sheet. 
+     * This is main method of current class which read all filled cells in sheet,
+     * Do not change this method. 
+     * 
+     * @param sheetName the sheet name
+     * @return this method is returning List of Objects
+     */
     private static List<Object[]> readAllTestDataFromSheet(String sheetName) {
         Cell cell;
         List<Object[]> testDataList = new ArrayList<Object[]>();
@@ -87,16 +125,17 @@ public class ReadDataFromFile {
         return testDataList;
     }
 
-    private static List<User> readUesrsData(String sheetName) {
+    /**
+     * Read users data.
+     * Example how to use current class
+     * This method create User entity by taking data from selected in your 
+     * DataProvider sheet name
+     * @param sheetName the sheet name
+     * @return the list of User
+     */
+    private static List<User> readUsersData(String sheetName) {
         List<Object[]> users = readAllTestDataFromSheet(sheetName);
         List<User> listOfUsers = new ArrayList<User>();
-    //    List<UserEntity> listOfUsers = new ArrayList<UserEntity>();
-        // TODO DELITE COMMENTS
-        // user has next fields: firstName, lastName, password, login, email,
-        // region, role
-        /*
-         * for (int field = 0; field <= 7; field ++){ }
-         */
         for (Object[] userField : users) {
         	User user = new User();
         	user.setFirstname(userField[0].toString());
@@ -114,32 +153,27 @@ public class ReadDataFromFile {
         return listOfUsers;
     }
 
- /*   private static List<ProductEntity> readProductsData(String sheetName) {
-        List<Object[]> products = readAllTestDataFromSheet(sheetName);
-        List<ProductEntity> listOfProducts = new ArrayList<ProductEntity>();
-        for (Object[] productField : products) {
-            ProductEntity product = new ProductEntity.Builder().setName(productField[0].toString())
-                    .setDescription(productField[1].toString()).setPrice(productField[2].toString()).build();
-            listOfProducts.add(product);
-        }
 
-        return listOfProducts;
-    }*/
-
-    @DataProvider(name = "getUsersDataProvider")
-    public static Iterator<User> editUsersDataProvider() {
-        return readUesrsData("users").iterator();
+    /**
+  * Get the users data provider.
+  * Example how to use current class
+  * @return the iterator
+  */
+ @DataProvider(name = "getUsersDataProvider")
+    public static Iterator<User> getUsersFromXLS() {
+        return readUsersData("users").iterator();
     }
 
- /*   @DataProvider(name = "detProductsDataProvider")
-    public static Iterator<ProductEntity> excelEditUsers() {
-        return readProductsData("sheetWithTCNAme").iterator();
-    }*/
+
 
     
-    //this method was created to test current class 
+    /**
+  * The main method was created to test current class. Ignore it in your work.
+  *
+  * @param 
+  */
     public static void main(String[] args) {
-       Iterator<User> users = editUsersDataProvider();
+       Iterator<User> users = getUsersFromXLS();
        while (users.hasNext()){
            User user = users.next();
            System.out.println(user.getEmail());

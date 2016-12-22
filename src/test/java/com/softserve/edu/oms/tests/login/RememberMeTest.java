@@ -30,6 +30,7 @@ public class RememberMeTest extends TestRunner {
      * @author Oleh Lavrynenko
      * @version 1.0
      * @since 16.12.16
+     * @link http://ssu-jira.softserveinc.com/browse/LVSETOMS-38
      */
     @Test
     public void rememberMeTest() {

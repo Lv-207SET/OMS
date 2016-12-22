@@ -69,6 +69,9 @@ public class FindingTest extends TestRunner {
     /**
      * Verify that searching options in dropdown lists are correct
      *
+     * @author Oleh Lavrynenko
+     * @version 1.0
+     * @since 16.12.16
      */
     @Test
     @Step("testOptionValues")
@@ -104,6 +107,9 @@ public class FindingTest extends TestRunner {
     /**
      * Verify that search by "Login" and "equals" work correctly.
      *
+     * @author Oleh Lavrynenko
+     * @version 1.0
+     * @since 16.12.16
      */
     @Test
     @Step("verifySearchByEquals")
@@ -122,6 +128,9 @@ public class FindingTest extends TestRunner {
     /**
      * Verify that search by "Login" and " not equals" work correctly.
      *
+     * @author Oleh Lavrynenko
+     * @version 1.0
+     * @since 16.12.16
      */
     @Test
     @Step("verifySearchByNotEquals")

@@ -7,9 +7,9 @@
             <class name="com.softserve.edu.oms.tests.login.RememberMeTest"/>
             <class name="com.softserve.edu.oms.tests.administration.FindingTest">
                 <methods>
-                    <include name="verifySearchLastName" />
-                    <include name="verifySearchLoginName" />
-                    <include name="verifySearchRole" />
+                    <include name="testOptionValues" />
+                    <include name="verifySearchByEquals" />
+                    <include name=" verifySearchByNotEquals" />
                 </methods>
             </class>
         </classes>

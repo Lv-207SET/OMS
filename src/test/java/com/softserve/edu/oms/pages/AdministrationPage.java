@@ -4,7 +4,7 @@ import com.softserve.edu.oms.enums.ConditionFilterDropdownList;
 import com.softserve.edu.oms.enums.FieldFilterDropdownList;
 import com.softserve.edu.oms.enums.SortingOrder;
 import com.softserve.edu.oms.enums.UsersPerPage;
-import org.openqa.selenium.By;
+import com.softserve.edu.oms.locators.AdministrationPageLocators;
 import org.openqa.selenium.WebDriver;
 import ru.yandex.qatools.allure.annotations.Step;
 
@@ -12,24 +12,19 @@ import java.util.NoSuchElementException;
 
 public class AdministrationPage extends AAdminReportPage {
 
+    private FieldFilterDropdownList fieldFilterDropdownList;
+    private SortingOrder sortingOrderEnum;
+    private UsersPerPage usersPerPage;
+
 	public AdministrationPage(WebDriver driver) {
 		super(driver);
 	}
 
-    private static final String DELETE = "Delete";
-    private static final String GO_TO_CREATE_NEW_USER_PAGE_CSS = "#list>a";
-    private static final String LINK_EDIT_USER = "Edit";
-    private static final String CREATE_REPORT_LINK_CSS = "#list h5 a";
-
-	private FieldFilterDropdownList fieldFilterDropdownList;
-	private SortingOrder sortingOrderEnum;
-	private UsersPerPage usersPerPage;
-
-	//  User as role an "Administrator" goes from tab "Administration" to
+    //  User as role an "Administrator" goes from tab "Administration" to
 	//  "Create New User" page by using this method
     @Step("User as role an Administrator goes from tab Administration to Create New User page")
 	public CreateNewUserPage gotoCreateNewUserPage() {
-		driver.findElement(By.cssSelector(GO_TO_CREATE_NEW_USER_PAGE_CSS)).click();
+		driver.findElement(AdministrationPageLocators.GO_TO_CREATE_NEW_USER_PAGE_CSS.by).click();
 		return new CreateNewUserPage(this.driver);
 	}
 
@@ -42,7 +37,7 @@ public class AdministrationPage extends AAdminReportPage {
         search(login);
 
 		try {
-			driver.findElement(By.linkText(DELETE)).click();
+			driver.findElement(AdministrationPageLocators.DELETE_LINK_TEXT.by).click();
 			if (deleteUserOrNot) {
 				driver.switchTo().alert().accept();
 			} else {
@@ -137,7 +132,7 @@ public class AdministrationPage extends AAdminReportPage {
         selectCondition(ConditionFilterDropdownList.EQUALS);
         search(login);
 
-		driver.findElement(By.linkText(LINK_EDIT_USER)).click();
+		driver.findElement(AdministrationPageLocators.EDIT_USER_LINK_TEXT.by).click();
 		return new EditUserPage(driver);
 	}
 
@@ -156,7 +151,7 @@ public class AdministrationPage extends AAdminReportPage {
 	}
 
 	public CreateReportPage goToCreateReportPage() {
-		driver.findElement(By.cssSelector(CREATE_REPORT_LINK_CSS)).click();
+		driver.findElement(AdministrationPageLocators.CREATE_REPORT_CSS_SELECTOR.by).click();
 		return new CreateReportPage(this.driver);
 	}
 

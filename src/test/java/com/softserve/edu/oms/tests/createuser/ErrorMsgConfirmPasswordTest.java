@@ -3,6 +3,8 @@ package com.softserve.edu.oms.tests.createuser;
 import com.softserve.edu.oms.data.DBUtils;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.UserRepository;
+import com.softserve.edu.oms.enums.Region;
+import com.softserve.edu.oms.enums.Role;
 import com.softserve.edu.oms.pages.AdminHomePage;
 import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.pages.CreateNewUserPage;
@@ -29,11 +31,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class ErrorMsgConfirmPasswordTest extends TestRunner{
 
-    private AdminHomePage adminHomePage;
-    private AdministrationPage administrationPage;
     private CreateNewUserPage createNewUserPage;
-    private DBUtils dbUtils;
-
     /**
      * Provides data for user login
      * @return badMemoryUser from UserRepository
@@ -41,7 +39,9 @@ public class ErrorMsgConfirmPasswordTest extends TestRunner{
     @DataProvider
     public Object[][] badMemoryUser() {
         return new Object[][] {
-                { UserRepository.get().badMemoryUser() }
+                { UserRepository
+                        .get()
+                        .badMemoryUser() }
         };
     }
 
@@ -51,10 +51,14 @@ public class ErrorMsgConfirmPasswordTest extends TestRunner{
      * and navigate to Create New User page
      */
     @BeforeMethod
+    @Step("login and go to Create New User page")
     public void loginAndGotoCreateUserPage() {
-        IUser admin = UserRepository.get().adminUser();
-        adminHomePage = loginPage.successAdminLogin(admin);
-        administrationPage = adminHomePage.gotoAdministrationPage();
+        IUser admin = UserRepository
+                .get()
+                .adminUser();
+        // login as Administrator
+        AdminHomePage adminHomePage = loginPage.successAdminLogin(admin);
+        AdministrationPage administrationPage = adminHomePage.gotoAdministrationPage();
         createNewUserPage = administrationPage.gotoCreateNewUserPage();
     }
 
@@ -67,10 +71,10 @@ public class ErrorMsgConfirmPasswordTest extends TestRunner{
      * @param newUser {@link com.softserve.edu.oms.data.UserRepository}
      */
     @Test(dataProvider = "badMemoryUser")
-    @Step("verifyErrorMsgUserWithNotConfirmedPassword")
+    @Step("verify error message is shown while creating user with not confirmed password")
     public void verifyErrorMsgUserWithNotConfirmedPassword(IUser newUser) {
 
-        dbUtils = new DBUtils();
+        DBUtils dbUtils = new DBUtils();
 
         // verify that user with chosen login does not exist
         assertThat(dbUtils.getUserByLogin(newUser.getLoginname()), CoreMatchers.equalTo(null));
@@ -84,8 +88,10 @@ public class ErrorMsgConfirmPasswordTest extends TestRunner{
                 .setPasswordInput(newUser.getPassword())
                 .setConfirmPasswordInput(newUser.getPassword().toUpperCase())
                 .setEmailInput(newUser.getEmail())
-                .clickCreateButton();
-        createNewUserPage.acceptAlert();
+                .setSelectRegion(Region.getRegion(newUser.getRegion()))
+                .setSelectRole(Role.valueOf(newUser.getRole().toUpperCase()))
+                .clickCreateButton()
+                .acceptAlert();
 
         // verify that correct error message appears
         Assert.assertTrue(createNewUserPage.getConfirmPasswordErrorMessage().isDisplayed()
@@ -99,6 +105,7 @@ public class ErrorMsgConfirmPasswordTest extends TestRunner{
      * Logout from current page
      */
     @AfterMethod
+    @Step("logout from Create New User page")
     public void returnToPreviousState() {
         createNewUserPage.logout();
     }

@@ -26,8 +26,8 @@
 
 
 	public IUser badMemoryUser() {
-		return new User("BadMemoryUser", "Neo", "Matrix", "paSSworD",
-				"hello@gmail.com", "East", "Supervisor");
+		return new User("BadMemoryUser", "Petro", "Roshen", "paSSworD",
+				"hello@gmail.com", "South", "Supervisor");
 	}
 	
 	public IUser someUser() {

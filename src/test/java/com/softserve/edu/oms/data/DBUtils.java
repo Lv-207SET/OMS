@@ -296,6 +296,7 @@ public class  DBUtils implements IExternalData {
     
     /** Method, which verifies if the user is in Database by sqlquery.
      */
+    @Step("Verification - is a user in DB")
     public boolean verifyThatUserIsInDB(String loginOfUser){ 
 
         Statement st;

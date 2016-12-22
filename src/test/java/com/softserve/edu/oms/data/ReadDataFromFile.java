@@ -11,7 +11,6 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
 /**
  * The Class ReadDataFromFile. To use current class in your tests you should: -
@@ -91,7 +90,7 @@ public class ReadDataFromFile {
 	 *            the sheet name
 	 * @return this method is returning List of Objects
 	 */
-	private static List<Object[]> readAllTestDataFromSheet(String sheetName) {
+	public static List<Object[]> readAllTestDataFromSheet(String sheetName) {
 		Cell cell;
 		List<Object[]> testDataList = new ArrayList<Object[]>();
 
@@ -134,7 +133,6 @@ public class ReadDataFromFile {
 	 */
 	private static List<User> readUsersData(String sheetName) {
 		List<Object[]> users = readAllTestDataFromSheet(sheetName);
-		System.out.println(users.size());
 		List<User> listOfUsers = new ArrayList<User>();
 		for (Object[] userField : users) {
 			User user = new User();

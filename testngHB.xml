@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite  name="Kyselchuk Test Suite" verbose="1" parallel="tests" thread-count="3">
+ 
+    <test name="Reset Button Test">
+        <classes>
+            <class name="com.softserve.edu.oms.tests.login.ResetButtonTest"/>
+        </classes>
+    </test>
+ 
+    <test name="Navi Button Test">
+        <classes>
+            <class name="com.softserve.edu.oms.tests.administration.NavigationButtonsTest"/>
+        </classes>
+    </test>
+ 
+   <test name="Passwd validator test">
+       <classes>
+            <class name="com.softserve.edu.oms.tests.createuser.ErrorMsgConfirmPasswordTest"/>
+        </classes>
+   </test>
+ 
+</suite>

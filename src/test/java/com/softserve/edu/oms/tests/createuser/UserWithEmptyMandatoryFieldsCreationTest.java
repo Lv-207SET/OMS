@@ -9,6 +9,7 @@ import com.softserve.edu.oms.tests.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Step;
 
 /**
  * Test verifies that validation on empty mandatory fields works while
@@ -31,6 +32,7 @@ public class UserWithEmptyMandatoryFieldsCreationTest extends TestRunner {
 
 
     @Test(dataProvider = "validUserAdministrator", alwaysRun = true)
+    @Step("Checking if validation works on empty mandatory fields while creating new users")
     public void verifyErrorMessagesDuringUserCreation(IUser validUserAdministrator) {
         AdminHomePage omsAdminHomePage = loginPage.successAdminLogin(validUserAdministrator);
         CreateNewUserPage omsСreateNewUserPage = omsAdminHomePage

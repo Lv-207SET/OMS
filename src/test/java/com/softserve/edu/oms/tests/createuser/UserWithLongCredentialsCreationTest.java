@@ -10,6 +10,7 @@ import com.softserve.edu.oms.tests.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Step;
 
 /**
  * This test case verifies that error messages appear when trying to create
@@ -36,6 +37,7 @@ public class UserWithLongCredentialsCreationTest extends TestRunner{
 
 
     @Test(dataProvider = "validUserAdministrator",alwaysRun = true)
+    @Step("Verification of correctness validation messages while trying to create new user with long credentials")
     public void verifyCreateNewUserWithLongCredentials(IUser validUserAdministrator){
         AdminHomePage omsAdminHomePage = loginPage.successAdminLogin(validUserAdministrator);
         CreateNewUserPage omsСreateNewUserPage = omsAdminHomePage

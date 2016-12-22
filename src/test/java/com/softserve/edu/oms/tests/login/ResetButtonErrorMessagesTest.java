@@ -7,9 +7,10 @@ import com.softserve.edu.oms.tests.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Step;
 
 /**
- * Test verifies that error message is shown when user tries to login without
+ * Test verifies that error messages is shown when user tries to login without
  * being registered in the system
  *
  * Based on LVSETOMS-29 in Jira
@@ -27,6 +28,7 @@ public class ResetButtonErrorMessagesTest extends TestRunner {
     }
 
     @Test(dataProvider = "notExistUser", alwaysRun = true)
+    @Step("Error messages verification for non registered user")
     public void verifyResetButtonErrorMessagesForNonRegisteredUser(IUser notExistUser){
 //      Check if Object of String error message is not null.
         Assert.assertNotNull(loginPage.unsuccessfulLogin(notExistUser)

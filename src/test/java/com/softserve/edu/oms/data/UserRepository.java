@@ -82,8 +82,8 @@ public final class UserRepository {
 				"qwertyuiopasdfghjklz",
 				"211111111111112",
 				"nonlocalparties@domain.com",
-				"",
-				""
+				"West",
+				"Administrator"
 		);
 	}
 

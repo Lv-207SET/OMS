@@ -42,7 +42,7 @@
     
 	public IUser nonExistingUser() {
 		return new User("hippo", "hippopotamus", "hippopotamus", "qwerty",
-				"hippo@ui.com", "East", "Administrator");
+				"mail@gmail.com", "East", "Administrator");
 	}
     public IUser newUser() {
         return new User("isComing", "New", "WorldOrder", "1234",

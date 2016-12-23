@@ -71,17 +71,17 @@ public class ChangeNumberOfUsersTest extends TestRunner{
         if ((numberUsers % numberOfImems) != 0) {
             for (int i = 0; i < (numberOfImems - (numberUsers % numberOfImems)); i++) {
                 CreateNewUserPage createNewUserPage =
-                        administrationPage.gotoCreateNewUserPage();
+                        administrationPage.gotoCreateNewUserPage().waitForLoad();
 
-                createNewUserPage.setLoginInput(user.getLoginname() + user.getLoginname().charAt(i)).
-                        setEmailInput(user.getEmail()).
+                createNewUserPage.setLoginInput(user.getLoginname() + user.getLoginname().charAt(i)).                     
                         setFirstNameInput(user.getFirstname()).
                         setLastNameInput(user.getLastname()).
-
                         setPasswordInput(user.getPassword()).
                         setConfirmPasswordInput(user.getPassword()).
+                        setEmailInput(user.getEmail()).
                         setSelectRegion(Region.getRegion(user.getRegion())).
-                        setSelectRole(Role.valueOf(user.getRole().toUpperCase()));
+                        setSelectRole(Role.valueOf(user.getRole().toUpperCase())).
+                        waitForEmailErrorToDisappear();
 
                 administrationPage = createNewUserPage.successCreateNewUser();
             }
@@ -115,10 +115,12 @@ public class ChangeNumberOfUsersTest extends TestRunner{
 
         //Go to Creation New User page
         CreateNewUserPage createNewUserPage =
-                administrationPage.gotoCreateNewUserPage();
+                administrationPage.gotoCreateNewUserPage().waitForLoad();
 
         //Creation new user.
-        administrationPage = createNewUserPage.successCreateNewUser(user);
+        administrationPage = createNewUserPage.setLoginData(user)
+                .waitForEmailErrorToDisappear()
+                .successCreateNewUser();
 
         //Total number of users.
         newNumberOfUsers =  administrationPage.getFoundUsersNumber();

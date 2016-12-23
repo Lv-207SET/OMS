@@ -46,6 +46,7 @@ public class CreateNewUserTest extends TestRunner {
                 .gotoCreateNewUserPage()
                 .waitForLoad()
                 .setLoginData(newUser)
+                .waitForEmailErrorToDisappear()
                 .successCreateNewUser()
                 .waitForLoad()
                 .filterAndSearch(FieldFilterDropdownList.LOGIN, ConditionFilterDropdownList.EQUALS, newUser.getLoginname())

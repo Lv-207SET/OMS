@@ -30,6 +30,8 @@ public enum AAdminReportPageLocators {
     LOGINS_XPATH(By.xpath(".//td[3]")),
     FIRST_NAMES_XPATH(By.xpath(".//td[1]")),
     LAST_NAMES_XPATH(By.xpath(".//td[2]")),
+    ROLES_XPATH(By.xpath(".//td[4]")),
+    REGION_XPATH(By.xpath(".//td[5]")),
     TABLE_BODY_TAGNAME(By.tagName("tbody")),
     TR_TAGNAME(By.tagName("tr")),
     TD_TAGNAME(By.tagName("td")),

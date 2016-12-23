@@ -6,7 +6,9 @@ import org.apache.poi.openxml4j.exceptions.InvalidOperationException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,10 +17,9 @@ public class TestRunner {
     protected WebDriver driver;
     protected LoginPage loginPage;
 
-    @BeforeClass
+    @BeforeMethod
     public void oneTimeSetUp() {
 
-        System.out.println("before");
 
         //Determine which OS: Linux or Windows and locating chromedriver accordingly
         if(SystemUtils.IS_OS_WINDOWS) {
@@ -39,7 +40,7 @@ public class TestRunner {
         driver
                 .manage()
                 .timeouts()
-                .implicitlyWait(30, TimeUnit.SECONDS);
+                .implicitlyWait(4, TimeUnit.SECONDS);
         driver
                 .manage()
                 .window()
@@ -50,7 +51,7 @@ public class TestRunner {
         loginPage = new LoginPage(driver);
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     public void oneTimeTearDown(){ 
         driver.quit();
     }

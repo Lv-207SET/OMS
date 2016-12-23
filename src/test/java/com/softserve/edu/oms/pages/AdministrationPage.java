@@ -110,6 +110,7 @@ public class AdministrationPage extends AAdminReportPage {
     /**
      *  Ascending sorting grid on Administration page by Role column
      */
+    @Step("Ascending sorting grid on Administration page by Role column")
     @Override
     public AdministrationPage sortByRoleASC(){
         super.sortByRoleASC();
@@ -119,6 +120,7 @@ public class AdministrationPage extends AAdminReportPage {
     /**
      * Descending sorting grid on Administration page by Role column
      */
+    @Step("Descending sorting grid on Administration page by Role column")
     @Override
     public AdministrationPage sortByRoleDESC(){
         super.sortByRoleDESC();
@@ -128,6 +130,7 @@ public class AdministrationPage extends AAdminReportPage {
     /**
      * Ascending sorting grid on Administration page by Region column
      */
+    @Step(" Ascending sorting grid on Administration page by Region column")
     @Override
     public AdministrationPage sortByRegionASC(){
         super.sortByRegionASC();
@@ -137,6 +140,7 @@ public class AdministrationPage extends AAdminReportPage {
     /**
      * Descending sorting grid on Administration page by Region column
      */
+    @Step("Descending sorting grid on Administration page by Region column")
     @Override
     public AAdminReportPage sortByRegionDESC(){
         super.sortByRegionDESC();

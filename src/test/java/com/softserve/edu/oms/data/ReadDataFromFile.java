@@ -12,6 +12,8 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.testng.annotations.DataProvider;
 
+import ru.yandex.qatools.allure.annotations.Step;
+
 /**
  * The Class ReadDataFromFile. To use current class in your tests you should: -
  * in TestData.xls create necessary sheet with test data (users) - write a
@@ -156,7 +158,8 @@ public class ReadDataFromFile {
 	 *            the sheet name
 	 * @return the list
 	 */
-	private static List<Object[]> readSomeDataFromSheet(String sheetName) {
+	@Step("Read queries from file")
+	public static List<Object[]> readSortUsersTableTest(String sheetName) {
 		List<Object[]> someDataList = readAllTestDataFromSheet(sheetName);
 		return someDataList;
 	}
@@ -169,7 +172,7 @@ public class ReadDataFromFile {
 	 */
 	@DataProvider(name = "getSomeDataFromSheet")
 	public static Iterator<Object[]> getSomeDataFromSheet() {
-		return readSomeDataFromSheet("example").iterator();
+		return readSortUsersTableTest("example").iterator();
 	}
 
 	/**

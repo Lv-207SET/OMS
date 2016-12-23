@@ -29,7 +29,7 @@ public class TestRunner {
             System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
         }
         else {
-            throw new InvalidOperationException("Your OS is not supported");
+            throw new RuntimeException("Your OS is not supported");
         }
 
         final String loginPageUrl= System.getenv("oms_loginPageUrl");

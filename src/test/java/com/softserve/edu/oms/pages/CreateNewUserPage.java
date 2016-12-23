@@ -3,6 +3,8 @@ package com.softserve.edu.oms.pages;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.enums.Region;
 import com.softserve.edu.oms.enums.Role;
+import com.softserve.edu.oms.locators.AUserDataPageLocators;
+import org.apache.poi.openxml4j.exceptions.InvalidOperationException;
 import org.openqa.selenium.WebDriver;
 import ru.yandex.qatools.allure.annotations.Step;
 
@@ -138,6 +140,16 @@ public class CreateNewUserPage extends AUserDataPage {
     public CreateNewUserPage waitForLoad() {
         super.waitForLoad();
         return this;
+    }
+
+    public CreateNewUserPage waitForEmailErrorToDisappear() {
+        if (waitForElemToDisappear(AUserDataPageLocators.ERROR_EMAIL_ID.by)){
+            System.out.println("Email error disappeared");
+            return this;
+        }
+        else{
+            throw new RuntimeException("Waiting for error to disappear failed!");
+        }
     }
 
 }

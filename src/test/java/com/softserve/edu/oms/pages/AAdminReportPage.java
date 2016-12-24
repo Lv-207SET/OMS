@@ -16,7 +16,10 @@ import java.util.List;
 import java.util.Set;
 
 import static com.softserve.edu.oms.locators.AAdminReportPageLocators.*;
-
+/**
+ * This abstract class represents common entities and functionality for
+ * Administration Page and Create Report Page
+ */
 public abstract class AAdminReportPage extends ABasePage {
 
 	public AAdminReportPage(WebDriver driver) {
@@ -212,7 +215,6 @@ public abstract class AAdminReportPage extends ABasePage {
 	}
 
 	public String getPageCountSpanText() {
-		// return getPageCountSpan().getText();
 		return getPageCountSpan().getAttribute("innerHTML");
 	}
 
@@ -292,6 +294,7 @@ public abstract class AAdminReportPage extends ABasePage {
 		getRegionLink().click();
 	}
 
+	@Step("clickFirstButton")
 	public void clickFirstButton() {
 		getFirstButton().click();
 	}
@@ -324,6 +327,9 @@ public abstract class AAdminReportPage extends ABasePage {
 		getSelectField().selectByVisibleText(fieldOption.getFieldName());
 	}
 
+	/**
+	 * Gets all options available for selection in the Field Filter Drop Down List into a Set
+	 */
 	public Set<String> getSelectFieldOptions() {
 		Select selectFieldFilterElement = getSelectField();
 		List<WebElement> listOptions = selectFieldFilterElement.getOptions();
@@ -338,6 +344,9 @@ public abstract class AAdminReportPage extends ABasePage {
 		getSelectCondition().selectByVisibleText(conditionOption.getNameOfConditionFilterField());
 	}
 
+	/**
+	 * Gets all options available for selection in the Condition Filter Drop Down List into a Set
+	 */
 	public Set<String> getSelectConditionOptions() {
 		Select selectConditionFilterElement = getSelectCondition();
 		List<WebElement> listOptions = selectConditionFilterElement.getOptions();
@@ -348,17 +357,17 @@ public abstract class AAdminReportPage extends ABasePage {
 		return options;
 	}
 
-	public AAdminReportPage selectConditionByIndex(final int index) {
-		final Select selectConditionFilter = getSelectCondition();
-		selectConditionFilter.selectByIndex(index);
-		return this;
-	}
-
 	public void search(String searchTerm) {
 		WebElement inputSearchField = getSearchFieldInput();
 		inputSearchField.clear();
 		inputSearchField.sendKeys(searchTerm);
 		clickSearchButton();
+	}
+
+	public AAdminReportPage selectConditionByIndex(final int index) {
+		final Select selectConditionFilter = getSelectCondition();
+		selectConditionFilter.selectByIndex(index);
+		return this;
 	}
 
 	public AAdminReportPage filterAndSearch(FieldFilterDropdownList fieldOption,

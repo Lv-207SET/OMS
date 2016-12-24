@@ -74,7 +74,7 @@
 			return this;
 		}
 
-		@Override
+
 		public HomePage gotoUserInfoTab(){
 			String role = getRoleText();
 			clickUserInfoTab();

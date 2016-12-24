@@ -4,9 +4,8 @@ import com.softserve.edu.oms.pages.LoginPage;
 import org.apache.commons.lang.SystemUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import java.util.concurrent.TimeUnit;
 
 public class TestRunner {
@@ -14,7 +13,7 @@ public class TestRunner {
     protected WebDriver driver;
     protected LoginPage loginPage;
 
-    @BeforeMethod
+    @BeforeClass
     public void oneTimeSetUp() {
 
 
@@ -50,7 +49,7 @@ public class TestRunner {
         loginPage = new LoginPage(driver);
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterClass
     public void oneTimeTearDown(){ 
         driver.quit();
     }

@@ -38,7 +38,8 @@ public class SortingByRoleRegionUsersTabeTest extends TestRunner {
 
 	@BeforeMethod
 	public void loginForTests() {
-		administrationPage = loginPage.successAdminLogin(UserRepository.get().adminUser()).gotoAdministrationPage();
+		administrationPage = loginPage.successAdminLogin(UserRepository.get().adminUser())
+				.gotoAdministrationPage();
 		administrationPage.showTenRows();
 	}
 
@@ -98,6 +99,11 @@ public class SortingByRoleRegionUsersTabeTest extends TestRunner {
 	@DataProvider(name = "sortingTableDataProvider")
 	public static Iterator<Object[]> sortingTableDataProvider() {
 		return ReadDataFromFile.readSortUsersTableTest("sortUsersTableTest").iterator();
+	}
+	
+	@AfterMethod
+	public void gotostartpage(){
+		loginPage = administrationPage.logout();
 	}
 
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="OMStest" preserve-order="true">
-	<test name="LoginTest">
+	<test name="LoginTest" preserve-order="true">
 		<classes>
 			<class name="com.softserve.edu.oms.tests.login.AdminUserSmokeTest">
 				<methods>
@@ -41,7 +41,7 @@
 			<class name="com.softserve.edu.oms.tests.login.RememberMeTest" />
 		</classes>
 	</test>
-	<test name="UserInfoTest">
+	<test name="UserInfoTest" preserve-order="true">
 		<classes>
 			<!-- LVSETOMS-41 -->
 			<class
@@ -52,7 +52,7 @@
 			</class>
 		</classes>
 	</test>
-	<test name="AdministrationTest">
+	<test name="AdministrationTest" preserve-order="true">
 		<classes>
 			<!-- LVSETOMS-43 -->
 			<class
@@ -113,7 +113,7 @@
 			</class>
 		</classes>
 	</test>
-	<test name="CreateUserTest">
+	<test name="CreateUserTest" preserve-order="true">
 		<classes>
 			<!-- LVSETOMS-49 -->
 			<class

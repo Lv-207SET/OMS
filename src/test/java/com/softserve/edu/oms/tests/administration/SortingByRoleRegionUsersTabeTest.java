@@ -76,19 +76,15 @@ public class SortingByRoleRegionUsersTabeTest extends TestRunner {
 		case "ROLEREF_ASC":
 			administrationPage.sortByFirstNameASC();
 			break;
-
 		case "ROLEREF_DESC":
 			administrationPage.sortByRoleDESC();
 			break;
-
 		case "REGIONREF_ASC":
 			administrationPage.sortByRegionASC();
 			break;
-
 		case "REGIONREF_DESC":
 			administrationPage.sortByRegionDESC();
 			break;
-
 		default:
 			throw new RuntimeException("Invalid query!");
 		}

@@ -3,11 +3,11 @@
 <suite name="OMStest">
 	<test name="LoginTest">
 		<classes>
-		    <class name="com.softserve.edu.oms.tests.login.AdminUserSmokeTest">
-		    <methods>
-		    <include name="adminUserSmokeTest" />
-		    </methods>
-		    </class>
+			<class name="com.softserve.edu.oms.tests.login.AdminUserSmokeTest">
+				<methods>
+					<include name="adminUserSmokeTest" />
+				</methods>
+			</class>
 			<!-- LVSETOMS-28 -->
 			<class name="com.softserve.edu.oms.tests.login.LoginAsEveryUserTypeTest">
 				<methods>
@@ -75,6 +75,7 @@
 					<include name="CorrectUserInfoIsDisplayedTest" />
 				</methods>
 			</class>
+			
 			<!-- LVSETOMS-46 -->
 			<class
 				name="com.softserve.edu.oms.tests.administration.SortByIDFirstNameLastNameTest">
@@ -97,7 +98,8 @@
 					<include name="verifySearchRole" />
 				</methods>
 			</class>
-			<class	name="com.softserve.edu.oms.tests.administration.SortingByRoleRegionUsersTabeTest">
+			<class
+				name="com.softserve.edu.oms.tests.administration.SortingByRoleRegionUsersTabeTest">
 				<methods>
 					<include name="sortUsersTableTest" />
 				</methods>
@@ -156,6 +158,13 @@
 				name="com.softserve.edu.oms.tests.createuser.ErrorMsgConfirmPasswordTest">
 				<methods>
 					<include name="verifyErrorMsgUserWithNotConfirmedPassword" />
+				</methods>
+			</class>
+			
+			<class
+				name="com.softserve.edu.oms.tests.createuser.InvalidPasswordSetWhileNewUserCreationTest">
+				<methods>
+					<include name="setInvalidPasswordWhileCreateNewUserTest" />
 				</methods>
 			</class>
 		</classes>

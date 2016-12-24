@@ -13,5 +13,10 @@
             <class name="com.softserve.edu.oms.tests.administration.SortingByRoleRegionUsersTabeTest"/>
         </classes>
     </test>
- 
+    
+     <test name="Seting Invalid Password While Creat New User">
+        <classes>
+            <class name="com.softserve.edu.oms.tests.createuser.InvalidPasswordSetWhileNewUserCreationTest"/>
+        </classes>
+    </test>
 </suite>

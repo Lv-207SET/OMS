@@ -14,6 +14,7 @@ import org.testng.annotations.DataProvider;
 
 import ru.yandex.qatools.allure.annotations.Step;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class ReadDataFromFile. To use current class in your tests you should: -
  * in TestData.xls create necessary sheet with test data (users) - write a
@@ -160,6 +161,19 @@ public class ReadDataFromFile {
 	 */
 	@Step("Read queries from file")
 	public static List<Object[]> readSortUsersTableTest(String sheetName) {
+		List<Object[]> someDataList = readAllTestDataFromSheet(sheetName);
+		return someDataList;
+	}
+	
+	
+	/**
+	 * Read invalis passw user test.
+	 *
+	 * @param sheetName the sheet name
+	 * @return the list
+	 */
+	@Step("Read queries from file")
+	public static List<Object[]> readInvalisPasswUserTest(String sheetName) {
 		List<Object[]> someDataList = readAllTestDataFromSheet(sheetName);
 		return someDataList;
 	}

@@ -3,10 +3,9 @@
 <suite name="OMStest">
 	<test name="LoginTest">
 		<classes>
-		
 		    <class name="com.softserve.edu.oms.tests.login.AdminUserSmokeTest">
 		    <methods>
-		    <include name="Sorting Teable With Users Test" />
+		    <include name="adminUserSmokeTest" />
 		    </methods>
 		    </class>
 			<!-- LVSETOMS-28 -->
@@ -98,8 +97,7 @@
 					<include name="verifySearchRole" />
 				</methods>
 			</class>
-			<class
-				name="com.softserve.edu.oms.tests.administration.SortingByRoleRegionUsersTabeTest">
+			<class	name="com.softserve.edu.oms.tests.administration.SortingByRoleRegionUsersTabeTest">
 				<methods>
 					<include name="sortUsersTableTest" />
 				</methods>

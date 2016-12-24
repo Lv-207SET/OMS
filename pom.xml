@@ -120,8 +120,6 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>${org.apache.poi.version}</version>
 		</dependency>
-		
-		
 
 		<dependency>
 			<groupId>ru.yandex.qatools.allure</groupId>

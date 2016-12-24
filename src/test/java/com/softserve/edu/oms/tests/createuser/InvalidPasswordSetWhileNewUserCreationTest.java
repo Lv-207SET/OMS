@@ -15,7 +15,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 /**
  * The Class InvalidPasswordSetWhileNewUserCreationTest.
  * 
- * @author Bohdan Harasym
+ * @author Softserve Academy
  * @since 24.12.2016
  */
 public class InvalidPasswordSetWhileNewUserCreationTest extends TestRunner{

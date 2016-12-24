@@ -21,7 +21,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 /**
  * The Class SortingByLoginRoleRegionUsersTabeTest.
  * 
- * @author Bohdan Harasym
+ * @author Softserve Academy
  * @since 22.12.2016
  */
 public class SortingByRoleRegionUsersTabeTest extends TestRunner {

@@ -11,7 +11,7 @@ import com.softserve.edu.oms.tests.TestRunner;
 /**
  * The Class AdminUserSmokeTest.
  * 
- * @author Bohdan Harasym
+ * @author Softserve Academy
  * @since 22.12.2016
  */
 public class AdminUserSmokeTest extends TestRunner {

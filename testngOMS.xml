@@ -116,12 +116,12 @@
 	<test name="CreateUserTest" preserve-order="true">
 		<classes>
 			<!-- LVSETOMS-49 -->
-			<class
-				name="com.softserve.edu.oms.tests.createuser.UserWithEmptyMandatoryFieldsCreationTest">
-				<methods>
-					<include name="verifyErrorMessagesDuringUserCreation" />
-				</methods>
-			</class>
+			<!--<class-->
+				<!--name="com.softserve.edu.oms.tests.createuser.UserWithEmptyMandatoryFieldsCreationTest">-->
+				<!--<methods>-->
+					<!--<include name="verifyErrorMessagesDuringUserCreation" />-->
+				<!--</methods>-->
+			<!--</class>-->
 			<!-- LVSETOMS-50 -->
 			<class name="com.softserve.edu.oms.tests.createuser.CreateNewUserTest">
 				<methods>

@@ -38,7 +38,7 @@ public class TestRunner {
         driver
                 .manage()
                 .timeouts()
-                .implicitlyWait(4, TimeUnit.SECONDS);
+                .implicitlyWait(10, TimeUnit.SECONDS);
         driver
                 .manage()
                 .window()
@@ -51,6 +51,7 @@ public class TestRunner {
 
     @AfterClass
     public void oneTimeTearDown(){ 
+        loginPage.logout();
         driver.quit();
     }
     

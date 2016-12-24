@@ -69,8 +69,8 @@
                 .setPasswordInput(nonExistingUser.getPassword())
                 .setConfirmPasswordInput(nonExistingUser.getPassword())
                 .setEmailInput(nonExistingUser.getEmail())
-                .clickCreateButton()
-                .acceptAlert();
+                .waitForEmailErrorToDisappear()
+                .clickCreateButton();
 
         //entering the data to verify that error message will appear
         CreateNewUserPage newUserPageAgain = new AdministrationPage(driver)

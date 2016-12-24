@@ -13,7 +13,7 @@
                 + " where IsUserActive=1 and Users.login="),
         GET_5_USERS_JOIN_ROLE("select Users.Login, Users.FirstName, Users.LastName, Users.Password,"
                 + " Users.Email, Regions.RegionName, Roles.RoleName from (Users join Regions on Users.RegionRef = Regions.ID)"
-                + " join Roles on Users.RoleRef = Roles.ID ORDER BY RoleRef LIMIT 5;"),
+                + " join Roles on Users.RoleRef = Roles.ID ORDER BY Users.ID LIMIT 5;"),
         GET_ALL_USERS_JOIN_ROLE("select Users.Login, Users.FirstName, Users.LastName,"
                 + " Users.Password, Users.Email, Regions.RegionName, Roles.RoleName"
                 + " from (Users join Regions on Users.RegionRef = Regions.ID)"

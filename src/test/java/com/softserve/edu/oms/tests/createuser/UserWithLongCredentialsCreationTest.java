@@ -44,6 +44,7 @@ public class UserWithLongCredentialsCreationTest extends TestRunner{
                 .gotoAdministrationPage()
                 .gotoCreateNewUserPage()
                 .setLoginData(userWithLongCredentials)
+                .waitForLoad()
                 .clickCreateButton()
                 .acceptAlert();
 

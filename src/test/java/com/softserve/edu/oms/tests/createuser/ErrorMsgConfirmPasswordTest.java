@@ -90,8 +90,7 @@ public class ErrorMsgConfirmPasswordTest extends TestRunner{
                 .setEmailInput(newUser.getEmail())
                 .setSelectRegion(Region.getRegion(newUser.getRegion()))
                 .setSelectRole(Role.valueOf(newUser.getRole().toUpperCase()))
-                .clickCreateButton()
-                .acceptAlert();
+                .waitForLoad();
 
         // verify that correct error message appears
         Assert.assertTrue(createNewUserPage.getConfirmPasswordErrorMessage().isDisplayed()

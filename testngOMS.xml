@@ -116,9 +116,9 @@
                 </methods>
             </class>
             <!-- LVSETOMS-54 -->
-            <class name="com.softserve.edu.oms.tests.login.LoginWithEmptyCredentialsTest">
+            <class name="com.softserve.edu.oms.tests.createuser.CreateInvalidNewUserTest">
                 <methods>
-                    <include name="loginWithEmptyCredentialsTest" />
+                    <include name="createInvalidNewUserTest" />
                 </methods>
             </class>
             <!-- LVSETOMS-55 -->

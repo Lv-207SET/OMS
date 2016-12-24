@@ -21,20 +21,20 @@ public class ResetButtonErrorMessagesTest extends TestRunner {
 
 //  Provides not register user login and password
     @DataProvider
-    public Object[][] notExistUser() {
+    public Object[][] invalidUser() {
         return new Object[][] {
-                {UserRepository.get().nonExistingUser() }
+                {UserRepository.get().invalidUser()}
         };
     }
 
-    @Test(dataProvider = "notExistUser", alwaysRun = true)
+    @Test(dataProvider = "invalidUser", alwaysRun = true)
     @Step("Error messages verification for non registered user")
-    public void verifyResetButtonErrorMessagesForNonRegisteredUser(IUser notExistUser){
+    public void verifyResetButtonErrorMessagesForNonRegisteredUser(IUser invalidUser){
 //      Check if Object of String error message is not null.
-        Assert.assertNotNull(loginPage.unsuccessfulLogin(notExistUser)
+        Assert.assertNotNull(loginPage.unsuccessfulLogin(invalidUser)
                 .getBadCredentialsErrorMessageText());
 //      Check if error message is the same as was expected
-        Assert.assertEquals(loginPage.unsuccessfulLogin(notExistUser)
+        Assert.assertEquals(loginPage.unsuccessfulLogin(invalidUser)
                 .getBadCredentialsErrorMessageText(), ErrorMessagesEnum.EXPECTED_ERROR_MESSAGE_TC29.message);
     }
 }

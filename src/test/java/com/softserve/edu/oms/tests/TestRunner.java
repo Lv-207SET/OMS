@@ -50,7 +50,8 @@ public class TestRunner {
     }
 
     @AfterClass
-    public void oneTimeTearDown(){ 
+    public void oneTimeTearDown(){
+        driver.get(System.getenv("oms_loginPageUrl"));
         loginPage.logout();
         driver.quit();
     }

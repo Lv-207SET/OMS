@@ -14,6 +14,11 @@ import java.util.concurrent.TimeUnit;
 
 import static com.softserve.edu.oms.locators.ABasePageLocators.*;
 
+
+/**
+ * This abstract class represents common elements and functionality for
+ * every page of the project
+ */
 public abstract class ABasePage {
 
     protected WebDriver driver;
@@ -90,6 +95,10 @@ public abstract class ABasePage {
         return new LoginPage(driver);
     }
 
+    /**
+     * Main explicit wait method that ensures that last element which is common for
+     * every page of the project is present on the page and reference to it is not null.
+     */
     public ABasePage waitForLoad() {
         WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver, 10)
                 .ignoring(StaleElementReferenceException.class);
@@ -100,6 +109,11 @@ public abstract class ABasePage {
         return this;
     }
 
+    /**
+     * Helper wait method used to wait for error messages to disappear after
+     * the valid data has been entered fully into the input field but the
+     * error message is still being displayed for a short time
+     */
     public boolean waitForElemToDisappear(final By by) {
 
         WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver, 10)

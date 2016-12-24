@@ -27,6 +27,7 @@
 		<maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
 		<allure-maven-plugin.version>2.2</allure-maven-plugin.version>
 		<org.seleniumhq.version>3.0.1</org.seleniumhq.version>
+		<versions-maven-plugin.version>2.2</versions-maven-plugin.version>
 		<!-- - - - - - Logging - - - - - -->
 		<org.slf4j.version>1.7.13</org.slf4j.version>
 		 <logging.log4j>2.2</logging.log4j>

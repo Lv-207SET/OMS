@@ -86,7 +86,7 @@ public class SortingByRoleRegionUsersTabeTest extends TestRunner {
 			administrationPage.sortByRegionDESC();
 			break;
 		default:
-			throw new RuntimeException("Invalid query!");
+			throw new RuntimeException("Invalid query in Test Data!");
 		}
 		assertTrue(administrationPage.compareLogins(query));
 	}

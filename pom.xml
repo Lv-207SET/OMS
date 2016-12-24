@@ -30,17 +30,17 @@
 		<versions-maven-plugin.version>2.2</versions-maven-plugin.version>
 		<!-- - - - - - Logging - - - - - -->
 		<org.slf4j.version>1.7.13</org.slf4j.version>
-		 <logging.log4j>2.2</logging.log4j>
-        <slf4j-simple>1.7.19</slf4j-simple>
-        <yaml.config.version>1.17</yaml.config.version>
-		
+		<logging.log4j>2.2</logging.log4j>
+		<slf4j-simple>1.7.19</slf4j-simple>
+		<yaml.config.version>1.17</yaml.config.version>
+
 		<!-- - - - - - Utils - - - - - -->
 		<org.apache.poi.version>3.13</org.apache.poi.version>
 		<xerces.xercesImpl.version>2.11.0</xerces.xercesImpl.version>
 		<allure.version>1.5.0</allure.version>
 
-        <aspectj.version>1.8.5</aspectj.version>
-        <xmlrun>testngOMS.xml</xmlrun>
+		<aspectj.version>1.8.5</aspectj.version>
+		<xmlrun>testngOMS.xml</xmlrun>
 	</properties>
 
 	<dependencies>
@@ -67,20 +67,20 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.6</version>
 		</dependency>
-		
-		<!-- YAML-->
-        <dependency>
-            <groupId>org.yaml</groupId>
-            <artifactId>snakeyaml</artifactId>
-            <version>${yaml.config.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-            <version>1.8.1</version>
-            <scope>test</scope>
-        </dependency>
-        
+
+		<!-- YAML -->
+		<dependency>
+			<groupId>org.yaml</groupId>
+			<artifactId>snakeyaml</artifactId>
+			<version>${yaml.config.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- - - - - - Tests - - - - - -->
 		<dependency>
 			<groupId>org.testng</groupId>
@@ -104,12 +104,12 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${org.slf4j.version}</version>
 			<scope>runtime</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.aspectj</groupId>
-				<artifactId>aspectjweaver</artifactId>
-				<version>${aspectj.version}</version>
-			</dependency>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${aspectj.version}</version>
+		</dependency>
 		<!-- - - - Read from Excel formats, etc. - - - -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
@@ -140,8 +140,6 @@
 			<version>2.5</version>
 		</dependency>
 
-		<!-- <dependency> <groupId>com.github.detro.ghostdriver</groupId> <artifactId>phantomjsdriver</artifactId> 
-			<version>1.0.4</version> </dependency> -->
 	</dependencies>
 
 	<build>
@@ -175,18 +173,14 @@
 						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
 					</argLine>
 					<argLine>-Xms256m -Xmx512m</argLine>
-					<!-- <argLine>-Xms512m -Xmx1024m</argLine> -->
 					<skipTests>false</skipTests>
-					<!-- <argLine>${surefireArgLine}</argLine> -->
 					<systemPropertyVariables>
 						<surefire.reports.directory>
 							${testng.reports.directory}
 						</surefire.reports.directory>
 					</systemPropertyVariables>
 					<suiteXmlFiles>
-						<!-- <suiteXmlFile>testng.xml</suiteXmlFile> -->
 						<file>${xmlrun}</file>
-						<!-- <file>testng1.xml</file> -->
 					</suiteXmlFiles>
 					<reportsDirectory>${testng.reports.directory}</reportsDirectory>
 				</configuration>
@@ -199,59 +193,36 @@
 				</dependencies>
 			</plugin>
 
-			<!--Needed only to show reports locally. Run jetty:run and open localhost:8080 
-				to show the report -->
-			<!--<plugin> -->
-			<!--<groupId>org.eclipse.jetty</groupId> -->
-			<!--<artifactId>jetty-maven-plugin</artifactId> -->
-			<!--<version>9.2.10.v20150310</version> -->
-			<!--<configuration> -->
-			<!--<webAppSourceDirectory>${project.build.directory}/site/allure-maven-plugin</webAppSourceDirectory> -->
-			<!--<stopKey>stop</stopKey> -->
-			<!--<stopPort>1234</stopPort> -->
-			<!--</configuration> -->
-			<!--</plugin> -->
 		</plugins>
 	</build>
-	<!-- <reporting>
+
+	<reporting>
 		<excludeDefaults>true</excludeDefaults>
 		<plugins>
 			<plugin>
 				<groupId>ru.yandex.qatools.allure</groupId>
 				<artifactId>allure-maven-plugin</artifactId>
-				<version>2.5</version>
+				<version>${allure-maven-plugin.version}</version>
 			</plugin>
 
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>${versions-maven-plugin.version}</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>dependency-updates-report</report>
+							<report>plugin-updates-report</report>
+							<report>property-updates-report</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
 		</plugins>
-	</reporting> -->
-	
-	 <reporting>
-        <excludeDefaults>true</excludeDefaults>
-        <plugins>
-            <plugin>
-                <groupId>ru.yandex.qatools.allure</groupId>
-                <artifactId>allure-maven-plugin</artifactId>
-                <version>${allure-maven-plugin.version}</version>
-            </plugin>
 
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>versions-maven-plugin</artifactId>
-                <version>${versions-maven-plugin.version}</version>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>dependency-updates-report</report>
-                            <report>plugin-updates-report</report>
-                            <report>property-updates-report</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-        </plugins>
-
-        <outputDirectory>${basedir}/target/site</outputDirectory>
-    </reporting>
+		<outputDirectory>${basedir}/target/site</outputDirectory>
+	</reporting>
 
 
 </project>

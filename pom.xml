@@ -38,6 +38,7 @@
 		<xerces.xercesImpl.version>2.11.0</xerces.xercesImpl.version>
 		<allure.version>1.5.0</allure.version>
 		<aspectj.version>1.8.9</aspectj.version>
+		<xmlrun>testngAM.xml</xmlrun>
 	</properties>
 
 	<dependencies>
@@ -210,7 +211,7 @@
 			<!--</plugin> -->
 		</plugins>
 	</build>
-	<reporting>
+	<!-- <reporting>
 		<excludeDefaults>true</excludeDefaults>
 		<plugins>
 			<plugin>
@@ -220,7 +221,35 @@
 			</plugin>
 
 		</plugins>
-	</reporting>
+	</reporting> -->
+	
+	 <reporting>
+        <excludeDefaults>true</excludeDefaults>
+        <plugins>
+            <plugin>
+                <groupId>ru.yandex.qatools.allure</groupId>
+                <artifactId>allure-maven-plugin</artifactId>
+                <version>${allure-maven-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>${versions-maven-plugin.version}</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>dependency-updates-report</report>
+                            <report>plugin-updates-report</report>
+                            <report>property-updates-report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+
+        <outputDirectory>${basedir}/target/site</outputDirectory>
+    </reporting>
 
 
 </project>

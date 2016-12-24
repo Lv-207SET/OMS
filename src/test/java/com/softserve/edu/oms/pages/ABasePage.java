@@ -1,11 +1,16 @@
 package com.softserve.edu.oms.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.yandex.qatools.allure.annotations.Step;
+
+import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
 
 import static com.softserve.edu.oms.locators.ABasePageLocators.*;
 
@@ -93,5 +98,15 @@ public abstract class ABasePage {
             return element != null && element.isDisplayed();
         });
         return this;
+    }
+
+    public boolean waitForElemToDisappear(final By by) {
+
+        WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver, 10)
+                .pollingEvery(1, TimeUnit.SECONDS)
+                .ignoring(StaleElementReferenceException.class)
+                .ignoring(NoSuchElementException.class);
+
+        return wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
     }
 }

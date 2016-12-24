@@ -31,17 +31,22 @@ public class RememberMeTest extends TestRunner {
     @Test
     public void rememberMeTest() {
         IUser user= UserRepository.get().adminUser();
+        // check if input fields are empty
         Assert.assertEquals(loginPage.getLoginnameInputText(), "");
         Assert.assertEquals(loginPage.getPasswordInputText(), "");
-        loginPage.setLoginnameInput(user.getLoginname());
-        loginPage.setPasswordInput(user.getPassword());
         loginPage.clickGetRememberMeCheckbox();
-        loginPage.clickSubmitButton();
+        //log in as admin
+        loginPage.successAdminLogin(user);
+
         HomePage homePage = new HomePage(driver);
+        // verify if we log in successfully
         Assert.assertEquals(homePage.getFirstnameText(), user.getFirstname());
         Assert.assertEquals(homePage.getLastnameText(), user.getLastname());
+
+        // log out
         homePage.clickLogoutButton();
         loginPage = new LoginPage(driver);
+        //verify if text values are saved in text inputs
         softAssert.assertEquals(loginPage.getLoginnameInputText(),user.getLoginname());
         softAssert.assertEquals(loginPage.getPasswordInputText().length(),user.getPassword().length());
         softAssert.assertAll();

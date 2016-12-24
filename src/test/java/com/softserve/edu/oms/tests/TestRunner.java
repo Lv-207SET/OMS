@@ -21,16 +21,18 @@ public class TestRunner {
     public void oneTimeSetUp() {
 
 
+        final String driverPath = "src/test/resources/drivers/";
+
         //Determine which OS: Linux or Windows and locating chromedriver accordingly
         if(SystemUtils.IS_OS_WINDOWS) {
-            final String driverPath = "src/test/resources/drivers/";
+
             System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver.exe");
         }
         else if(SystemUtils.IS_OS_LINUX) {
-            System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+            System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver");
         }
         else {
-            throw new InvalidOperationException("Your OS is not supported");
+            throw new RuntimeException("Your OS is not supported");
         }
 
         final String loginPageUrl= System.getenv("oms_loginPageUrl");

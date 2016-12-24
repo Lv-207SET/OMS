@@ -12,7 +12,7 @@
 	</test>
 	<test name="Test2">
 	<classes>
-		<class name="com.softserve.edu.oms.tests.administration.PaginationTest">
+		<class name="com.softserve.edu.oms.tests.administration.ChangeNumberOfUserPerPageTest">
 			<methods>
 				<include name="paginationTest" />
 			</methods>

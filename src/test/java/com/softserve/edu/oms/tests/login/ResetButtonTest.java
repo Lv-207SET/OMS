@@ -3,14 +3,10 @@ package com.softserve.edu.oms.tests.login;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.UserRepository;
 import com.softserve.edu.oms.tests.TestRunner;
-import org.hamcrest.CoreMatchers;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Step;
-
-import static com.softserve.edu.oms.enums.ErrorMessagesEnum.ERROR_MESSAGE;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * This test verifies that entered user credentials values
@@ -31,7 +27,9 @@ public class ResetButtonTest extends TestRunner {
     @DataProvider
     public Object[][] someUser() {
         return new Object[][]{
-                {UserRepository.get().invalidUser()}
+                {UserRepository
+                        .get()
+                        .invalidUser()}
         };
     }
 
@@ -44,7 +42,7 @@ public class ResetButtonTest extends TestRunner {
      * @param someUser {@link com.softserve.edu.oms.data.UserRepository}
      */
     @Test(dataProvider = "someUser")
-    @Step("verifyResetButtonFunctionality")
+    @Step("verify 'Reset' button functionality")
     public void verifyResetButtonFunctionality(IUser someUser) {
 
         loginPage.setLoginDataAndReset(someUser);

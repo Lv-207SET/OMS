@@ -37,8 +37,9 @@
 		<org.apache.poi.version>3.13</org.apache.poi.version>
 		<xerces.xercesImpl.version>2.11.0</xerces.xercesImpl.version>
 		<allure.version>1.5.0</allure.version>
-		<aspectj.version>1.8.9</aspectj.version>
-		<xmlrun>testngAM.xml</xmlrun>
+
+        <aspectj.version>1.8.5</aspectj.version>
+        <xmlrun>testngOMS.xml</xmlrun>
 	</properties>
 
 	<dependencies>

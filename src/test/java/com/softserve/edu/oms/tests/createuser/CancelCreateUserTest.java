@@ -27,18 +27,22 @@ public class CancelCreateUserTest extends TestRunner {
     @Test
     public void cancelCreateUserTest() {
         IUser user = UserRepository.get().adminUser();
+
+        // check if input fields are empty
         Assert.assertEquals(loginPage.getLoginnameInputText(), "");
         Assert.assertEquals(loginPage.getPasswordInputText(), "");
-        loginPage.setLoginnameInput(user.getLoginname());
-        loginPage.setPasswordInput(user.getPassword());
-        loginPage.clickSubmitButton();
+        // login and go to Create New User page
+        loginPage.successAdminLogin(user);
         AdminHomePage adminHomePage = new AdminHomePage(driver);
         adminHomePage.clickAdministrationTab();
         AdministrationPage adminPage = new AdministrationPage(driver);
         CreateNewUserPage createPage = adminPage.gotoCreateNewUserPage();
+
+        // get non-existing user
         DBUtils dbUtils = new DBUtils();
         user = UserRepository.get().invalidUser();
         Assert.assertNull(dbUtils.getUserByLogin(user.getLoginname()));
+        // enter user's data and click 'cancel'
         createPage.setLoginInput(user.getLoginname())
                 .setFirstNameInput(user.getFirstname())
                 .setLastNameInput(user.getLastname())
@@ -46,8 +50,7 @@ public class CancelCreateUserTest extends TestRunner {
                 .setPasswordInput(user.getPassword())
                 .setConfirmPasswordInput(user.getPassword())
                 .clickCancelButton();
+        // check if new user isn't created
         Assert.assertNull(dbUtils.getUserByLogin(user.getLoginname()));
-        //Assert.assertAll();
-
     }
 }

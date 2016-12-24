@@ -7,10 +7,19 @@
     <test name="Test2">
         <classes>
             <class name="com.softserve.edu.oms.tests.userinfo.SwitchingTabsFunctionalityTest">
+                <methods>
+                    <include name="SwitchingTabsFunctionalityTest" />
+                </methods>
             </class>
             <class name="com.softserve.edu.oms.tests.administration.CorrectUserInfoIsDisplayedTest">
+                <methods>
+                    <include name="CorrectUserInfoIsDisplayedTest" />
+                </methods>
             </class>
             <class name="com.softserve.edu.oms.tests.createuser.LoginFieldIsCaseInsensitiveTest">
+                <methods>
+                    <include name="LoginFieldIsCaseInsensitiveTest" />
+                </methods>
             </class>
         </classes>
     </test>

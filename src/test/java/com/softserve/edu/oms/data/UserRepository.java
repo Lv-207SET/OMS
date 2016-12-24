@@ -26,8 +26,8 @@
 
 
 	public IUser badMemoryUser() {
-		return new User("BadMemoryUser", "Neo", "Matrix", "paSSworD",
-				"hello@gmail.com", "East", "Supervisor");
+		return new User("BadMemoryUser", "Petro", "Roshen", "paSSworD",
+				"hello@gmail.com", "South", "Supervisor");
 	}
 	
 	public IUser someUser() {
@@ -42,7 +42,7 @@
     
 	public IUser nonExistingUser() {
 		return new User("hippo", "hippopotamus", "hippopotamus", "qwerty",
-				"hippo@ui.com", "East", "Administrator");
+				"mail@gmail.com", "East", "Administrator");
 	}
     public IUser newUser() {
         return new User("isComing", "New", "WorldOrder", "1234",

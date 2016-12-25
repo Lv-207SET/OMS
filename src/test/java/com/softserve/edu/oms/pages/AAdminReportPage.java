@@ -543,13 +543,12 @@ public abstract class AAdminReportPage extends ABasePage {
 		String[] textOfRoles = new String[size];
 		String[] textOfRegions = new String[size];
 		for (int i = 0; i < size; i++) {
-			System.out.println(i);
 			textofLogins[i] = logins.get(i).getText().trim();
 			textofFirstNames[i] = firstNames.get(i).getText().trim();
 			textofLastNames[i] = lastNames.get(i).getText().trim();
 			textOfRoles[i] = roles.get(i).getText().trim();
 			textOfRegions[i] = regions.get(i).getText().trim();
-			System.out.println(textOfRoles[i]+"  "+textOfRegions[i]);
+			//System.out.println(textOfRoles[i]+"  "+textOfRegions[i]);
 		}
 
 		DBUtils dbUtility = new DBUtils();
@@ -557,8 +556,8 @@ public abstract class AAdminReportPage extends ABasePage {
 
 		boolean isEqual = true;
 
-		System.out.printf("%-20s%-20s%-20s%s\n", "\nLogin/table   ", "First Name/table   ", "Last Name/table  ",
-				"Login/DB");
+		System.out.printf("%-20s%-20s%-20s%-20s%-20s%s\n", "\nLogin/table   ", "First Name/table   ", "Last Name/table  ",
+				"Region/table   ", "Role/table   ", "Login/DB");
 		for (int i = 0; i < size; i++) {
 			System.out.printf("%-20s%-20s%-20s%-20s%-20s%s\n", textofLogins[i], textofFirstNames[i], textofLastNames[i],
 					textOfRegions[i], textOfRoles[i], loginsFromDB.get(i));

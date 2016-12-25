@@ -43,14 +43,7 @@ public class SortingByRoleRegionUsersTabeTest extends TestRunner {
 		administrationPage.showTenRows();
 	}
 
-	/**
-	 * Tear down.
-	 */
-	@AfterMethod
-	public void tearDown() {
-		// driver.quit();
-	}
-
+	
 	/**
 	 * Sort table by login test.
 	 *
@@ -70,7 +63,6 @@ public class SortingByRoleRegionUsersTabeTest extends TestRunner {
 					          .replace(" ", "_");
 		}
 
-		System.out.println(switchCond);
 		switch (switchCond) {
 		
 		case "ROLEREF_ASC":
@@ -88,6 +80,7 @@ public class SortingByRoleRegionUsersTabeTest extends TestRunner {
 		default:
 			throw new RuntimeException("Invalid query in Test Data!");
 		}
+		
 		assertTrue(administrationPage.compareLogins(query));
 	}
 	

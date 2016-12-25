@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="OMStest" verbose="1" parallel="tests" thread-count="10">
-	<test name="LoginTest">
+<suite name="OMStest" preserve-order="true">
+	<test name="LoginTest" preserve-order="true">
 		<classes>
 			<class name="com.softserve.edu.oms.tests.login.AdminUserSmokeTest">
 				<methods>
@@ -41,7 +41,7 @@
 			<class name="com.softserve.edu.oms.tests.login.RememberMeTest" />
 		</classes>
 	</test>
-	<test name="UserInfoTest">
+	<test name="UserInfoTest" preserve-order="true">
 		<classes>
 			<!-- LVSETOMS-41 -->
 			<class
@@ -52,7 +52,7 @@
 			</class>
 		</classes>
 	</test>
-	<test name="AdministrationTest">
+	<test name="AdministrationTest" preserve-order="true">
 		<classes>
 			<!-- LVSETOMS-43 -->
 			<class
@@ -78,7 +78,7 @@
 			
 			<!-- LVSETOMS-46 -->
 			<class
-				name="com.softserve.edu.oms.tests.administration.SortByIDFirstNameLastNameTest">
+				name="com.softserve.edu.oms.tests.administration.SortingByIDFirstNameLastNameTest">
 				<methods>
 					<include name="assertSortById" />
 					<include name="assertSortByFirstNameASC" />
@@ -113,15 +113,15 @@
 			</class>
 		</classes>
 	</test>
-	<test name="CreateUserTest">
+	<test name="CreateUserTest" preserve-order="true">
 		<classes>
 			<!-- LVSETOMS-49 -->
-			<class
-				name="com.softserve.edu.oms.tests.createuser.UserWithEmptyMandatoryFieldsCreationTest">
-				<methods>
-					<include name="verifyErrorMessagesDuringUserCreation" />
-				</methods>
-			</class>
+			<!--<class-->
+				<!--name="com.softserve.edu.oms.tests.createuser.UserWithEmptyMandatoryFieldsCreationTest">-->
+				<!--<methods>-->
+					<!--<include name="verifyErrorMessagesDuringUserCreation" />-->
+				<!--</methods>-->
+			<!--</class>-->
 			<!-- LVSETOMS-50 -->
 			<class name="com.softserve.edu.oms.tests.createuser.CreateNewUserTest">
 				<methods>
@@ -131,12 +131,12 @@
 				</methods>
 			</class>
 			<!-- LVSETOMS-51 -->
-			<class
-				name="com.softserve.edu.oms.tests.createuser.UserWithLongCredentialsCreationTest">
-				<methods>
-					<include name="verifyCreateNewUserWithLongCredentials" />
-				</methods>
-			</class>
+			<!--<class-->
+				<!--name="com.softserve.edu.oms.tests.createuser.UserWithLongCredentialsCreationTest">-->
+				<!--<methods>-->
+					<!--<include name="verifyCreateNewUserWithLongCredentials" />-->
+				<!--</methods>-->
+			<!--</class>-->
 			<!-- LVSETOMS-54 -->
 			<class
 				name="com.softserve.edu.oms.tests.createuser.CreateInvalidNewUserTest">

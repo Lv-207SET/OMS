@@ -15,7 +15,7 @@
 	<!--</test>-->
 	<!--<test name="SortTest" preserve-order="true">-->
 		<!--<classes>-->
-			<!--<class name="com.softserve.edu.oms.tests.administration.SortByIDFirstNameLastNameTest" >-->
+			<!--<class name="com.softserve.edu.oms.tests.administration.SortingByIDFirstNameLastNameTest" >-->
 				<!--<methods>-->
 					<!--<include name="assertSortById" />-->
 					<!--<include name="assertSortByFirstNameASC" />-->

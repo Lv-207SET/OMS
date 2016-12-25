@@ -8,6 +8,21 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Step;
 
+
+/**
+ * This test verifies that one user of every
+ * available user type:
+ * -Administrator
+ * -Customer
+ * -Merchandiser
+ * -Supervisor
+ * can successfully log in the site
+ *
+ * Based on LVSETOMS-28 in Jira
+ *
+ * @author Anton Tokmakov
+ * @since 16.12.16
+ */
 public class LoginAsEveryUserTypeTest extends TestRunner {
 
     @DataProvider
@@ -35,7 +50,6 @@ public class LoginAsEveryUserTypeTest extends TestRunner {
         };
     }
     @Test(dataProvider = "admUser")
-    @Step
     public void assertAdministratorLogin(IUser admUser) {
         Assert.assertEquals(loginPage.logout()
                 .successAdminLogin(admUser)
@@ -44,7 +58,6 @@ public class LoginAsEveryUserTypeTest extends TestRunner {
     }
 
     @Test(dataProvider = "customerUser")
-    @Step("Check if user with customer type logs in successfully")
     public void assertCustomerLogin(IUser customerUser) {
         Assert.assertEquals(loginPage.logout()
                 .successCustomerLogin(customerUser)
@@ -53,7 +66,6 @@ public class LoginAsEveryUserTypeTest extends TestRunner {
     }
 
     @Test(dataProvider = "merchandiserUser")
-    @Step
     public void assertMerchandiserLogin(IUser merchandiserUser) {
         Assert.assertEquals(loginPage.logout()
                 .successMerchandiserLogin(merchandiserUser)
@@ -62,7 +74,6 @@ public class LoginAsEveryUserTypeTest extends TestRunner {
     }
 
     @Test(dataProvider = "supervisorUser")
-    @Step
     public void assertSupervisorLogin(IUser supervisorUser) {
         Assert.assertEquals(loginPage.logout()
                 .successSupervisorLogin(supervisorUser)

@@ -9,8 +9,19 @@ import org.testng.annotations.Test;
 
 import static com.softserve.edu.oms.enums.SQLQueries.*;
 
+/**
+ * This test verifies that site performs different user sorts
+ * exactly like site database would do it using
+ * corresponding SQL queries
+ *
+ * Based on LVSETOMS-46 in Jira
+ *
+ * @author Anton Tokmakov
+ * @since 16.12.16
+ */
 
-public class SortByIDFirstNameLastNameTest extends TestRunner {
+
+public class SortingByIDFirstNameLastNameTest extends TestRunner {
 
     @DataProvider
     public Object[][] admUser() {

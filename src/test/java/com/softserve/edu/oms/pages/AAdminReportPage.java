@@ -364,12 +364,19 @@ public abstract class AAdminReportPage extends ABasePage {
 		clickSearchButton();
 	}
 
+	/**
+	 * Select Condition by index and stay on page
+	 */
 	public AAdminReportPage selectConditionByIndex(final int index) {
 		final Select selectConditionFilter = getSelectCondition();
 		selectConditionFilter.selectByIndex(index);
 		return this;
 	}
 
+	/**
+	 * Configure all search filters, input search term, perform search
+	 * and stay on page
+	 */
 	public AAdminReportPage filterAndSearch(FieldFilterDropdownList fieldOption,
 			ConditionFilterDropdownList conditionOption, String searchTerm) {
 		selectField(fieldOption);
@@ -377,6 +384,7 @@ public abstract class AAdminReportPage extends ABasePage {
 		search(searchTerm);
 		return this;
 	}
+
 
 	public AAdminReportPage sortByFirstNameASC() {
 		clickRegionLink();
@@ -458,6 +466,10 @@ public abstract class AAdminReportPage extends ABasePage {
 		return this;
 	}
 
+	/**
+	 * Expands default table mode of showing 5 users on a page
+	 * to show 10 users on a page
+	 */
 	public AAdminReportPage showTenRows() {
 		if (getShowItemsLinkText().equals("Show 5 items"))
 			return this;
@@ -465,6 +477,9 @@ public abstract class AAdminReportPage extends ABasePage {
 		return this;
 	}
 
+	/**
+	 * Execute wait from super class and stay on current page
+	 */
 	@Override
 	public AAdminReportPage waitForLoad() {
 		super.waitForLoad();
@@ -491,7 +506,10 @@ public abstract class AAdminReportPage extends ABasePage {
 		return userListFormCurrentPage;
 	}
 
-	// Get all users list from search result
+	/**
+	 * Traverses every page and adds every user displayed
+	 * to the list
+	 */
 	public List<User> getAllUsers() {
 		clickFirstButton();
 		final List<User> usersOnAllPages = new ArrayList<>();
@@ -508,9 +526,10 @@ public abstract class AAdminReportPage extends ABasePage {
 		return usersOnAllPages;
 	}
 
-	// Find user by login and return as java object in purpose to compare it
-	// with
-	// data in database
+	/**
+	 * Gets user by login and creates java object of class User
+	 * based on the data taken
+	 */
 	public User getUserByLoginAndTransferToJavaObject(String login) {
 		selectField(FieldFilterDropdownList.LOGIN);
 		selectCondition(ConditionFilterDropdownList.EQUALS);

@@ -28,7 +28,7 @@
 			<class
 				name="com.softserve.edu.oms.tests.login.LoginWithEmptyCredentialsTest">
 				<methods>
-					<include name="loginWithEmptyCredentialsTest" />
+					<include name="verifyErrorMessageWhenUserLoginWithEmptyCredentials" />
 				</methods>
 			</class>
 			<!-- LVSETOMS-37 -->
@@ -58,7 +58,7 @@
 			<class
 				name="com.softserve.edu.oms.tests.administration.ChangeNumberOfUserPerPageTest">
 				<methods>
-					<include name="paginationTest" />
+					<include name="verifyChangeUserNumberPerPage" />
 				</methods>
 			</class>
 			<!-- LVSETOMS-44 -->
@@ -141,7 +141,7 @@
 			<class
 				name="com.softserve.edu.oms.tests.createuser.CreateInvalidNewUserTest">
 				<methods>
-					<include name="createInvalidNewUserTest" />
+					<include name="verifyErrorMessageCreatingUserWithInvalidData" />
 				</methods>
 			</class>
 			<!-- LVSETOMS-55 -->

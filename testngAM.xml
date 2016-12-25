@@ -5,7 +5,7 @@
 		<classes>
 			<class name="com.softserve.edu.oms.tests.createuser.CreateInvalidNewUserTest">
 				<methods>
-					<include name="createInvalidNewUserTest" />
+					<include name="verifyErrorMessageCreatingUserWithInvalidData" />
 				</methods>
 			</class>
 		</classes>
@@ -14,7 +14,7 @@
 	<classes>
 		<class name="com.softserve.edu.oms.tests.administration.ChangeNumberOfUserPerPageTest">
 			<methods>
-				<include name="paginationTest" />
+				<include name="verifyChangeUserNumberPerPage" />
 			</methods>
 		</class>
 	</classes>
@@ -23,7 +23,7 @@
 	<classes>
 		<class name="com.softserve.edu.oms.tests.login.LoginWithEmptyCredentialsTest">
 			<methods>
-				<include name="loginWithEmptyCredentialsTest" />
+				<include name="verifyErrorMessageWhenUserLoginWithEmptyCredentials" />
 			</methods>
 		</class>
 	</classes>

@@ -123,4 +123,12 @@ public abstract class ABasePage {
 
         return wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
     }
+
+    public WebElement waitForElement (final By by){
+        WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver, 10)
+                .pollingEvery(1, TimeUnit.SECONDS)
+                .ignoring(StaleElementReferenceException.class)
+                .ignoring(NoSuchElementException.class);
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
 }

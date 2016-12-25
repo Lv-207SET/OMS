@@ -55,8 +55,13 @@
         //verifying that user do not exist or generating a new one
         DBUtils dbUtils = new DBUtils();
         String nonExistingLogin = nonExistingUser.getLoginname();
+        String nonExistingFirstName = nonExistingUser.getFirstname();
+        String nonExistingLastName = nonExistingUser.getLastname();
+
         while (dbUtils.verifyThatUserIsInDB(nonExistingLogin)) {
             nonExistingLogin = RandomStringUtils.random(5, true, false).toLowerCase();
+            nonExistingFirstName = RandomStringUtils.random(5, true, false);
+            nonExistingLastName = RandomStringUtils.random(5, true, false);
         }
 
         //set up a form and creating a new user
@@ -64,8 +69,8 @@
         newUserPage
                 .waitForLoad()
                 .setLoginInput(nonExistingLogin)
-                .setFirstNameInput(nonExistingUser.getFirstname())
-                .setLastNameInput(nonExistingUser.getLastname())
+                .setFirstNameInput(nonExistingFirstName)
+                .setLastNameInput(nonExistingLastName)
                 .setPasswordInput(nonExistingUser.getPassword())
                 .setConfirmPasswordInput(nonExistingUser.getPassword())
                 .setEmailInput(nonExistingUser.getEmail())
@@ -76,8 +81,8 @@
         CreateNewUserPage newUserPageAgain = new AdministrationPage(driver)
                 .gotoCreateNewUserPage()
                 .setLoginInput(nonExistingLogin.toUpperCase())
-                .setFirstNameInput(nonExistingUser.getFirstname())
-                .setLastNameInput(nonExistingUser.getLastname())
+                .setFirstNameInput(nonExistingFirstName)
+                .setLastNameInput(nonExistingLastName)
                 .setPasswordInput(nonExistingUser.getPassword())
                 .setConfirmPasswordInput(nonExistingUser.getPassword())
                 .setEmailInput(nonExistingUser.getEmail());

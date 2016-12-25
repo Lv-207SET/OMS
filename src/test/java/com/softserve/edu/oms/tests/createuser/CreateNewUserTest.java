@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * This test verifies that user with valid data
- * that is not registered with the sire currently
+ * that is not registered with the site currently
  * can be successfully created by the site administrator
  *
  * Based on LVSETOMS-50 in Jira

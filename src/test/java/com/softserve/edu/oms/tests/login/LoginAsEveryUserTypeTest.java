@@ -50,7 +50,6 @@ public class LoginAsEveryUserTypeTest extends TestRunner {
         };
     }
     @Test(dataProvider = "admUser")
-    @Step
     public void assertAdministratorLogin(IUser admUser) {
         Assert.assertEquals(loginPage.logout()
                 .successAdminLogin(admUser)
@@ -59,7 +58,6 @@ public class LoginAsEveryUserTypeTest extends TestRunner {
     }
 
     @Test(dataProvider = "customerUser")
-    @Step("Check if user with customer type logs in successfully")
     public void assertCustomerLogin(IUser customerUser) {
         Assert.assertEquals(loginPage.logout()
                 .successCustomerLogin(customerUser)
@@ -68,7 +66,6 @@ public class LoginAsEveryUserTypeTest extends TestRunner {
     }
 
     @Test(dataProvider = "merchandiserUser")
-    @Step
     public void assertMerchandiserLogin(IUser merchandiserUser) {
         Assert.assertEquals(loginPage.logout()
                 .successMerchandiserLogin(merchandiserUser)
@@ -77,7 +74,6 @@ public class LoginAsEveryUserTypeTest extends TestRunner {
     }
 
     @Test(dataProvider = "supervisorUser")
-    @Step
     public void assertSupervisorLogin(IUser supervisorUser) {
         Assert.assertEquals(loginPage.logout()
                 .successSupervisorLogin(supervisorUser)

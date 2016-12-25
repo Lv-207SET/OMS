@@ -41,7 +41,7 @@
     }
     
 	public IUser nonExistingUser() {
-		return new User("hippo", "hippopotamus", "hippopotamus", "qwerty",
+		return new User("hippo", "Kalipso", "Karkarov", "qwerty",
 				"mail@gmail.com", "East", "Administrator");
 	}
     public IUser newUser() {

@@ -78,7 +78,7 @@
 			
 			<!-- LVSETOMS-46 -->
 			<class
-				name="com.softserve.edu.oms.tests.administration.SortByIDFirstNameLastNameTest">
+				name="com.softserve.edu.oms.tests.administration.SortingByIDFirstNameLastNameTest">
 				<methods>
 					<include name="assertSortById" />
 					<include name="assertSortByFirstNameASC" />

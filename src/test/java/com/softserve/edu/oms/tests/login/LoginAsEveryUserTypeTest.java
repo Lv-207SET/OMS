@@ -8,6 +8,21 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Step;
 
+
+/**
+ * This test verifies that one user of every
+ * available user type:
+ * -Administrator
+ * -Customer
+ * -Merchandiser
+ * -Supervisor
+ * can successfully log in the site
+ *
+ * Based on LVSETOMS-28 in Jira
+ *
+ * @author Anton Tokmakov
+ * @since 16.12.16
+ */
 public class LoginAsEveryUserTypeTest extends TestRunner {
 
     @DataProvider

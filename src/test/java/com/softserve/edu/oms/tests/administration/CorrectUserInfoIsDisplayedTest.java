@@ -43,7 +43,7 @@ public class CorrectUserInfoIsDisplayedTest extends TestRunner{
      */
     @Test(dataProvider = "admUser")
     @Step("CorrectUserInfoIsDisplayedTest")
-    public void CorrectUserInfoIsDisplayedTest(IUser admUser) {
+    public void correctUserInfoIsDisplayedTest(IUser admUser) {
 
         //log in and go to users.html
         AdministrationPage administrationPage = loginPage

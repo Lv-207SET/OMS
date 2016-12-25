@@ -75,7 +75,8 @@
                 .setConfirmPasswordInput(nonExistingUser.getPassword())
                 .setEmailInput(nonExistingUser.getEmail())
                 .waitForEmailErrorToDisappear()
-                .clickCreateButton();
+                .clickCreateButton()
+                .acceptAlert();
 
         //entering the data to verify that error message will appear
         CreateNewUserPage newUserPageAgain = new AdministrationPage(driver)
@@ -84,8 +85,7 @@
                 .setFirstNameInput(nonExistingFirstName)
                 .setLastNameInput(nonExistingLastName)
                 .setPasswordInput(nonExistingUser.getPassword())
-                .setConfirmPasswordInput(nonExistingUser.getPassword())
-                .setEmailInput(nonExistingUser.getEmail());
+                .setConfirmPasswordInput(nonExistingUser.getPassword());
 
         Assert.assertTrue(newUserPageAgain.getLoginError());
 

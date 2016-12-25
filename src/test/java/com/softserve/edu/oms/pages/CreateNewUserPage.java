@@ -8,6 +8,9 @@ import org.apache.poi.openxml4j.exceptions.InvalidOperationException;
 import org.openqa.selenium.WebDriver;
 import ru.yandex.qatools.allure.annotations.Step;
 
+/**
+ * This page represents PageObject for Create New User Page
+ */
 public class CreateNewUserPage extends AUserDataPage {
 
     public CreateNewUserPage(WebDriver driver) {

@@ -8,6 +8,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * This class represents common functionality for all test classes
+ */
 public class TestRunner {
 
     protected WebDriver driver;

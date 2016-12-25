@@ -3,7 +3,7 @@ package com.softserve.edu.oms.locators;
 import org.openqa.selenium.By;
 
 /**
- * Created by Voropai Dmytro
+ * Enum contains locators for elements on {@link com.softserve.edu.oms.pages.AdministrationPage}.
  */
 public enum AdministrationPageLocators {
 

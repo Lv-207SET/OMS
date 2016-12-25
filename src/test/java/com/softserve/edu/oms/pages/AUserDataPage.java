@@ -15,7 +15,8 @@ import java.util.List;
 import static com.softserve.edu.oms.locators.AUserDataPageLocators.*;
 
 /**
- * Created by Oleh Lavrynenko on 15.12.2016.
+ * This abstract class represents common functionality for
+ * Create New User Page and Edit User Page
  */
 public abstract class AUserDataPage extends ABasePage {
 	AUserDataPage(WebDriver driver) {
@@ -245,7 +246,6 @@ public abstract class AUserDataPage extends ABasePage {
 		return this;
 	}
 
-	// ???
 	public AdministrationPage successCreateNewUser() {
 		clickCreateButton();
 		return new AdministrationPage(driver);

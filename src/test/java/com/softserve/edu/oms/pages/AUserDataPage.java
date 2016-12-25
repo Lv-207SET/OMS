@@ -69,11 +69,13 @@ public abstract class AUserDataPage extends ABasePage {
 	}
 
 	public WebElement getFirstNameErrorMessage() {
-		return this.driver.findElement(ERROR_FIRST_NAME_ID.by);
+
+		return this.waitForElement(ERROR_FIRST_NAME_ID.by);
 	}
 
 	public WebElement getLastNameErrorMessage() {
-		return this.driver.findElement(ERROR_LAST_NAME_ID.by);
+
+		return this.waitForElement(ERROR_LAST_NAME_ID.by);
 	}
 
 	public WebElement getPasswordErrorMessage() {

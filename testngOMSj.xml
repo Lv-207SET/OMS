@@ -54,13 +54,6 @@
 	</test>
 	<test name="AdministrationTest" preserve-order="true">
 		<classes>
-			<!-- LVSETOMS-43 -->
-			<class
-				name="com.softserve.edu.oms.tests.administration.ChangeNumberOfUserPerPageTest">
-				<methods>
-					<include name="verifyChangeUserNumberPerPage" />
-				</methods>
-			</class>
 			<!-- LVSETOMS-44 -->
 			<class
 				name="com.softserve.edu.oms.tests.administration.NavigationButtonsTest">

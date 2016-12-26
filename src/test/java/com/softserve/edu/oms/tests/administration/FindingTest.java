@@ -77,6 +77,8 @@ public class FindingTest extends TestRunner {
     @Step("testOptionValues")
     public void testOptionValues() {
         softAssert = new SoftAssert();
+
+        //verify that values in dropdown lists are correct and default values are correct too
         softAssert.assertEquals(administrationPage.getSelectFieldDefaultValue(), FieldFilterDropdownList.FIRST_NAME.getFieldName());
         softAssert.assertEquals(administrationPage.getSelectFieldOptions(), new HashSet<>(Arrays.asList(FieldFilterDropdownList.values()))
                 .stream()
@@ -89,16 +91,22 @@ public class FindingTest extends TestRunner {
         softAssert.assertAll();
     }
 
-    //@Test
+    /**
+     * Verify that search for too long name  returns all active users.
+     *
+     */
+    @Test
     public void verifySearchTooLongName(IUser admin) {
         softAssert = new SoftAssert();
+
+        //enter too long name in search field
         administrationPage.clickSearchButton();
         administrationPage.filterAndSearch(FieldFilterDropdownList.FIRST_NAME, ConditionFilterDropdownList.EQUALS,
                 LabelsNamesEnum.TOO_LONG_NAME.name);
 
         DBUtils dbUtils = new DBUtils();
         int numberOfUsers = dbUtils.getAllCells("", "").size();
-
+      //verify that result  are all active users
         softAssert.assertEquals(administrationPage.getAllUsers().size(), numberOfUsers);
         softAssert.assertAll();
 
@@ -115,11 +123,12 @@ public class FindingTest extends TestRunner {
     @Step("verifySearchByEquals")
     public void verifySearchByEquals() {
         softAssert = new SoftAssert();
-
+        //select equals option
         administrationPage.clickSearchButton();
         administrationPage.filterAndSearch(FieldFilterDropdownList.LOGIN, ConditionFilterDropdownList.EQUALS, VALID_NAME);
-
         DBUtils dbUtils = new DBUtils();
+
+        //verify that search result is correct
         int numberOfUsers = dbUtils.getUserByLogin(VALID_NAME) == null ? 0 : 1;
         softAssert.assertEquals(administrationPage.getAllUsers().size(), numberOfUsers);
         softAssert.assertAll();
@@ -139,11 +148,13 @@ public class FindingTest extends TestRunner {
 
         administrationPage.clickSearchButton();
         administrationPage.selectField(FieldFilterDropdownList.LOGIN);
+        //select not equals option
         administrationPage.selectConditionByIndex(1);
         administrationPage.search(VALID_NAME);
 
         DBUtils dbUtils = new DBUtils();
 
+        //verify that search result is correct
         int numberOfUsersWithLogin = dbUtils.getUserByLogin(VALID_NAME) == null ? 0 : 1;
         int numberOfUsers = dbUtils.countAllUsers() - numberOfUsersWithLogin;
         softAssert.assertEquals(new AdministrationPage(driver).getAllUsers().size(), numberOfUsers);

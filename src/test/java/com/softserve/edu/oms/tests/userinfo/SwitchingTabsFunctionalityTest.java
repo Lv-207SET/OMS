@@ -31,7 +31,7 @@
 
     @Test(dataProvider = "admUser")
     @Step("TabSwitchingTest")
-    public void TabSwitchingTest(IUser admUser) {
+    public void tabSwitchingTest(IUser admUser) {
 
         //log in
         AdminHomePage adminHomePage = loginPage.successAdminLogin(admUser);

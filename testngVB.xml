@@ -8,13 +8,14 @@
         <classes>
             <class name="com.softserve.edu.oms.tests.createuser.LoginFieldIsCaseInsensitiveTest">
                 <methods>
-                    <include name="LoginFieldIsCaseInsensitiveTest" />
+                    <include name="loginFieldIsCaseInsensitiveTest" />
+                    <include name="deleteUserFromDB" />
                 </methods>
             </class>
 
             <class name="com.softserve.edu.oms.tests.userinfo.SwitchingTabsFunctionalityTest">
                 <methods>
-                    <include name="SwitchingTabsFunctionalityTest" />
+                    <include name="tabSwitchingTest" />
                 </methods>
             </class>
 
@@ -22,7 +23,7 @@
 
             <class name="com.softserve.edu.oms.tests.administration.CorrectUserInfoIsDisplayedTest">
                 <methods>
-                    <include name="CorrectUserInfoIsDisplayedTest" />
+                    <include name="correctUserInfoIsDisplayedTest" />
                 </methods>
             </class>
 

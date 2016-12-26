@@ -1,17 +1,17 @@
     package com.softserve.edu.oms.tests.createuser;
 
     import com.softserve.edu.oms.data.DBUtils;
-    import com.softserve.edu.oms.data.IUser;
-    import com.softserve.edu.oms.data.UserRepository;
-    import com.softserve.edu.oms.enums.SQLQueries;
-    import com.softserve.edu.oms.pages.AdministrationPage;
-    import com.softserve.edu.oms.pages.CreateNewUserPage;
-    import com.softserve.edu.oms.tests.TestRunner;
-    import org.apache.commons.lang3.RandomStringUtils;
-    import org.testng.Assert;
-    import org.testng.annotations.DataProvider;
-    import org.testng.annotations.Test;
-    import ru.yandex.qatools.allure.annotations.Step;
+import com.softserve.edu.oms.data.IUser;
+import com.softserve.edu.oms.data.UserRepository;
+import com.softserve.edu.oms.enums.SQLQueries;
+import com.softserve.edu.oms.pages.AdministrationPage;
+import com.softserve.edu.oms.pages.CreateNewUserPage;
+import com.softserve.edu.oms.tests.TestRunner;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Step;
 
     public class LoginFieldIsCaseInsensitiveTest extends TestRunner{
 
@@ -45,7 +45,7 @@
 
     @Test(dataProvider = "admAndNonExistingUser")
     @Step("LoginFieldIsCaseInsensitiveTest")
-    public void LoginFieldIsCaseInsensitiveTest(IUser admUser, IUser nonExistingUser) {
+    public void loginFieldIsCaseInsensitiveTest(IUser admUser, IUser nonExistingUser) {
 
         //login and go to addUser.html
         CreateNewUserPage adminHomePage = loginPage.successAdminLogin(admUser)
@@ -87,12 +87,19 @@
                 .setPasswordInput(nonExistingUser.getPassword())
                 .setConfirmPasswordInput(nonExistingUser.getPassword());
 
-        Assert.assertTrue(newUserPageAgain.getLoginError());
 
-        //delete created user from DB
-        dbUtils.deleteUsersFromDB(SQLQueries.DELETE_USER_BY_LOGIN.getQuery(),
-                nonExistingUser.getLoginname());
+        Assert.assertTrue(newUserPageAgain.getLoginError());
 
         }
 
+        @Test(dataProvider = "admAndNonExistingUser")
+        @Step("delete user from DB")
+        public void deleteUserFromDB(IUser admUser, IUser nonExistingUser){
+        DBUtils dbUtils = new DBUtils();
+        String nonExistingLogin = nonExistingUser.getLoginname();
+        if (dbUtils.verifyThatUserIsInDB(nonExistingLogin)) {
+            dbUtils.deleteUsersFromDB(SQLQueries.DELETE_USER_BY_LOGIN.getQuery(),
+                    nonExistingUser.getLoginname());
+        }
+        }
     }

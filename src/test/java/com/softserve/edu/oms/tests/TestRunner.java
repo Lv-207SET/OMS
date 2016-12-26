@@ -53,7 +53,7 @@ public class TestRunner {
     public void oneTimeTearDown(){
         driver.get(System.getenv("oms_loginPageUrl"));
         loginPage.logout();
-        driver.quit();
+        driver.close();
     }
     
 }

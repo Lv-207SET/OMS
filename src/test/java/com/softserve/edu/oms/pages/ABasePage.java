@@ -120,6 +120,7 @@ public abstract class ABasePage {
                 .pollingEvery(1, TimeUnit.SECONDS)
                 .ignoring(StaleElementReferenceException.class)
                 .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
 
         return wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
     }

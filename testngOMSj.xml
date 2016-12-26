@@ -137,6 +137,7 @@
 				name="com.softserve.edu.oms.tests.createuser.LoginFieldIsCaseInsensitiveTest">
 				<methods>
 					<include name="LoginFieldIsCaseInsensitiveTest" />
+					<include name="deleteUserFromDB" />
 				</methods>
 			</class>
 			<!-- LVSETOMS-58 -->

@@ -19,8 +19,6 @@
                 </methods>
             </class>
 
-
-
             <class name="com.softserve.edu.oms.tests.administration.CorrectUserInfoIsDisplayedTest">
                 <methods>
                     <include name="correctUserInfoIsDisplayedTest" />

@@ -25,71 +25,71 @@ public abstract class AUserDataPage extends ABasePage {
 
 	// get Data
 	public WebElement getLoginInput() {
-		return this.driver.findElement(LOGIN_INPUT_ID.by);
+		return this.driver.findElement(LOGIN_INPUT.by);
 	}
 
 	public WebElement getFirstNameInput() {
-		return this.driver.findElement(FIRST_NAME_INPUT_ID.by);
+		return this.driver.findElement(FIRST_NAME_INPUT.by);
 	}
 
 	public WebElement getLastNameInput() {
-		return this.driver.findElement(LAST_NAME_INPUT_ID.by);
+		return this.driver.findElement(LAST_NAME_INPUT.by);
 	}
 
 	public WebElement getPasswordInput() {
-		return this.driver.findElement(PASSWORD_INPUT_ID.by);
+		return this.driver.findElement(PASSWORD_INPUT.by);
 	}
 
 	public WebElement getConfirmPasswordInput() {
-		return this.driver.findElement(CONFIRM_PASSWORD_INPUT_ID.by);
+		return this.driver.findElement(CONFIRM_PASSWORD_INPUT.by);
 	}
 
 	public WebElement getEmailInput() {
-		return this.driver.findElement(EMAIL_INPUT_ID.by);
+		return this.driver.findElement(EMAIL_INPUT.by);
 	}
 
 	public WebElement getRegionDropDown() {
-		return this.driver.findElement(REGION_SELECT_ID.by);
+		return this.driver.findElement(REGION_SELECT.by);
 	}
 
 	public List<WebElement> getRoleRadioButton() {
-		return this.driver.findElements(ROLE_RADIO_BUTTON_NAME.by);
+		return this.driver.findElements(ROLE_RADIO_BUTTON.by);
 	}
 
 	@Step("Getting Create new user button")
 	public WebElement getCreateButton() {
-		return this.driver.findElement(CREATE_BUTTON_CSS.by);
+		return this.driver.findElement(CREATE_BUTTON.by);
 	}
 
 	public WebElement getCancelButton() {
-		return this.driver.findElement(CANCEL_BUTTON_CSS.by);
+		return this.driver.findElement(CANCEL_BUTTON.by);
 	}
 
 	public WebElement getLoginErrorMessage() {
-		return this.driver.findElement(ERROR_LOGIN_ID.by);
+		return this.driver.findElement(ERROR_LOGIN.by);
 	}
 
 	public WebElement getFirstNameErrorMessage() {
 
-		return this.waitForElement(ERROR_FIRST_NAME_ID.by);
+		return this.waitForElement(ERROR_FIRST_NAME.by);
 	}
 
 	public WebElement getLastNameErrorMessage() {
 
-		return this.waitForElement(ERROR_LAST_NAME_ID.by);
+		return this.waitForElement(ERROR_LAST_NAME.by);
 	}
 
 	public WebElement getPasswordErrorMessage() {
-		return this.driver.findElement(ERROR_PASSWORD_ID.by);
+		return this.driver.findElement(ERROR_PASSWORD.by);
 	}
 
 	@Step("getConfirmPasswordErrorMessage")
 	public WebElement getConfirmPasswordErrorMessage() {
-		return this.driver.findElement(ERROR_CONFIRM_PASSWORD_ID.by);
+		return this.driver.findElement(ERROR_CONFIRM_PASSWORD.by);
 	}
 
 	public WebElement getEmailErrorMessage() {
-		return this.driver.findElement(ERROR_EMAIL_ID.by);
+		return this.driver.findElement(ERROR_EMAIL.by);
 	}
 
 	// functional

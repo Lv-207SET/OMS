@@ -29,111 +29,111 @@ public abstract class AAdminReportPage extends ABasePage {
 	// get Data
 
 	public WebElement getSubHeader() {
-		return driver.findElement(SUBHEADER_CSS.by);
+		return driver.findElement(SUBHEADER.by);
 	}
 
 	public WebElement getUsersFoundSpan() {
-		return driver.findElement(USERS_FOUND_SPAN_ID.by);
+		return driver.findElement(USERS_FOUND_SPAN.by);
 	}
 
 	public WebElement getSearchByLabel() {
-		return driver.findElement(SEARCH_BY_LABEL_TAG_NAME.by);
+		return driver.findElement(SEARCH_BY_LABEL.by);
 	}
 
 	public WebElement getFieldFilterLabel() {
-		return driver.findElement(FIELD_FILTER_LABEL_CSS.by);
+		return driver.findElement(FIELD_FILTER_LABEL.by);
 	}
 
 	public Select getSelectField() {
-		return new Select(driver.findElement(SELECT_FIELD_ID.by));
+		return new Select(driver.findElement(SELECT_FIELD.by));
 	}
 
 	public Select getSelectCondition() {
-		return new Select(driver.findElement(SELECT_CONDITION_ID.by));
+		return new Select(driver.findElement(SELECT_CONDITION.by));
 	}
 
 	public WebElement getSearchFieldInput() {
-		return driver.findElement(SEARCH_FIELD_ID.by);
+		return driver.findElement(SEARCH_FIELD.by);
 	}
 
 	public WebElement getSearchButton() {
-		return driver.findElement(SEARCH_BUTTON_NAME.by);
+		return driver.findElement(SEARCH_BUTTON.by);
 	}
 
 	public WebElement getShowItemsLink() {
-		return driver.findElement(SHOW_ITEMS_LINK_CSS.by);
+		return driver.findElement(SHOW_ITEMS_LINK.by);
 	}
 
 	public WebElement getFirstNameLink() {
-		return driver.findElement(FIRST_NAME_LINK_CSS.by);
+		return driver.findElement(FIRST_NAME_LINK.by);
 	}
 
 	public WebElement getLastNameLink() {
-		return driver.findElement(LAST_NAME_LINK_CSS.by);
+		return driver.findElement(LAST_NAME_LINK.by);
 	}
 
 	public WebElement getLoginLink() {
-		return driver.findElement(LOGIN_LINK_CSS.by);
+		return driver.findElement(LOGIN_LINK.by);
 	}
 
 	public WebElement getRoleLink() {
-		return driver.findElement(ROLE_LINK_CSS.by);
+		return driver.findElement(ROLE_LINK.by);
 	}
 
 	public WebElement getRegionLink() {
-		return driver.findElement(REGION_LINK_CSS.by);
+		return driver.findElement(REGION_LINK.by);
 	}
 
 	public WebElement getFirstButton() {
-		return driver.findElement(FIRST_BUTTON_ID.by);
+		return driver.findElement(FIRST_BUTTON.by);
 	}
 
 	public WebElement getBackwardButton() {
-		return driver.findElement(BACKWARD_BUTTON_ID.by);
+		return driver.findElement(BACKWARD_BUTTON.by);
 	}
 
 	public WebElement getForwardButton() {
-		return driver.findElement(FORWARD_BUTTON_ID.by);
+		return driver.findElement(FORWARD_BUTTON.by);
 	}
 
 	public WebElement getLastButton() {
-		return driver.findElement(LAST_BUTTON_ID.by);
+		return driver.findElement(LAST_BUTTON.by);
 	}
 
 	public WebElement getPageNumberSpan() {
-		return driver.findElement(PAGE_NUMBER_SPAN_ID.by);
+		return driver.findElement(PAGE_NUMBER_SPAN.by);
 	}
 
 	public WebElement getPageCountSpan() {
-		return driver.findElement(PAGE_COUNT_SPAN_ID.by);
+		return driver.findElement(PAGE_COUNT_SPAN.by);
 	}
 
 	public WebElement getTableBody() {
-		return driver.findElement(TABLE_BODY_TAGNAME.by);
+		return driver.findElement(TABLE_BODY.by);
 	}
 
 	public WebElement getUserByLogin() {
-		return driver.findElement(GET_USER_BY_LOGIN_XPATH.by);
+		return driver.findElement(GET_USER_BY_LOGIN.by);
 	}
 
 	public List<WebElement> getLogins() {
-		return driver.findElements(LOGINS_XPATH.by);
+		return driver.findElements(LOGINS.by);
 	}
 
 	public List<WebElement> getFirstNames() {
-		return driver.findElements(FIRST_NAMES_XPATH.by);
+		return driver.findElements(FIRST_NAMES.by);
 	}
 
 	public List<WebElement> getLastNames() {
-		return driver.findElements(LAST_NAMES_XPATH.by);
+		return driver.findElements(LAST_NAMES.by);
 	}
 
 	public List<WebElement> getRoles() {
-		return driver.findElements(ROLES_XPATH.by);
+		return driver.findElements(ROLES.by);
 	}
 
 	public List<WebElement> getRegions() {
-		return driver.findElements(REGION_XPATH.by);
+		return driver.findElements(REGION.by);
 	}
 
 	// Functional
@@ -492,9 +492,9 @@ public abstract class AAdminReportPage extends ABasePage {
 	public List<User> getUsersFromCurrentPage() {
 		final List<User> userListFormCurrentPage = new ArrayList<>();
 		final WebElement table = getTableBody();
-		final List<WebElement> webElements = table.findElements(TR_TAGNAME.by);
+		final List<WebElement> webElements = table.findElements(TR.by);
 		for (WebElement rows : webElements) {
-			final List<WebElement> tableCells = rows.findElements(TD_TAGNAME.by);
+			final List<WebElement> tableCells = rows.findElements(TD.by);
 			User user = new User();
 			user.setFirstname(tableCells.get(0).getText());
 			user.setLastname(tableCells.get(1).getText());

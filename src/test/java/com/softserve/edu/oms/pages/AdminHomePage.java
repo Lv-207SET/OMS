@@ -4,8 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.yandex.qatools.allure.annotations.Step;
 
-import static com.softserve.edu.oms.locators.UserHomePageLocators.ADMINISTRATION_TAB_CSS;
-import static com.softserve.edu.oms.locators.UserHomePageLocators.ORDERING_TAB_XPATH;
+import static com.softserve.edu.oms.locators.UserHomePageLocators.ADMINISTRATION_TAB;
+import static com.softserve.edu.oms.locators.UserHomePageLocators.ORDERING_TAB;
 
 /**
  * PageObject class that represents AdminHome page.
@@ -26,11 +26,11 @@ public class AdminHomePage extends HomePage {
 	// get Data
 
 	public WebElement getAdministrationTab() {
-		return driver.findElement(ADMINISTRATION_TAB_CSS.by);
+		return driver.findElement(ADMINISTRATION_TAB.by);
 	}
 
 	public WebElement getOrderingTab(){
-		return driver.findElement(ORDERING_TAB_XPATH.by);
+		return driver.findElement(ORDERING_TAB.by);
 	}
 
 

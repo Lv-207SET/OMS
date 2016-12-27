@@ -3,7 +3,7 @@
     import org.openqa.selenium.WebDriver;
     import org.openqa.selenium.WebElement;
 
-    import static com.softserve.edu.oms.locators.UserHomePageLocators.ORDERING_TAB_XPATH;
+    import static com.softserve.edu.oms.locators.UserHomePageLocators.ORDERING_TAB;
 
     /**
      * This class represents Home Page for Customer user role
@@ -16,7 +16,7 @@
 
         // get Data
         public WebElement getOrderingTab(){
-            return driver.findElement(ORDERING_TAB_XPATH.by);
+            return driver.findElement(ORDERING_TAB.by);
         }
 
         // Functional

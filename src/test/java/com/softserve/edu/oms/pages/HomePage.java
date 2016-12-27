@@ -16,23 +16,23 @@
 
 		// get Data
 		public WebElement getFirstname() {
-			return driver.findElement(FIRST_NAME_LABEL_CSS.by);
+			return driver.findElement(FIRST_NAME_LABEL.by);
 		}
 
 		public WebElement getLastname() {
-			return driver.findElement(LAST_NAME_LABEL_CSS.by);
+			return driver.findElement(LAST_NAME_LABEL.by);
 		}
 
 		public WebElement getRole() {
-			return driver.findElement(ROLE_LABEL_CSS.by);
+			return driver.findElement(ROLE_LABEL.by);
 		}
 
 		public WebElement getEngLangLink() {
-			return driver.findElement(ENG_LANG_LINK_XPATH.by);
+			return driver.findElement(ENG_LANG_LINK.by);
 		}
 
 		public WebElement getUkrLangLink() {
-			return driver.findElement(UKR_LANG_LINK_XPATH.by);
+			return driver.findElement(UKR_LANG_LINK.by);
 		}
 
 		// Functional

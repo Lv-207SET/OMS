@@ -44,7 +44,7 @@ public class LoginPage extends ABasePage{
 	}
 
 	private WebElement getBadCredentialsErrorMessage() {
-		return driver.findElement(BAD_CREDENTIALS_ERROR_MESSAGE_CSS.by);
+		return driver.findElement(BAD_CREDENTIALS_ERROR_MESSAGE.by);
 	}
 
 	//Functional

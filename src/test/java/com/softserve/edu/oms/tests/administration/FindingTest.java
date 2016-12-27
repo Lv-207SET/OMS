@@ -283,7 +283,7 @@ public class FindingTest extends TestRunner {
         } else {
             pagesNumber = columnListFromDB.size() / numberOfItems;
         }
-        newPagesCount = Integer.valueOf(administrationPage.getPagesQuantity());
+        newPagesCount = administrationPage.getPagesQuantity();
         Assert.assertEquals(pagesNumber, newPagesCount);
 
     }

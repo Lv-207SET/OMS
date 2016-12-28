@@ -181,9 +181,8 @@ public class FindingTest extends TestRunner {
 
         //Create list of user's last name attribute options 
         //from table which is on Administration page.
-        for (User user : administrationPage.getAllUsers()) {
-            columnListFromTable.add(user.getLastname());
-        }
+        administrationPage.getAllUsers()
+                          .forEach(user -> columnListFromTable.add(user.getLastname()));
 
         //Get list user's last name attribute from DB
         dbUtils = new DBUtils();
@@ -216,9 +215,8 @@ public class FindingTest extends TestRunner {
 
         //Create list of user's login name attribute options 
         //from table which is on Administration page.
-        for (User user : administrationPage.getAllUsers()) {
-            columnListFromTable.add(user.getLoginname());
-        }
+        administrationPage.getAllUsers()
+                          .forEach(user -> columnListFromTable.add(user.getLoginname()));
 
         //Get list user's login name attribute from DB
         dbUtils = new DBUtils();
@@ -255,10 +253,8 @@ public class FindingTest extends TestRunner {
 
         //Create list of user's role attribute options 
         //from table which is on Administration page.
-        columnListFromTable = new ArrayList<>();
-        for (User user : administrationPage.getAllUsers()) {
-            columnListFromTable.add(user.getRole());
-        }
+        administrationPage.getAllUsers()
+                          .forEach(user -> columnListFromTable.add(user.getRole()));
 
         //Get list user's login name attribute from DB
         dbUtils = new DBUtils();

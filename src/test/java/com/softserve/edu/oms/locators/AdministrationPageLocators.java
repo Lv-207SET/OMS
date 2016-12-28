@@ -13,7 +13,6 @@ public enum AdministrationPageLocators {
     CREATE_REPORT(By.cssSelector("#list h5 a"));
 
 
-
     public final By by;
     AdministrationPageLocators(final By by){
         this.by = by;

@@ -15,7 +15,7 @@
 
         // get Data
         public WebElement getItemManagementTab() {
-            return driver.findElement(UserHomePageLocators.ITEM_MANAGEMENT_TAB_XPATH.by);
+            return driver.findElement(UserHomePageLocators.ITEM_MANAGEMENT_TAB.by);
         }
 
         // set Data

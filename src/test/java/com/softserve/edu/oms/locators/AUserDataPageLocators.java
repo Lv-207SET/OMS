@@ -7,22 +7,22 @@ import org.openqa.selenium.By;
  */
 public enum AUserDataPageLocators {
 
-    LOGIN_INPUT_ID(By.id("login")),
-    FIRST_NAME_INPUT_ID(By.id("firstName")),
-    LAST_NAME_INPUT_ID(By.id("lastName")),
-    PASSWORD_INPUT_ID(By.id("password")),
-    CONFIRM_PASSWORD_INPUT_ID(By.id("confirmPassword")),
-    EMAIL_INPUT_ID(By.id("email")),
-    REGION_SELECT_ID(By.id("regionID")),
-    ROLE_RADIO_BUTTON_NAME(By.name("roleID")),
-    CREATE_BUTTON_CSS(By.cssSelector("input[value=\"Create\"]")),
-    CANCEL_BUTTON_CSS(By.cssSelector("input[value=\"Cancel\"]")),
-    ERROR_LOGIN_ID(By.id("nameError")),
-    ERROR_FIRST_NAME_ID(By.id("firstNameError")),
-    ERROR_LAST_NAME_ID(By.id("lastNameError")),
-    ERROR_PASSWORD_ID(By.id("passwordError")),
-    ERROR_CONFIRM_PASSWORD_ID(By.id("confirmError")),
-    ERROR_EMAIL_ID(By.id("emailError"));
+    LOGIN_INPUT(By.id("login")),
+    FIRST_NAME_INPUT(By.id("firstName")),
+    LAST_NAME_INPUT(By.id("lastName")),
+    PASSWORD_INPUT(By.id("password")),
+    CONFIRM_PASSWORD_INPUT(By.id("confirmPassword")),
+    EMAIL_INPUT(By.id("email")),
+    REGION_SELECT(By.id("regionID")),
+    ROLE_RADIO_BUTTON(By.name("roleID")),
+    CREATE_BUTTON(By.cssSelector("input[value=\"Create\"]")),
+    CANCEL_BUTTON(By.cssSelector("input[value=\"Cancel\"]")),
+    ERROR_LOGIN(By.id("nameError")),
+    ERROR_FIRST_NAME(By.id("firstNameError")),
+    ERROR_LAST_NAME(By.id("lastNameError")),
+    ERROR_PASSWORD(By.id("passwordError")),
+    ERROR_CONFIRM_PASSWORD(By.id("confirmError")),
+    ERROR_EMAIL(By.id("emailError"));
 
     public final By by;
     AUserDataPageLocators(final By by){

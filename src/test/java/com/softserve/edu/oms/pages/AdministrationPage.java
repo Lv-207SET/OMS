@@ -30,7 +30,7 @@ public class AdministrationPage extends AAdminReportPage {
         search(login);
 
 		try {
-			driver.findElement(AdministrationPageLocators.DELETE_LINK_TEXT.by).click();
+			driver.findElement(AdministrationPageLocators.DELETE_LINK.by).click();
 			if (deleteUserOrNot) {
 				driver.switchTo().alert().accept();
 			} else {
@@ -48,7 +48,7 @@ public class AdministrationPage extends AAdminReportPage {
      */
     @Step("User as role an Administrator goes from tab Administration to Create New User page")
     public CreateNewUserPage gotoCreateNewUserPage() {
-        driver.findElement(AdministrationPageLocators.GO_TO_CREATE_NEW_USER_PAGE_CSS.by).click();
+        driver.findElement(AdministrationPageLocators.GO_TO_CREATE_NEW_USER_PAGE.by).click();
         return new CreateNewUserPage(this.driver);
     }
 
@@ -182,7 +182,7 @@ public class AdministrationPage extends AAdminReportPage {
         selectCondition(ConditionFilterDropdownList.EQUALS);
         search(login);
 
-		driver.findElement(AdministrationPageLocators.EDIT_USER_LINK_TEXT.by).click();
+		driver.findElement(AdministrationPageLocators.EDIT_USER_LINK.by).click();
 		return new EditUserPage(driver);
 	}
 
@@ -211,7 +211,7 @@ public class AdministrationPage extends AAdminReportPage {
      * @return CreateReportPage
      */
 	public CreateReportPage goToCreateReportPage() {
-		driver.findElement(AdministrationPageLocators.CREATE_REPORT_CSS_SELECTOR.by).click();
+		driver.findElement(AdministrationPageLocators.CREATE_REPORT.by).click();
 		return new CreateReportPage(this.driver);
 	}
 

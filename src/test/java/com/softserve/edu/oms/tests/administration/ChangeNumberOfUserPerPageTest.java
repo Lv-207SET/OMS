@@ -22,6 +22,10 @@ import static org.testng.Assert.assertTrue;
 
 
     /**
+     * Verify that correct number of records displays in a table on 'Administration' tab
+     *
+     * Based on LVSETOMS-43 in Jira
+     *
      * @author Anastasiia Maidanska
      * @version 1.0
      * @since 20.12.16
@@ -32,7 +36,8 @@ import static org.testng.Assert.assertTrue;
     public class ChangeNumberOfUserPerPageTest extends TestRunner{
 
         /**
-         * Verify that correct number of records displays in a table on 'Administration' tab
+         * Verify that correct number of records displays in a table on 'Administration' tab,
+         * when user clicks on 'show 5 items' and 'show 10 items' links.
          */
     	@TestCaseId("LVSETOMS-43")
     	@Severity(SeverityLevel.MINOR)
@@ -41,7 +46,7 @@ import static org.testng.Assert.assertTrue;
     			+ "and is 5 by default. ")
         @Test
         @Step
-        public void paginationTest() {
+        public void verifyChangeUserNumberPerPage() {
             // Get admin user from UserRepository
             IUser admin = UserRepository.get().adminUser();
 

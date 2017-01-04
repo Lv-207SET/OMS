@@ -30,23 +30,23 @@ public abstract class ABasePage {
     // get Data
 
     public WebElement getLogoutButton() {
-        return driver.findElement(LOGOUT_BUTTON_CSS.by);
+        return driver.findElement(LOGOUT_BUTTON.by);
     }
 
     public WebElement getOmsLabel() {
-        return driver.findElement(OMS_LABEL_CSS.by);
+        return driver.findElement(OMS_LABEL.by);
     }
 
     public WebElement getSimpleSlimGeniusLabel() {
-        return driver.findElement(SIMPLE_SLIM_GENIUS_LABEL_CSS.by);
+        return driver.findElement(SIMPLE_SLIM_GENIUS_LABEL.by);
     }
 
     public WebElement getInspiredByGoogleLink() {
-        return driver.findElement(INSPIRED_BY_GOOGLE_LINK_CSS.by);
+        return driver.findElement(INSPIRED_BY_GOOGLE_LINK.by);
     }
 
     public WebElement getUserInfoTab() {
-        return driver.findElement(USER_INFO_TAB_CSS.by);
+        return driver.findElement(USER_INFO_TAB.by);
     }
 
     // Functional
@@ -103,7 +103,7 @@ public abstract class ABasePage {
         WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver, 10)
                 .ignoring(StaleElementReferenceException.class);
         wait.until((ExpectedCondition<Boolean>) webDriver -> {
-            WebElement element = webDriver.findElement(INSPIRED_BY_GOOGLE_LINK_CSS.by);
+            WebElement element = webDriver.findElement(INSPIRED_BY_GOOGLE_LINK.by);
             return element != null && element.isDisplayed();
         });
         return this;
@@ -120,7 +120,16 @@ public abstract class ABasePage {
                 .pollingEvery(1, TimeUnit.SECONDS)
                 .ignoring(StaleElementReferenceException.class)
                 .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
 
         return wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
+    }
+
+    public WebElement waitForElement (final By by){
+        WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver, 10)
+                .pollingEvery(1, TimeUnit.SECONDS)
+                .ignoring(StaleElementReferenceException.class)
+                .ignoring(NoSuchElementException.class);
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 }

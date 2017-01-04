@@ -24,6 +24,11 @@ import static com.softserve.edu.oms.enums.ErrorMessagesEnum.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
+ * This test verifies that error messages are shown
+ * when we creating new user with digits in last and first name
+ *
+ * Based on LVSETOMS-54 in Jira
+ *
  * @author Anastasiia Maidanska
  * @version 1.0
  * @since 20.12.16
@@ -55,7 +60,7 @@ public class CreateInvalidNewUserTest extends TestRunner {
 
     @Test(dataProvider = "invalidUsers")
     @Step
-    public void createInvalidNewUserTest (User user){
+    public void verifyErrorMessageCreatingUserWithInvalidData(User user){
         IUser admin = UserRepository.get().adminUser();
 
         // Go to create new user page and set data

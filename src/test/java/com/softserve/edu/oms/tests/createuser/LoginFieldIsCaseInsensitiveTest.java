@@ -69,8 +69,13 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
         //verifying that user do not exist or generating a new one
         DBUtils dbUtils = new DBUtils();
         String nonExistingLogin = nonExistingUser.getLoginname();
+        String nonExistingFirstName = nonExistingUser.getFirstname();
+        String nonExistingLastName = nonExistingUser.getLastname();
+
         while (dbUtils.verifyThatUserIsInDB(nonExistingLogin)) {
             nonExistingLogin = RandomStringUtils.random(5, true, false).toLowerCase();
+            nonExistingFirstName = RandomStringUtils.random(5, true, false);
+            nonExistingLastName = RandomStringUtils.random(5, true, false);
         }
 
         //set up a form and creating a new user
@@ -78,30 +83,37 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
         newUserPage
                 .waitForLoad()
                 .setLoginInput(nonExistingLogin)
-                .setFirstNameInput(nonExistingUser.getFirstname())
-                .setLastNameInput(nonExistingUser.getLastname())
+                .setFirstNameInput(nonExistingFirstName)
+                .setLastNameInput(nonExistingLastName)
                 .setPasswordInput(nonExistingUser.getPassword())
                 .setConfirmPasswordInput(nonExistingUser.getPassword())
                 .setEmailInput(nonExistingUser.getEmail())
                 .waitForEmailErrorToDisappear()
-                .clickCreateButton();
+                .clickCreateButton()
+                .acceptAlert();
 
         //entering the data to verify that error message will appear
         CreateNewUserPage newUserPageAgain = new AdministrationPage(driver)
                 .gotoCreateNewUserPage()
                 .setLoginInput(nonExistingLogin.toUpperCase())
-                .setFirstNameInput(nonExistingUser.getFirstname())
-                .setLastNameInput(nonExistingUser.getLastname())
+                .setFirstNameInput(nonExistingFirstName)
+                .setLastNameInput(nonExistingLastName)
                 .setPasswordInput(nonExistingUser.getPassword())
-                .setConfirmPasswordInput(nonExistingUser.getPassword())
-                .setEmailInput(nonExistingUser.getEmail());
+                .setConfirmPasswordInput(nonExistingUser.getPassword());
+
 
         Assert.assertTrue(newUserPageAgain.getLoginError());
 
-        //delete created user from DB
-        dbUtils.deleteUsersFromDB(SQLQueries.DELETE_USER_BY_LOGIN.getQuery(),
-                nonExistingUser.getLoginname());
-
         }
 
+        @Test(dataProvider = "admAndNonExistingUser")
+        @Step("delete user from DB")
+        public void deleteUserFromDB(IUser admUser, IUser nonExistingUser){
+        DBUtils dbUtils = new DBUtils();
+        String nonExistingLogin = nonExistingUser.getLoginname();
+        if (dbUtils.verifyThatUserIsInDB(nonExistingLogin)) {
+            dbUtils.deleteUsersFromDB(SQLQueries.DELETE_USER_BY_LOGIN.getQuery(),
+                    nonExistingUser.getLoginname());
+        }
+        }
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="OMStest" preserve-order="true" parallel="tests" thread-count="5">
+<suite name="OMStest" preserve-order="true">
 	<test name="LoginTest" preserve-order="true">
 		<classes>
 			<class name="com.softserve.edu.oms.tests.login.AdminUserSmokeTest">
@@ -54,13 +54,6 @@
 	</test>
 	<test name="AdministrationTest" preserve-order="true">
 		<classes>
-			<!-- LVSETOMS-43 -->
-			<class
-				name="com.softserve.edu.oms.tests.administration.ChangeNumberOfUserPerPageTest">
-				<methods>
-					<include name="verifyChangeUserNumberPerPage" />
-				</methods>
-			</class>
 			<!-- LVSETOMS-44 -->
 			<class
 				name="com.softserve.edu.oms.tests.administration.NavigationButtonsTest">
@@ -115,14 +108,7 @@
 	</test>
 	<test name="CreateUserTest" preserve-order="true">
 		<classes>
-			 <!--LVSETOMS-49-->
-			<class
-				name="com.softserve.edu.oms.tests.createuser.UserWithEmptyMandatoryFieldsCreationTest">
-				<methods>
-					<include name="verifyErrorMessagesDuringUserCreation" />
-				</methods>
-			</class>
-			 <!--LVSETOMS-50-->
+			<!-- LVSETOMS-50 -->
 			<class name="com.softserve.edu.oms.tests.createuser.CreateNewUserTest">
 				<methods>
 					<include name="assertNonExistence" />
@@ -130,14 +116,7 @@
 					<include name="deleteUser" />
 				</methods>
 			</class>
-			 <!--LVSETOMS-51-->
-			<class
-				name="com.softserve.edu.oms.tests.createuser.UserWithLongCredentialsCreationTest">
-				<methods>
-					<include name="verifyCreateNewUserWithLongCredentials" />
-				</methods>
-			</class>
-			 <!--LVSETOMS-54-->
+			<!-- LVSETOMS-54 -->
 			<class
 				name="com.softserve.edu.oms.tests.createuser.CreateInvalidNewUserTest">
 				<methods>

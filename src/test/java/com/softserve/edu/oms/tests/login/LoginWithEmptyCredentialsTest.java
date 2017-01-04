@@ -16,6 +16,11 @@ import static com.softserve.edu.oms.enums.ErrorMessagesEnum.ERROR_MESSAGE;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
+ * Test verifies that error message is shown,
+ * when user try to login with empty "Login" and "Password" fields.
+ *
+ * Based on LVSETOMS-30 in Jira
+ *
  * @author Anastasiia Maidanska
  * @version 1.0
  * @since 20.12.16
@@ -37,7 +42,7 @@ public  class LoginWithEmptyCredentialsTest extends TestRunner {
 
     @Test
     @Step
-    public void loginWithEmptyCredentials (){
+    public void verifyErrorMessageWhenUserLoginWithEmptyCredentials(){
 
         // Click on 'Submit' button and get  error message
         String currentErrorMessage = loginPage

@@ -41,6 +41,8 @@
 
 		<aspectj.version>1.8.5</aspectj.version>
 		<xmlrun>testngOMS.xml</xmlrun>
+		<allure.tests.management.pattern>http://ssu-jira.softserveinc.com/browse/%s
+		</allure.tests.management.pattern>
 	</properties>
 
 	<dependencies>
@@ -169,7 +171,6 @@
 					<argLine>
 						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
 					</argLine>
-					<!-- <argLine>-Xms256m -Xmx512m</argLine> -->
 					<skipTests>false</skipTests>
 					<systemPropertyVariables>
 						<surefire.reports.directory>
@@ -200,6 +201,11 @@
 				<groupId>ru.yandex.qatools.allure</groupId>
 				<artifactId>allure-maven-plugin</artifactId>
 				<version>${allure-maven-plugin.version}</version>
+				<configuration>
+					<properties>
+						<allure.tests.management.pattern>${allure.tests.management.pattern}</allure.tests.management.pattern>
+					</properties>
+				</configuration>
 			</plugin>
 
 			<plugin>

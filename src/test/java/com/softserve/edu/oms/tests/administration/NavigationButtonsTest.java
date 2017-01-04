@@ -9,7 +9,14 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import ru.yandex.qatools.allure.annotations.Description;
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Severity;
 import ru.yandex.qatools.allure.annotations.Step;
+import ru.yandex.qatools.allure.annotations.Stories;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
+import ru.yandex.qatools.allure.model.SeverityLevel;
 
 /**
  * This test verifies that Administrator can navigate
@@ -21,6 +28,10 @@ import ru.yandex.qatools.allure.annotations.Step;
  * @author Iryna Kyselchuk
  * @since 16.12.16
  */
+@Features("Administration")
+@Stories("LVSETOMS-4 As Admin I want to see all existing users and perform "
+		+ "user searching on the 'Administration' tab so I can manage them ")
+
 public class NavigationButtonsTest extends TestRunner {
 
     private AdministrationPage administrationPage;
@@ -46,6 +57,10 @@ public class NavigationButtonsTest extends TestRunner {
      * number of records per page and
      * rounded to the bigger integer
      */
+    @TestCaseId("LVSETOMS-43")
+	@Severity(SeverityLevel.NORMAL)
+	@Description("This test case verifies that Administrator can navigates the User table on "
+			+ "the 'Administration' tab by 'First', 'Last', 'Forward' and 'Backward' buttons.")
     @Test
     @Step("verify navigation buttons functionality")
     public void verifyNavigationButtons() {

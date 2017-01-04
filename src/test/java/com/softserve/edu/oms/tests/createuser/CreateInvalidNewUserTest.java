@@ -11,7 +11,14 @@ import com.softserve.edu.oms.tests.TestRunner;
 import org.hamcrest.CoreMatchers;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import ru.yandex.qatools.allure.annotations.Description;
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Severity;
 import ru.yandex.qatools.allure.annotations.Step;
+import ru.yandex.qatools.allure.annotations.Stories;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
+import ru.yandex.qatools.allure.model.SeverityLevel;
 
 import static com.softserve.edu.oms.enums.ErrorMessagesEnum.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -21,6 +28,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @version 1.0
  * @since 20.12.16
  */
+@Features("Create New User")
+@Stories("LVSETOMS-3 As Administrator I want to create new user so he can log into the application")
+
 
 public class CreateInvalidNewUserTest extends TestRunner {
 
@@ -39,6 +49,9 @@ public class CreateInvalidNewUserTest extends TestRunner {
 	/** This test verifies that error messages are shown
      * when we creating new user with digits in last and first name
      */
+    @TestCaseId("LVSETOMS-")
+	@Severity(SeverityLevel.MINOR)
+    @Description("")
 
     @Test(dataProvider = "invalidUsers")
     @Step

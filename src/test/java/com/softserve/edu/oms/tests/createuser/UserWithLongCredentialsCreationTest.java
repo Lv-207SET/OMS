@@ -10,7 +10,14 @@ import com.softserve.edu.oms.tests.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import ru.yandex.qatools.allure.annotations.Description;
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Severity;
 import ru.yandex.qatools.allure.annotations.Step;
+import ru.yandex.qatools.allure.annotations.Stories;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
+import ru.yandex.qatools.allure.model.SeverityLevel;
 
 /**
  * This test case verifies that error messages appear when trying to create
@@ -21,6 +28,9 @@ import ru.yandex.qatools.allure.annotations.Step;
  *
  * @author Dmytro Voropai
  */
+@Features("Create New User")
+@Stories("LVSETOMS-3 As Administrator I want to create new user so he can log into the application")
+
 public class UserWithLongCredentialsCreationTest extends TestRunner{
 
     final private DBUtils dbUtils = new DBUtils();
@@ -35,7 +45,11 @@ public class UserWithLongCredentialsCreationTest extends TestRunner{
         };
     }
 
-
+    @TestCaseId("LVSETOMS-51")
+	@Severity(SeverityLevel.CRITICAL)
+    @Description("This test case verifies that error messages appear when trying"
+    		+ " to create a new user with too long login, first /last name "
+    		+ "(longer than 13 characters) and password (longer than 10 characters).")
     @Test(dataProvider = "validUserAdministrator",alwaysRun = true)
     @Step("Verification of correctness validation messages while trying to create new user with long credentials")
     public void verifyCreateNewUserWithLongCredentials(IUser validUserAdministrator){

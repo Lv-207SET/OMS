@@ -6,7 +6,14 @@ import com.softserve.edu.oms.tests.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import ru.yandex.qatools.allure.annotations.Description;
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Severity;
 import ru.yandex.qatools.allure.annotations.Step;
+import ru.yandex.qatools.allure.annotations.Stories;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
+import ru.yandex.qatools.allure.model.SeverityLevel;
 
 /**
  * This test verifies that entered user credentials values
@@ -17,6 +24,9 @@ import ru.yandex.qatools.allure.annotations.Step;
  * @author Iryna Kyselchuk
  * @since 15.12.16
  */
+@Features("Authorization")
+@Stories("LVSETOMS-1 As User Admin I want to login so I can enter the system and add new users to system")
+
 public class ResetButtonTest extends TestRunner {
 
     /**
@@ -41,6 +51,10 @@ public class ResetButtonTest extends TestRunner {
      *
      * @param someUser {@link com.softserve.edu.oms.data.UserRepository}
      */
+    @TestCaseId("LVSETOMS-37")
+   	@Severity(SeverityLevel.NORMAL)
+   	@Description("This test case verities that entered by user values in 'User'"
+   			+ " and 'Password' fields are cleared by clicking on 'Reset' button")
     @Test(dataProvider = "someUser")
     @Step("verify 'Reset' button functionality")
     public void verifyResetButtonFunctionality(IUser someUser) {

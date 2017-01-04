@@ -15,7 +15,14 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import ru.yandex.qatools.allure.annotations.Description;
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Severity;
 import ru.yandex.qatools.allure.annotations.Step;
+import ru.yandex.qatools.allure.annotations.Stories;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
+import ru.yandex.qatools.allure.model.SeverityLevel;
 
 import static com.softserve.edu.oms.enums.ErrorMessagesEnum.CONFIRM_PASSWORD_ERROR_MESSAGE;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -29,6 +36,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @author Iryna Kyselchuk
  * @since 16.12.16
  */
+@Features("Create New User")
+@Stories("LVSETOMS-3 As Administrator I want to create new user so he can log into the application")
+
+
 public class ErrorMsgConfirmPasswordTest extends TestRunner{
 
     private CreateNewUserPage createNewUserPage;
@@ -70,6 +81,12 @@ public class ErrorMsgConfirmPasswordTest extends TestRunner{
      *
      * @param newUser {@link com.softserve.edu.oms.data.UserRepository}
      */
+    
+  	@TestCaseId("LVSETOMS-")
+  	@Severity(SeverityLevel.NORMAL)
+    @Description("This test case verifies that error message appears when trying to create "
+    		+ "a new user with different values in 'Password' and 'Confirm Password'")
+    
     @Test(dataProvider = "badMemoryUser")
     @Step("verify error message is shown while creating user with not confirmed password")
     public void verifyErrorMsgUserWithNotConfirmedPassword(IUser newUser) {

@@ -10,7 +10,13 @@ import com.softserve.edu.oms.data.UserRepository;
 import com.softserve.edu.oms.pages.CreateNewUserPage;
 import com.softserve.edu.oms.tests.TestRunner;
 
+import ru.yandex.qatools.allure.annotations.Description;
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Severity;
 import ru.yandex.qatools.allure.annotations.Step;
+import ru.yandex.qatools.allure.annotations.Stories;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
+import ru.yandex.qatools.allure.model.SeverityLevel;
 
 /**
  * The Class InvalidPasswordSetWhileNewUserCreationTest.
@@ -18,6 +24,10 @@ import ru.yandex.qatools.allure.annotations.Step;
  * @author Softserve Academy
  * @since 24.12.2016
  */
+
+@Features("Create New User")
+@Stories("LVSETOMS-3 As Administrator I want to create new user so he can log into the application")
+
 public class InvalidPasswordSetWhileNewUserCreationTest extends TestRunner{
 	
 	/**
@@ -30,9 +40,14 @@ public class InvalidPasswordSetWhileNewUserCreationTest extends TestRunner{
 	 * @param email the email
 	 * @throws InterruptedException the interrupted exception
 	 */
+	@TestCaseId("LVSETOMS-52")
+	@Severity(SeverityLevel.NORMAL)
+    @Description("Verify that error message is shown when creating new user "
+    		+ "with too short password and incorrect email")
 	@Step("Set Invalid Password Into Create New User Table")
 	@Test(dataProvider="setInvalidPasswordDataProvider")
-	public void setInvalidPasswordWhileCreateNewUserTest(String login, String firstName, String lastName, String passw, String email) {
+	public void setInvalidPasswordWhileCreateNewUserTest(String login, String firstName, 
+			String lastName, String passw, String email) {
 		
 		CreateNewUserPage createNewUserPage = loginPage
                 .successAdminLogin(UserRepository

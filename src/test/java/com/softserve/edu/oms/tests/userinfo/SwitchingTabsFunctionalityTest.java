@@ -7,9 +7,19 @@
     import org.testng.Assert;
     import org.testng.annotations.DataProvider;
     import org.testng.annotations.Test;
-    import ru.yandex.qatools.allure.annotations.Step;
 
+import ru.yandex.qatools.allure.annotations.Description;
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Severity;
+import ru.yandex.qatools.allure.annotations.Step;
+import ru.yandex.qatools.allure.annotations.Stories;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
+import ru.yandex.qatools.allure.model.SeverityLevel;
 
+    @Features("Administration")
+    @Stories("LVSETOMS-2 As an Admin I want to see 'Administration' "
+    		+ "and 'User Info' tab after login so I can create & manage users")
+ 
     public class SwitchingTabsFunctionalityTest extends TestRunner {
 
     @DataProvider
@@ -28,6 +38,10 @@
      * @since 15.12.16
      * @param admUser
      */
+    @TestCaseId("LVSETOMS-41")
+ 	@Severity(SeverityLevel.MINOR)
+ 	@Description("This test case verifies that user  with 'Administrator' role sees 'User Info'"
+ 			+ " (opened by default) and 'Administration' tab after login and can switch between them")
 
     @Test(dataProvider = "admUser")
     @Step("TabSwitchingTest")

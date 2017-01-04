@@ -9,6 +9,14 @@ import com.softserve.edu.oms.enums.ConditionFilterDropdownList;
 import com.softserve.edu.oms.enums.FieldFilterDropdownList;
 import com.softserve.edu.oms.enums.SQLQueries;
 import com.softserve.edu.oms.tests.TestRunner;
+
+import ru.yandex.qatools.allure.annotations.Description;
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Severity;
+import ru.yandex.qatools.allure.annotations.Stories;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
+import ru.yandex.qatools.allure.model.SeverityLevel;
+
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -25,6 +33,8 @@ import java.util.List;
  * @author Anton Tokmakov
  * @since 16.12.16
  */
+@Features("Create New User")
+@Stories("LVSETOMS-3 As Administrator I want to create new user so he can log into the application")
 
 public class CreateNewUserTest extends TestRunner {
 
@@ -45,12 +55,20 @@ public class CreateNewUserTest extends TestRunner {
     /** Checks if tested user is not present
      * in the site database at the moment
      */
+	@TestCaseId("LVSETOMS-")
+	@Severity(SeverityLevel.NORMAL)
+    @Description("Checks if tested user is not present in the site database at the moment")
+  
     @Test(dataProvider = "newUser")
     public void assertNonExistence(IUser newUser) {
         DBUtils dbUtility = new DBUtils();
         Assert.assertFalse(dbUtility.verifyThatUserIsInDB(newUser.getLoginname()));
     }
 
+	@TestCaseId("LVSETOMS-")
+	@Severity(SeverityLevel.NORMAL)
+    @Description("This test case verifies that new user is created when"
+    		+ " all the values entered while creating user are valid.")
     @Test(dataProvider = "Users")
     public void createNewUser(IUser admUser, IUser newUser) {
         List<User> users = loginPage.logout()

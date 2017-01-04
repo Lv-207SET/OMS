@@ -11,7 +11,17 @@
     import org.testng.Assert;
     import org.testng.annotations.DataProvider;
     import org.testng.annotations.Test;
-    import ru.yandex.qatools.allure.annotations.Step;
+
+import ru.yandex.qatools.allure.annotations.Description;
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Severity;
+import ru.yandex.qatools.allure.annotations.Step;
+import ru.yandex.qatools.allure.annotations.Stories;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
+import ru.yandex.qatools.allure.model.SeverityLevel;
+
+    @Features("Create New User")
+    @Stories("LVSETOMS-3 As Administrator I want to create new user so he can log into the application")
 
     public class LoginFieldIsCaseInsensitiveTest extends TestRunner{
 
@@ -42,10 +52,14 @@
      * @param nonExistingUser
      * @see UserRepository
      */
+    @TestCaseId("LVSETOMS-56")
+	@Severity(SeverityLevel.CRITICAL)
+    @Description("This test case verifies that 'Login Name' is case insensitive while creating new user.")
+
 
     @Test(dataProvider = "admAndNonExistingUser")
     @Step("LoginFieldIsCaseInsensitiveTest")
-    public void LoginFieldIsCaseInsensitiveTest(IUser admUser, IUser nonExistingUser) {
+    public void loginFieldIsCaseInsensitiveTest(IUser admUser, IUser nonExistingUser) {
 
         //login and go to addUser.html
         CreateNewUserPage adminHomePage = loginPage.successAdminLogin(admUser)

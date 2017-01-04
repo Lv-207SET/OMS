@@ -23,7 +23,13 @@ import com.softserve.edu.oms.pages.AdminHomePage;
 import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.tests.TestRunner;
 
+import ru.yandex.qatools.allure.annotations.Description;
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Severity;
 import ru.yandex.qatools.allure.annotations.Step;
+import ru.yandex.qatools.allure.annotations.Stories;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
+import ru.yandex.qatools.allure.model.SeverityLevel;
 
 import org.testng.asserts.SoftAssert;
 
@@ -36,6 +42,10 @@ import org.testng.asserts.SoftAssert;
  * @since 16.12.16
  * @link http://ssu-jira.softserveinc.com/browse/LVSETOMS-47
  */
+@Features("Administration")
+@Stories("LVSETOMS-4 As Admin I want to see all existing users and perform "
+		+ "user searching on the 'Administration' tab so I can manage them ")
+
 public class FindingTest extends TestRunner {
     private SoftAssert softAssert = new SoftAssert();
     private AdministrationPage administrationPage;
@@ -73,6 +83,9 @@ public class FindingTest extends TestRunner {
      * @version 1.0
      * @since 16.12.16
      */
+    @TestCaseId("LVSETOMS-47")
+	@Severity(SeverityLevel.NORMAL)
+	@Description("Verify that searching options in dropdown lists are correct.")
     @Test
     @Step("testOptionValues")
     public void testOptionValues() {
@@ -111,6 +124,9 @@ public class FindingTest extends TestRunner {
      * @version 1.0
      * @since 16.12.16
      */
+    @TestCaseId("LVSETOMS-47")
+   	@Severity(SeverityLevel.NORMAL)
+   	@Description("Verify that search by 'Login' and 'equals' work correctly.")
     @Test
     @Step("verifySearchByEquals")
     public void verifySearchByEquals() {
@@ -132,6 +148,10 @@ public class FindingTest extends TestRunner {
      * @version 1.0
      * @since 16.12.16
      */
+    
+    @TestCaseId("LVSETOMS-47")
+   	@Severity(SeverityLevel.NORMAL)
+   	@Description("Verify that search by 'Login' and 'not equals' work correctly.")
     @Test
     @Step("verifySearchByNotEquals")
     public void verifySearchByNotEquals() {
@@ -155,6 +175,9 @@ public class FindingTest extends TestRunner {
      * Verify that search by "Last Name" and "starts with" work correctly.
      *
      */
+    @TestCaseId("LVSETOMS-47")
+   	@Severity(SeverityLevel.NORMAL)
+   	@Description("Verify that search by 'Last Name' and 'starts with' work correctly.")
     @Test
     @Step("verifySearchLastName")
     public void verifySearchLastName() {
@@ -190,6 +213,9 @@ public class FindingTest extends TestRunner {
      * Verify that search by "Login Name" and "contains" work correctly.
      *
      */
+    @TestCaseId("LVSETOMS-47")
+   	@Severity(SeverityLevel.NORMAL)
+   	@Description("Verify that search by 'Login Name' and 'contains' work correctly.")
     @Test
     @Step("verifySearchLoginName")
     public void verifySearchLoginName() {
@@ -225,6 +251,9 @@ public class FindingTest extends TestRunner {
      * Verify that search by "Role" and "does not contain" work correctly.
      *
      */
+    @TestCaseId("LVSETOMS-47")
+   	@Severity(SeverityLevel.NORMAL)
+   	@Description("Verify that search by 'Role' and 'does not contain' work correctly.")
     @Test
     @Step("verifySearchRole")
     public void verifySearchRole() {

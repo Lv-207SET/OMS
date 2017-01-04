@@ -16,7 +16,13 @@ import com.softserve.edu.oms.data.UserRepository;
 import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.tests.TestRunner;
 
+import ru.yandex.qatools.allure.annotations.Description;
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Severity;
 import ru.yandex.qatools.allure.annotations.Step;
+import ru.yandex.qatools.allure.annotations.Stories;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
+import ru.yandex.qatools.allure.model.SeverityLevel;
 
 /**
  * The Class SortingByLoginRoleRegionUsersTabeTest.
@@ -24,6 +30,10 @@ import ru.yandex.qatools.allure.annotations.Step;
  * @author Softserve Academy
  * @since 22.12.2016
  */
+@Features("Administration")
+@Stories("LVSETOMS-4 As Admin I want to see all existing users and perform user "
+		+ "searching on the 'Administration' tab so I can manage them ")
+
 public class SortingByRoleRegionUsersTabeTest extends TestRunner {
 
 	/** The administration page. */
@@ -49,8 +59,14 @@ public class SortingByRoleRegionUsersTabeTest extends TestRunner {
 	 *
 	 * @param query            the query
 	 */
+	@TestCaseId("LVSETOMS-46")
+	@Severity(SeverityLevel.NORMAL)
+	@Description("This test case verifies that the records in the table on 'Administration' "
+			+ "tab are sorted by default in the order of their creation and can be sorted by "
+			+ "'Role', 'Region' in asc or desc order")
 	@Step("Sorting of Users Table Test")
 	@Test(dataProvider = "sortingTableDataProvider")
+	
 	public void sortUsersTableTest(String query) {
 
 		String switchCond = null;
@@ -62,7 +78,6 @@ public class SortingByRoleRegionUsersTabeTest extends TestRunner {
 					          .toUpperCase()
 					          .replace(" ", "_");
 		}
-
 		switch (switchCond) {
 		
 		case "ROLEREF_ASC":

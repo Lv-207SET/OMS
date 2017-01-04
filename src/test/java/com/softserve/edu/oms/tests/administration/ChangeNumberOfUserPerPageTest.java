@@ -7,7 +7,14 @@ import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.tests.TestRunner;
 import org.hamcrest.CoreMatchers;
 import org.testng.annotations.Test;
+
+import ru.yandex.qatools.allure.annotations.Description;
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Severity;
 import ru.yandex.qatools.allure.annotations.Step;
+import ru.yandex.qatools.allure.annotations.Stories;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
+import ru.yandex.qatools.allure.model.SeverityLevel;
 
 import static com.softserve.edu.oms.enums.LabelsNamesEnum.SHOW_10_ITEMS_LINK;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -19,13 +26,19 @@ import static org.testng.Assert.assertTrue;
      * @version 1.0
      * @since 20.12.16
      */
-
+    @Features("Administration")
+    @Stories("LVSETOMS-4 As Admin I want to see all existing users and perform "
+    		+ "user searching on the 'Administration' tab so I can manage them ")
     public class ChangeNumberOfUserPerPageTest extends TestRunner{
 
         /**
          * Verify that correct number of records displays in a table on 'Administration' tab
          */
-
+    	@TestCaseId("LVSETOMS-43")
+    	@Severity(SeverityLevel.MINOR)
+    	@Description("This test case verifies that number of records displayed in a table"
+    			+ " on 'Administration' tab and pagination correspond to the current settings "
+    			+ "and is 5 by default. ")
         @Test
         @Step
         public void paginationTest() {

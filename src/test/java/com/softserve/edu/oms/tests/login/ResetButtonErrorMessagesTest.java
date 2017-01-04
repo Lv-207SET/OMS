@@ -7,7 +7,14 @@ import com.softserve.edu.oms.tests.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import ru.yandex.qatools.allure.annotations.Description;
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Severity;
 import ru.yandex.qatools.allure.annotations.Step;
+import ru.yandex.qatools.allure.annotations.Stories;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
+import ru.yandex.qatools.allure.model.SeverityLevel;
 
 /**
  * Test verifies that error messages is shown when user tries to login without
@@ -17,6 +24,9 @@ import ru.yandex.qatools.allure.annotations.Step;
  *
  * @author Dmytro Voropai
  */
+@Features("Authorization")
+@Stories("LVSETOMS-1 As User Admin I want to login so I can enter the system and add new users to system")
+
 public class ResetButtonErrorMessagesTest extends TestRunner {
 
 //  Provides not register user login and password
@@ -26,9 +36,13 @@ public class ResetButtonErrorMessagesTest extends TestRunner {
                 {UserRepository.get().invalidUser()}
         };
     }
-
+    @TestCaseId("LVSETOMS-29")
+  	@Severity(SeverityLevel.CRITICAL)
+  	@Description("This test case verifies that error message is shown "
+  			+ "when user tries to login without being registered to OMS.")
     @Test(dataProvider = "invalidUser", alwaysRun = true)
     @Step("Error messages verification for non registered user")
+    
     public void verifyResetButtonErrorMessagesForNonRegisteredUser(IUser invalidUser){
 //      Check if Object of String error message is not null.
         Assert.assertNotNull(loginPage.unsuccessfulLogin(invalidUser)

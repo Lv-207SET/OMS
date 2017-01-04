@@ -9,10 +9,20 @@ import com.softserve.edu.oms.tests.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import ru.yandex.qatools.allure.annotations.Description;
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Severity;
 import ru.yandex.qatools.allure.annotations.Step;
+import ru.yandex.qatools.allure.annotations.Stories;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
+import ru.yandex.qatools.allure.model.SeverityLevel;
 
 import java.util.List;
 
+@Features("Administration")
+@Stories("LVSETOMS-4 As Admin I want to see all existing users "
+		+ "and perform user searching on the 'Administration' tab so I can manage them")
 public class CorrectUserInfoIsDisplayedTest extends TestRunner{
 
     @DataProvider
@@ -41,9 +51,13 @@ public class CorrectUserInfoIsDisplayedTest extends TestRunner{
      * @since 15.12.16
      * @param admUser
      */
+    @TestCaseId("LVSETOMS-45")
+	@Severity(SeverityLevel.NORMAL)
+	@Description("This test case verifies that all active registered users display in the table "
+			+ "on 'Administration' tab and that the users attributes matches the columns of the table.")
     @Test(dataProvider = "admUser")
     @Step("CorrectUserInfoIsDisplayedTest")
-    public void CorrectUserInfoIsDisplayedTest(IUser admUser) {
+    public void correctUserInfoIsDisplayedTest(IUser admUser) {
 
         //log in and go to users.html
         AdministrationPage administrationPage = loginPage

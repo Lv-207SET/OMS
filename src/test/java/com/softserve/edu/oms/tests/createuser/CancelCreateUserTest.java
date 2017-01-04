@@ -11,8 +11,20 @@ import com.softserve.edu.oms.pages.AdminHomePage;
 import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.pages.CreateNewUserPage;
 import com.softserve.edu.oms.tests.TestRunner;
+
+import ru.yandex.qatools.allure.annotations.Description;
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Severity;
+import ru.yandex.qatools.allure.annotations.Stories;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
+import ru.yandex.qatools.allure.model.SeverityLevel;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+
+@Features("Create New User")
+@Stories("LVSETOMS-3 As Administrator I want to create new user so he can log into the application")
 
 public class CancelCreateUserTest extends TestRunner {
     /**
@@ -24,6 +36,10 @@ public class CancelCreateUserTest extends TestRunner {
      * @since 16.12.16
      * @link http://ssu-jira.softserveinc.com/browse/LVSETOMS-55
      */
+	@TestCaseId("LVSETOMS-52")
+	@Severity(SeverityLevel.CRITICAL)
+    @Description("This test case verifies that new user creation is canceled by clicking "
+    		+ "'Cancel' button on 'Create new user' page.")
     @Test
     public void cancelCreateUserTest() {
         IUser user = UserRepository.get().adminUser();

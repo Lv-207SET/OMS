@@ -11,6 +11,7 @@ import com.softserve.edu.oms.tests.TestRunner;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.Severity;
+import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.allure.annotations.Stories;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 import ru.yandex.qatools.allure.model.SeverityLevel;
@@ -25,6 +26,15 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
 @Stories("As User Admin I want to login so I can enter the system and add new users to system")
 
 public class AdminUserSmokeTest extends TestRunner {
+	
+	/**
+	 * Logger method for Allure Framework. It method is used
+	 *  for inserting Allure Steps into different methods
+	 * @param stepMsg
+	 */
+	
+	@Step("{0}")
+	private void innerStep(String stepMsg){}
 
 	/**
 	 * Gets the admin user DataProvider for adminUserSmokeTest
@@ -48,8 +58,16 @@ public class AdminUserSmokeTest extends TestRunner {
 	@Description("Checking if 'Create New User' Button is Enabled")
 	@Test(dataProvider="getAdminUser")
 	public void adminUserSmokeTest(IUser adminUser) {
-		CreateNewUserPage createNewUserPage = loginPage.successAdminLogin(adminUser).clickAdministrationTab()
+		
+		innerStep("Creating chain of steps to create new user page ");
+		
+		CreateNewUserPage createNewUserPage = loginPage
+				.successAdminLogin(adminUser)
+				.clickAdministrationTab()
 				.gotoCreateNewUserPage();
+		
+		innerStep("Testing inside methods steps");
+		
 		assertTrue(createNewUserPage.getCreateButton().isEnabled());
 
 	}

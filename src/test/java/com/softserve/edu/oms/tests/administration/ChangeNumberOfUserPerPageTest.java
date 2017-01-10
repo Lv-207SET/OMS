@@ -34,6 +34,15 @@ import static org.testng.Assert.assertTrue;
     @Stories("LVSETOMS-4 As Admin I want to see all existing users and perform "
     		+ "user searching on the 'Administration' tab so I can manage them ")
     public class ChangeNumberOfUserPerPageTest extends TestRunner{
+    	
+    	/**
+    	 * Logger method for Allure Framework. It method is used
+    	 *  for inserting Allure Steps into different methods
+    	 * @param stepMsg
+    	 */
+    	
+    	@Step("{0}")
+    	private void innerStep(String stepMsg){}
 
         /**
          * Verify that correct number of records displays in a table on 'Administration' tab,
@@ -48,21 +57,26 @@ import static org.testng.Assert.assertTrue;
         @Step
         public void verifyChangeUserNumberPerPage() {
             // Get admin user from UserRepository
-            IUser admin = UserRepository.get().adminUser();
+           innerStep("Get admin user from UserRepository");
+    		IUser admin = UserRepository.get().adminUser();
 
             // Login and go to administration page
+            innerStep("Login and go to administration page");
             AdministrationPage administrationPage = loginPage
                     .successAdminLogin(admin)
                     .gotoAdministrationPage();
 
 
-             // Verification that 5 records are displayed in a table
+            innerStep("Verification that 5 records are displayed in a table"); 
+            // Verification that 5 records are displayed in a table
             assertThat(administrationPage.getQuantityOfUsersPerPage() ,
                     CoreMatchers.equalTo(UsersPerPage.FIVE.getResultsPerPage()));
 
+            innerStep("Verification that 'Show 10 items' link is displayed");
             // Verification that 'Show 10 items' link is displayed
             assertTrue(administrationPage.showItemsLinkIsDisplayed());
 
+            innerStep("Verification that 'Show 10 items' link has correct name");
             // Verification that 'Show 10 items' link has correct name
             assertThat(administrationPage.getShowItemsLinkText(),
                     CoreMatchers.equalTo(SHOW_10_ITEMS_LINK.name));
@@ -70,19 +84,24 @@ import static org.testng.Assert.assertTrue;
             // Count number of pages
             double pagesNumber = administrationPage.getFoundUsersNumber() / (UsersPerPage.FIVE.getResultsPerPage() * 1.0);
 
+            
             // Verification that correct number of pages displayed
+            innerStep("Verification that correct number of pages displayed");
             assertThat(administrationPage.getPagesQuantity(), CoreMatchers.equalTo((int)Math.ceil(pagesNumber)));
 
             administrationPage.changeQuantityOfUsersPerPage();
 
             // Verification that 10 records are displayed in a table
+            innerStep("Verification that 10 records are displayed in a table");
             assertThat(administrationPage.getQuantityOfUsersPerPage() ,
                     CoreMatchers.equalTo(UsersPerPage.TEN.getResultsPerPage()));
 
             // Count number of pages
+            innerStep("Count number of pages");
             pagesNumber = administrationPage.getFoundUsersNumber() / (UsersPerPage.TEN.getResultsPerPage() * 1.0);
 
             // Verification that correct number of pages displayed
+            innerStep("Verification that correct number of pages displayed");
             assertThat(administrationPage.getPagesQuantity(), CoreMatchers.equalTo((int)Math.ceil(pagesNumber)));
 
         }

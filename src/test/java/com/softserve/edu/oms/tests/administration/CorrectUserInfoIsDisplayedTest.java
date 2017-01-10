@@ -24,6 +24,15 @@ import java.util.List;
 @Stories("LVSETOMS-4 As Admin I want to see all existing users "
 		+ "and perform user searching on the 'Administration' tab so I can manage them")
 public class CorrectUserInfoIsDisplayedTest extends TestRunner{
+	
+	/**
+	 * Logger method for Allure Framework. It method is used
+	 *  for inserting Allure Steps into different methods
+	 * @param stepMsg
+	 */
+	
+	@Step("{0}")
+	private void innerStep(String stepMsg){}
 
     @DataProvider
     public Object[][] admUser() {
@@ -60,31 +69,38 @@ public class CorrectUserInfoIsDisplayedTest extends TestRunner{
     public void correctUserInfoIsDisplayedTest(IUser admUser) {
 
         //log in and go to users.html
+    	innerStep("Log in and go to users.html page");
         AdministrationPage administrationPage = loginPage
                 .successAdminLogin(admUser)
                 .gotoAdministrationPage();
 
         //read a number of found users from page
+        innerStep("Read a number of found users from page");
         int numberOfFoundUsersFromPage = administrationPage
                 .waitForLoad()
                 .getFoundUsersNumber();
 
         //read a number of found users from DB
+        innerStep("Read a number of found users from DB");
         DBUtils dbUtils = new DBUtils();
         int numberOfFoundUsersFromDB = dbUtils.countAllUsers();
 
         //verify that they are equal
+        innerStep("Verify that quantity users from page equal quantity users from DB");
         Assert.assertEquals(numberOfFoundUsersFromDB, numberOfFoundUsersFromPage);
 
         //read all users data displayed on page
+        innerStep("Read all users data displayed on page");
         List<User> usersFromPage = administrationPage
                 .waitForLoad()
                 .getUsersFromCurrentPage();
 
         //read top 5 users from DB
+        innerStep("Read top 5 users from DB");
         List<User> usersFromDB = dbUtils.getTopFiveUsers();
 
         //verify that they are the same
+        innerStep("Verify that users in DB are the same as users on page");
         for(int i = 0; i<usersFromPage.size();i++){
             Assert.assertTrue(usersFromDB.get(i).CompareTo(usersFromPage.get(i)));
         }

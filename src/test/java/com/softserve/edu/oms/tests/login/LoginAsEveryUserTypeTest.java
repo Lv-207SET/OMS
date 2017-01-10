@@ -1,16 +1,16 @@
 package com.softserve.edu.oms.tests.login;
 
-import com.softserve.edu.oms.data.IUser;
-import com.softserve.edu.oms.data.UserRepository;
-import com.softserve.edu.oms.tests.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.softserve.edu.oms.data.IUser;
+import com.softserve.edu.oms.data.UserRepository;
+import com.softserve.edu.oms.tests.TestRunner;
+
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.Severity;
-import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.allure.annotations.Stories;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 import ru.yandex.qatools.allure.model.SeverityLevel;

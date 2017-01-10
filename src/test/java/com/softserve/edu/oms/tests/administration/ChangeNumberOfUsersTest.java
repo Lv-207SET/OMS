@@ -44,6 +44,16 @@ public class ChangeNumberOfUsersTest extends TestRunner{
     private AdministrationPage administrationPage;
     private int pagesCount;
     private int numberUsers;
+    
+    /**
+	 * Logger method for Allure Framework. It method is used
+	 *  for inserting Allure Steps into different methods
+	 * @param stepMsg
+	 */
+	
+	@Step("{0}")
+	private void innerStep(String stepMsg){}
+
 
     @DataProvider
     public Object[][] validUser() {
@@ -56,29 +66,37 @@ public class ChangeNumberOfUsersTest extends TestRunner{
      * Verify that number of active registered users is aliquot to 5.
      * And creates necessary number of users.
      */
+   
     @BeforeMethod
     public void verifyAndCreateUsers() {
         int numberOfImems;
         IUser user = UserRepository.get().someUser();
 
         //Go to Administration page
+        innerStep("Go to Administration page");
         AdminHomePage adminHomePage =
                 loginPage.successAdminLogin(UserRepository.get().adminUser());
         administrationPage =
                 adminHomePage.gotoAdministrationPage();
 
         //Total number of users.
+        innerStep("Total number of users.");
         numberUsers = administrationPage.getFoundUsersNumber();
 
         //Number of pages. (One page can displays 5 or 10 users
         //which equivalent variable #numberOfImems)
+        innerStep("Number of pages. (One page can displays 5 or 10 users "
+        		+ "which equivalent variable #numberOfImems");
         pagesCount = administrationPage.getPagesQuantity();
 
         //Number of users which are shown in a table on an Administration page
+        innerStep("Number of users which are shown in a table on an Administration page");
         numberOfImems = administrationPage.getUsersPerPageNumber();
 
         //Verify if number of active registered users is aliquot to 5.
         //And creating some users if necessary.
+        innerStep("Verify if number of active registered users is aliquot to 5. "
+        		+ "And creating some users if necessary.");
         if ((numberUsers % numberOfImems) != 0) {
             for (int i = 0; i < (numberOfImems - (numberUsers % numberOfImems)); i++) {
                 CreateNewUserPage createNewUserPage =
@@ -129,23 +147,29 @@ public class ChangeNumberOfUsersTest extends TestRunner{
         int newPagesCount;
 
         //Go to Creation New User page
+        innerStep("Go to Creation New User page");
         CreateNewUserPage createNewUserPage =
                 administrationPage.gotoCreateNewUserPage().waitForLoad();
 
         //Creation new user.
+        innerStep("Creation new user.");
         administrationPage = createNewUserPage.setLoginData(user)
                 .waitForEmailErrorToDisappear()
                 .successCreateNewUser();
 
         //Total number of users.
+        innerStep("Total number of users.");
         newNumberOfUsers =  administrationPage.getFoundUsersNumber();
 
         //Number of pages. (One page can displays 5 or 10 users
         //which equivalent variable #numberOfImems)
+        innerStep("Number of pages. (One page can displays 5 or 10 "
+        		+ "userswhich equivalent variable #numberOfImems)");
         newPagesCount =  administrationPage.getPagesQuantity();
 
         //Verify if number of users and number of pages are changed
         //after creation a new user.
+        innerStep("Verify if number of users and number of pages are changed after creation a new user.");
         Assert.assertEquals(numberUsers + 1, newNumberOfUsers);
         Assert.assertEquals(pagesCount + 1, newPagesCount);
     }

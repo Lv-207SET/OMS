@@ -7,14 +7,8 @@
     import org.testng.Assert;
     import org.testng.annotations.DataProvider;
     import org.testng.annotations.Test;
-
-import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.Features;
-import ru.yandex.qatools.allure.annotations.Severity;
-import ru.yandex.qatools.allure.annotations.Step;
-import ru.yandex.qatools.allure.annotations.Stories;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
-import ru.yandex.qatools.allure.model.SeverityLevel;
+    import ru.yandex.qatools.allure.annotations.*;
+    import ru.yandex.qatools.allure.model.SeverityLevel;
 
     @Features("Administration")
     @Stories("LVSETOMS-2 As an Admin I want to see 'Administration' "
@@ -47,23 +41,22 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
     @Step("TabSwitchingTest")
     public void tabSwitchingTest(IUser admUser) {
 
-        //log in
-        AdminHomePage adminHomePage = loginPage.successAdminLogin(admUser);
+        AdminHomePage admHomeUserPage = loginPage.successAdminLogin(admUser);
 
         //verify that "User Info" tab is active
-        Assert.assertTrue(adminHomePage
+        Assert.assertTrue(admHomeUserPage
                 .waitForLoad()
                 .getUserInfoTab()
                 .isEnabled());
 
         //verify that "Administration" tab is present
-        Assert.assertTrue(adminHomePage
+        Assert.assertTrue(admHomeUserPage
                 .waitForLoad()
                 .getAdministrationTab()
                 .isDisplayed());
 
         //go to Admin page
-        adminHomePage
+        admHomeUserPage
                 .gotoAdministrationPage()
                 .waitForLoad();
 
@@ -71,7 +64,7 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
         Assert.assertTrue((driver.getCurrentUrl()).contains("users.htm"));
 
         //return to User Info page
-        adminHomePage
+        admHomeUserPage
                 .waitForLoad()
                 .clickUserInfoTab();
 

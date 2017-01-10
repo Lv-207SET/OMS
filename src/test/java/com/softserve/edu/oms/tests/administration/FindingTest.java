@@ -225,6 +225,7 @@ public class FindingTest extends TestRunner {
                 LabelsNamesEnum.SEARCH_TEXT_ER.name);
 
         //Equal two lists
+        innerStep("Verify equal two lists from table and DB");
         Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
     }
 
@@ -262,6 +263,7 @@ public class FindingTest extends TestRunner {
                 LabelsNamesEnum.SEARCH_TEXT_ER.name);
 
         //Equal two lists
+        innerStep("Verify equal two lists from table and DB");
         Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
     }
 
@@ -303,10 +305,12 @@ public class FindingTest extends TestRunner {
                 LabelsNamesEnum.SEARCH_TEXT_ER.name);
 
         //Equal two lists
+        innerStep("Verify equal two lists from table and DB");
         Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
 
         //Verify number users in table and in DB after search function apply.
         numberOfusers = administrationPage.getFoundUsersNumber();
+        innerStep("Verify number users in table and in DB after search function apply.");
         Assert.assertEquals(columnListFromDB.size(), numberOfusers);
 
         //Verify that the number of records returned by script divided 
@@ -319,6 +323,8 @@ public class FindingTest extends TestRunner {
             pagesNumber = columnListFromDB.size() / numberOfItems;
         }
         newPagesCount = administrationPage.getPagesQuantity();
+        innerStep("Verify that the number of records returned by script divided" +                  
+                "by number of records displayed in the table rounded to the bigger integer");
         Assert.assertEquals(pagesNumber, newPagesCount);
 
     }

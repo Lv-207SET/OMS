@@ -30,7 +30,6 @@ public class CorrectUserInfoIsDisplayedTest extends TestRunner{
 	 *  for inserting Allure Steps into different methods
 	 * @param stepMsg
 	 */
-	
 	@Step("{0}")
 	private void innerStep(String stepMsg){}
 

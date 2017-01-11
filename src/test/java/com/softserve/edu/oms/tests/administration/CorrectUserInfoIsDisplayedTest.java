@@ -44,8 +44,6 @@
          *
          *<p>Note: the quantity of rows is 5 not 10 rows</p>
          *
-         * Based on LVSETOMS-45 in Jira
-         *
          * @author Viktoriia Bybel
          * @version 1.0
          * @since 15.12.16
@@ -56,7 +54,7 @@
         @Description("This test case verifies that all active registered users display in the table "
                 + "on 'Administration' tab and that the users attributes matches the columns of the table.")
         @Test(dataProvider = "admUser")
-        @Step("CorrectUserInfoIsDisplayedTest")
+        @Step("Correct User Info is displayed test")
         public void correctUserInfoIsDisplayedTest(IUser admUser) {
 
             innerStep("Log in and go to users.html page");

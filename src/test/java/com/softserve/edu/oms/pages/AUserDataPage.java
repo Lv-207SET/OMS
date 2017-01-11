@@ -56,7 +56,7 @@ public abstract class AUserDataPage extends ABasePage {
 		return this.driver.findElements(ROLE_RADIO_BUTTON.by);
 	}
 
-	@Step("Getting Create new user button")
+	@Step("Get Create New User button")
 	public WebElement getCreateButton() {
 		return this.driver.findElement(CREATE_BUTTON.by);
 	}
@@ -83,7 +83,7 @@ public abstract class AUserDataPage extends ABasePage {
 		return this.driver.findElement(ERROR_PASSWORD.by);
 	}
 
-	@Step("getConfirmPasswordErrorMessage")
+	@Step("Get Confirm Password Error Message")
 	public WebElement getConfirmPasswordErrorMessage() {
 		return this.driver.findElement(ERROR_CONFIRM_PASSWORD.by);
 	}
@@ -150,7 +150,7 @@ public abstract class AUserDataPage extends ABasePage {
 		return getPasswordErrorMessage().getText();
 	}
 
-	@Step("getConfirmPasswordErrorMessageText")
+	@Step("Get Confirm Password Error Message Text")
 	public String getConfirmPasswordErrorMessageText() {
 		return getConfirmPasswordErrorMessage().getText();
 	}

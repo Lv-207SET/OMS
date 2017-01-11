@@ -1,7 +1,5 @@
     package com.softserve.edu.oms.data;
 
-    import ru.yandex.qatools.allure.annotations.Step;
-
     /**
      * User class implements the user entity
      * from DB and page
@@ -103,7 +101,6 @@
                     +"\trole= " + role;
         }
 
-        @Step("Compare two users")
         public boolean CompareTo (User user){
             return this.getLoginname().equals(user.getLoginname())
                 && this.getFirstname().equals(user.getFirstname())

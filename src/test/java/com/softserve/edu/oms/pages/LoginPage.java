@@ -48,12 +48,12 @@ public class LoginPage extends ABasePage{
 	}
 
 	//Functional
-	@Step("getLoginnameInputText")
+	@Step("Get Login Input Text")
 	public String getLoginnameInputText() {
 		return getLoginnameInput().getText();
 	}
 
-	@Step("getPasswordInputText")
+	@Step("Get Password Input Text")
 	public String getPasswordInputText() {
 		return getPasswordInput().getText();
 	}
@@ -123,7 +123,7 @@ public class LoginPage extends ABasePage{
 		clickSubmitButton();
 	}
 
-	@Step("setLoginDataAndReset")
+	@Step("Set Login Data and reset")
 	public void setLoginDataAndReset(IUser user) {
 		setLoginnameInputClear(user.getLoginname());
 		setPasswordInputClear(user.getPassword());

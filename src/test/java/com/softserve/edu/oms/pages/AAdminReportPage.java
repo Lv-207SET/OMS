@@ -226,17 +226,17 @@ public abstract class AAdminReportPage extends ABasePage {
 		return getUserByLogin().getText();
 	}
 
-	@Step("getFoundUsersNumber")
+	@Step("Get Found Users Number")
 	public int getFoundUsersNumber() {
 		return Integer.parseInt(getUsersFoundText());
 	}
 
-	@Step("getPagesQuantity")
+	@Step("Get pages quantity")
 	public int getPagesQuantity() {
 		return Integer.parseInt(getPageCountSpanText());
 	}
 
-	@Step("getCurrentPageNumber")
+	@Step("Get current page number")
 	public int getCurrentPageNumber() {
 		return Integer.parseInt(getPageNumberSpanText());
 	}
@@ -252,22 +252,22 @@ public abstract class AAdminReportPage extends ABasePage {
 	}
 
 	// Check if navigation buttons is enabled
-	@Step("isForwardButtonEnabled")
+	@Step("Is Forward Button enabled")
 	public boolean isForwardButtonEnabled() {
 		return getForwardButton().isEnabled();
 	}
 
-	@Step("isLastButtonEnabled")
+	@Step("Is Last Button enabled")
 	public boolean isLastButtonEnabled() {
 		return getLastButton().isEnabled();
 	}
 
-	@Step("isBackwardButtonEnabled")
+	@Step("Is Backward Button enabled")
 	public boolean isBackwardButtonEnabled() {
 		return getBackwardButton().isEnabled();
 	}
 
-	@Step("isFirstButtonEnabled")
+	@Step("Is First Button enabled")
 	public boolean isFirstButtonEnabled() {
 		return getFirstButton().isEnabled();
 	}
@@ -294,22 +294,22 @@ public abstract class AAdminReportPage extends ABasePage {
 		getRegionLink().click();
 	}
 
-	@Step("clickFirstButton")
+	@Step("Click First Button")
 	public void clickFirstButton() {
 		getFirstButton().click();
 	}
 
-	@Step("clickBackwardButton")
+	@Step("Click Backward Button")
 	public void clickBackwardButton() {
 		getBackwardButton().click();
 	}
 
-	@Step("clickForwardButton")
+	@Step("Click Forward Button")
 	public void clickForwardButton() {
 		getForwardButton().click();
 	}
 
-	@Step("clickLastButton")
+	@Step("Click Last Button")
 	public void clickLastButton() {
 		getLastButton().click();
 	}
@@ -487,7 +487,6 @@ public abstract class AAdminReportPage extends ABasePage {
 
 	}
 
-	// Get list of users from current page
 	@Step("Get list of users from current page")
 	public List<User> getUsersFromCurrentPage() {
 		final List<User> userListFormCurrentPage = new ArrayList<>();
@@ -567,7 +566,6 @@ public abstract class AAdminReportPage extends ABasePage {
 			textofLastNames[i] = lastNames.get(i).getText().trim();
 			textOfRoles[i] = roles.get(i).getText().trim();
 			textOfRegions[i] = regions.get(i).getText().trim();
-			//System.out.println(textOfRoles[i]+"  "+textOfRegions[i]);
 		}
 
 		DBUtils dbUtility = new DBUtils();

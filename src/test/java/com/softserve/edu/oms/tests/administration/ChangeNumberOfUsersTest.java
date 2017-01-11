@@ -44,14 +44,6 @@ public class ChangeNumberOfUsersTest extends TestRunner{
     private AdministrationPage administrationPage;
     private int pagesCount;
     private int numberUsers;
-    
-    /**
-	 * Logger method for Allure Framework. It method is used
-	 *  for inserting Allure Steps into different methods
-	 * @param stepMsg
-	 */
-	@Step("{0}")
-	private void innerStep(String stepMsg){}
 
 
     @DataProvider

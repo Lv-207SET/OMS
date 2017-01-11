@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import ru.yandex.qatools.allure.annotations.Step;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -16,9 +18,15 @@ public class TestRunner {
     protected WebDriver driver;
     protected LoginPage loginPage;
 
+    /**
+     * Logger method for Allure Framework. It method is used
+     *  for inserting Allure Steps into different methods
+     * @param stepMsg
+     */
+    @Step("{0}")
+    public void innerStep(String stepMsg){}
     @BeforeClass
     public void oneTimeSetUp() {
-
 
         final String driverPath = "src/test/resources/drivers/";
 

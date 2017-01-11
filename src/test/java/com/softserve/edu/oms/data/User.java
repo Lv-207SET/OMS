@@ -103,7 +103,6 @@
                     +"\trole= " + role;
         }
 
-        //Compare two users
         @Step("Compare two users")
         public boolean CompareTo (User user){
             return this.getLoginname().equals(user.getLoginname())

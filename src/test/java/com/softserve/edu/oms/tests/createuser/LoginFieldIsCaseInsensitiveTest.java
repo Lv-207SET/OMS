@@ -61,12 +61,12 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
     @Step("LoginFieldIsCaseInsensitiveTest")
     public void loginFieldIsCaseInsensitiveTest(IUser admUser, IUser nonExistingUser) {
 
-        //login and go to addUser.html
+        innerStep("Login and go to addUser.html");
         CreateNewUserPage adminHomePage = loginPage.successAdminLogin(admUser)
                 .clickAdministrationTab()
                 .gotoCreateNewUserPage();
 
-        //verifying that user do not exist or generating a new one
+        innerStep("verifying that user do not exist or generating a new one");
         DBUtils dbUtils = new DBUtils();
         String nonExistingLogin = nonExistingUser.getLoginname();
         String nonExistingFirstName = nonExistingUser.getFirstname();

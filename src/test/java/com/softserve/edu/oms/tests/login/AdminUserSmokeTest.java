@@ -26,15 +26,6 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
 @Stories("As User Admin I want to login so I can enter the system and add new users to system")
 
 public class AdminUserSmokeTest extends TestRunner {
-	
-	/**
-	 * Logger method for Allure Framework. It method is used
-	 *  for inserting Allure Steps into different methods
-	 * @param stepMsg
-	 */
-	
-	@Step("{0}")
-	private void innerStep(String stepMsg){}
 
 	/**
 	 * Gets the admin user DataProvider for adminUserSmokeTest

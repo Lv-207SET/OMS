@@ -12,13 +12,13 @@
     import org.testng.annotations.DataProvider;
     import org.testng.annotations.Test;
 
-import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.Features;
-import ru.yandex.qatools.allure.annotations.Severity;
-import ru.yandex.qatools.allure.annotations.Step;
-import ru.yandex.qatools.allure.annotations.Stories;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
-import ru.yandex.qatools.allure.model.SeverityLevel;
+    import ru.yandex.qatools.allure.annotations.Description;
+    import ru.yandex.qatools.allure.annotations.Features;
+    import ru.yandex.qatools.allure.annotations.Severity;
+    import ru.yandex.qatools.allure.annotations.Step;
+    import ru.yandex.qatools.allure.annotations.Stories;
+    import ru.yandex.qatools.allure.annotations.TestCaseId;
+    import ru.yandex.qatools.allure.model.SeverityLevel;
 
     @Features("Create New User")
     @Stories("LVSETOMS-3 As Administrator I want to create new user so he can log into the application")
@@ -61,12 +61,12 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
     @Step("LoginFieldIsCaseInsensitiveTest")
     public void loginFieldIsCaseInsensitiveTest(IUser admUser, IUser nonExistingUser) {
 
-        innerStep("Login and go to addUser.html");
+        innerStep("Login and go to Create New User Page");
         CreateNewUserPage adminHomePage = loginPage.successAdminLogin(admUser)
                 .clickAdministrationTab()
                 .gotoCreateNewUserPage();
 
-        innerStep("verifying that user do not exist or generating a new one");
+        innerStep("Verifying that user do not exist and generating a new one");
         DBUtils dbUtils = new DBUtils();
         String nonExistingLogin = nonExistingUser.getLoginname();
         String nonExistingFirstName = nonExistingUser.getFirstname();
@@ -78,7 +78,7 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
             nonExistingLastName = RandomStringUtils.random(5, true, false);
         }
 
-        //set up a form and creating a new user
+        innerStep("Fill in a form to create new user");
         CreateNewUserPage newUserPage = new CreateNewUserPage(driver);
         newUserPage
                 .waitForLoad()
@@ -92,7 +92,7 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
                 .clickCreateButton()
                 .acceptAlert();
 
-        //entering the data to verify that error message will appear
+        innerStep("Entering the reverse case login to verify error message will appear");
         CreateNewUserPage newUserPageAgain = new AdministrationPage(driver)
                 .gotoCreateNewUserPage()
                 .setLoginInput(nonExistingLogin.toUpperCase())
@@ -101,19 +101,20 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
                 .setPasswordInput(nonExistingUser.getPassword())
                 .setConfirmPasswordInput(nonExistingUser.getPassword());
 
-
         Assert.assertTrue(newUserPageAgain.getLoginError());
-
         }
 
         @Test(dataProvider = "admAndNonExistingUser")
         @Step("delete user from DB")
         public void deleteUserFromDB(IUser admUser, IUser nonExistingUser){
+
+        innerStep("Delete previously created test user from DB");
+
         DBUtils dbUtils = new DBUtils();
         String nonExistingLogin = nonExistingUser.getLoginname();
         if (dbUtils.verifyThatUserIsInDB(nonExistingLogin)) {
             dbUtils.deleteUsersFromDB(SQLQueries.DELETE_USER_BY_LOGIN.getQuery(),
                     nonExistingUser.getLoginname());
         }
-        }
+    }
     }

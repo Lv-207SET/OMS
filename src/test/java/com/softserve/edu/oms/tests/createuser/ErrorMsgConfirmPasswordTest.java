@@ -62,7 +62,7 @@ public class ErrorMsgConfirmPasswordTest extends TestRunner{
      * and navigate to Create New User page
      */
     @BeforeMethod
-    @Step("login and go to Create New User page")
+    @Step("Login as Admin and go to Create New User page")
     public void loginAndGotoCreateUserPage() {
         IUser admin = UserRepository
                 .get()
@@ -82,18 +82,19 @@ public class ErrorMsgConfirmPasswordTest extends TestRunner{
      * @param newUser {@link com.softserve.edu.oms.data.UserRepository}
      */
     
-  	@TestCaseId("LVSETOMS-")
+  	@TestCaseId("LVSETOMS-58")
   	@Severity(SeverityLevel.NORMAL)
     @Description("This test case verifies that error message appears when trying to create "
-    		+ "a new user with different values in 'Password' and 'Confirm Password'")
+    		+ "a new user with different values in 'Password' and 'Confirm Password' fields")
     
     @Test(dataProvider = "badMemoryUser")
-    @Step("verify error message is shown while creating user with not confirmed password")
+    @Step("Verify error message is shown while creating user with not confirmed password")
     public void verifyErrorMsgUserWithNotConfirmedPassword(IUser newUser) {
 
         DBUtils dbUtils = new DBUtils();
 
         // verify that user with chosen login does not exist
+        innerStep("Verify that user with chosen login does not exist");
         assertThat(dbUtils.getUserByLogin(newUser.getLoginname()), CoreMatchers.equalTo(null));
 
         // set correct data for new user account
@@ -106,14 +107,15 @@ public class ErrorMsgConfirmPasswordTest extends TestRunner{
                 .setConfirmPasswordInput(newUser.getPassword().toUpperCase())
                 .setEmailInput(newUser.getEmail())
                 .setSelectRegion(Region.getRegion(newUser.getRegion()))
-                .setSelectRole(Role.valueOf(newUser.getRole().toUpperCase()))
-                .waitForLoad();
+                .setSelectRole(Role.valueOf(newUser.getRole().toUpperCase()));
 
         // verify that correct error message appears
+        innerStep("Verify that correct error message appears");
         Assert.assertTrue(createNewUserPage.getConfirmPasswordErrorMessage().isDisplayed()
                 && createNewUserPage.getConfirmPasswordErrorMessageText().equals(CONFIRM_PASSWORD_ERROR_MESSAGE.message));
 
         // verify that user with invalid confirm password is not created
+        innerStep("Verify that user with invalid confirm password is not created");
         assertThat(dbUtils.getUserByLogin(newUser.getLoginname()), CoreMatchers.equalTo(null));
     }
 
@@ -121,7 +123,7 @@ public class ErrorMsgConfirmPasswordTest extends TestRunner{
      * Logout from current page
      */
     @AfterMethod
-    @Step("logout from Create New User page")
+    @Step("Logout from Create New User page")
     public void returnToPreviousState() {
         createNewUserPage.logout();
     }

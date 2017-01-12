@@ -252,22 +252,18 @@ public abstract class AAdminReportPage extends ABasePage {
 	}
 
 	// Check if navigation buttons is enabled
-	@Step("Is Forward Button enabled")
 	public boolean isForwardButtonEnabled() {
 		return getForwardButton().isEnabled();
 	}
 
-	@Step("Is Last Button enabled")
 	public boolean isLastButtonEnabled() {
 		return getLastButton().isEnabled();
 	}
 
-	@Step("Is Backward Button enabled")
 	public boolean isBackwardButtonEnabled() {
 		return getBackwardButton().isEnabled();
 	}
 
-	@Step("Is First Button enabled")
 	public boolean isFirstButtonEnabled() {
 		return getFirstButton().isEnabled();
 	}

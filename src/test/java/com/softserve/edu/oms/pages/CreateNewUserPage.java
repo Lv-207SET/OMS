@@ -55,11 +55,13 @@ public class CreateNewUserPage extends AUserDataPage {
         return this;
     }
 
+    @Step("Set Select Region")
     public CreateNewUserPage setSelectRegion(Region region) {
         super.setSelectRegion(region);
         return this;
     }
 
+    @Step("Set Select Role")
     public CreateNewUserPage setSelectRole(Role roleId) {
         super.setSelectRole(roleId);
         return this;

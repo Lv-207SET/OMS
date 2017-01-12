@@ -53,16 +53,18 @@ public class ResetButtonTest extends TestRunner {
      */
     @TestCaseId("LVSETOMS-37")
    	@Severity(SeverityLevel.NORMAL)
-   	@Description("This test case verities that entered by user values in 'User'"
+   	@Description("This test case verifies that entered by user values in 'User'"
    			+ " and 'Password' fields are cleared by clicking on 'Reset' button")
     @Test(dataProvider = "someUser")
-    @Step("verify 'Reset' button functionality")
+    @Step("Verify 'Reset' button functionality")
     public void verifyResetButtonFunctionality(IUser someUser) {
 
         loginPage.setLoginDataAndReset(someUser);
+        innerStep("Verify that 'User' field is cleared by clicking on 'Reset' button");
         Assert.assertTrue(loginPage
                 .getLoginnameInputText()
                 .isEmpty());
+        innerStep("Verify that 'Password' field is cleared by clicking on 'Reset' button");
         Assert.assertTrue(loginPage
                 .getPasswordInputText()
                 .isEmpty());

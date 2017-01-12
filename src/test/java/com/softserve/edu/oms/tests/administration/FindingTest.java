@@ -184,7 +184,7 @@ public class FindingTest extends TestRunner {
    	@Severity(SeverityLevel.NORMAL)
    	@Description("Verify that search by 'Last Name' and 'starts with' work correctly.")
     @Test
-    @Step("verifySearchLastName")
+    @Step("Verify that search by last name works correctly")
     public void verifySearchLastName() {
         List<String> columnListFromTable = new ArrayList<>();
         List<String> columnListFromDB;
@@ -222,7 +222,7 @@ public class FindingTest extends TestRunner {
    	@Severity(SeverityLevel.NORMAL)
    	@Description("Verify that search by 'Login Name' and 'contains' work correctly.")
     @Test
-    @Step("verifySearchLoginName")
+    @Step("Verify that search by login name works correctly")
     public void verifySearchLoginName() {
         List<String> columnListFromTable = new ArrayList<>();
         List<String> columnListFromDB;
@@ -260,7 +260,7 @@ public class FindingTest extends TestRunner {
    	@Severity(SeverityLevel.NORMAL)
    	@Description("Verify that search by 'Role' and 'does not contain' work correctly.")
     @Test
-    @Step("verifySearchRole")
+    @Step("Verify that search by role works correctly")
     public void verifySearchRole() {
         List<String> columnListFromTable = new ArrayList<>();
         List<String> columnListFromDB;

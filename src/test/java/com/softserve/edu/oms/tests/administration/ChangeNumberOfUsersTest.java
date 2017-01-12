@@ -1,5 +1,7 @@
 package com.softserve.edu.oms.tests.administration;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -15,7 +17,6 @@ import com.softserve.edu.oms.pages.AdminHomePage;
 import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.pages.CreateNewUserPage;
 import com.softserve.edu.oms.tests.TestRunner;
-
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.Severity;
@@ -44,6 +45,7 @@ public class ChangeNumberOfUsersTest extends TestRunner{
     private AdministrationPage administrationPage;
     private int pagesCount;
     private int numberUsers;
+    public static final Logger logger = LoggerFactory.getLogger(ChangeNumberOfUsersTest.class);
     
     @DataProvider
     public Object[][] validUser() {
@@ -131,6 +133,8 @@ public class ChangeNumberOfUsersTest extends TestRunner{
     @Test(dataProvider = "validUser")
     @Step("Verify changing number of pages and number of users after adding one user")
     public void verifyChangePageNumber(IUser user) {
+        
+        logger.info("Test verifyChangePageNumber start");
 
         int newNumberOfUsers;
         int newPagesCount;
@@ -160,5 +164,7 @@ public class ChangeNumberOfUsersTest extends TestRunner{
         innerStep("Verify if number of users and number of pages are changed after creation a new user.");
         Assert.assertEquals(numberUsers + 1, newNumberOfUsers);
         Assert.assertEquals(pagesCount + 1, newPagesCount);
+        
+        logger.info("Test verifyChangePageNumber done");
     }
 }

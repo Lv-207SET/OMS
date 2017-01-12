@@ -11,6 +11,8 @@ import com.softserve.edu.oms.pages.AdminHomePage;
 import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.tests.TestRunner;
 import org.junit.Assert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -43,6 +45,7 @@ public class FindingTest extends TestRunner {
     private AdministrationPage administrationPage;
 
     private final String VALID_NAME = UserRepository.get().adminUser().getLoginname();
+    public static final Logger logger = LoggerFactory.getLogger(FindingTest.class);
     
     /**
      * Set preconditions for test:
@@ -83,6 +86,7 @@ public class FindingTest extends TestRunner {
     @Test
     @Step("testOptionValues")
     public void testOptionValues() {
+        logger.info("Test testOptionValues start");
         softAssert = new SoftAssert();
 
         //verify that values in dropdown lists are correct and default values are correct too
@@ -97,6 +101,7 @@ public class FindingTest extends TestRunner {
                         .stream()
                         .map(condition -> condition.getNameOfConditionFilterField()).collect(Collectors.toSet()));
         softAssert.assertAll();
+        logger.info("Test testOptionValues done");
     }
 
     /**
@@ -105,6 +110,7 @@ public class FindingTest extends TestRunner {
      */
     @Test
     public void verifySearchTooLongName(IUser admin) {
+        logger.info("Test verifySearchTooLongName start");
         softAssert = new SoftAssert();
 
         //enter too long name in search field
@@ -117,7 +123,7 @@ public class FindingTest extends TestRunner {
       //verify that result  are all active users
         softAssert.assertEquals(administrationPage.getAllUsers().size(), numberOfUsers);
         softAssert.assertAll();
-
+        logger.info("Test verifySearchTooLongName done");
     }
 
     /**
@@ -133,6 +139,7 @@ public class FindingTest extends TestRunner {
     @Test
     @Step("verifySearchByEquals")
     public void verifySearchByEquals() {
+        logger.info("Test verifySearchByEquals start");
         softAssert = new SoftAssert();
         //select equals option
         administrationPage.clickSearchButton();
@@ -143,6 +150,7 @@ public class FindingTest extends TestRunner {
         int numberOfUsers = dbUtils.getUserByLogin(VALID_NAME) == null ? 0 : 1;
         softAssert.assertEquals(administrationPage.getAllUsers().size(), numberOfUsers);
         softAssert.assertAll();
+        logger.info("Test verifySearchByEquals done");
     }
 
     /**
@@ -159,6 +167,7 @@ public class FindingTest extends TestRunner {
     @Test
     @Step("verifySearchByNotEquals")
     public void verifySearchByNotEquals() {
+        logger.info("Test verifySearchByNotEquals start");
         softAssert = new SoftAssert();
 
         administrationPage.clickSearchButton();
@@ -174,6 +183,7 @@ public class FindingTest extends TestRunner {
         int numberOfUsers = dbUtils.countAllUsers() - numberOfUsersWithLogin;
         softAssert.assertEquals(new AdministrationPage(driver).getAllUsers().size(), numberOfUsers);
         softAssert.assertAll();
+        logger.info("Test verifySearchByNotEquals done");
     }
 
 
@@ -187,6 +197,7 @@ public class FindingTest extends TestRunner {
     @Test
     @Step("Verify that search by last name works correctly")
     public void verifySearchLastName() {
+        logger.info("Test verifySearchLastName start");
         List<String> columnListFromTable = new ArrayList<>();
         List<String> columnListFromDB;
         DBUtils dbUtils;
@@ -212,6 +223,7 @@ public class FindingTest extends TestRunner {
         //Equal two lists
         innerStep("Verify equal two lists from table and DB");
         Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
+        logger.info("Test verifySearchLastName done");
     }
 
 
@@ -225,6 +237,7 @@ public class FindingTest extends TestRunner {
     @Test
     @Step("Verify that search by login name works correctly")
     public void verifySearchLoginName() {
+        logger.info("Test verifySearchLoginName start");
         List<String> columnListFromTable = new ArrayList<>();
         List<String> columnListFromDB;
         DBUtils dbUtils;
@@ -250,6 +263,7 @@ public class FindingTest extends TestRunner {
         //Equal two lists
         innerStep("Verify equal two lists from table and DB");
         Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
+        logger.info("Test verifySearchLoginName done");
     }
 
 
@@ -263,6 +277,7 @@ public class FindingTest extends TestRunner {
     @Test
     @Step("Verify that search by role works correctly")
     public void verifySearchRole() {
+        logger.info("Test verifySearchRole start");
         List<String> columnListFromTable = new ArrayList<>();
         List<String> columnListFromDB;
         DBUtils dbUtils;
@@ -311,7 +326,7 @@ public class FindingTest extends TestRunner {
         innerStep("Verify that the number of records returned by script divided" +                  
                 "by number of records displayed in the table rounded to the bigger integer");
         Assert.assertEquals(pagesNumber, newPagesCount);
-
+        logger.info("Test verifySearchRole done");
     }
 
 }

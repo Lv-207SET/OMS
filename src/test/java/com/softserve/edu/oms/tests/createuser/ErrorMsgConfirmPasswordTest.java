@@ -10,6 +10,8 @@ import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.pages.CreateNewUserPage;
 import com.softserve.edu.oms.tests.TestRunner;
 import org.hamcrest.CoreMatchers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -42,6 +44,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ErrorMsgConfirmPasswordTest extends TestRunner{
 
+    public static final Logger logger = LoggerFactory.getLogger(ErrorMsgConfirmPasswordTest.class);
     private CreateNewUserPage createNewUserPage;
     /**
      * Provides data for user login
@@ -93,6 +96,7 @@ public class ErrorMsgConfirmPasswordTest extends TestRunner{
 
         DBUtils dbUtils = new DBUtils();
 
+        logger.info("Test verifyErrorMsgUserWithNotConfirmedPassword start");
         // verify that user with chosen login does not exist
         innerStep("Verify that user with chosen login does not exist");
         assertThat(dbUtils.getUserByLogin(newUser.getLoginname()), CoreMatchers.equalTo(null));
@@ -117,6 +121,7 @@ public class ErrorMsgConfirmPasswordTest extends TestRunner{
         // verify that user with invalid confirm password is not created
         innerStep("Verify that user with invalid confirm password is not created");
         assertThat(dbUtils.getUserByLogin(newUser.getLoginname()), CoreMatchers.equalTo(null));
+        logger.info("Test verifyErrorMsgUserWithNotConfirmedPassword done");
     }
 
     /**

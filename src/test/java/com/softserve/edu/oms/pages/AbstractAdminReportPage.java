@@ -8,6 +8,8 @@ import com.softserve.edu.oms.enums.UsersPerPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.ArrayList;
@@ -21,6 +23,8 @@ import static com.softserve.edu.oms.locators.AbstractAdminReportPageLocators.*;
  * Administration Page and Create Report Page
  */
 public abstract class AbstractAdminReportPage extends AbstractBasePage {
+
+	public static final Logger logger = LoggerFactory.getLogger(AbstractAdminReportPage.class);
 
 	public AbstractAdminReportPage(WebDriver driver) {
 		super(driver);
@@ -293,21 +297,25 @@ public abstract class AbstractAdminReportPage extends AbstractBasePage {
 	@Step("Click First Button")
 	public void clickFirstButton() {
 		getFirstButton().click();
+		logger.info("First button is clicked");
 	}
 
 	@Step("Click Backward Button")
 	public void clickBackwardButton() {
 		getBackwardButton().click();
+		logger.info("Backward button is clicked");
 	}
 
 	@Step("Click Forward Button")
 	public void clickForwardButton() {
 		getForwardButton().click();
+		logger.info("Forward button is clicked");
 	}
 
 	@Step("Click Last Button")
 	public void clickLastButton() {
 		getLastButton().click();
+		logger.info("Last button is clicked");
 	}
 
 	public void clickShowItemsLink() {
@@ -358,6 +366,7 @@ public abstract class AbstractAdminReportPage extends AbstractBasePage {
 		inputSearchField.clear();
 		inputSearchField.sendKeys(searchTerm);
 		clickSearchButton();
+		logger.info("Searching for " + searchTerm);
 	}
 
 	/**

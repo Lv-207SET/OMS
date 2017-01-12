@@ -134,7 +134,6 @@ public abstract class AbstractBasePage {
             WebElement element = webDriver.findElement(INSPIRED_BY_GOOGLE_LINK.by);
             return element != null && element.isDisplayed();
         });
-        return this;
     }
 
     /**

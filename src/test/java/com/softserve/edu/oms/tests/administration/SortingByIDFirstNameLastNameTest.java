@@ -53,9 +53,7 @@
 			Assert.assertTrue(loginPage.logout()
 					.successAdminLogin(admUser)
 					.gotoAdministrationPage()
-					.waitForLoad()
 					.showTenRows()
-					.waitForLoad()
 					.compareLogins(SORT_USERS_BY_ID_ASC.getQuery()));
 		}
 
@@ -71,11 +69,8 @@
 			Assert.assertTrue(loginPage.logout()
 					.successAdminLogin(admUser)
 					.gotoAdministrationPage()
-					.waitForLoad()
 					.showTenRows()
-					.waitForLoad()
 					.sortByFirstNameASC()
-					.waitForLoad()
 					.compareLogins(SORT_USERS_BY_FIRSTNAME_ASC.getQuery()));
 		}
 
@@ -90,11 +85,8 @@
 			Assert.assertTrue(loginPage.logout()
 					.successAdminLogin(admUser)
 					.gotoAdministrationPage()
-					.waitForLoad()
 					.showTenRows()
-					.waitForLoad()
 					.sortByFirstNameDESC()
-					.waitForLoad()
 					.compareLogins(SORT_USERS_BY_FIRSTNAME_DESC.getQuery()));
 		}
 
@@ -109,9 +101,7 @@
 			Assert.assertTrue(loginPage.logout()
 					.successAdminLogin(admUser)
 					.gotoAdministrationPage()
-					.waitForLoad()
 					.sortByLastNameASC()
-					.waitForLoad()
 					.compareLogins(SORT_USERS_BY_LASTNAME_ASC.getQuery()));
 		}
 
@@ -126,16 +116,9 @@
 			Assert.assertTrue(loginPage.logout()
 					.successAdminLogin(admUser)
 					.gotoAdministrationPage()
-					.waitForLoad()
 					.sortByLastNameDESC()
-					.waitForLoad()
 					.compareLogins(SORT_USERS_BY_LASTNAME_DESC.getQuery()));
 		}
-
-
-
-
-
 	}
 
 

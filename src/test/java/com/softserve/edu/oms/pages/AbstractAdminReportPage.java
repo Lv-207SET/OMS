@@ -20,9 +20,9 @@ import static com.softserve.edu.oms.locators.AAdminReportPageLocators.*;
  * This abstract class represents common entities and functionality for
  * Administration Page and Create Report Page
  */
-public abstract class AAdminReportPage extends ABasePage {
+public abstract class AbstractAdminReportPage extends AbstractBasePage {
 
-	public AAdminReportPage(WebDriver driver) {
+	public AbstractAdminReportPage(WebDriver driver) {
 		super(driver);
 	}
 
@@ -101,7 +101,7 @@ public abstract class AAdminReportPage extends ABasePage {
 	}
 
 	public WebElement getPageNumberSpan() {
-		return driver.findElement(PAGE_NUMBER_SPAN.by);
+		return waitForElement(PAGE_NUMBER_SPAN.by);
 	}
 
 	public WebElement getPageCountSpan() {
@@ -252,22 +252,18 @@ public abstract class AAdminReportPage extends ABasePage {
 	}
 
 	// Check if navigation buttons is enabled
-	@Step("Is Forward Button enabled")
 	public boolean isForwardButtonEnabled() {
 		return getForwardButton().isEnabled();
 	}
 
-	@Step("Is Last Button enabled")
 	public boolean isLastButtonEnabled() {
 		return getLastButton().isEnabled();
 	}
 
-	@Step("Is Backward Button enabled")
 	public boolean isBackwardButtonEnabled() {
 		return getBackwardButton().isEnabled();
 	}
 
-	@Step("Is First Button enabled")
 	public boolean isFirstButtonEnabled() {
 		return getFirstButton().isEnabled();
 	}
@@ -367,9 +363,10 @@ public abstract class AAdminReportPage extends ABasePage {
 	/**
 	 * Select Condition by index and stay on page
 	 */
-	public AAdminReportPage selectConditionByIndex(final int index) {
+	public AbstractAdminReportPage selectConditionByIndex(final int index) {
 		final Select selectConditionFilter = getSelectCondition();
 		selectConditionFilter.selectByIndex(index);
+		waitForLoad();
 		return this;
 	}
 
@@ -377,92 +374,102 @@ public abstract class AAdminReportPage extends ABasePage {
 	 * Configure all search filters, input search term, perform search
 	 * and stay on page
 	 */
-	public AAdminReportPage filterAndSearch(FieldFilterDropdownList fieldOption,
-			ConditionFilterDropdownList conditionOption, String searchTerm) {
+	public AbstractAdminReportPage filterAndSearch(FieldFilterDropdownList fieldOption,
+                                                   ConditionFilterDropdownList conditionOption, String searchTerm) {
 		selectField(fieldOption);
 		selectCondition(conditionOption);
 		search(searchTerm);
-		return this;
-	}
-
-
-	public AAdminReportPage sortByFirstNameASC() {
-		clickRegionLink();
 		waitForLoad();
-		clickFirstNameLink();
 		return this;
 	}
 
-	public AAdminReportPage sortByFirstNameDESC() {
+
+	public AbstractAdminReportPage sortByFirstNameASC() {
 		clickRegionLink();
 		waitForLoad();
 		clickFirstNameLink();
 		waitForLoad();
-		clickFirstNameLink();
 		return this;
 	}
 
-	public AAdminReportPage sortByLastNameASC() {
+	public AbstractAdminReportPage sortByFirstNameDESC() {
+		clickRegionLink();
+		waitForLoad();
+		clickFirstNameLink();
+		waitForLoad();
+		clickFirstNameLink();
+		waitForLoad();
+		return this;
+	}
+
+	public AbstractAdminReportPage sortByLastNameASC() {
 		clickRegionLink();
 		waitForLoad();
 		clickLastNameLink();
 		return this;
 	}
 
-	public AAdminReportPage sortByLastNameDESC() {
+	public AbstractAdminReportPage sortByLastNameDESC() {
 		clickRegionLink();
 		waitForLoad();
 		clickLastNameLink();
 		waitForLoad();
 		clickLastNameLink();
-		return this;
-	}
-
-	public AAdminReportPage sortByLoginASC() {
-		clickRegionLink();
 		waitForLoad();
-		clickLoginLink();
 		return this;
 	}
 
-	public AAdminReportPage sortByLoginDESC() {
+	public AbstractAdminReportPage sortByLoginASC() {
 		clickRegionLink();
 		waitForLoad();
 		clickLoginLink();
 		waitForLoad();
+		return this;
+	}
+
+	public AbstractAdminReportPage sortByLoginDESC() {
+		clickRegionLink();
+		waitForLoad();
 		clickLoginLink();
-		return this;
-	}
-
-	public AAdminReportPage sortByRoleASC() {
-		clickRegionLink();
 		waitForLoad();
-		clickRoleLink();
+		clickLoginLink();
+		waitForLoad();
 		return this;
 	}
 
-	public AAdminReportPage sortByRoleDESC() {
+	public AbstractAdminReportPage sortByRoleASC() {
 		clickRegionLink();
 		waitForLoad();
 		clickRoleLink();
 		waitForLoad();
-		clickRoleLink();
 		return this;
 	}
 
-	public AAdminReportPage sortByRegionASC() {
+	public AbstractAdminReportPage sortByRoleDESC() {
+		clickRegionLink();
+		waitForLoad();
+		clickRoleLink();
+		waitForLoad();
+		clickRoleLink();
+		waitForLoad();
+		return this;
+	}
+
+	public AbstractAdminReportPage sortByRegionASC() {
 		clickFirstNameLink();
 		waitForLoad();
 		clickRegionLink();
+		waitForLoad();
 		return this;
 	}
 
-	public AAdminReportPage sortByRegionDESC() {
+	public AbstractAdminReportPage sortByRegionDESC() {
 		clickFirstNameLink();
 		waitForLoad();
 		clickRegionLink();
 		waitForLoad();
 		clickRegionLink();
+		waitForLoad();
 		return this;
 	}
 
@@ -470,21 +477,13 @@ public abstract class AAdminReportPage extends ABasePage {
 	 * Expands default table mode of showing 5 users on a page
 	 * to show 10 users on a page
 	 */
-	public AAdminReportPage showTenRows() {
-		if (getShowItemsLinkText().equals("Show 5 items"))
+	public AbstractAdminReportPage showTenRows() {
+		if (getShowItemsLinkText().equals("Show 5 items")){
 			return this;
+		}
 		clickShowItemsLink();
+		waitForLoad();
 		return this;
-	}
-
-	/**
-	 * Execute wait from super class and stay on current page
-	 */
-	@Override
-	public AAdminReportPage waitForLoad() {
-		super.waitForLoad();
-		return this;
-
 	}
 
 	@Step("Get list of users from current page")
@@ -586,8 +585,6 @@ public abstract class AAdminReportPage extends ABasePage {
 				break;
 			}
 		}
-
 		return isEqual;
-
 	}
 }

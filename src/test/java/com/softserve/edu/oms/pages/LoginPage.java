@@ -17,7 +17,8 @@ import static com.softserve.edu.oms.locators.LoginPageLocators.*;
  * @since 16.12.16
  * @author Anastasiia Maidanska
  */
-public class LoginPage extends ABasePage{
+public class LoginPage extends AbstractBasePage {
+
 	//Class constructor
 	public LoginPage(WebDriver driver) {
 		super(driver);
@@ -45,7 +46,7 @@ public class LoginPage extends ABasePage{
 	}
 
 	private WebElement getBadCredentialsErrorMessage() {
-		return driver.findElement(BAD_CREDENTIALS_ERROR_MESSAGE.by);
+		return waitForElement(BAD_CREDENTIALS_ERROR_MESSAGE.by);
 	}
 
 	//Functional

@@ -91,7 +91,7 @@ public class ChangeNumberOfUsersTest extends TestRunner{
         if ((numberUsers % numberOfImems) != 0) {
             for (int i = 0; i < (numberOfImems - (numberUsers % numberOfImems)); i++) {
                 CreateNewUserPage createNewUserPage =
-                        administrationPage.gotoCreateNewUserPage().waitForLoad();
+                        administrationPage.gotoCreateNewUserPage();
 
                 createNewUserPage.setLoginInput(user.getLoginname() + user.getLoginname().charAt(i)).                     
                         setFirstNameInput(user.getFirstname()).
@@ -100,8 +100,7 @@ public class ChangeNumberOfUsersTest extends TestRunner{
                         setConfirmPasswordInput(user.getPassword()).
                         setEmailInput(user.getEmail()).
                         setSelectRegion(Region.getRegion(user.getRegion())).
-                        setSelectRole(Role.valueOf(user.getRole().toUpperCase())).
-                        waitForEmailErrorToDisappear();
+                        setSelectRole(Role.valueOf(user.getRole().toUpperCase()));
 
                 administrationPage = createNewUserPage.successCreateNewUser();
             }
@@ -131,7 +130,7 @@ public class ChangeNumberOfUsersTest extends TestRunner{
 	@Description("This test case verifies that after new use creation the values in "
 			+ "'Number of Found Users' and 'Page#:' links are properly updated.")
     @Test(dataProvider = "validUser")
-    @Step("verifyChangePageNumber")
+    @Step("Verify changing number of pages and number of users after adding one user")
     public void verifyChangePageNumber(IUser user) {
 
         int newNumberOfUsers;
@@ -140,12 +139,11 @@ public class ChangeNumberOfUsersTest extends TestRunner{
         //Go to Creation New User page
         innerStep("Go to Creation New User page");
         CreateNewUserPage createNewUserPage =
-                administrationPage.gotoCreateNewUserPage().waitForLoad();
+                administrationPage.gotoCreateNewUserPage();
 
         //Creation new user.
         innerStep("Creation new user.");
         administrationPage = createNewUserPage.setLoginData(user)
-                .waitForEmailErrorToDisappear()
                 .successCreateNewUser();
 
         //Total number of users.

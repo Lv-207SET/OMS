@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
 /**
  * This page represents PageObject for Administration page
  */
-public class AdministrationPage extends AAdminReportPage {
+public class AdministrationPage extends AbstractAdminReportPage {
 
 //    Constructor with driver initialization
 	public AdministrationPage(WebDriver driver) {
@@ -38,6 +38,7 @@ public class AdministrationPage extends AAdminReportPage {
 		} catch (NoSuchElementException e) {
 			System.out.println("No user with such login found");
 		}
+		waitForLoad();
 		return this;
 	}
 
@@ -141,18 +142,8 @@ public class AdministrationPage extends AAdminReportPage {
      */
     @Step("Descending sorting grid on Administration page by Region column")
     @Override
-    public AAdminReportPage sortByRegionDESC(){
+    public AbstractAdminReportPage sortByRegionDESC(){
         super.sortByRegionDESC();
-        return this;
-    }
-
-    /**
-     * This method overridden from AAdminReportPage and needed for
-     * implementing custom wait
-     */
-    @Override
-    public AdministrationPage waitForLoad() {
-        super.waitForLoad();
         return this;
     }
 
@@ -165,7 +156,7 @@ public class AdministrationPage extends AAdminReportPage {
 	}
 
     /**
-     * This  metod verifies if "Items Link"
+     * This  method verifies if "Items Link"
      * is displayed on page
      */
 	public boolean showItemsLinkIsDisplayed () {
@@ -201,6 +192,7 @@ public class AdministrationPage extends AAdminReportPage {
         selectField(FieldFilterDropdownList.LOGIN);
         selectCondition(ConditionFilterDropdownList.EQUALS);
         clickSearchButton();
+        waitForLoad();
 		return this;
 	}
 

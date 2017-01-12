@@ -1,10 +1,9 @@
 package com.softserve.edu.oms.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.NoSuchElementException;
@@ -17,12 +16,16 @@ import static com.softserve.edu.oms.locators.ABasePageLocators.*;
  * This abstract class represents common elements and functionality for
  * every page of the project
  */
-public abstract class ABasePage {
+public abstract class AbstractBasePage {
 
     protected WebDriver driver;
 
-    ABasePage(WebDriver driver) {
+    AbstractBasePage(WebDriver driver) {
         this.driver = driver;
+
+        //waiting for the last elem on the page to load
+        //thus ensuring the whole page is ready to work with
+        waitForLoad();
     }
 
     // get Data
@@ -81,6 +84,27 @@ public abstract class ABasePage {
         getUserInfoTab().click();
     }
 
+    /**
+     * Method that waits for alert for 5 seconds before accepting it.
+     * Prevents scenario caused by alert popping up with a lag
+     * thus triggering default accept to throw NoAlertPresentException
+     */
+    public AbstractBasePage acceptAlert() {
+        try {
+            //Wait 5 seconds till alert is present
+            WebDriverWait wait = new WebDriverWait(driver, 5);
+            Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+
+            //Accepting alert.
+            alert.accept();
+
+            System.out.println("Accepted the alert successfully.");
+        } catch (Throwable e) {
+            System.err.println("Error came while waiting for the alert popup. " + e.getMessage());
+        }
+        return this;
+    }
+
     // Business Logic
 
     public HomePage gotoUserInfoTab() {
@@ -93,12 +117,18 @@ public abstract class ABasePage {
         return new LoginPage(driver);
     }
 
+    //Explicit wait methods
+
     /**
      * Main explicit wait method that ensures that last element which is common for
-     * every page of the project is present on the page and reference to it is not null.
+     * every page of the project is present on the page and reference to it is valid.
+     * Used mainly in constructors and methods that return self-reference to guarantee
+     * that page loads before next method uses its elements
      */
-    public ABasePage waitForLoad() {
-        WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver, 10)
+    protected void waitForLoad() {
+        WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver, 5)
+                .pollingEvery(1, TimeUnit.SECONDS)
+                .ignoring(NoSuchElementException.class)
                 .ignoring(StaleElementReferenceException.class);
         wait.until((ExpectedCondition<Boolean>) webDriver -> {
             WebElement element = webDriver.findElement(INSPIRED_BY_GOOGLE_LINK.by);
@@ -108,30 +138,27 @@ public abstract class ABasePage {
     }
 
     /**
-     * Helper wait method used to wait for error messages to disappear after
-     * the valid data has been entered fully into the input field but the
-     * error message is still being displayed for a short time
+     * This method is used to wait for elements to become visible.
+     * Mainly used in getters.
      */
-    public boolean waitForElemToDisappear(final By by) {
-
-        WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver, 10)
-                .pollingEvery(1, TimeUnit.SECONDS)
-                .ignoring(StaleElementReferenceException.class)
-                .ignoring(NoSuchElementException.class);
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
-
-        return wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
-    }
-
-    /**
-     * Helper wait method used to wait for web element tobe displayed
-     */
-    public WebElement waitForElement(final By by) {
-        WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver, 10)
+    public WebElement waitForElement (final By by){
+        WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver, 5)
                 .pollingEvery(1, TimeUnit.SECONDS)
                 .ignoring(StaleElementReferenceException.class)
                 .ignoring(NoSuchElementException.class);
         return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+
+    /**
+     * This method is used to wait for elements, usually input errors,
+     * to disappear when there is a precondition of valid data input.
+     */
+    public boolean waitForElemToDisappear(final By by) {
+        WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver, 5)
+                .pollingEvery(1, TimeUnit.SECONDS)
+                .ignoring(StaleElementReferenceException.class)
+                .ignoring(NoSuchElementException.class);
+        return wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
     }
 
 }

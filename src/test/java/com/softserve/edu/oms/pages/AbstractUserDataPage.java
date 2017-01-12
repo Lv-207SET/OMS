@@ -3,6 +3,7 @@ package com.softserve.edu.oms.pages;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.enums.Region;
 import com.softserve.edu.oms.enums.Role;
+import com.softserve.edu.oms.locators.AUserDataPageLocators;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
@@ -18,8 +19,8 @@ import static com.softserve.edu.oms.locators.AUserDataPageLocators.*;
  * This abstract class represents common functionality for
  * Create New User Page and Edit User Page
  */
-public abstract class AUserDataPage extends ABasePage {
-	AUserDataPage(WebDriver driver) {
+public abstract class AbstractUserDataPage extends AbstractBasePage {
+	AbstractUserDataPage(WebDriver driver) {
 		super(driver);
 	}
 
@@ -80,16 +81,16 @@ public abstract class AUserDataPage extends ABasePage {
 	}
 
 	public WebElement getPasswordErrorMessage() {
-		return this.driver.findElement(ERROR_PASSWORD.by);
+		return this.waitForElement(ERROR_PASSWORD.by);
 	}
 
-	@Step("Get Confirm Password Error Message")
+	@Step("getConfirmPasswordErrorMessage")
 	public WebElement getConfirmPasswordErrorMessage() {
-		return this.driver.findElement(ERROR_CONFIRM_PASSWORD.by);
+		return this.waitForElement(ERROR_CONFIRM_PASSWORD.by);
 	}
 
 	public WebElement getEmailErrorMessage() {
-		return this.driver.findElement(ERROR_EMAIL.by);
+		return this.waitForElement(ERROR_EMAIL.by);
 	}
 
 	// functional
@@ -160,82 +161,84 @@ public abstract class AUserDataPage extends ABasePage {
 	}
 
 	// set data
-	public AUserDataPage setFirstNameInput(String firstName) {
+	public AbstractUserDataPage setFirstNameInput(String firstName) {
 		getFirstNameInput().clear();
 		getFirstNameInput().sendKeys(firstName);
 		return this;
 	}
 
-	public AUserDataPage setLastNameInput(String lastName) {
+	public AbstractUserDataPage setLastNameInput(String lastName) {
 		getLastNameInput().clear();
 		getLastNameInput().sendKeys(lastName);
 		return this;
 	}
 
-	public AUserDataPage setPasswordInput(String password) {
+	public AbstractUserDataPage setPasswordInput(String password) {
 		getPasswordInput().clear();
 		getPasswordInput().sendKeys(password);
 		return this;
 	}
 
-	public AUserDataPage setConfirmPasswordInput(String confirmPassword) {
+	public AbstractUserDataPage setConfirmPasswordInput(String confirmPassword) {
 		getConfirmPasswordInput().clear();
 		getConfirmPasswordInput().sendKeys(confirmPassword);
 		return this;
 	}
 
-	public AUserDataPage setEmailInput(String email) {
+	public AbstractUserDataPage setEmailInput(String email) {
 		getEmailInput().clear();
 		getEmailInput().sendKeys(email);
 		return this;
 	}
 
-	public AUserDataPage setSelectRegion(Region region) {
+	public AbstractUserDataPage setSelectRegion(Region region) {
 		getSelectRegion().selectByVisibleText(region.getRegionType());
 		return this;
 	}
 
-	public AUserDataPage setSelectRole(Role roleId) {
+	public AbstractUserDataPage setSelectRole(Role roleId) {
 		driver.findElement(By.id(roleId.getRoleId())).click();
+		waitForLoad();
 		return this;
 	}
 
-	public AUserDataPage clearFirstNameInput() {
+	public AbstractUserDataPage clearFirstNameInput() {
 		getFirstNameInput().clear();
 		return this;
 	}
 
-	public AUserDataPage clearLastNameInput() {
+	public AbstractUserDataPage clearLastNameInput() {
 		getLastNameInput().clear();
 		return this;
 	}
 
-	public AUserDataPage clearPasswordInput() {
+	public AbstractUserDataPage clearPasswordInput() {
 		getPasswordInput().clear();
 		return this;
 	}
 
-	public AUserDataPage clearConfirmPasswordInput() {
+	public AbstractUserDataPage clearConfirmPasswordInput() {
 		getConfirmPasswordInput().clear();
 		return this;
 	}
 
-	public AUserDataPage clearEmailInput() {
+	public AbstractUserDataPage clearEmailInput() {
 		getEmailInput().clear();
 		return this;
 	}
 
-	public AUserDataPage clickCreateButton() {
+	public AbstractUserDataPage clickCreateButton() {
 		getCreateButton().click();
 		return this;
 	}
 
-	public AUserDataPage clickCancelButton() {
+	public AbstractUserDataPage clickCancelButton() {
 		getCancelButton().click();
+		waitForLoad();
 		return this;
 	}
 
-	public AUserDataPage setLoginData(IUser user) {
+	public AbstractUserDataPage setLoginData(IUser user) {
 		setFirstNameInput(user.getFirstname());
 		setLastNameInput(user.getLastname());
 		setPasswordInput(user.getPassword());
@@ -247,22 +250,23 @@ public abstract class AUserDataPage extends ABasePage {
 	}
 
 	public AdministrationPage successCreateNewUser() {
+		waitForInputErrorsToDisappear();
 		clickCreateButton();
 		return new AdministrationPage(driver);
 	}
 
-	public AUserDataPage acceptAlert() {
-		try {
-			driver.switchTo().alert().accept();
-		} catch (NoAlertPresentException e) {
-
+	/**
+	 * This method is used to wait for every possible input error which is displayed
+	 * due to a lag to disappear.
+	 * Precondition of inputting valid data should be met when using this method.
+	 */
+	protected void waitForInputErrorsToDisappear() {
+		if (waitForElemToDisappear(AUserDataPageLocators.ERROR_PASSWORD.by)
+				&& waitForElemToDisappear(AUserDataPageLocators.ERROR_CONFIRM_PASSWORD.by)
+				&& waitForElemToDisappear(AUserDataPageLocators.ERROR_EMAIL.by)) {
+			System.out.println("**************Input errors disappeared**************");
+		} else {
+			throw new RuntimeException("Waiting for input errors to disappear failed!");
 		}
-		return this;
-	}
-
-	@Override
-	public AUserDataPage waitForLoad() {
-		super.waitForLoad();
-		return this;
 	}
 }

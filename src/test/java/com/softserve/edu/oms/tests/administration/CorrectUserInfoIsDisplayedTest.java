@@ -64,7 +64,6 @@
 
             innerStep("Read a number of found users from page");
             int numberOfFoundUsersFromPage = administrationPage
-                    .waitForLoad()
                     .getFoundUsersNumber();
 
             innerStep("Read a number of found users from DB");
@@ -76,7 +75,6 @@
 
             innerStep("Read all users data displayed on page");
             List<User> usersFromPage = administrationPage
-                    .waitForLoad()
                     .getUsersFromCurrentPage();
 
             innerStep("Read top 5 users from DB");

@@ -10,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 /**
  * This page represents PageObject for Create New User Page
  */
-public class CreateNewUserPage extends AUserDataPage {
+public class CreateNewUserPage extends AbstractUserDataPage {
 
     public CreateNewUserPage(WebDriver driver) {
         super(driver);
@@ -55,11 +55,13 @@ public class CreateNewUserPage extends AUserDataPage {
         return this;
     }
 
+    @Step("Set Select Region")
     public CreateNewUserPage setSelectRegion(Region region) {
         super.setSelectRegion(region);
         return this;
     }
 
+    @Step("Set Select Role")
     public CreateNewUserPage setSelectRole(Role roleId) {
         super.setSelectRole(roleId);
         return this;
@@ -115,6 +117,7 @@ public class CreateNewUserPage extends AUserDataPage {
 
     public AdministrationPage successCreateNewUser(IUser validUser) {
         setLoginData(validUser);
+        waitForInputErrorsToDisappear();
         clickCreateButton();
         return new AdministrationPage(driver);
     }
@@ -136,20 +139,4 @@ public class CreateNewUserPage extends AUserDataPage {
         super.acceptAlert();
         return this;
     }
-
-    @Override
-    public CreateNewUserPage waitForLoad() {
-        super.waitForLoad();
-        return this;
-    }
-
-    public CreateNewUserPage waitForEmailErrorToDisappear() {
-        if (waitForElemToDisappear(AUserDataPageLocators.ERROR_EMAIL.by)) {
-            System.out.println("Email error disappeared");
-            return this;
-        } else {
-            throw new RuntimeException("Waiting for error to disappear failed!");
-        }
-    }
-
 }

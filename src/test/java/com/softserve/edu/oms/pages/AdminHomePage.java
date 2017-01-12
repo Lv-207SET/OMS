@@ -68,10 +68,4 @@ public class AdminHomePage extends HomePage {
 		clickOrderingTab();
 		return new OrderingPage();
 	}
-
-	public AdminHomePage waitForLoad() {
-		super.waitForLoad();
-		return this;
-	}
-
 }

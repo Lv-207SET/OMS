@@ -1,9 +1,10 @@
 package com.softserve.edu.oms.locators;
 
+import com.softserve.edu.oms.pages.AbstractUserDataPage;
 import org.openqa.selenium.By;
 
 /**
- * Enum contains locators for elements on {@link com.softserve.edu.oms.pages.AUserDataPage}.
+ * Enum contains locators for elements on {@link AbstractUserDataPage}.
  */
 public enum AUserDataPageLocators {
 

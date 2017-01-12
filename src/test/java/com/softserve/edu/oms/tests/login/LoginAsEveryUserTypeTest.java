@@ -68,7 +68,6 @@ public class LoginAsEveryUserTypeTest extends TestRunner {
     public void assertAdministratorLogin(IUser admUser) {
         Assert.assertEquals(loginPage.logout()
                 .successAdminLogin(admUser)
-                .waitForLoad()
                 .getRoleText(), admUser.getRole());
     }
 
@@ -80,7 +79,6 @@ public class LoginAsEveryUserTypeTest extends TestRunner {
     public void assertCustomerLogin(IUser customerUser) {
         Assert.assertEquals(loginPage.logout()
                 .successCustomerLogin(customerUser)
-                .waitForLoad()
                 .getRoleText(), customerUser.getRole());
     }
 
@@ -92,7 +90,6 @@ public class LoginAsEveryUserTypeTest extends TestRunner {
     public void assertMerchandiserLogin(IUser merchandiserUser) {
         Assert.assertEquals(loginPage.logout()
                 .successMerchandiserLogin(merchandiserUser)
-                .waitForLoad()
                 .getRoleText(), merchandiserUser.getRole());
     }
     
@@ -104,7 +101,6 @@ public class LoginAsEveryUserTypeTest extends TestRunner {
     public void assertSupervisorLogin(IUser supervisorUser) {
         Assert.assertEquals(loginPage.logout()
                 .successSupervisorLogin(supervisorUser)
-                .waitForLoad()
                 .getRoleText(), supervisorUser.getRole());
     }
 

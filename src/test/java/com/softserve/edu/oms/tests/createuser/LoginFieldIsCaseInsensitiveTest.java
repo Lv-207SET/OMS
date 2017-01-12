@@ -80,14 +80,12 @@
         innerStep("Fill in a form to create new user");
         CreateNewUserPage newUserPage = new CreateNewUserPage(driver);
         newUserPage
-                .waitForLoad()
                 .setLoginInput(nonExistingLogin)
                 .setFirstNameInput(nonExistingFirstName)
                 .setLastNameInput(nonExistingLastName)
                 .setPasswordInput(nonExistingUser.getPassword())
                 .setConfirmPasswordInput(nonExistingUser.getPassword())
                 .setEmailInput(nonExistingUser.getEmail())
-                .waitForEmailErrorToDisappear()
                 .clickCreateButton()
                 .acceptAlert();
 

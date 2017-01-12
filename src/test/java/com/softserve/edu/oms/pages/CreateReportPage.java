@@ -7,7 +7,7 @@
     /**
      * This page represents PageObject for Create Report Page
      */
-    public class CreateReportPage extends AAdminReportPage {
+    public class CreateReportPage extends AbstractAdminReportPage {
 
         private static final String ADMINISTRATION_LINK_CSS = "#nav .cur a";
         private static final String SAVE_REPORT_LINK_CSS = "#list>a";

@@ -45,27 +45,23 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
 
         innerStep("Verify that 'User Info' tab is active");
         Assert.assertTrue(admHomeUserPage
-                .waitForLoad()
                 .getUserInfoTab()
                 .isEnabled());
 
         innerStep("Verify that 'Administration' tab is present");
         Assert.assertTrue(admHomeUserPage
-                .waitForLoad()
                 .getAdministrationTab()
                 .isDisplayed());
 
         innerStep("Go to Admin page");
         admHomeUserPage
-                .gotoAdministrationPage()
-                .waitForLoad();
+                .gotoAdministrationPage();
 
         innerStep("Verify that we are at Admin page");
         Assert.assertTrue((driver.getCurrentUrl()).contains("users.htm"));
 
         innerStep("Return to User Info page");
         admHomeUserPage
-                .waitForLoad()
                 .clickUserInfoTab();
 
         innerStep("Verify that we are at User Info page");

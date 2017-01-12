@@ -1,9 +1,10 @@
 package com.softserve.edu.oms.locators;
 
+import com.softserve.edu.oms.pages.AbstractAdminReportPage;
 import org.openqa.selenium.By;
 
 /**
- * Enum contains locators for elements on {@link com.softserve.edu.oms.pages.AAdminReportPage}.
+ * Enum contains locators for elements on {@link AbstractAdminReportPage}.
  */
 public enum AAdminReportPageLocators {
 

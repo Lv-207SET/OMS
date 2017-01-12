@@ -1,10 +1,11 @@
 package com.softserve.edu.oms.locators;
 
 
+import com.softserve.edu.oms.pages.AbstractBasePage;
 import org.openqa.selenium.By;
 
 /**
- * Enum contains locators for elements on {@link com.softserve.edu.oms.pages.ABasePage}.
+ * Enum contains locators for elements on {@link AbstractBasePage}.
  */
 public enum ABasePageLocators {
 

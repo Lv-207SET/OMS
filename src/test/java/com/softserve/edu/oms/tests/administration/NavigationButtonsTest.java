@@ -42,7 +42,7 @@ public class NavigationButtonsTest extends TestRunner {
      * and go to Administration page
      */
     @BeforeMethod
-    @Step("login and go to Administration page")
+    @Step("Login as Admin and go to Administration page")
     public void loginAndGotoAdministrationPage() {
         IUser admin = UserRepository.get().adminUser();
         AdminHomePage adminHomePage = loginPage.successAdminLogin(admin);
@@ -57,12 +57,12 @@ public class NavigationButtonsTest extends TestRunner {
      * number of records per page and
      * rounded to the bigger integer
      */
-    @TestCaseId("LVSETOMS-43")
+    @TestCaseId("LVSETOMS-44")
 	@Severity(SeverityLevel.NORMAL)
-	@Description("This test case verifies that Administrator can navigates the User table on "
-			+ "the 'Administration' tab by 'First', 'Last', 'Forward' and 'Backward' buttons.")
+	@Description("This test case verifies that Administrator can navigate the User table on "
+			+ "the 'Administration' tab by 'First', 'Last', 'Forward' and 'Backward' buttons")
     @Test
-    @Step("verify navigation buttons functionality")
+    @Step("Verify navigation buttons functionality")
     public void verifyNavigationButtons() {
 
         // determine the count of pages depending on count os users per page
@@ -76,12 +76,15 @@ public class NavigationButtonsTest extends TestRunner {
         }
 
         // verify that 'First' and 'Backward' buttons are disabled
+        innerStep("Verify that 'Password' 'First' and 'Backward' buttons are disabled");
         Assert.assertFalse(administrationPage.isFirstButtonEnabled()
                 && administrationPage.isBackwardButtonEnabled());
         // verify that 'Forward' and 'Last' buttons are enabled
+        innerStep("Verify that 'Forward' and 'Last' buttons are enabled");
         Assert.assertTrue(administrationPage.isForwardButtonEnabled()
                 && administrationPage.isLastButtonEnabled());
         // verify that current page is: 1# of x#
+        innerStep("Verify that current page is: 1# of x#");
         Assert.assertTrue((administrationPage.getPagesQuantity() == expectedPageCount)
                 && (administrationPage.getCurrentPageNumber() == 1));
 
@@ -89,33 +92,40 @@ public class NavigationButtonsTest extends TestRunner {
 
         // verify that after clicking 'Forward' button:
         // 'First', 'Backward', 'Forward' and 'Last' buttons are enabled
+        innerStep("Verify that after clicking 'Forward' button all navigation buttons are enabled");
         Assert.assertTrue(administrationPage.isFirstButtonEnabled()
                 && administrationPage.isBackwardButtonEnabled()
                 && administrationPage.isForwardButtonEnabled()
                 && administrationPage.isLastButtonEnabled());
         // verify that current page is: 2# of x#
+        innerStep("Verify that current page is: 2# of x#");
         Assert.assertTrue(administrationPage.getCurrentPageNumber() == 2);
 
         administrationPage.clickLastButton();
 
         // verify that after clicking 'Last' button 'First' and 'Backward' buttons are enabled
+        innerStep("Verify that after clicking 'Last' button 'First' and 'Backward' buttons are enabled");
         Assert.assertTrue(administrationPage.isFirstButtonEnabled()
                 && administrationPage.isBackwardButtonEnabled());
         // verify that after clicking 'Last' button 'Forward' and 'Last' buttons are disabled
+        innerStep("Verify that after clicking 'Last' button 'Forward' and 'Last' buttons are disabled");
         Assert.assertFalse(administrationPage.isForwardButtonEnabled()
                 && administrationPage.isLastButtonEnabled());
         // verify that current page is: x# of x#
+        innerStep("Verify that current page is: x# of x#");
         Assert.assertTrue(administrationPage.getCurrentPageNumber() == expectedPageCount);
 
         administrationPage.clickBackwardButton();
 
         // verify that after clicking 'Backward' button:
         // 'First', 'Backward', 'Forward' and 'Last' buttons are enabled
+        innerStep("Verify that after clicking 'Backward' button all navigation buttons are enabled");
         Assert.assertTrue(administrationPage.isFirstButtonEnabled()
                 && administrationPage.isBackwardButtonEnabled()
                 && administrationPage.isForwardButtonEnabled()
                 && administrationPage.isLastButtonEnabled());
         // verify that current page is: x#-1 of x#
+        innerStep("Verify that current page is:  x#-1 of x#");
         Assert.assertTrue(administrationPage.getCurrentPageNumber() == (expectedPageCount-1));
     }
 
@@ -123,7 +133,7 @@ public class NavigationButtonsTest extends TestRunner {
      * Logout from current page
      */
     @AfterMethod
-    @Step("logout from Administration page")
+    @Step("Logout from Administration page")
     public void returnToPreviousState() {
         administrationPage.logout();
     }

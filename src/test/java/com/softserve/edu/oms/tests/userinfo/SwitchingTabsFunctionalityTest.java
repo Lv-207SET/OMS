@@ -1,19 +1,19 @@
     package com.softserve.edu.oms.tests.userinfo;
 
     import com.softserve.edu.oms.data.IUser;
-    import com.softserve.edu.oms.data.UserRepository;
-    import com.softserve.edu.oms.pages.AdminHomePage;
-    import com.softserve.edu.oms.tests.TestRunner;
-    import org.testng.Assert;
-    import org.testng.annotations.DataProvider;
-    import org.testng.annotations.Test;
-    import ru.yandex.qatools.allure.annotations.*;
-    import ru.yandex.qatools.allure.model.SeverityLevel;
+import com.softserve.edu.oms.data.UserRepository;
+import com.softserve.edu.oms.pages.AdminHomePage;
+import com.softserve.edu.oms.tests.TestRunner;
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.*;
+import ru.yandex.qatools.allure.model.SeverityLevel;
 
     @Features("Administration")
     @Stories("LVSETOMS-2 As an Admin I want to see 'Administration' "
     		+ "and 'User Info' tab after login so I can create & manage users")
- 
+
     public class SwitchingTabsFunctionalityTest extends TestRunner {
 
     @DataProvider
@@ -38,37 +38,33 @@
  			+ " (opened by default) and 'Administration' tab after login and can switch between them")
 
     @Test(dataProvider = "admUser")
-    @Step("TabSwitchingTest")
+    @Step("Tab Switching Test")
     public void tabSwitchingTest(IUser admUser) {
 
         AdminHomePage admHomeUserPage = loginPage.successAdminLogin(admUser);
 
-        //verify that "User Info" tab is active
+        innerStep("Verify that 'User Info' tab is active");
         Assert.assertTrue(admHomeUserPage
-                .waitForLoad()
                 .getUserInfoTab()
                 .isEnabled());
 
-        //verify that "Administration" tab is present
+        innerStep("Verify that 'Administration' tab is present");
         Assert.assertTrue(admHomeUserPage
-                .waitForLoad()
                 .getAdministrationTab()
                 .isDisplayed());
 
-        //go to Admin page
+        innerStep("Go to Admin page");
         admHomeUserPage
-                .gotoAdministrationPage()
-                .waitForLoad();
+                .gotoAdministrationPage();
 
-        //verify that we are at Admin page
+        innerStep("Verify that we are at Admin page");
         Assert.assertTrue((driver.getCurrentUrl()).contains("users.htm"));
 
-        //return to User Info page
+        innerStep("Return to User Info page");
         admHomeUserPage
-                .waitForLoad()
                 .clickUserInfoTab();
 
-        //verify that we are at User Info page
+        innerStep("Verify that we are at User Info page");
         Assert.assertTrue((driver.getCurrentUrl()).contains("userInfo.htm"));
     }
     }

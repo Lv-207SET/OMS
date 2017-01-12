@@ -9,7 +9,7 @@
      * This class represetns PageObject for Edit
      * User Page
      */
-    public class EditUserPage  extends AUserDataPage {
+    public class EditUserPage  extends AbstractUserDataPage {
         public EditUserPage (WebDriver driver) {
             super(driver);
         }

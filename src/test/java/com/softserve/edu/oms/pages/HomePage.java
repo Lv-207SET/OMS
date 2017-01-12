@@ -8,7 +8,7 @@
 	/**
 	 * This class represents PageObject for all HomePages
 	 */
-	public class HomePage extends ABasePage {
+	public class HomePage extends AbstractBasePage {
 
 		public HomePage(WebDriver driver) {
 			super(driver);
@@ -68,12 +68,6 @@
 
 
 		// Business Logic
-		@Override
-		public HomePage waitForLoad(){
-			super.waitForLoad();
-			return this;
-		}
-
 
 		public HomePage gotoUserInfoTab(){
 			String role = getRoleText();

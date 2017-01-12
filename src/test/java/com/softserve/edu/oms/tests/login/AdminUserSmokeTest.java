@@ -25,7 +25,6 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
 @Stories("As User Admin I want to login so I can enter the system and add new users to system")
 
 public class AdminUserSmokeTest extends TestRunner {
-	
 
 	/**
 	 * Gets the admin user DataProvider for adminUserSmokeTest
@@ -54,7 +53,7 @@ public class AdminUserSmokeTest extends TestRunner {
 		
 		CreateNewUserPage createNewUserPage = loginPage
 				.successAdminLogin(adminUser)
-				.clickAdministrationTab()
+				.gotoAdministrationPage()
 				.gotoCreateNewUserPage();
 		
 		innerStep("Testing inside methods steps");

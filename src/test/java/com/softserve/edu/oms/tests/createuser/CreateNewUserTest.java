@@ -74,15 +74,10 @@ public class CreateNewUserTest extends TestRunner {
         List<User> users = loginPage.logout()
                 .successAdminLogin(admUser)
                 .gotoAdministrationPage()
-                .waitForLoad()
                 .gotoCreateNewUserPage()
-                .waitForLoad()
                 .setLoginData(newUser)
-                .waitForEmailErrorToDisappear()
                 .successCreateNewUser()
-                .waitForLoad()
                 .filterAndSearch(FieldFilterDropdownList.LOGIN, ConditionFilterDropdownList.EQUALS, newUser.getLoginname())
-                .waitForLoad()
                 .getAllUsers();
 
         //If list contains anything but a single newly created user

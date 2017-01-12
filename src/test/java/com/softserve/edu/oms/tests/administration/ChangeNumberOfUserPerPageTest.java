@@ -34,8 +34,6 @@ import static org.testng.Assert.assertTrue;
     @Stories("LVSETOMS-4 As Admin I want to see all existing users and perform "
     		+ "user searching on the 'Administration' tab so I can manage them ")
     public class ChangeNumberOfUserPerPageTest extends TestRunner{
-    	
-    	
 
         /**
          * Verify that correct number of records displays in a table on 'Administration' tab,

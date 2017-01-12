@@ -1,17 +1,5 @@
 package com.softserve.edu.oms.tests.administration;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.junit.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-
 import com.softserve.edu.oms.data.DBUtils;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.UserRepository;
@@ -22,14 +10,19 @@ import com.softserve.edu.oms.enums.SQLQueries;
 import com.softserve.edu.oms.pages.AdminHomePage;
 import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.tests.TestRunner;
-
-import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.Features;
-import ru.yandex.qatools.allure.annotations.Severity;
-import ru.yandex.qatools.allure.annotations.Step;
-import ru.yandex.qatools.allure.annotations.Stories;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
+import org.junit.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+import ru.yandex.qatools.allure.annotations.*;
 import ru.yandex.qatools.allure.model.SeverityLevel;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Test class which verifies search function on Administration page.
@@ -45,6 +38,7 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
 		+ "user searching on the 'Administration' tab so I can manage them ")
 
 public class FindingTest extends TestRunner {
+
     private SoftAssert softAssert = new SoftAssert();
     private AdministrationPage administrationPage;
 
@@ -119,7 +113,7 @@ public class FindingTest extends TestRunner {
                 LabelsNamesEnum.TOO_LONG_NAME.name);
 
         DBUtils dbUtils = new DBUtils();
-        int numberOfUsers = dbUtils.getAllCells("", "").size();
+        int numberOfUsers = dbUtils.getAllCells().size();
       //verify that result  are all active users
         softAssert.assertEquals(administrationPage.getAllUsers().size(), numberOfUsers);
         softAssert.assertAll();
@@ -191,7 +185,7 @@ public class FindingTest extends TestRunner {
    	@Severity(SeverityLevel.NORMAL)
    	@Description("Verify that search by 'Last Name' and 'starts with' work correctly.")
     @Test
-    @Step("verifySearchLastName")
+    @Step("Verify that search by last name works correctly")
     public void verifySearchLastName() {
         List<String> columnListFromTable = new ArrayList<>();
         List<String> columnListFromDB;
@@ -216,6 +210,7 @@ public class FindingTest extends TestRunner {
                 LabelsNamesEnum.SEARCH_TEXT_ER.name);
 
         //Equal two lists
+        innerStep("Verify equal two lists from table and DB");
         Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
     }
 
@@ -228,7 +223,7 @@ public class FindingTest extends TestRunner {
    	@Severity(SeverityLevel.NORMAL)
    	@Description("Verify that search by 'Login Name' and 'contains' work correctly.")
     @Test
-    @Step("verifySearchLoginName")
+    @Step("Verify that search by login name works correctly")
     public void verifySearchLoginName() {
         List<String> columnListFromTable = new ArrayList<>();
         List<String> columnListFromDB;
@@ -253,6 +248,7 @@ public class FindingTest extends TestRunner {
                 LabelsNamesEnum.SEARCH_TEXT_ER.name);
 
         //Equal two lists
+        innerStep("Verify equal two lists from table and DB");
         Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
     }
 
@@ -265,7 +261,7 @@ public class FindingTest extends TestRunner {
    	@Severity(SeverityLevel.NORMAL)
    	@Description("Verify that search by 'Role' and 'does not contain' work correctly.")
     @Test
-    @Step("verifySearchRole")
+    @Step("Verify that search by role works correctly")
     public void verifySearchRole() {
         List<String> columnListFromTable = new ArrayList<>();
         List<String> columnListFromDB;
@@ -294,10 +290,12 @@ public class FindingTest extends TestRunner {
                 LabelsNamesEnum.SEARCH_TEXT_ER.name);
 
         //Equal two lists
+        innerStep("Verify equal two lists from table and DB");
         Assert.assertTrue(columnListFromTable.equals(columnListFromDB));
 
         //Verify number users in table and in DB after search function apply.
         numberOfusers = administrationPage.getFoundUsersNumber();
+        innerStep("Verify number users in table and in DB after search function apply.");
         Assert.assertEquals(columnListFromDB.size(), numberOfusers);
 
         //Verify that the number of records returned by script divided 
@@ -310,6 +308,8 @@ public class FindingTest extends TestRunner {
             pagesNumber = columnListFromDB.size() / numberOfItems;
         }
         newPagesCount = administrationPage.getPagesQuantity();
+        innerStep("Verify that the number of records returned by script divided" +                  
+                "by number of records displayed in the table rounded to the bigger integer");
         Assert.assertEquals(pagesNumber, newPagesCount);
 
     }

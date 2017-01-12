@@ -1,9 +1,11 @@
 package com.softserve.edu.oms.pages;
 
+import com.softserve.edu.oms.data.User;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.oms.data.IUser;
+import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.softserve.edu.oms.locators.LoginPageLocators.*;
@@ -15,7 +17,7 @@ import static com.softserve.edu.oms.locators.LoginPageLocators.*;
  * @since 16.12.16
  * @author Anastasiia Maidanska
  */
-public class LoginPage extends ABasePage{
+public class LoginPage extends AbstractBasePage {
 
 	//Class constructor
 	public LoginPage(WebDriver driver) {
@@ -44,16 +46,16 @@ public class LoginPage extends ABasePage{
 	}
 
 	private WebElement getBadCredentialsErrorMessage() {
-		return driver.findElement(BAD_CREDENTIALS_ERROR_MESSAGE.by);
+		return waitForElement(BAD_CREDENTIALS_ERROR_MESSAGE.by);
 	}
 
 	//Functional
-	@Step("getLoginnameInputText")
+	@Step("Get Login Input Text")
 	public String getLoginnameInputText() {
 		return getLoginnameInput().getText();
 	}
 
-	@Step("getPasswordInputText")
+	@Step("Get Password Input Text")
 	public String getPasswordInputText() {
 		return getPasswordInput().getText();
 	}
@@ -123,7 +125,7 @@ public class LoginPage extends ABasePage{
 		clickSubmitButton();
 	}
 
-	@Step("setLoginDataAndReset")
+	@Step("Set Login Data and reset")
 	public void setLoginDataAndReset(IUser user) {
 		setLoginnameInputClear(user.getLoginname());
 		setPasswordInputClear(user.getPassword());

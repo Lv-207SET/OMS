@@ -12,13 +12,13 @@
     import org.testng.annotations.DataProvider;
     import org.testng.annotations.Test;
 
-import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.Features;
-import ru.yandex.qatools.allure.annotations.Severity;
-import ru.yandex.qatools.allure.annotations.Step;
-import ru.yandex.qatools.allure.annotations.Stories;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
-import ru.yandex.qatools.allure.model.SeverityLevel;
+    import ru.yandex.qatools.allure.annotations.Description;
+    import ru.yandex.qatools.allure.annotations.Features;
+    import ru.yandex.qatools.allure.annotations.Severity;
+    import ru.yandex.qatools.allure.annotations.Step;
+    import ru.yandex.qatools.allure.annotations.Stories;
+    import ru.yandex.qatools.allure.annotations.TestCaseId;
+    import ru.yandex.qatools.allure.model.SeverityLevel;
 
     @Features("Create New User")
     @Stories("LVSETOMS-3 As Administrator I want to create new user so he can log into the application")
@@ -56,17 +56,16 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
 	@Severity(SeverityLevel.CRITICAL)
     @Description("This test case verifies that 'Login Name' is case insensitive while creating new user.")
 
-
     @Test(dataProvider = "admAndNonExistingUser")
-    @Step("LoginFieldIsCaseInsensitiveTest")
+    @Step("Login field is case insensitive Test")
     public void loginFieldIsCaseInsensitiveTest(IUser admUser, IUser nonExistingUser) {
 
-        //login and go to addUser.html
+        innerStep("Login and go to Create New User Page");
         CreateNewUserPage adminHomePage = loginPage.successAdminLogin(admUser)
-                .clickAdministrationTab()
+                .gotoAdministrationPage()
                 .gotoCreateNewUserPage();
 
-        //verifying that user do not exist or generating a new one
+        innerStep("Verifying that user do not exist and generating a new one");
         DBUtils dbUtils = new DBUtils();
         String nonExistingLogin = nonExistingUser.getLoginname();
         String nonExistingFirstName = nonExistingUser.getFirstname();
@@ -78,21 +77,19 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
             nonExistingLastName = RandomStringUtils.random(5, true, false);
         }
 
-        //set up a form and creating a new user
+        innerStep("Fill in a form to create new user");
         CreateNewUserPage newUserPage = new CreateNewUserPage(driver);
         newUserPage
-                .waitForLoad()
                 .setLoginInput(nonExistingLogin)
                 .setFirstNameInput(nonExistingFirstName)
                 .setLastNameInput(nonExistingLastName)
                 .setPasswordInput(nonExistingUser.getPassword())
                 .setConfirmPasswordInput(nonExistingUser.getPassword())
                 .setEmailInput(nonExistingUser.getEmail())
-                .waitForEmailErrorToDisappear()
                 .clickCreateButton()
                 .acceptAlert();
 
-        //entering the data to verify that error message will appear
+        innerStep("Entering the reverse case login to verify error message will appear");
         CreateNewUserPage newUserPageAgain = new AdministrationPage(driver)
                 .gotoCreateNewUserPage()
                 .setLoginInput(nonExistingLogin.toUpperCase())
@@ -101,19 +98,19 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
                 .setPasswordInput(nonExistingUser.getPassword())
                 .setConfirmPasswordInput(nonExistingUser.getPassword());
 
-
         Assert.assertTrue(newUserPageAgain.getLoginError());
-
         }
 
         @Test(dataProvider = "admAndNonExistingUser")
-        @Step("delete user from DB")
+        @Step("Delete user from DB after test running")
         public void deleteUserFromDB(IUser admUser, IUser nonExistingUser){
+
         DBUtils dbUtils = new DBUtils();
         String nonExistingLogin = nonExistingUser.getLoginname();
         if (dbUtils.verifyThatUserIsInDB(nonExistingLogin)) {
+            innerStep("Delete previously created test user from DB");
             dbUtils.deleteUsersFromDB(SQLQueries.DELETE_USER_BY_LOGIN.getQuery(),
                     nonExistingUser.getLoginname());
         }
-        }
+    }
     }

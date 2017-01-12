@@ -3,21 +3,20 @@ package com.softserve.edu.oms.pages;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.enums.Region;
 import com.softserve.edu.oms.enums.Role;
-import com.softserve.edu.oms.locators.AUserDataPageLocators;
 import org.openqa.selenium.WebDriver;
 import ru.yandex.qatools.allure.annotations.Step;
 
 /**
  * This page represents PageObject for Create New User Page
  */
-public class CreateNewUserPage extends AUserDataPage {
+public class CreateNewUserPage extends AbstractUserDataPage {
 
     public CreateNewUserPage(WebDriver driver) {
         super(driver);
     }
 
     //set data
-    @Step("setLoginInput")
+    @Step("Set Login Input")
     public CreateNewUserPage setLoginInput(String login) {
         getLoginInput().clear();
         getLoginInput().sendKeys(login);
@@ -25,41 +24,43 @@ public class CreateNewUserPage extends AUserDataPage {
         return this;
     }
 
-    @Step("setFirstNameInput")
+    @Step("Set FirstName Input")
     public CreateNewUserPage setFirstNameInput(String firstName) {
         super.setFirstNameInput(firstName);
         return this;
     }
 
-    @Step("setLastNameInput")
+    @Step("Set LastName Input")
     public CreateNewUserPage setLastNameInput(String lastName) {
         super.setLastNameInput(lastName);
         return this;
     }
 
-    @Step("setPasswordInput")
+    @Step("Set Password Input")
     public CreateNewUserPage setPasswordInput(String password) {
         super.setPasswordInput(password);
         return this;
     }
 
-    @Step("setConfirmPasswordInput")
+    @Step("Set Confirm Password Input")
     public CreateNewUserPage setConfirmPasswordInput(String confirmPassword) {
         super.setConfirmPasswordInput(confirmPassword);
         return this;
     }
 
-    @Step("setEmailInput")
+    @Step("Set Email Input")
     public CreateNewUserPage setEmailInput(String email) {
         super.setEmailInput(email);
         return this;
     }
 
+    @Step("Set Select Region")
     public CreateNewUserPage setSelectRegion(Region region) {
         super.setSelectRegion(region);
         return this;
     }
 
+    @Step("Set Select Role")
     public CreateNewUserPage setSelectRole(Role roleId) {
         super.setSelectRole(roleId);
         return this;
@@ -95,7 +96,7 @@ public class CreateNewUserPage extends AUserDataPage {
         return this;
     }
 
-    @Step("clickCreateButton")
+    @Step("Click Create Button")
     public CreateNewUserPage clickCreateButton() {
         super.clickCreateButton();
         return this;
@@ -106,7 +107,6 @@ public class CreateNewUserPage extends AUserDataPage {
         return this;
     }
 
-
     // business logic
     public CreateNewUserPage setLoginData(IUser user) {
         setLoginInput(user.getLoginname());
@@ -116,6 +116,7 @@ public class CreateNewUserPage extends AUserDataPage {
 
     public AdministrationPage successCreateNewUser(IUser validUser) {
         setLoginData(validUser);
+        waitForInputErrorsToDisappear();
         clickCreateButton();
         return new AdministrationPage(driver);
     }
@@ -137,20 +138,4 @@ public class CreateNewUserPage extends AUserDataPage {
         super.acceptAlert();
         return this;
     }
-
-    @Override
-    public CreateNewUserPage waitForLoad() {
-        super.waitForLoad();
-        return this;
-    }
-
-    public CreateNewUserPage waitForEmailErrorToDisappear() {
-        if (waitForElemToDisappear(AUserDataPageLocators.ERROR_EMAIL.by)) {
-            System.out.println("Email error disappeared");
-            return this;
-        } else {
-            throw new RuntimeException("Waiting for error to disappear failed!");
-        }
-    }
-
 }

@@ -54,7 +54,7 @@ public class AdminUserSmokeTest extends TestRunner {
 		
 		CreateNewUserPage createNewUserPage = loginPage
 				.successAdminLogin(adminUser)
-				.clickAdministrationTab()
+				.gotoAdministrationPage()
 				.gotoCreateNewUserPage();
 		
 		innerStep("Testing inside methods steps");

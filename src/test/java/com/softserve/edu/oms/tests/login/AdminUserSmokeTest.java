@@ -11,7 +11,6 @@ import com.softserve.edu.oms.tests.TestRunner;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.Severity;
-import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.allure.annotations.Stories;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 import ru.yandex.qatools.allure.model.SeverityLevel;
@@ -27,14 +26,6 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
 
 public class AdminUserSmokeTest extends TestRunner {
 	
-	/**
-	 * Logger method for Allure Framework. It method is used
-	 *  for inserting Allure Steps into different methods
-	 * @param stepMsg
-	 */
-	
-	@Step("{0}")
-	private void innerStep(String stepMsg){}
 
 	/**
 	 * Gets the admin user DataProvider for adminUserSmokeTest

@@ -35,13 +35,7 @@ import static org.testng.Assert.assertTrue;
     		+ "user searching on the 'Administration' tab so I can manage them ")
     public class ChangeNumberOfUserPerPageTest extends TestRunner{
     	
-    	/**
-    	 * Logger method for Allure Framework. It method is used
-    	 *  for inserting Allure Steps into different methods
-    	 * @param stepMsg
-    	 */
-    	@Step("{0}")
-    	private void innerStep(String stepMsg){}
+    	
 
         /**
          * Verify that correct number of records displays in a table on 'Administration' tab,
@@ -56,7 +50,7 @@ import static org.testng.Assert.assertTrue;
         @Step
         public void verifyChangeUserNumberPerPage() {
             // Get admin user from UserRepository
-           innerStep("Get admin user from UserRepository");
+            innerStep("Get admin user from UserRepository");
     		IUser admin = UserRepository.get().adminUser();
 
             // Login and go to administration page

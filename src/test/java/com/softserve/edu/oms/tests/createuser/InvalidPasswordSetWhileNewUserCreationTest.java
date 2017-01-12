@@ -53,6 +53,7 @@ public class InvalidPasswordSetWhileNewUserCreationTest extends TestRunner{
                 .successAdminLogin(UserRepository
                 		.get()
                 		.adminUser())
+                .waitForLoad()
                 .gotoAdministrationPage()
                 .gotoCreateNewUserPage()
                 .setLoginInput(login)

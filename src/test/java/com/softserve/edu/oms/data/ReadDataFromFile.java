@@ -16,10 +16,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class ReadDataFromFile. To use current class in your tests you should: -
- * in TestData.xls create necessary sheet with test data (users) - write a
- * method that creates an object required for the test (readUsersData) - create
- * dataprovider method which invokes method described above (getUsersFromXLS)
+ * The Class ReadDataFromFile. To use current class in your tests you should: 
+ * - in TestData.xls create necessary sheet with test data (users) 
+ * - write a method that creates an object required for the test (readUsersData) 
+ * - create dataprovider method which invokes method described above (getUsersFromXLS)
  *
  * @author Bohdan Harasym
  * @since 22.12.2016

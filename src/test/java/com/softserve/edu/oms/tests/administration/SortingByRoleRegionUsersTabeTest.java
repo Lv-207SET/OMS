@@ -1,6 +1,6 @@
 package com.softserve.edu.oms.tests.administration;
 
-import static org.testng.AssertJUnit.*;
+import static org.testng.AssertJUnit.assertTrue;
 
 import java.util.Iterator;
 import java.util.regex.Matcher;
@@ -40,7 +40,7 @@ public class SortingByRoleRegionUsersTabeTest extends TestRunner {
 	AdministrationPage administrationPage;
 
 	/**
-	 * Login for tests.
+	 * Login for tests. 
 	 *
 	 * @param adminUser
 	 *            the admin user
@@ -58,6 +58,7 @@ public class SortingByRoleRegionUsersTabeTest extends TestRunner {
 	 * Sort table by login test.
 	 *
 	 * @param query            the query
+	 * @throws InterruptedException 
 	 */
 	@TestCaseId("LVSETOMS-46")
 	@Severity(SeverityLevel.NORMAL)
@@ -67,7 +68,7 @@ public class SortingByRoleRegionUsersTabeTest extends TestRunner {
 	@Step("Sorting of Users Table Test")
 	@Test(dataProvider = "sortingTableDataProvider")
 	
-	public void sortUsersTableTest(String query) {
+	public void sortUsersTableTest(String query) throws InterruptedException {
 
 		String switchCond = null;
 		Pattern p = Pattern.compile("\\w+\\W*(ASC|DESC)?\\W?$");
@@ -95,8 +96,9 @@ public class SortingByRoleRegionUsersTabeTest extends TestRunner {
 		default:
 			throw new RuntimeException("Invalid query in Test Data!");
 		}
-		
 		assertTrue(administrationPage.compareLogins(query));
+		
+		
 	}
 	
     @Step("Getting data from file")

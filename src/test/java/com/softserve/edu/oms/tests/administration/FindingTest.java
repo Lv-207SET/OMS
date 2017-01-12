@@ -51,15 +51,6 @@ public class FindingTest extends TestRunner {
     private final String VALID_NAME = UserRepository.get().adminUser().getLoginname();
     
     /**
-	 * Logger method for Allure Framework. It method is used
-	 *  for inserting Allure Steps into different methods
-	 * @param stepMsg
-	 */
-	@Step("{0}")
-	private void innerStep(String stepMsg){}
-
-    
-    /**
      * Set preconditions for test:
      * login with Administrator role credentials
      * and go to Administration page

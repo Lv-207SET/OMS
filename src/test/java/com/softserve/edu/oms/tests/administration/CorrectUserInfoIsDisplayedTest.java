@@ -25,14 +25,6 @@ import java.util.List;
 		+ "and perform user searching on the 'Administration' tab so I can manage them")
 public class CorrectUserInfoIsDisplayedTest extends TestRunner{
 	
-	/**
-	 * Logger method for Allure Framework. It method is used
-	 *  for inserting Allure Steps into different methods
-	 * @param stepMsg
-	 */
-	@Step("{0}")
-	private void innerStep(String stepMsg){}
-
     @DataProvider
     public Object[][] admUser() {
         return new Object[][] {

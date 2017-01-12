@@ -26,7 +26,7 @@ public class ScreenShots {
 	 * @param methodName
 	 * @return
 	 */
-	@Attachment
+
 	public static void takeScreenShot(WebDriver driver, String methodName) {
 		
 		if (driver !=null){

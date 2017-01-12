@@ -181,12 +181,6 @@
 						<file>${xmlrun}</file>
 					</suiteXmlFiles>
 					<reportsDirectory>${testng.reports.directory}</reportsDirectory>
-					<properties>
--                        <property>
--                            <name>listener</name>
--                            <value>ru.yandex.qatools.allure.testng.AllureTestListener</value>
--                        </property>
--                    </properties>
 				</configuration>
 				<dependencies>
 					<dependency>

@@ -49,8 +49,8 @@ public class TestRunner {
 			throw new RuntimeException("Your OS is not supported");
 		}
 
-		// final String loginPageUrl= System.getenv("oms_loginPageUrl");
-		final String loginPageUrl = "http://ssu-oms.training.local:8180/OMS/";
+		 final String loginPageUrl= System.getenv("oms_loginPageUrl");
+		// final String loginPageUrl = "http://ssu-oms.training.local:8180/OMS/";
 
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

@@ -16,8 +16,6 @@
 	 *
 	 * @version  1.0
 	 * @since 15.12.16
-	 * @author  Roman Raba
-	 * @author  Viktoriia Bybel
 	 */
 	public class  DBUtils {
 
@@ -28,42 +26,31 @@
 		/** Method, which creates connection with Database
 		 */
 		private Connection createConnection(){
-			Connection con;
+			Connection connection;
 
 			try {
 				DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-				con = DriverManager.getConnection(url, username, password);
+				connection = DriverManager.getConnection(url, username, password);
 			} catch (Exception e) {
 				throw new RuntimeException(ErrorMessagesEnum.SQL_EXCEPTION_MESSAGE.message, e);
 			}
 
-			return con;
+			return connection;
 		}
-
-
-		/** Method, which closes connection with Database
-		 * It uses the above method closeConnection, because
-		 * there are some cases where ResultSet is not needed
-		 * @see DBUtils#closeConnection(Connection, Statement, ResultSet)
-		 */
-		private void closeConnection(Connection con, Statement st) throws Exception{
-				closeConnection(con, st, null);
-		}
-
 
 		/** Method, which closes connection with Database
 		 *
-		 * @see DBUtils#closeConnection(Connection, Statement)
+		 * @see DBUtils#closeConnection(Connection, Statement, ResultSet)
 		 */
-		private void closeConnection(Connection con, Statement st, ResultSet rs) throws Exception {
-			if (rs != null) {
-				rs.close();
+		private void closeConnection(Connection connection, Statement statement, ResultSet resultSet) throws Exception {
+			if (resultSet != null) {
+				resultSet.close();
 			}
-			if (st != null) {
-				st.close();
+			if (statement != null) {
+				statement.close();
 			}
-			if (con != null) {
-				con.close();
+			if (connection != null) {
+				connection.close();
 			}
 		}
 
@@ -74,26 +61,26 @@
 		public List<List<String>> getAllCells() {
 			List<List<String>> allCells = new ArrayList<>();
 			List<String> rowCells;
-			Statement st;
-			ResultSet rs;
+			Statement statement;
+			ResultSet resultSet;
 			int columnCount;
-			Connection con = createConnection();
+			Connection connection = createConnection();
 
 			try {
-				st = con.createStatement();
-				rs = st.executeQuery(SQLQueries.GET_ALL_USERS_JOIN_ROLE.getQuery());
-				columnCount = rs.getMetaData().getColumnCount();
+				statement = connection.createStatement();
+				resultSet = statement.executeQuery(SQLQueries.GET_ALL_USERS_JOIN_ROLE.getQuery());
+				columnCount = resultSet.getMetaData().getColumnCount();
 
-				while (rs.next()) {
+				while (resultSet.next()) {
 					rowCells = new ArrayList<>();
 					for (int i = 1; i <= columnCount; i++) {
-						rowCells.add(rs.getString(i));
-						System.out.print("+++\t" + rs.getString(i) + "\t");
+						rowCells.add(resultSet.getString(i));
+						System.out.print("+++\t" + resultSet.getString(i) + "\t");
 					}
 					allCells.add(rowCells);
 					System.out.println();
 				}
-				closeConnection(con, st, rs);
+				closeConnection(connection, statement, resultSet);
 			} catch (Exception e) {
 				throw new RuntimeException(ErrorMessagesEnum.SQL_EXCEPTION_MESSAGE.message, e);
 			}
@@ -106,13 +93,13 @@
 		 * @param value - value which adds to sqlquery and responsibles to Login or FirstName etc.
 		 */
 		public void deleteUsersFromDB(String sqlQuery, String value){
-			Statement st;
-			Connection con = createConnection();
+			Statement statement;
+			Connection connection = createConnection();
 
 			try {
-				st = con.createStatement();
-				st.execute(sqlQuery + "\'" + value + "\'");
-				closeConnection(con, st);
+				statement = connection.createStatement();
+				statement.execute(sqlQuery + "\'" + value + "\'");
+				closeConnection(connection, statement, null);
 			} catch (Exception e) {
 				throw new RuntimeException(ErrorMessagesEnum.SQL_EXCEPTION_MESSAGE.message, e);
 			}
@@ -127,24 +114,24 @@
 		 */
 		public List<String> getOneColumn(String sqlQuery, String nameOfColumn, String value1, String value2) {
 			List<String> listOfOneColumn = new ArrayList<>();
-			Statement st;
-			ResultSet rs = null;
-			Connection con = createConnection();
+			Statement statement;
+			ResultSet resultSet = null;
+			Connection connection = createConnection();
 			try {
-				st = con.createStatement();
+				statement = connection.createStatement();
 				switch (nameOfColumn) {
-					case ("lastName"):  rs = st.executeQuery(sqlQuery + "\'" + value1 + "%\'");
+					case ("lastName"):  resultSet = statement.executeQuery(sqlQuery + "\'" + value1 + "%\'");
 						break;
-					case ("login"):  rs = st.executeQuery(sqlQuery + "\'%" + value1 + "%\'");
+					case ("login"):  resultSet = statement.executeQuery(sqlQuery + "\'%" + value1 + "%\'");
 						break;
-					case ("role"):  rs = st.executeQuery(sqlQuery + "\'%" + value2 + "%\'");
+					case ("role"):  resultSet = statement.executeQuery(sqlQuery + "\'%" + value2 + "%\'");
 						break;
 				}
 
-				while (rs.next()) {
-					listOfOneColumn.add(rs.getString(1));
+				while (resultSet.next()) {
+					listOfOneColumn.add(resultSet.getString(1));
 				}
-			  closeConnection(con, st, rs);
+			  closeConnection(connection, statement, resultSet);
 			} catch (Exception e) {
 				throw new RuntimeException(ErrorMessagesEnum.SQL_EXCEPTION_MESSAGE.message, e);
 			}
@@ -157,46 +144,46 @@
 		 */
 		public User getUserByLogin(String login) {
 			User user = null;
-			Statement st;
-			ResultSet rs;
+			Statement statement;
+			ResultSet resultSet;
 			int columnCount;
-			Connection con = createConnection();
+			Connection connection = createConnection();
 
 			try {
-				st = con.createStatement();
+				statement = connection.createStatement();
 				String query=SQLQueries.GET_USER_BY_LOGIN_JOIN_ROLE.getQuery() +"\'"+ login+"\';";
 				System.out.println(query);
-				rs = st.executeQuery(query);
-				columnCount = rs.getMetaData().getColumnCount();
-				while (rs.next()) {
+				resultSet = statement.executeQuery(query);
+				columnCount = resultSet.getMetaData().getColumnCount();
+				while (resultSet.next()) {
 					user = new User("", "", "", "", "", "", "");
 					for (int i = 1; i <= columnCount; i++) {
 						switch (i) {
 							case 1:
-								user.setLoginname(rs.getString(i));
+								user.setLoginname(resultSet.getString(i));
 								break;
 							case 2:
-								user.setFirstname(rs.getString(i));
+								user.setFirstname(resultSet.getString(i));
 								break;
 							case 3:
-								user.setLastname(rs.getString(i));
+								user.setLastname(resultSet.getString(i));
 								break;
 							case 4:
-								user.setPassword(rs.getString(i));
+								user.setPassword(resultSet.getString(i));
 								break;
 							case 5:
-								user.setEmail(rs.getString(i));
+								user.setEmail(resultSet.getString(i));
 								break;
 							case 6:
-								user.setRole(rs.getString(i));
+								user.setRole(resultSet.getString(i));
 								break;
 							case 7:
-								user.setRegion(rs.getString(i));
+								user.setRegion(resultSet.getString(i));
 								break;
 						}
 					}
 				}
-			  closeConnection(con, st, rs);
+			  closeConnection(connection, statement, resultSet);
 			}  catch (Exception e) {
 				throw new RuntimeException(ErrorMessagesEnum.SQL_EXCEPTION_MESSAGE.message, e);
 			}
@@ -210,17 +197,17 @@
 		 */
 		public List<String> getLogins(String sqlQuery){
 			List<String> logins = new ArrayList<>();
-			Statement st;
-			ResultSet rs;
+			Statement statement;
+			ResultSet resultSet;
 			Connection con = createConnection();
 
 			try {
-				st = con.createStatement();
-				rs = st.executeQuery(sqlQuery);
-				while (rs.next()) {
-					logins.add(rs.getString("Login"));
+				statement = con.createStatement();
+				resultSet = statement.executeQuery(sqlQuery);
+				while (resultSet.next()) {
+					logins.add(resultSet.getString("Login"));
 				}
-			  closeConnection(con, st, rs);
+			  closeConnection(con, statement, resultSet);
 			} catch (Exception e) {
 				throw new RuntimeException(ErrorMessagesEnum.SQL_EXCEPTION_MESSAGE.message, e);
 			}
@@ -233,18 +220,18 @@
 		@Step("Count all users in DB")
 		public int countAllUsers(){
 
-			Statement st;
-			ResultSet rs;
+			Statement statement;
+			ResultSet resultSet;
 			int userCount = 0;
 
-			Connection con = createConnection();
+			Connection connection = createConnection();
 
 			try {
-				st = con.createStatement();
-				rs = st.executeQuery(SQLQueries.COUNT_ALL_USERS.getQuery());
-				rs.next();
-				userCount = rs.getInt(1);
-				closeConnection(con, st, rs);
+				statement = connection.createStatement();
+				resultSet = statement.executeQuery(SQLQueries.COUNT_ALL_USERS.getQuery());
+				resultSet.next();
+				userCount = resultSet.getInt(1);
+				closeConnection(connection, statement, resultSet);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -259,28 +246,28 @@
 		public List<User> getTopFiveUsers() {
 
 			List<User> users = new ArrayList<>();
-			Statement st;
-			ResultSet rs;
+			Statement statement;
+			ResultSet resultSet;
 
-			Connection con = createConnection();
+			Connection connection = createConnection();
 
 			try {
-				st = con.createStatement();
-				rs = st.executeQuery(SQLQueries.GET_5_USERS_JOIN_ROLE.getQuery());
+				statement = connection.createStatement();
+				resultSet = statement.executeQuery(SQLQueries.GET_5_USERS_JOIN_ROLE.getQuery());
 
-				while (rs.next()) {
+				while (resultSet.next()) {
 					User user = new User(
-							rs.getString(1),
-							rs.getString(2),
-							rs.getString(3),
-							rs.getString(4),
-							rs.getString(5),
-							rs.getString(6),
-							rs.getString(7)
+							resultSet.getString(1),
+							resultSet.getString(2),
+							resultSet.getString(3),
+							resultSet.getString(4),
+							resultSet.getString(5),
+							resultSet.getString(6),
+							resultSet.getString(7)
 							);
 					users.add(user);
 				}
-				closeConnection(con, st,rs);
+				closeConnection(connection, statement,resultSet);
 
 			} catch (Exception e) {
 				throw new RuntimeException(ErrorMessagesEnum.SQL_EXCEPTION_MESSAGE.message, e);
@@ -295,16 +282,16 @@
 		@Step("Verification - is a user in DB")
 		public boolean verifyThatUserIsInDB(String loginOfUser){
 
-			Statement st;
-			ResultSet rs;
+			Statement statement;
+			ResultSet resultSet;
 			boolean userIsInDB = false;
-			Connection con = createConnection();
+			Connection connection = createConnection();
 
 			try{
-				st = con.createStatement();
-				rs = st.executeQuery(SQLQueries.GET_USER_BY_LOGIN.getQuery() + "\'" + loginOfUser + "\'");
-				userIsInDB = rs.next();
-				closeConnection(con, st,rs);
+				statement = connection.createStatement();
+				resultSet = statement.executeQuery(SQLQueries.GET_USER_BY_LOGIN.getQuery() + "\'" + loginOfUser + "\'");
+				userIsInDB = resultSet.next();
+				closeConnection(connection, statement,resultSet);
 			}catch (Exception e) {
 				e.printStackTrace();
 			}

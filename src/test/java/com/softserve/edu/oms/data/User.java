@@ -105,7 +105,7 @@
             return this.getLoginname().equals(user.getLoginname())
                 && this.getFirstname().equals(user.getFirstname())
                 && this.getLastname().equals(user.getLastname())
-                && this.getRegion().equalsIgnoreCase(user.getRegion().toString())
-                && this.getRole().equalsIgnoreCase(user.getRole().toString());
+                && this.getRegion().equalsIgnoreCase(user.getRegion())
+                && this.getRole().equalsIgnoreCase(user.getRole());
         }
     }

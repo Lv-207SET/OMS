@@ -22,6 +22,7 @@ public class LoginPage extends AbstractBasePage {
 	//Class constructor
 	public LoginPage(WebDriver driver) {
 		super(driver);
+		waitForLoad();
 	}
 
 	//Getters

@@ -62,7 +62,7 @@
 
         innerStep("Login and go to Create New User Page");
         CreateNewUserPage adminHomePage = loginPage.successAdminLogin(admUser)
-                .clickAdministrationTab()
+                .gotoAdministrationPage()
                 .gotoCreateNewUserPage();
 
         innerStep("Verifying that user do not exist and generating a new one");

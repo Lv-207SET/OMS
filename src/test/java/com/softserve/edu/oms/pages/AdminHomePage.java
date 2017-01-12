@@ -47,9 +47,9 @@ public class AdminHomePage extends HomePage {
 	// set Data
 
 	@Step("Just a click on Administration tab")
-	public AdministrationPage clickAdministrationTab() {
+	public void clickAdministrationTab() {
 		getAdministrationTab().click();
-		return new AdministrationPage(driver);
+		//return new AdministrationPage(driver);
 	}
 
 	public void clickOrderingTab() {

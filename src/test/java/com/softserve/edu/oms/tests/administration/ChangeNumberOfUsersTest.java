@@ -131,7 +131,7 @@ public class ChangeNumberOfUsersTest extends TestRunner{
 	@Description("This test case verifies that after new use creation the values in "
 			+ "'Number of Found Users' and 'Page#:' links are properly updated.")
     @Test(dataProvider = "validUser")
-    @Step("verifyChangePageNumber")
+    @Step("Verify changing number of pages and number of users after adding one user")
     public void verifyChangePageNumber(IUser user) {
 
         int newNumberOfUsers;

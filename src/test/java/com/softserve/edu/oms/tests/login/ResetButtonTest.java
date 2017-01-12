@@ -3,6 +3,8 @@ package com.softserve.edu.oms.tests.login;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.UserRepository;
 import com.softserve.edu.oms.tests.TestRunner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -29,6 +31,7 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
 
 public class ResetButtonTest extends TestRunner {
 
+    public static final Logger logger = LoggerFactory.getLogger(ResetButtonTest.class);
     /**
      * Provides data for user login
      *
@@ -59,6 +62,7 @@ public class ResetButtonTest extends TestRunner {
     @Step("Verify 'Reset' button functionality")
     public void verifyResetButtonFunctionality(IUser someUser) {
 
+        logger.info("Test verifyResetButtonFunctionality start");
         loginPage.setLoginDataAndReset(someUser);
         innerStep("Verify that 'User' field is cleared by clicking on 'Reset' button");
         Assert.assertTrue(loginPage
@@ -68,6 +72,7 @@ public class ResetButtonTest extends TestRunner {
         Assert.assertTrue(loginPage
                 .getPasswordInputText()
                 .isEmpty());
+        logger.info("Test verifyResetButtonFunctionality done");
     }
 }
 

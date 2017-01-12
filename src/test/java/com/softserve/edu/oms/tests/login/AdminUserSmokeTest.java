@@ -40,8 +40,6 @@ public class AdminUserSmokeTest extends TestRunner {
 	 * Admin user smoke test. This test verifies that 'Create new user'
 	 * button is available.
 	 *
-	 * @param admUser
-	 *            the adm user
 	 */
 	@TestCaseId("LVSETOMS-28")
 	@Severity(SeverityLevel.BLOCKER)

@@ -8,6 +8,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
@@ -19,6 +21,9 @@ import static com.softserve.edu.oms.locators.AbstractUserDataPageLocators.*;
  * Create New User Page and Edit User Page
  */
 public abstract class AbstractUserDataPage extends AbstractBasePage {
+
+	public static final Logger logger = LoggerFactory.getLogger(AbstractUserDataPage.class);
+
 	AbstractUserDataPage(WebDriver driver) {
 		super(driver);
 	}
@@ -56,7 +61,6 @@ public abstract class AbstractUserDataPage extends AbstractBasePage {
 		return this.driver.findElements(ROLE_RADIO_BUTTON.by);
 	}
 
-	@Step("Get Create New User button")
 	public WebElement getCreateButton() {
 		return this.driver.findElement(CREATE_BUTTON.by);
 	}
@@ -83,7 +87,6 @@ public abstract class AbstractUserDataPage extends AbstractBasePage {
 		return this.waitForElement(ERROR_PASSWORD.by);
 	}
 
-	@Step("getConfirmPasswordErrorMessage")
 	public WebElement getConfirmPasswordErrorMessage() {
 		return this.waitForElement(ERROR_CONFIRM_PASSWORD.by);
 	}
@@ -150,7 +153,6 @@ public abstract class AbstractUserDataPage extends AbstractBasePage {
 		return getPasswordErrorMessage().getText();
 	}
 
-	@Step("Get Confirm Password Error Message Text")
 	public String getConfirmPasswordErrorMessageText() {
 		return getConfirmPasswordErrorMessage().getText();
 	}
@@ -163,41 +165,48 @@ public abstract class AbstractUserDataPage extends AbstractBasePage {
 	public AbstractUserDataPage setFirstNameInput(String firstName) {
 		getFirstNameInput().clear();
 		getFirstNameInput().sendKeys(firstName);
+		logger.info("Setting First Name " + firstName);
 		return this;
 	}
 
 	public AbstractUserDataPage setLastNameInput(String lastName) {
 		getLastNameInput().clear();
 		getLastNameInput().sendKeys(lastName);
+		logger.info("Setting Last Name " + lastName);
 		return this;
 	}
 
 	public AbstractUserDataPage setPasswordInput(String password) {
 		getPasswordInput().clear();
 		getPasswordInput().sendKeys(password);
+		logger.info("Setting Password " + password);
 		return this;
 	}
 
 	public AbstractUserDataPage setConfirmPasswordInput(String confirmPassword) {
 		getConfirmPasswordInput().clear();
 		getConfirmPasswordInput().sendKeys(confirmPassword);
+		logger.info("Setting Confirm Password " + confirmPassword);
 		return this;
 	}
 
 	public AbstractUserDataPage setEmailInput(String email) {
 		getEmailInput().clear();
 		getEmailInput().sendKeys(email);
+		logger.info("Setting Email " + email);
 		return this;
 	}
 
 	public AbstractUserDataPage setSelectRegion(Region region) {
 		getSelectRegion().selectByVisibleText(region.getRegionType());
+		logger.info("Selecting Region");
 		return this;
 	}
 
 	public AbstractUserDataPage setSelectRole(Role roleId) {
 		driver.findElement(By.id(roleId.getRoleId())).click();
 		waitForLoad();
+		logger.info("Selecting Role");
 		return this;
 	}
 
@@ -228,12 +237,14 @@ public abstract class AbstractUserDataPage extends AbstractBasePage {
 
 	public AbstractUserDataPage clickCreateButton() {
 		getCreateButton().click();
+		logger.info("Create button is clicked");
 		return this;
 	}
 
 	public AbstractUserDataPage clickCancelButton() {
 		getCancelButton().click();
 		waitForLoad();
+		logger.info("Cancel button is clicked");
 		return this;
 	}
 

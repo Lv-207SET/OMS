@@ -46,11 +46,13 @@ public  class LoginWithEmptyCredentialsTest extends TestRunner {
     public void verifyErrorMessageWhenUserLoginWithEmptyCredentials(){
 
         // Click on 'Submit' button and get  error message
+        innerStep("Click on 'Submit' button and get  error message");
         String currentErrorMessage = loginPage
                 .loginWithEmptyCredentials()
                 .getBadCredentialsErrorMessageText();
 
         // Verify that error message is correct
+        innerStep("Verify that error message is correct");
         assertThat(currentErrorMessage, CoreMatchers.equalTo(ERROR_MESSAGE.message));
 
     }

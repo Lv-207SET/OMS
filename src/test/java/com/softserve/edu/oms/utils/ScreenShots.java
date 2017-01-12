@@ -42,7 +42,7 @@ public class ScreenShots {
 		String fileName = 
 				"test-output/screenshots/" + methodName +"_" + dateFormat.format(date) + ".png";
 		
-		String screnshotName = methodName + dateFormat.format(date);
+		String screnshotName = methodName + "_" + dateFormat.format(date);
 		
 		attachScreenshotToAllure(screnshotName, driver);
 		

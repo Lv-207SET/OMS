@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 /**
  * Enum contains locators for elements on {@link AbstractBasePage}.
  */
-public enum ABasePageLocators {
+public enum AbstractBasePageLocators {
 
     LOGOUT_BUTTON(By.cssSelector(".spec a")),
     OMS_LABEL(By.cssSelector("#logo h1")),
@@ -16,7 +16,7 @@ public enum ABasePageLocators {
     USER_INFO_TAB(By.cssSelector("*[href=\"/OMS/userInfo.htm\"]"));
 
     public final By by;
-    ABasePageLocators(final By by){
+    AbstractBasePageLocators(final By by){
         this.by = by;
     }
 }

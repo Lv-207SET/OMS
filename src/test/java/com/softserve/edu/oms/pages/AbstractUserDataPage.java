@@ -3,9 +3,8 @@ package com.softserve.edu.oms.pages;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.enums.Region;
 import com.softserve.edu.oms.enums.Role;
-import com.softserve.edu.oms.locators.AUserDataPageLocators;
+import com.softserve.edu.oms.locators.AbstractUserDataPageLocators;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -13,7 +12,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-import static com.softserve.edu.oms.locators.AUserDataPageLocators.*;
+import static com.softserve.edu.oms.locators.AbstractUserDataPageLocators.*;
 
 /**
  * This abstract class represents common functionality for
@@ -261,9 +260,9 @@ public abstract class AbstractUserDataPage extends AbstractBasePage {
 	 * Precondition of inputting valid data should be met when using this method.
 	 */
 	protected void waitForInputErrorsToDisappear() {
-		if (waitForElemToDisappear(AUserDataPageLocators.ERROR_PASSWORD.by)
-				&& waitForElemToDisappear(AUserDataPageLocators.ERROR_CONFIRM_PASSWORD.by)
-				&& waitForElemToDisappear(AUserDataPageLocators.ERROR_EMAIL.by)) {
+		if (waitForElemToDisappear(AbstractUserDataPageLocators.ERROR_PASSWORD.by)
+				&& waitForElemToDisappear(AbstractUserDataPageLocators.ERROR_CONFIRM_PASSWORD.by)
+				&& waitForElemToDisappear(AbstractUserDataPageLocators.ERROR_EMAIL.by)) {
 			System.out.println("**************Input errors disappeared**************");
 		} else {
 			throw new RuntimeException("Waiting for input errors to disappear failed!");

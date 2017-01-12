@@ -3,7 +3,6 @@ package com.softserve.edu.oms.pages;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.enums.Region;
 import com.softserve.edu.oms.enums.Role;
-import com.softserve.edu.oms.locators.AUserDataPageLocators;
 import org.openqa.selenium.WebDriver;
 import ru.yandex.qatools.allure.annotations.Step;
 

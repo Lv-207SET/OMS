@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
-import static com.softserve.edu.oms.locators.ABasePageLocators.*;
+import static com.softserve.edu.oms.locators.AbstractBasePageLocators.*;
 
 
 /**

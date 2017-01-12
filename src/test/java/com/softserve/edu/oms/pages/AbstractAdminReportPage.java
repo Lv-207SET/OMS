@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.softserve.edu.oms.locators.AAdminReportPageLocators.*;
+import static com.softserve.edu.oms.locators.AbstractAdminReportPageLocators.*;
 /**
  * This abstract class represents common entities and functionality for
  * Administration Page and Create Report Page

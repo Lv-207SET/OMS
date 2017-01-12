@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 /**
  * Enum contains locators for elements on {@link AbstractAdminReportPage}.
  */
-public enum AAdminReportPageLocators {
+public enum AbstractAdminReportPageLocators {
 
     SUBHEADER(By.cssSelector("#list h2")),
     USERS_FOUND_SPAN(By.id("usersFound")),
@@ -39,7 +39,7 @@ public enum AAdminReportPageLocators {
     GET_USER_BY_LOGIN(By.xpath("#table tr:first-child td:first-child"));
 
     public final By by;
-    AAdminReportPageLocators(final By by){
+    AbstractAdminReportPageLocators(final By by){
         this.by = by;
     }
 }

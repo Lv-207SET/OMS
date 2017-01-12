@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 /**
  * Enum contains locators for elements on {@link AbstractUserDataPage}.
  */
-public enum AUserDataPageLocators {
+public enum AbstractUserDataPageLocators {
 
     LOGIN_INPUT(By.id("login")),
     FIRST_NAME_INPUT(By.id("firstName")),
@@ -26,7 +26,7 @@ public enum AUserDataPageLocators {
     ERROR_EMAIL(By.id("emailError"));
 
     public final By by;
-    AUserDataPageLocators(final By by){
+    AbstractUserDataPageLocators(final By by){
         this.by = by;
     }
 }

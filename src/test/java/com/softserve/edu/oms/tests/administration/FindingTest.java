@@ -38,6 +38,7 @@ import java.util.stream.Collectors;
 		+ "user searching on the 'Administration' tab so I can manage them ")
 
 public class FindingTest extends TestRunner {
+
     private SoftAssert softAssert = new SoftAssert();
     private AdministrationPage administrationPage;
 
@@ -112,7 +113,7 @@ public class FindingTest extends TestRunner {
                 LabelsNamesEnum.TOO_LONG_NAME.name);
 
         DBUtils dbUtils = new DBUtils();
-        int numberOfUsers = dbUtils.getAllCells("", "").size();
+        int numberOfUsers = dbUtils.getAllCells().size();
       //verify that result  are all active users
         softAssert.assertEquals(administrationPage.getAllUsers().size(), numberOfUsers);
         softAssert.assertAll();

@@ -19,7 +19,7 @@
 	 * @author  Roman Raba
 	 * @author  Viktoriia Bybel
 	 */
-	public class  DBUtils implements IExternalData {
+	public class  DBUtils {
 
 		private String username = System.getenv("db_username");
 		private String password = System.getenv("db_password");
@@ -70,10 +70,8 @@
 
 		/** Method, which creates list of list string type from Database by sqlquery
 		 *
-		 * @param absoluteFilePath - path to file
-		 * @param name - sheet name
 		 */
-		public List<List<String>> getAllCells(String absoluteFilePath, String name) {
+		public List<List<String>> getAllCells() {
 			List<List<String>> allCells = new ArrayList<>();
 			List<String> rowCells;
 			Statement st;

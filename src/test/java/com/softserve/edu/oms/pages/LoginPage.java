@@ -1,9 +1,11 @@
 package com.softserve.edu.oms.pages;
 
+import com.softserve.edu.oms.data.User;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.oms.data.IUser;
+import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.softserve.edu.oms.locators.LoginPageLocators.*;
@@ -16,7 +18,6 @@ import static com.softserve.edu.oms.locators.LoginPageLocators.*;
  * @author Anastasiia Maidanska
  */
 public class LoginPage extends ABasePage{
-
 	//Class constructor
 	public LoginPage(WebDriver driver) {
 		super(driver);

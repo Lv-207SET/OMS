@@ -2,6 +2,7 @@ package com.softserve.edu.oms.tests.login;
 
 import com.softserve.edu.oms.tests.TestRunner;
 import org.hamcrest.CoreMatchers;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import ru.yandex.qatools.allure.annotations.Description;
@@ -40,7 +41,7 @@ public  class LoginWithEmptyCredentialsTest extends TestRunner {
 			+ "user tries to login with empty 'User' and 'Password' fields")
 	
 
-    @Test
+    @Test()
     @Step
     public void verifyErrorMessageWhenUserLoginWithEmptyCredentials(){
 
@@ -51,5 +52,6 @@ public  class LoginWithEmptyCredentialsTest extends TestRunner {
 
         // Verify that error message is correct
         assertThat(currentErrorMessage, CoreMatchers.equalTo(ERROR_MESSAGE.message));
+
     }
 }

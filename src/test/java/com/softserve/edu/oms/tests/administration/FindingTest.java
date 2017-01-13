@@ -90,14 +90,18 @@ public class FindingTest extends TestRunner {
         softAssert = new SoftAssert();
 
         //verify that values in dropdown lists are correct and default values are correct too
-        innerStep("verify that values in dropdown lists are correct and default values are correct too");
-        softAssert.assertEquals(administrationPage.getSelectFieldDefaultValue(), FieldFilterDropdownList.FIRST_NAME.getFieldName());
-        softAssert.assertEquals(administrationPage.getSelectFieldOptions(), new HashSet<>(Arrays.asList(FieldFilterDropdownList.values()))
-                .stream()
-                .map(p -> p.getFieldName().toLowerCase()).collect(Collectors.toSet()));
+        innerStep("verify that  default value in SelectField dropdown list is correct");
+                softAssert.assertEquals(administrationPage.getSelectFieldDefaultValue(), FieldFilterDropdownList.FIRST_NAME.getFieldName());
+        innerStep("verify that  values in SelectField dropdown list are correct");
+        softAssert.assertEquals(administrationPage.getSelectFieldOptions(),
+                 new HashSet<>(Arrays.asList(FieldFilterDropdownList.values()))
+                         .stream()
+                         .map(p -> p.getFieldName().toLowerCase()).collect(Collectors.toSet()));
+        innerStep("verify that  default value in SelectCondition dropdown list is correct");
         softAssert.assertEquals(administrationPage.getSelectConditionDefaultValue(), ConditionFilterDropdownList.EQUALS.getNameOfConditionFilterField());
+        innerStep("verify that  values in SelectCondition dropdown list are correct");
         softAssert.assertEquals(administrationPage.getSelectConditionOptions(),
-                new HashSet<>(Arrays.asList(ConditionFilterDropdownList.values()))
+                 new HashSet<>(Arrays.asList(ConditionFilterDropdownList.values()))
                         .stream()
                         .map(condition -> condition.getNameOfConditionFilterField()).collect(Collectors.toSet()));
         softAssert.assertAll();
@@ -173,8 +177,7 @@ public class FindingTest extends TestRunner {
         administrationPage.clickSearchButton();
         administrationPage.selectField(FieldFilterDropdownList.LOGIN);
         //select not equals option
-        administrationPage.selectConditionByIndex(1);
-        administrationPage.search(VALID_NAME);
+        administrationPage.selectConditionByIndex(1).search(VALID_NAME);
 
         DBUtils dbUtils = new DBUtils();
 

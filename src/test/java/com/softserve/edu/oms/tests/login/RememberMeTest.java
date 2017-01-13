@@ -1,5 +1,8 @@
 package com.softserve.edu.oms.tests.login;
 
+import com.softserve.edu.oms.tests.administration.FindingTest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -25,7 +28,6 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
 @Stories("LVSETOMS-1 As User Admin I want to login so I can enter the system and add new users to system")
 
 public class RememberMeTest extends TestRunner {
-    private SoftAssert softAssert = new SoftAssert();
 
     /**
      * Verify that after check "Remember me" checkbox
@@ -37,14 +39,19 @@ public class RememberMeTest extends TestRunner {
      * @since 16.12.16
      * @link http://ssu-jira.softserveinc.com/browse/LVSETOMS-38
      */
+    public static final Logger logger = LoggerFactory.getLogger(RememberMeTest.class);
     @Features("Authorization")
     @Stories("LVSETOMS-1 As User Admin I want to login so I can enter the system and add new users to system")
     @TestCaseId("LVSETOMS-38")
-   	@Severity(SeverityLevel.NORMAL)
-   	@Description("This test case verifies that 'Login' form is filled by default with the values "
-   			+ "in case previously succesfully logged in user did it with checked 'Remember me' option.")
+  	@Severity(SeverityLevel.NORMAL)
+  	@Description("This test case verifies that 'Login' form is filled by default with the values "
+  		+ "in case previously succesfully logged in user did it with checked 'Remember me' option.")
     @Test
     public void rememberMeTest() {
+       // private
+        logger.info("Test rememberMeTest start");
+        SoftAssert softAssert = new SoftAssert();
+
         IUser user= UserRepository.get().adminUser();
         // check if input fields are empty
         Assert.assertEquals(loginPage.getLoginnameInputText(), "");
@@ -55,7 +62,7 @@ public class RememberMeTest extends TestRunner {
 
         HomePage homePage = new HomePage(driver);
         // verify if we log in successfully
-        Assert.assertEquals(homePage.getFirstnameText(), user.getFirstname());
+        softAssert.assertEquals(homePage.getFirstnameText(), user.getFirstname());
         Assert.assertEquals(homePage.getLastnameText(), user.getLastname());
 
         // log out
@@ -65,7 +72,7 @@ public class RememberMeTest extends TestRunner {
         softAssert.assertEquals(loginPage.getLoginnameInputText(),user.getLoginname());
         softAssert.assertEquals(loginPage.getPasswordInputText().length(),user.getPassword().length());
         softAssert.assertAll();
-
+        logger.info("Test rememberMeTest done");
     }
 }
 

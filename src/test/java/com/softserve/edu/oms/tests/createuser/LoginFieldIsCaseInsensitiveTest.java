@@ -1,29 +1,27 @@
     package com.softserve.edu.oms.tests.createuser;
 
     import com.softserve.edu.oms.data.DBUtils;
-    import com.softserve.edu.oms.data.IUser;
-    import com.softserve.edu.oms.data.UserRepository;
-    import com.softserve.edu.oms.enums.SQLQueries;
-    import com.softserve.edu.oms.pages.AdministrationPage;
-    import com.softserve.edu.oms.pages.CreateNewUserPage;
-    import com.softserve.edu.oms.tests.TestRunner;
-    import org.apache.commons.lang3.RandomStringUtils;
-    import org.testng.Assert;
-    import org.testng.annotations.DataProvider;
-    import org.testng.annotations.Test;
-
-    import ru.yandex.qatools.allure.annotations.Description;
-    import ru.yandex.qatools.allure.annotations.Features;
-    import ru.yandex.qatools.allure.annotations.Severity;
-    import ru.yandex.qatools.allure.annotations.Step;
-    import ru.yandex.qatools.allure.annotations.Stories;
-    import ru.yandex.qatools.allure.annotations.TestCaseId;
-    import ru.yandex.qatools.allure.model.SeverityLevel;
+import com.softserve.edu.oms.data.IUser;
+import com.softserve.edu.oms.data.UserRepository;
+import com.softserve.edu.oms.enums.SQLQueries;
+import com.softserve.edu.oms.pages.AdministrationPage;
+import com.softserve.edu.oms.pages.CreateNewUserPage;
+import com.softserve.edu.oms.tests.TestRunner;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.*;
+import ru.yandex.qatools.allure.model.SeverityLevel;
 
     @Features("Create New User")
     @Stories("LVSETOMS-3 As Administrator I want to create new user so he can log into the application")
 
     public class LoginFieldIsCaseInsensitiveTest extends TestRunner{
+
+        public static final Logger logger = LoggerFactory.getLogger(LoginFieldIsCaseInsensitiveTest.class);
 
     @DataProvider
     public Object[][] admAndNonExistingUser() {
@@ -61,6 +59,8 @@
     @Step("LoginFieldIsCaseInsensitiveTest")
     public void loginFieldIsCaseInsensitiveTest(IUser admUser, IUser nonExistingUser) {
 
+        logger.info("Test loginFieldIsCaseInsensitive started");
+
         innerStep("Login and go to Create New User Page");
         CreateNewUserPage adminHomePage = loginPage.successAdminLogin(admUser)
                 .gotoAdministrationPage()
@@ -89,7 +89,6 @@
                 .setEmailInput(nonExistingUser.getEmail())
                 .successCreateNewUser();
 
-
         innerStep("Entering the reverse case login to verify error message will appear");
         CreateNewUserPage newUserPageAgain = new AdministrationPage(driver)
                 .gotoCreateNewUserPage()
@@ -100,11 +99,15 @@
                 .setConfirmPasswordInput(nonExistingUser.getPassword());
 
         Assert.assertTrue(newUserPageAgain.getLoginError());
+
+        logger.info("Test loginFieldIsCaseInsensitive finished");
         }
 
         @Test(dataProvider = "admAndNonExistingUser")
         @Step("delete user from DB")
         public void deleteUserFromDB(IUser admUser, IUser nonExistingUser){
+
+        logger.info("Test deleteUserFromDB started");
 
         innerStep("Delete previously created test user from DB");
 
@@ -114,5 +117,7 @@
             dbUtils.deleteUsersFromDB(SQLQueries.DELETE_USER_BY_LOGIN.getQuery(),
                     nonExistingUser.getLoginname());
         }
+
+        logger.info("Test deleteUserFromDB finished");
     }
     }

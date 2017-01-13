@@ -24,32 +24,32 @@
 					"mail@gmail.com", "West", "Administrator");
 		}
 
-
-	public IUser badMemoryUser() {
+		public IUser badMemoryUser() {
 		return new User("BadMemoryUser", "Petro", "Roshen", "paSSworD",
 				"hello@gmail.com", "South", "Supervisor");
-	}
-	
-	public IUser someUser() {
+		}
+
+		public IUser someUser() {
         return new User("roman", "rrd", "rrd", "1234",
                 "sasdasdad@fg.com", "West", "Administrator");
-    }
-	
-	public IUser userForDelete() {
+		}
+
+		public IUser userForDelete() {
         return new User("andriy", "rrd", "rrd", "1234",
                 "sasdasdad@fg.com", "West", "Administrator");
-    }
-    
-	public IUser nonExistingUser() {
+		}
+
+		public IUser nonExistingUser() {
 		return new User("hippo", "Kalipso", "Karkarov", "qwerty",
 				"mail@gmail.com", "East", "Administrator");
-	}
-    public IUser newUser() {
+		}
+
+		public IUser newUser() {
         return new User("isComing", "New", "WorldOrder", "1234",
                 "rdd@g.com", "West", "Administrator");
-    }
+		}
 
-	public IUser UserWithLongCredentials(){
+		public IUser UserWithLongCredentials(){
 		return new User(
 				"qwertyuiopasdfghjklz",
 				"qwertyuiopasdfghjklz",
@@ -59,7 +59,8 @@
 				"West",
 				"Administrator"
 		);
-	}
+		}
+
 		public IUser customerUser() {
 			return new User("login1", "firstName1", "lastName1", "qwerty",
 					"mail@gmail.com", "East", "Customer");

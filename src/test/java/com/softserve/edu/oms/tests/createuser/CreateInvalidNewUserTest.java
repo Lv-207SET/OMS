@@ -4,7 +4,10 @@ import static com.softserve.edu.oms.enums.ErrorMessagesEnum.FIRST_NAME_ERROR_MES
 import static com.softserve.edu.oms.enums.ErrorMessagesEnum.LAST_NAME_ERROR_MESSAGE;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import com.softserve.edu.oms.pages.LoginPage;
 import org.hamcrest.CoreMatchers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -38,6 +41,7 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
 
 public class CreateInvalidNewUserTest extends TestRunner {
 
+	public static final Logger logger = LoggerFactory.getLogger(CreateInvalidNewUserTest.class);
 
 	/**
 	 * Provides data for user creation
@@ -62,7 +66,11 @@ public class CreateInvalidNewUserTest extends TestRunner {
 	@Test(dataProvider = "invalidUsers")
 	@Step
 	public void verifyErrorMessageCreatingUserWithInvalidData(User user) {
+
+		logger.info("Test verifyErrorMessageCreatingUserWithInvalidData start");
+
 		IUser admin = UserRepository.get().adminUser();
+
 
 		// Go to create new user page and set data
 		innerStep("Go to create new user page and set data");
@@ -84,6 +92,8 @@ public class CreateInvalidNewUserTest extends TestRunner {
 		// Verify that user with invalid 'First Name' and 'Last Name' is not created
 		innerStep("Verify that user with invalid 'First Name' and 'Last Name' is not created");
 		assertThat(dbUtils.getUserByLogin(user.getLoginname()), CoreMatchers.equalTo(null));
+
+		logger.info("Test verifyErrorMessageCreatingUserWithInvalidData done");
 	}
 
 }

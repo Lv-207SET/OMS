@@ -1,7 +1,10 @@
 package com.softserve.edu.oms.tests.login;
 
 import com.softserve.edu.oms.tests.TestRunner;
+import com.softserve.edu.oms.tests.createuser.CreateInvalidNewUserTest;
 import org.hamcrest.CoreMatchers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -31,6 +34,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public  class LoginWithEmptyCredentialsTest extends TestRunner {
 
+    public static final Logger logger = LoggerFactory.getLogger(LoginWithEmptyCredentialsTest.class);
+
     /**
      * Test verifies that error message is shown,
      * when user try to login with empty "Login" and "Password" fields.
@@ -44,6 +49,7 @@ public  class LoginWithEmptyCredentialsTest extends TestRunner {
     @Test()
     @Step
     public void verifyErrorMessageWhenUserLoginWithEmptyCredentials(){
+        logger.info("Test verifyErrorMessageWhenUserLoginWithEmptyCredentials start");
 
         // Click on 'Submit' button and get  error message
         innerStep("Click on 'Submit' button and get  error message");
@@ -55,5 +61,6 @@ public  class LoginWithEmptyCredentialsTest extends TestRunner {
         innerStep("Verify that error message is correct");
         assertThat(currentErrorMessage, CoreMatchers.equalTo(ERROR_MESSAGE.message));
 
+        logger.info("Test verifyErrorMessageWhenUserLoginWithEmptyCredentials done");
     }
 }

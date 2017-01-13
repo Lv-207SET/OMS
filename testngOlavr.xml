@@ -3,8 +3,8 @@
 <suite name="Oleh test suite">
     <test name="Oleh tests" >
         <classes>
-            <!--<class name="com.softserve.edu.oms.tests.createuser.CancelCreateUserTest"/>-->
-            <!--<class name="com.softserve.edu.oms.tests.login.RememberMeTest"/>-->
+            <class name="com.softserve.edu.oms.tests.createuser.CancelCreateUserTest"/>
+            <class name="com.softserve.edu.oms.tests.login.RememberMeTest"/>
             <class name="com.softserve.edu.oms.tests.administration.FindingTest">
                 <methods>
                     <include name="testOptionValues" />

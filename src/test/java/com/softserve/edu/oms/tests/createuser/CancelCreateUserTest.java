@@ -50,6 +50,7 @@ public class CancelCreateUserTest extends TestRunner {
         IUser user = UserRepository.get().adminUser();
 
         // check if input fields are empty
+        innerStep("verify if input fields are empty");
         Assert.assertEquals(loginPage.getLoginnameInputText(), "");
         Assert.assertEquals(loginPage.getPasswordInputText(), "");
         // login and go to Create New User page
@@ -72,6 +73,7 @@ public class CancelCreateUserTest extends TestRunner {
                 .setConfirmPasswordInput(user.getPassword())
                 .clickCancelButton();
         // check if new user isn't created
+        innerStep("check if new user isn't created");
         Assert.assertNull(dbUtils.getUserByLogin(user.getLoginname()));
         logger.info("Test cancelCreateUserTest done");
     }

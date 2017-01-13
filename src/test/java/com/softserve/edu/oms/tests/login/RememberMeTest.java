@@ -54,21 +54,24 @@ public class RememberMeTest extends TestRunner {
 
         IUser user= UserRepository.get().adminUser();
         // check if input fields are empty
-        Assert.assertEquals(loginPage.getLoginnameInputText(), "");
-        Assert.assertEquals(loginPage.getPasswordInputText(), "");
+        innerStep(" check if input fields are empty");
+        softAssert.assertEquals(loginPage.getLoginnameInputText(), "");
+        softAssert.assertEquals(loginPage.getPasswordInputText(), "");
         loginPage.clickGetRememberMeCheckbox();
         //log in as admin
         loginPage.successAdminLogin(user);
 
         HomePage homePage = new HomePage(driver);
         // verify if we log in successfully
+        innerStep("verify log in was successful");
         softAssert.assertEquals(homePage.getFirstnameText(), user.getFirstname());
-        Assert.assertEquals(homePage.getLastnameText(), user.getLastname());
+        softAssert.assertEquals(homePage.getLastnameText(), user.getLastname());
 
         // log out
         homePage.clickLogoutButton();
         loginPage = new LoginPage(driver);
         //verify if text values are saved in text inputs
+        innerStep("verify if text values are saved in text inputs");
         softAssert.assertEquals(loginPage.getLoginnameInputText(),user.getLoginname());
         softAssert.assertEquals(loginPage.getPasswordInputText().length(),user.getPassword().length());
         softAssert.assertAll();

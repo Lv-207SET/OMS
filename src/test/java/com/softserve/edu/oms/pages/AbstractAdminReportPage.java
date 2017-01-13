@@ -415,6 +415,7 @@ public abstract class AbstractAdminReportPage extends AbstractBasePage {
 		clickRegionLink();
 		waitForLoad();
 		clickLastNameLink();
+		waitForLoad();
 		return this;
 	}
 

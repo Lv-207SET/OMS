@@ -156,6 +156,15 @@
 				<groupId>com.lazerycode.jmeter</groupId>
 				<artifactId>jmeter-maven-plugin</artifactId>
 				<version>2.0.3</version>
+				<configuration>
+					<propertiesJMeter>
+						<jmeter.save.saveservice.response_data>true</jmeter.save.saveservice.response_data>
+						<jmeter.save.saveservice.samplerData>true</jmeter.save.saveservice.samplerData>
+						<jmeter.save.saveservice.requestHeaders>true</jmeter.save.saveservice.requestHeaders>
+						<jmeter.save.saveservice.url>true</jmeter.save.saveservice.url>
+						<jmeter.save.saveservice.responseHeaders>true</jmeter.save.saveservice.responseHeaders>
+					</propertiesJMeter>
+				</configuration>
 				<executions>
 					<execution>
 						<id>jmeter-tests</id>

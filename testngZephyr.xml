@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" verbose="10">
+	<parameter name="browserName" value="Chrome" />
+	<parameter name="driverPath"
+		value="C:/Program Files (x86)/Google/Chrome/Application/chromedriver.exe" />
+
+	<test name="testngZephyr">
+		<classes>
+			<class name="com.softserve.edu.oms.tests.restverification.ZepphyrRestTest">
+				<methods>
+					<include name="createTestCycle" />
+				</methods>
+			</class>
+
+		</classes>
+	</test>  
+ 
+</suite> 

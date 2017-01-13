@@ -55,12 +55,12 @@ public class LoginPage extends AbstractBasePage {
 	}
 
 	//Functional
-	@Step("Get Login Input Text")
+	@Step("getLoginnameInputText")
 	public String getLoginnameInputText() {
 		return getLoginnameInput().getText();
 	}
 
-	@Step("Get Password Input Text")
+	@Step("getPasswordInputText")
 	public String getPasswordInputText() {
 		return getPasswordInput().getText();
 	}
@@ -135,7 +135,7 @@ public class LoginPage extends AbstractBasePage {
 		clickSubmitButton();
 	}
 
-	@Step("Set Login Data and reset")
+	@Step("setLoginDataAndReset")
 	public void setLoginDataAndReset(IUser user) {
 		setLoginnameInputClear(user.getLoginname());
 		setPasswordInputClear(user.getPassword());

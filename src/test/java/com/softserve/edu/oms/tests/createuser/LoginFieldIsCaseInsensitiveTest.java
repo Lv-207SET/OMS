@@ -56,8 +56,9 @@
 	@Severity(SeverityLevel.CRITICAL)
     @Description("This test case verifies that 'Login Name' is case insensitive while creating new user.")
 
+
     @Test(dataProvider = "admAndNonExistingUser")
-    @Step("Login field is case insensitive Test")
+    @Step("LoginFieldIsCaseInsensitiveTest")
     public void loginFieldIsCaseInsensitiveTest(IUser admUser, IUser nonExistingUser) {
 
         innerStep("Login and go to Create New User Page");
@@ -102,13 +103,14 @@
         }
 
         @Test(dataProvider = "admAndNonExistingUser")
-        @Step("Delete user from DB after test running")
+        @Step("delete user from DB")
         public void deleteUserFromDB(IUser admUser, IUser nonExistingUser){
+
+        innerStep("Delete previously created test user from DB");
 
         DBUtils dbUtils = new DBUtils();
         String nonExistingLogin = nonExistingUser.getLoginname();
         if (dbUtils.verifyThatUserIsInDB(nonExistingLogin)) {
-            innerStep("Delete previously created test user from DB");
             dbUtils.deleteUsersFromDB(SQLQueries.DELETE_USER_BY_LOGIN.getQuery(),
                     nonExistingUser.getLoginname());
         }

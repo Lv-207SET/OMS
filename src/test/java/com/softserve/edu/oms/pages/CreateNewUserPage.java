@@ -16,7 +16,7 @@ public class CreateNewUserPage extends AbstractUserDataPage {
     }
 
     //set data
-    @Step("Set Login Input")
+    @Step("setLoginInput")
     public CreateNewUserPage setLoginInput(String login) {
         getLoginInput().clear();
         getLoginInput().sendKeys(login);
@@ -24,31 +24,31 @@ public class CreateNewUserPage extends AbstractUserDataPage {
         return this;
     }
 
-    @Step("Set FirstName Input")
+    @Step("setFirstNameInput")
     public CreateNewUserPage setFirstNameInput(String firstName) {
         super.setFirstNameInput(firstName);
         return this;
     }
 
-    @Step("Set LastName Input")
+    @Step("setLastNameInput")
     public CreateNewUserPage setLastNameInput(String lastName) {
         super.setLastNameInput(lastName);
         return this;
     }
 
-    @Step("Set Password Input")
+    @Step("setPasswordInput")
     public CreateNewUserPage setPasswordInput(String password) {
         super.setPasswordInput(password);
         return this;
     }
 
-    @Step("Set Confirm Password Input")
+    @Step("setConfirmPasswordInput")
     public CreateNewUserPage setConfirmPasswordInput(String confirmPassword) {
         super.setConfirmPasswordInput(confirmPassword);
         return this;
     }
 
-    @Step("Set Email Input")
+    @Step("setEmailInput")
     public CreateNewUserPage setEmailInput(String email) {
         super.setEmailInput(email);
         return this;
@@ -96,7 +96,7 @@ public class CreateNewUserPage extends AbstractUserDataPage {
         return this;
     }
 
-    @Step("Click Create Button")
+    @Step("clickCreateButton")
     public CreateNewUserPage clickCreateButton() {
         super.clickCreateButton();
         return this;
@@ -106,6 +106,7 @@ public class CreateNewUserPage extends AbstractUserDataPage {
         super.clickCancelButton();
         return this;
     }
+
 
     // business logic
     public CreateNewUserPage setLoginData(IUser user) {

@@ -230,17 +230,17 @@ public abstract class AbstractAdminReportPage extends AbstractBasePage {
 		return getUserByLogin().getText();
 	}
 
-	@Step("Get Found Users Number")
+	@Step("getFoundUsersNumber")
 	public int getFoundUsersNumber() {
 		return Integer.parseInt(getUsersFoundText());
 	}
 
-	@Step("Get pages quantity")
+	@Step("getPagesQuantity")
 	public int getPagesQuantity() {
 		return Integer.parseInt(getPageCountSpanText());
 	}
 
-	@Step("Get current page number")
+	@Step("getCurrentPageNumber")
 	public int getCurrentPageNumber() {
 		return Integer.parseInt(getPageNumberSpanText());
 	}
@@ -256,18 +256,34 @@ public abstract class AbstractAdminReportPage extends AbstractBasePage {
 	}
 
 	// Check if navigation buttons is enabled
+<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractAdminReportPage.java
+=======
+	@Step("isForwardButtonEnabled")
+>>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AAdminReportPage.java
 	public boolean isForwardButtonEnabled() {
 		return getForwardButton().isEnabled();
 	}
 
+<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractAdminReportPage.java
+=======
+	@Step("isLastButtonEnabled")
+>>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AAdminReportPage.java
 	public boolean isLastButtonEnabled() {
 		return getLastButton().isEnabled();
 	}
 
+<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractAdminReportPage.java
+=======
+	@Step("isBackwardButtonEnabled")
+>>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AAdminReportPage.java
 	public boolean isBackwardButtonEnabled() {
 		return getBackwardButton().isEnabled();
 	}
 
+<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractAdminReportPage.java
+=======
+	@Step("isFirstButtonEnabled")
+>>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AAdminReportPage.java
 	public boolean isFirstButtonEnabled() {
 		return getFirstButton().isEnabled();
 	}
@@ -294,25 +310,25 @@ public abstract class AbstractAdminReportPage extends AbstractBasePage {
 		getRegionLink().click();
 	}
 
-	@Step("Click First Button")
+	@Step("clickFirstButton")
 	public void clickFirstButton() {
 		getFirstButton().click();
 		logger.info("First button is clicked");
 	}
 
-	@Step("Click Backward Button")
+	@Step("clickBackwardButton")
 	public void clickBackwardButton() {
 		getBackwardButton().click();
 		logger.info("Backward button is clicked");
 	}
 
-	@Step("Click Forward Button")
+	@Step("clickForwardButton")
 	public void clickForwardButton() {
 		getForwardButton().click();
 		logger.info("Forward button is clicked");
 	}
 
-	@Step("Click Last Button")
+	@Step("clickLastButton")
 	public void clickLastButton() {
 		getLastButton().click();
 		logger.info("Last button is clicked");
@@ -495,6 +511,20 @@ public abstract class AbstractAdminReportPage extends AbstractBasePage {
 		return this;
 	}
 
+<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractAdminReportPage.java
+=======
+	/**
+	 * Execute wait from super class and stay on current page
+	 */
+	@Override
+	public AAdminReportPage waitForLoad() {
+		super.waitForLoad();
+		return this;
+
+	}
+
+	// Get list of users from current page
+>>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AAdminReportPage.java
 	@Step("Get list of users from current page")
 	public List<User> getUsersFromCurrentPage() {
 		final List<User> userListFormCurrentPage = new ArrayList<>();
@@ -574,6 +604,7 @@ public abstract class AbstractAdminReportPage extends AbstractBasePage {
 			textofLastNames[i] = lastNames.get(i).getText().trim();
 			textOfRoles[i] = roles.get(i).getText().trim();
 			textOfRegions[i] = regions.get(i).getText().trim();
+			//System.out.println(textOfRoles[i]+"  "+textOfRegions[i]);
 		}
 
 		DBUtils dbUtility = new DBUtils();

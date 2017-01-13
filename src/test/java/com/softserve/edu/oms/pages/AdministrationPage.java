@@ -19,6 +19,7 @@ public class AdministrationPage extends AbstractAdminReportPage {
 	}
 
     /**
+     *
      * Delete user by login. Administrator set Fields filter on User Name,
      * set condition filter on equals input login of desired user who should be deleted into
      * search text field and click search button
@@ -130,7 +131,7 @@ public class AdministrationPage extends AbstractAdminReportPage {
     /**
      * Ascending sorting grid on Administration page by Region column
      */
-    @Step("Ascending sorting grid on Administration page by Region column")
+    @Step(" Ascending sorting grid on Administration page by Region column")
     @Override
     public AdministrationPage sortByRegionASC(){
         super.sortByRegionASC();
@@ -162,6 +163,7 @@ public class AdministrationPage extends AbstractAdminReportPage {
 	public boolean showItemsLinkIsDisplayed () {
 		return this.getShowItemsLink().isDisplayed();
 	}
+
 
     /**
      * Find user and return EditUserPage for user editing

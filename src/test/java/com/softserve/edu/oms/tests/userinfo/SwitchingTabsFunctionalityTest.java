@@ -38,9 +38,10 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
  			+ " (opened by default) and 'Administration' tab after login and can switch between them")
 
     @Test(dataProvider = "admUser")
-    @Step("Tab Switching Test")
+    @Step("TabSwitchingTest")
     public void tabSwitchingTest(IUser admUser) {
 
+        innerStep("Log in as Administrator");
         AdminHomePage admHomeUserPage = loginPage.successAdminLogin(admUser);
 
         innerStep("Verify that 'User Info' tab is active");

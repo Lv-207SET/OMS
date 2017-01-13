@@ -62,6 +62,10 @@ public abstract class AbstractUserDataPage extends AbstractBasePage {
 	}
 
 <<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractUserDataPage.java
+<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractUserDataPage.java
+=======
+	@Step("Getting Create new user button")
+>>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AUserDataPage.java
 =======
 	@Step("Getting Create new user button")
 >>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AUserDataPage.java
@@ -92,6 +96,10 @@ public abstract class AbstractUserDataPage extends AbstractBasePage {
 	}
 
 <<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractUserDataPage.java
+<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractUserDataPage.java
+=======
+	@Step("getConfirmPasswordErrorMessage")
+>>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AUserDataPage.java
 =======
 	@Step("getConfirmPasswordErrorMessage")
 >>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AUserDataPage.java
@@ -162,6 +170,10 @@ public abstract class AbstractUserDataPage extends AbstractBasePage {
 	}
 
 <<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractUserDataPage.java
+<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractUserDataPage.java
+=======
+	@Step("getConfirmPasswordErrorMessageText")
+>>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AUserDataPage.java
 =======
 	@Step("getConfirmPasswordErrorMessageText")
 >>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AUserDataPage.java

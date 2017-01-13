@@ -87,8 +87,8 @@
                 .setPasswordInput(nonExistingUser.getPassword())
                 .setConfirmPasswordInput(nonExistingUser.getPassword())
                 .setEmailInput(nonExistingUser.getEmail())
-                .clickCreateButton()
-                .acceptAlert();
+                .successCreateNewUser();
+
 
         innerStep("Entering the reverse case login to verify error message will appear");
         CreateNewUserPage newUserPageAgain = new AdministrationPage(driver)

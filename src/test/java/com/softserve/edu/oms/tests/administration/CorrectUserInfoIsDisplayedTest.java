@@ -6,16 +6,12 @@
     import com.softserve.edu.oms.data.UserRepository;
     import com.softserve.edu.oms.pages.AdministrationPage;
     import com.softserve.edu.oms.tests.TestRunner;
+    import org.slf4j.Logger;
+    import org.slf4j.LoggerFactory;
     import org.testng.Assert;
     import org.testng.annotations.DataProvider;
     import org.testng.annotations.Test;
-
-    import ru.yandex.qatools.allure.annotations.Description;
-    import ru.yandex.qatools.allure.annotations.Features;
-    import ru.yandex.qatools.allure.annotations.Severity;
-    import ru.yandex.qatools.allure.annotations.Step;
-    import ru.yandex.qatools.allure.annotations.Stories;
-    import ru.yandex.qatools.allure.annotations.TestCaseId;
+    import ru.yandex.qatools.allure.annotations.*;
     import ru.yandex.qatools.allure.model.SeverityLevel;
 
     import java.util.List;
@@ -24,6 +20,8 @@
     @Stories("LVSETOMS-4 As Admin I want to see all existing users "
             + "and perform user searching on the 'Administration' tab so I can manage them")
     public class CorrectUserInfoIsDisplayedTest extends TestRunner{
+
+        public static final Logger logger = LoggerFactory.getLogger(CorrectUserInfoIsDisplayedTest.class);
 
         @DataProvider
         public Object[][] admUser() {
@@ -59,6 +57,8 @@
         @Step("CorrectUserInfoIsDisplayedTest")
         public void correctUserInfoIsDisplayedTest(IUser admUser) {
 
+            logger.info("Test correctUserInfoIsDisplayed started");
+
             innerStep("Log in and go to users.html page");
             AdministrationPage administrationPage = loginPage
                     .successAdminLogin(admUser)
@@ -86,5 +86,7 @@
             for(int i = 0; i<usersFromPage.size();i++){
                 Assert.assertTrue(usersFromDB.get(i).CompareTo(usersFromPage.get(i)));
             }
+
+            logger.info("Test correctUserInfoIsDisplayedTest finished");
         }
     }

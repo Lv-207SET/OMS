@@ -1,20 +1,24 @@
     package com.softserve.edu.oms.tests.userinfo;
 
     import com.softserve.edu.oms.data.IUser;
-import com.softserve.edu.oms.data.UserRepository;
-import com.softserve.edu.oms.pages.AdminHomePage;
-import com.softserve.edu.oms.tests.TestRunner;
-import org.testng.Assert;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.*;
-import ru.yandex.qatools.allure.model.SeverityLevel;
+    import com.softserve.edu.oms.data.UserRepository;
+    import com.softserve.edu.oms.pages.AdminHomePage;
+    import com.softserve.edu.oms.tests.TestRunner;
+    import org.slf4j.Logger;
+    import org.slf4j.LoggerFactory;
+    import org.testng.Assert;
+    import org.testng.annotations.DataProvider;
+    import org.testng.annotations.Test;
+    import ru.yandex.qatools.allure.annotations.*;
+    import ru.yandex.qatools.allure.model.SeverityLevel;
 
     @Features("Administration")
     @Stories("LVSETOMS-2 As an Admin I want to see 'Administration' "
     		+ "and 'User Info' tab after login so I can create & manage users")
 
     public class SwitchingTabsFunctionalityTest extends TestRunner {
+
+        public static final Logger logger = LoggerFactory.getLogger(SwitchingTabsFunctionalityTest.class);
 
     @DataProvider
     public Object[][] admUser() {
@@ -40,6 +44,8 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
     @Test(dataProvider = "admUser")
     @Step("TabSwitchingTest")
     public void tabSwitchingTest(IUser admUser) {
+
+        logger.info("Test tabSwitching started");
 
         innerStep("Log in as Administrator");
         AdminHomePage admHomeUserPage = loginPage.successAdminLogin(admUser);
@@ -67,5 +73,7 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
 
         innerStep("Verify that we are at User Info page");
         Assert.assertTrue((driver.getCurrentUrl()).contains("userInfo.htm"));
+
+        logger.info("Test tabSwitching finished");
     }
     }

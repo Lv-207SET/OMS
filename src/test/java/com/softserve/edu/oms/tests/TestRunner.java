@@ -53,7 +53,6 @@ public class TestRunner {
 		// final String loginPageUrl = "http://ssu-oms.training.local:8180/OMS/";
 
 		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 
 		driver.get(loginPageUrl);

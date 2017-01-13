@@ -256,66 +256,18 @@ public abstract class AbstractAdminReportPage extends AbstractBasePage {
 	}
 
 	// Check if navigation buttons is enabled
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractAdminReportPage.java
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractAdminReportPage.java
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractAdminReportPage.java
-=======
-	@Step("isForwardButtonEnabled")
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AAdminReportPage.java
-=======
-	@Step("isForwardButtonEnabled")
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AAdminReportPage.java
-=======
-	@Step("isForwardButtonEnabled")
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AAdminReportPage.java
 	public boolean isForwardButtonEnabled() {
 		return getForwardButton().isEnabled();
 	}
 
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractAdminReportPage.java
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractAdminReportPage.java
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractAdminReportPage.java
-=======
-	@Step("isLastButtonEnabled")
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AAdminReportPage.java
-=======
-	@Step("isLastButtonEnabled")
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AAdminReportPage.java
-=======
-	@Step("isLastButtonEnabled")
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AAdminReportPage.java
 	public boolean isLastButtonEnabled() {
 		return getLastButton().isEnabled();
 	}
 
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractAdminReportPage.java
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractAdminReportPage.java
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractAdminReportPage.java
-=======
-	@Step("isBackwardButtonEnabled")
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AAdminReportPage.java
-=======
-	@Step("isBackwardButtonEnabled")
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AAdminReportPage.java
-=======
-	@Step("isBackwardButtonEnabled")
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AAdminReportPage.java
 	public boolean isBackwardButtonEnabled() {
 		return getBackwardButton().isEnabled();
 	}
 
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractAdminReportPage.java
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractAdminReportPage.java
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractAdminReportPage.java
-=======
-	@Step("isFirstButtonEnabled")
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AAdminReportPage.java
-=======
-	@Step("isFirstButtonEnabled")
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AAdminReportPage.java
-=======
-	@Step("isFirstButtonEnabled")
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AAdminReportPage.java
 	public boolean isFirstButtonEnabled() {
 		return getFirstButton().isEnabled();
 	}
@@ -543,26 +495,9 @@ public abstract class AbstractAdminReportPage extends AbstractBasePage {
 		return this;
 	}
 
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractAdminReportPage.java
-=======
-	/**
-	 * Execute wait from super class and stay on current page
-	 */
-	@Override
-	public AAdminReportPage waitForLoad() {
-		super.waitForLoad();
-		return this;
-
-	}
 
 	// Get list of users from current page
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractAdminReportPage.java
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractAdminReportPage.java
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AAdminReportPage.java
-=======
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AAdminReportPage.java
-=======
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AAdminReportPage.java
+
 	@Step("Get list of users from current page")
 	public List<User> getUsersFromCurrentPage() {
 		final List<User> userListFormCurrentPage = new ArrayList<>();

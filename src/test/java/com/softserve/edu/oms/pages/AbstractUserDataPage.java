@@ -10,7 +10,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
@@ -61,18 +60,6 @@ public abstract class AbstractUserDataPage extends AbstractBasePage {
 		return this.driver.findElements(ROLE_RADIO_BUTTON.by);
 	}
 
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractUserDataPage.java
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractUserDataPage.java
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractUserDataPage.java
-=======
-	@Step("Getting Create new user button")
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AUserDataPage.java
-=======
-	@Step("Getting Create new user button")
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AUserDataPage.java
-=======
-	@Step("Getting Create new user button")
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AUserDataPage.java
 	public WebElement getCreateButton() {
 		return this.driver.findElement(CREATE_BUTTON.by);
 	}
@@ -99,18 +86,6 @@ public abstract class AbstractUserDataPage extends AbstractBasePage {
 		return this.waitForElement(ERROR_PASSWORD.by);
 	}
 
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractUserDataPage.java
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractUserDataPage.java
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractUserDataPage.java
-=======
-	@Step("getConfirmPasswordErrorMessage")
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AUserDataPage.java
-=======
-	@Step("getConfirmPasswordErrorMessage")
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AUserDataPage.java
-=======
-	@Step("getConfirmPasswordErrorMessage")
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AUserDataPage.java
 	public WebElement getConfirmPasswordErrorMessage() {
 		return this.waitForElement(ERROR_CONFIRM_PASSWORD.by);
 	}
@@ -177,18 +152,6 @@ public abstract class AbstractUserDataPage extends AbstractBasePage {
 		return getPasswordErrorMessage().getText();
 	}
 
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractUserDataPage.java
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractUserDataPage.java
-<<<<<<< HEAD:src/test/java/com/softserve/edu/oms/pages/AbstractUserDataPage.java
-=======
-	@Step("getConfirmPasswordErrorMessageText")
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AUserDataPage.java
-=======
-	@Step("getConfirmPasswordErrorMessageText")
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AUserDataPage.java
-=======
-	@Step("getConfirmPasswordErrorMessageText")
->>>>>>> parent of edfbf3a... Corrected all Steps avaivable:src/test/java/com/softserve/edu/oms/pages/AUserDataPage.java
 	public String getConfirmPasswordErrorMessageText() {
 		return getConfirmPasswordErrorMessage().getText();
 	}

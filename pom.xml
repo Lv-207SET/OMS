@@ -22,7 +22,7 @@
 		<mysql.connector.version>5.1.37</mysql.connector.version>
 		<postgresql.connector.version>9.4-1200-jdbc41</postgresql.connector.version>
 		<!-- - - - - - Test - - - - - -->
-		<org.testng.version>6.8</org.testng.version>
+		<org.testng.version>6.9.9</org.testng.version>
 		<testng.reports.directory>./target/surefire-reports/test-output</testng.reports.directory>
 		<maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
 		<allure-maven-plugin.version>2.5</allure-maven-plugin.version>

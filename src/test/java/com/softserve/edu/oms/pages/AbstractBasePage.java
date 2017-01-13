@@ -25,7 +25,7 @@ public abstract class AbstractBasePage {
 
         //waiting for the last elem on the page to load
         //thus ensuring the whole page is ready to work with
-        waitForLoad();
+       waitForLoad();
     }
 
     // get Data

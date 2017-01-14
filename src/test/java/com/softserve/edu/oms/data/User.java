@@ -104,7 +104,8 @@
         }
 
         @Step("Compare two users")
-        public boolean CompareTo (User user){
+        @Override
+        public boolean CompareTo (IUser user){
             return this.getLoginname().equals(user.getLoginname())
                 && this.getFirstname().equals(user.getFirstname())
                 && this.getLastname().equals(user.getLastname())

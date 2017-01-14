@@ -21,10 +21,7 @@ public class TestRunner {
 	protected WebDriver driver;
 	protected LoginPage loginPage;
 
-	@BeforeMethod
-	public void onStart(ITestContext testContext) {
-		testContext.setAttribute("WebDriver", this.driver);
-	}
+
 
 	/**
 	 * Logger method for Allure Framework. This method is used for inserting
@@ -65,10 +62,13 @@ public class TestRunner {
 
 		//clicks logout button in the end of every test class
 		//to ensure site availability
-		driver.get(System.getenv("oms_loginPageUrl"));
-		(new LoginPage(driver)).logout();
-
+		loginPage.logout();
 		driver.quit();
+	}
+
+	@BeforeMethod
+	public void onStart(ITestContext testContext) {
+		testContext.setAttribute("WebDriver", this.driver);
 	}
 
 }

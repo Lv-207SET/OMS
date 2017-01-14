@@ -1,8 +1,8 @@
 package com.softserve.edu.oms.pages;
 
+import com.softserve.edu.oms.data.IUser;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import com.softserve.edu.oms.data.IUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.yandex.qatools.allure.annotations.Step;
@@ -77,7 +77,7 @@ public class LoginPage extends AbstractBasePage {
 	public String getBadCredentialsErrorMessageText() {
 		return this.getBadCredentialsErrorMessage().getText();
 	}
-	
+
 	private void clearLoginnameInput() {
         getLoginnameInput().clear();
     }

@@ -6,13 +6,13 @@
 		value="C:/Program Files (x86)/Google/Chrome/Application/chromedriver.exe" />
 	<test name="Test1">
 		<classes>
-			<!--<class name="com.softserve.edu.oms.tests.administration.FindingTest">-->
-				<!--<methods>-->
-					<!--<include name="verifySearchLastName" />-->
-					<!--<include name="verifySearchLoginName" />-->
-					<!--<include name="verifySearchRole" />-->
-				<!--</methods>-->
-			<!--</class>-->
+			<class name="com.softserve.edu.oms.tests.administration.FindingTest">
+				<methods>
+					<include name="verifySearchLastName" />
+					<include name="verifySearchLoginName" />
+					<include name="verifySearchRole" />
+				</methods>
+			</class>
 			<class name="com.softserve.edu.oms.tests.administration.ChangeNumberOfUsersTest">
 				<methods>
 					<include name="verifyChangePageNumber" />

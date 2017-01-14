@@ -1,6 +1,7 @@
 package com.softserve.edu.oms.tests;
 
 import JavaRestClient.Annotations.TransferToJiraImplementation;
+import JavaRestClient.TestResultsListener;
 import JavaRestClient.ZephyrRestClient;
 import com.softserve.edu.oms.pages.LoginPage;
 import org.apache.commons.lang.SystemUtils;
@@ -8,6 +9,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -18,6 +22,7 @@ public class TestRunner {
     protected WebDriver driver;
     protected LoginPage loginPage;
 
+
     @BeforeClass
     public void oneTimeSetUp() {
 
@@ -25,18 +30,16 @@ public class TestRunner {
         final String driverPath = "src/test/resources/drivers/";
 
         //Determine which OS: Linux or Windows and locating chromedriver accordingly
-        if(SystemUtils.IS_OS_WINDOWS) {
+        if (SystemUtils.IS_OS_WINDOWS) {
 
             System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver.exe");
-        }
-        else if(SystemUtils.IS_OS_LINUX) {
+        } else if (SystemUtils.IS_OS_LINUX) {
             System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver");
-        }
-        else {
+        } else {
             throw new RuntimeException("Your OS is not supported");
         }
 
-        final String loginPageUrl= System.getenv("oms_loginPageUrl");
+        final String loginPageUrl = System.getenv("oms_loginPageUrl");
 
 
         driver = new ChromeDriver();
@@ -55,11 +58,13 @@ public class TestRunner {
 
 //      Creating new cycle with desired parameters
         ZephyrRestClient.getInstance().setUpConnectionWithZapi();
-        ZephyrRestClient.getInstance().createNewCycle("Java","First","4/Dec/17","10001",
-                "10100","4/Dec/18","Windows 10");
+        ZephyrRestClient.getInstance().createNewCycle("Java", "First", "4/Dec/17", "10001",
+                "10100", "4/Dec/18", "Windows 10");
 //      Annotation Initialization
         TransferToJiraImplementation.getAnnotatedMethods();
-    }
+//    Create test cases
+        ZephyrRestClient.createTestCase();
+}
 
     @AfterClass
     public void oneTimeTearDown(){
@@ -67,6 +72,6 @@ public class TestRunner {
         loginPage.logout();
         driver.quit();
     }
-    
+
 }
 

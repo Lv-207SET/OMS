@@ -270,9 +270,9 @@ public abstract class AbstractUserDataPage extends AbstractBasePage {
 	 * Precondition of inputting valid data should be met when using this method.
 	 */
 	protected void waitForInputErrorsToDisappear() {
-		if (waitForElemToDisappear(AbstractUserDataPageLocators.ERROR_PASSWORD.by)
-				&& waitForElemToDisappear(AbstractUserDataPageLocators.ERROR_CONFIRM_PASSWORD.by)
-				&& waitForElemToDisappear(AbstractUserDataPageLocators.ERROR_EMAIL.by)) {
+		if (waitForElementToDisappear(AbstractUserDataPageLocators.ERROR_PASSWORD.by)
+				&& waitForElementToDisappear(AbstractUserDataPageLocators.ERROR_CONFIRM_PASSWORD.by)
+				&& waitForElementToDisappear(AbstractUserDataPageLocators.ERROR_EMAIL.by)) {
 			System.out.println("**************Input errors disappeared**************");
 		} else {
 			throw new RuntimeException("Waiting for input errors to disappear failed!");

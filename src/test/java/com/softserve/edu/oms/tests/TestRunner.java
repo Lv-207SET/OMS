@@ -49,8 +49,7 @@ public class TestRunner {
 			throw new RuntimeException("Your OS is not supported");
 		}
 
-		 final String loginPageUrl= System.getenv("oms_loginPageUrl");
-		// final String loginPageUrl = "http://ssu-oms.training.local:8180/OMS/";
+		final String loginPageUrl= System.getenv("oms_loginPageUrl");
 
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
@@ -62,8 +61,12 @@ public class TestRunner {
 
 	@AfterClass
 	public void oneTimeTearDown() {
+
+		//clicks logout button in the end of every test class
+		//to ensure site availability
 		driver.get(System.getenv("oms_loginPageUrl"));
-		loginPage.logout();
+		(new LoginPage(driver)).logout();
+
 		driver.quit();
 	}
 

@@ -141,7 +141,7 @@ public abstract class AbstractBasePage {
      * This method is used to wait for elements to become visible.
      * Mainly used in getters.
      */
-    public WebElement waitForElement (final By by){
+    protected WebElement waitForElement (final By by){
         WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver, 5)
                 .pollingEvery(1, TimeUnit.SECONDS)
                 .ignoring(StaleElementReferenceException.class)
@@ -153,7 +153,7 @@ public abstract class AbstractBasePage {
      * This method is used to wait for elements, usually input errors,
      * to disappear when there is a precondition of valid data input.
      */
-    public boolean waitForElemToDisappear(final By by) {
+    protected boolean waitForElementToDisappear(final By by) {
         WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver, 5)
                 .pollingEvery(1, TimeUnit.SECONDS)
                 .ignoring(StaleElementReferenceException.class)

@@ -9,6 +9,7 @@ import com.softserve.edu.oms.tests.login.LoginWithEmptyCredentialsTest;
 import org.hamcrest.CoreMatchers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import ru.yandex.qatools.allure.annotations.Description;
@@ -68,8 +69,8 @@ import static org.testng.Assert.assertTrue;
 
             innerStep("Verification that 5 records are displayed in a table"); 
             // Verification that 5 records are displayed in a table
-            assertThat(administrationPage.getQuantityOfUsersPerPage() ,
-                    CoreMatchers.equalTo(UsersPerPage.FIVE.getResultsPerPage()));
+            Assert.assertEquals(administrationPage.getQuantityOfUsersPerPage(),
+                    UsersPerPage.FIVE.getResultsPerPage());
 
             innerStep("Verification that 'Show 10 items' link is displayed");
             // Verification that 'Show 10 items' link is displayed
@@ -77,8 +78,7 @@ import static org.testng.Assert.assertTrue;
 
             innerStep("Verification that 'Show 10 items' link has correct name");
             // Verification that 'Show 10 items' link has correct name
-            assertThat(administrationPage.getShowItemsLinkText(),
-                    CoreMatchers.equalTo(SHOW_10_ITEMS_LINK.name));
+            Assert.assertEquals(administrationPage.getShowItemsLinkText(), SHOW_10_ITEMS_LINK.name);
 
             // Count number of pages
             double pagesNumber = administrationPage.getFoundUsersNumber() / (UsersPerPage.FIVE.getResultsPerPage() * 1.0);
@@ -86,14 +86,14 @@ import static org.testng.Assert.assertTrue;
             
             // Verification that correct number of pages displayed
             innerStep("Verification that correct number of pages displayed");
-            assertThat(administrationPage.getPagesQuantity(), CoreMatchers.equalTo((int)Math.ceil(pagesNumber)));
+            Assert.assertEquals(administrationPage.getPagesQuantity(),(int)Math.ceil(pagesNumber));
 
             administrationPage.changeQuantityOfUsersPerPage();
 
             // Verification that 10 records are displayed in a table
             innerStep("Verification that 10 records are displayed in a table");
-            assertThat(administrationPage.getQuantityOfUsersPerPage() ,
-                    CoreMatchers.equalTo(UsersPerPage.TEN.getResultsPerPage()));
+            Assert.assertEquals(administrationPage.getQuantityOfUsersPerPage() ,
+                    UsersPerPage.TEN.getResultsPerPage());
 
             // Count number of pages
             innerStep("Count number of pages");
@@ -101,7 +101,7 @@ import static org.testng.Assert.assertTrue;
 
             // Verification that correct number of pages displayed
             innerStep("Verification that correct number of pages displayed");
-            assertThat(administrationPage.getPagesQuantity(), CoreMatchers.equalTo((int)Math.ceil(pagesNumber)));
+            Assert.assertEquals(administrationPage.getPagesQuantity(), (int)Math.ceil(pagesNumber));
 
             logger.info("Test verifyChangeUserNumberPerPage done");
         }

@@ -5,9 +5,9 @@ import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.UserRepository;
 import com.softserve.edu.oms.pages.CreateNewUserPage;
 import com.softserve.edu.oms.tests.TestRunner;
-import org.hamcrest.CoreMatchers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.*;
@@ -15,7 +15,6 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
 
 import static com.softserve.edu.oms.enums.ErrorMessagesEnum.FIRST_NAME_ERROR_MESSAGE;
 import static com.softserve.edu.oms.enums.ErrorMessagesEnum.LAST_NAME_ERROR_MESSAGE;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * This test verifies that error messages are shown when we creating new user
@@ -70,19 +69,17 @@ public class CreateInvalidNewUserTest extends TestRunner {
 
 		// Verify that correct message displays near 'First Name' field
 		innerStep("Verify that correct message displays near 'First Name' field");
-		assertThat(createNewUserPage.getFirstNameErrorMessageText(),
-				CoreMatchers.equalTo(FIRST_NAME_ERROR_MESSAGE.message));
+		Assert.assertEquals(createNewUserPage.getFirstNameErrorMessageText(), FIRST_NAME_ERROR_MESSAGE.message);
 
 		// Verify that correct message displays near 'Last Name' field
 		innerStep("Verify that correct message displays near 'Last Name' field");
-		assertThat(createNewUserPage.getLastNameErrorMessageText(),
-				CoreMatchers.equalTo(LAST_NAME_ERROR_MESSAGE.message));
+		Assert.assertEquals(createNewUserPage.getLastNameErrorMessageText(), LAST_NAME_ERROR_MESSAGE.message);
 
 		DBUtils dbUtils = new DBUtils();
 
 		// Verify that user with invalid 'First Name' and 'Last Name' is not created
 		innerStep("Verify that user with invalid 'First Name' and 'Last Name' is not created");
-		assertThat(dbUtils.getUserByLogin(user.getLoginname()), CoreMatchers.equalTo(null));
+		Assert.assertFalse(dbUtils.verifyThatUserIsInDB(user.getLoginname()));
 
 		logger.info("Test verifyErrorMessageCreatingUserWithInvalidData done");
 	}

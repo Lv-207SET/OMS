@@ -1,23 +1,14 @@
 package com.softserve.edu.oms.tests.login;
 
 import com.softserve.edu.oms.tests.TestRunner;
-import com.softserve.edu.oms.tests.createuser.CreateInvalidNewUserTest;
-import org.hamcrest.CoreMatchers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.Features;
-import ru.yandex.qatools.allure.annotations.Severity;
-import ru.yandex.qatools.allure.annotations.Step;
-import ru.yandex.qatools.allure.annotations.Stories;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
+import ru.yandex.qatools.allure.annotations.*;
 import ru.yandex.qatools.allure.model.SeverityLevel;
 
 import static com.softserve.edu.oms.enums.ErrorMessagesEnum.ERROR_MESSAGE;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Test verifies that error message is shown,
@@ -59,7 +50,7 @@ public  class LoginWithEmptyCredentialsTest extends TestRunner {
 
         // Verify that error message is correct
         innerStep("Verify that error message is correct");
-        assertThat(currentErrorMessage, CoreMatchers.equalTo(ERROR_MESSAGE.message));
+        Assert.assertEquals(currentErrorMessage, ERROR_MESSAGE.message);
 
         logger.info("Test verifyErrorMessageWhenUserLoginWithEmptyCredentials done");
     }

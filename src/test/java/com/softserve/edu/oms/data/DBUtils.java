@@ -2,6 +2,8 @@ package com.softserve.edu.oms.data;
 
 import com.softserve.edu.oms.enums.ErrorMessagesEnum;
 import com.softserve.edu.oms.enums.SQLQueries;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.sql.*;
@@ -19,6 +21,8 @@ public class DBUtils {
     private String username = System.getenv("db_username");
     private String password = System.getenv("db_password");
     private String url = System.getenv("db_url");
+
+    public static final Logger logger = LoggerFactory.getLogger(DBUtils.class);
 
     /**
      * Method, which creates connection with Database
@@ -73,10 +77,9 @@ public class DBUtils {
                 rowCells = new ArrayList<>();
                 for (int i = 1; i <= columnCount; i++) {
                     rowCells.add(resultSet.getString(i));
-                    System.out.print("+++\t" + resultSet.getString(i) + "\t");
+                    logger.info("+++\t" + resultSet.getString(i) + "\t");
                 }
                 allCells.add(rowCells);
-                System.out.println();
             }
             closeConnection(connection, statement, resultSet);
         } catch (Exception e) {
@@ -134,7 +137,6 @@ public class DBUtils {
                     resultSet = statement.executeQuery();
                     break;
             }
-//                    resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 listOfOneColumn.add(resultSet.getString(1));
             }

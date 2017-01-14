@@ -1,5 +1,6 @@
 package com.softserve.edu.oms.tests.createuser;
 
+import JavaRestClient.Annotations.TransferToJira;
 import com.softserve.edu.oms.data.DBUtils;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.UserRepository;
@@ -52,6 +53,7 @@ public class UserWithLongCredentialsCreationTest extends TestRunner{
     		+ "(longer than 13 characters) and password (longer than 10 characters).")
     @Test(dataProvider = "validUserAdministrator",alwaysRun = true)
     @Step("Verification of correctness validation messages while trying to create new user with long credentials")
+    @TransferToJira
     public void verifyCreateNewUserWithLongCredentials(IUser validUserAdministrator){
         AdminHomePage omsAdminHomePage = loginPage.successAdminLogin(validUserAdministrator);
         CreateNewUserPage omsСreateNewUserPage = omsAdminHomePage

@@ -1,5 +1,9 @@
 package com.softserve.edu.oms.tests.createuser;
 
+import JavaRestClient.Annotations.TransferToJiraImplementation;
+import JavaRestClient.TestResultsListener;
+import JavaRestClient.Annotations.TransferToJira;
+import JavaRestClient.ZephyrRestClient;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.UserRepository;
 import com.softserve.edu.oms.enums.ErrorMessagesEnum;
@@ -8,6 +12,7 @@ import com.softserve.edu.oms.pages.CreateNewUserPage;
 import com.softserve.edu.oms.tests.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import ru.yandex.qatools.allure.annotations.Description;
@@ -28,9 +33,8 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
  */
 @Features("Create New User")
 @Stories("LVSETOMS-3 As Administrator I want to create new user so he can log into the application")
-
+@Listeners(TestResultsListener.class)
 public class UserWithEmptyMandatoryFieldsCreationTest extends TestRunner {
-
     // Provides login and password of registered user
     // with an "Administrator" role
     @DataProvider
@@ -40,11 +44,13 @@ public class UserWithEmptyMandatoryFieldsCreationTest extends TestRunner {
         };
     }
 
+
     @TestCaseId("LVSETOMS-49")
 	@Severity(SeverityLevel.CRITICAL)
     @Description("This test case verifies that validation on empty mandatory fields works while creating new user.")
     @Test(dataProvider = "validUserAdministrator", alwaysRun = true)
     @Step("Checking if validation works on empty mandatory fields while creating new users")
+    @TransferToJira
     public void verifyErrorMessagesDuringUserCreation(IUser validUserAdministrator) {
         AdminHomePage omsAdminHomePage = loginPage.successAdminLogin(validUserAdministrator);
         CreateNewUserPage omsСreateNewUserPage = omsAdminHomePage

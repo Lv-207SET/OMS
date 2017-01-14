@@ -69,7 +69,7 @@ public abstract class AbstractUserDataPage extends AbstractBasePage {
 	}
 
 	public WebElement getLoginErrorMessage() {
-		return this.driver.findElement(ERROR_LOGIN.by);
+		return this.waitForElement(ERROR_LOGIN.by);
 	}
 
 	public WebElement getFirstNameErrorMessage() {

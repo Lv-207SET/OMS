@@ -59,6 +59,7 @@ public class UserWithLongCredentialsCreationTest extends TestRunner{
                 .gotoCreateNewUserPage()
                 .setLoginData(userWithLongCredentials)
                 .clickCreateButton()
+                .acceptAlert()
                 .acceptAlert();
 
 //        Check if correct messages appeared for required fields

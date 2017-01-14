@@ -13,7 +13,8 @@ import com.softserve.edu.oms.pages.LoginPage;
 import ru.yandex.qatools.allure.annotations.Step;
 
 /**
- * This class represents common functionality for all test classes
+ * This class sets up and tears down WebDriver.
+ * Test classes receive the functionality by inheriting this class.
  */
 public class TestRunner {
 
@@ -26,7 +27,7 @@ public class TestRunner {
 	}
 
 	/**
-	 * Logger method for Allure Framework. It method is used for inserting
+	 * Logger method for Allure Framework. This method is used for inserting
 	 * Allure Steps into different methods
 	 * 
 	 * @param stepMsg

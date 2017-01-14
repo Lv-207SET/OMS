@@ -1,6 +1,7 @@
 package com.softserve.edu.oms.pages;
 
 import com.softserve.edu.oms.data.DBUtils;
+import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.User;
 import com.softserve.edu.oms.enums.ConditionFilterDropdownList;
 import com.softserve.edu.oms.enums.FieldFilterDropdownList;
@@ -500,8 +501,8 @@ public abstract class AbstractAdminReportPage extends AbstractBasePage {
 	// Get list of users from current page
 
 	@Step("Get list of users from current page")
-	public List<User> getUsersFromCurrentPage() {
-		final List<User> userListFormCurrentPage = new ArrayList<>();
+	public List<IUser> getUsersFromCurrentPage() {
+		final List<IUser> userListFormCurrentPage = new ArrayList<>();
 		final WebElement table = getTableBody();
 		final List<WebElement> webElements = table.findElements(TR.by);
 		for (WebElement rows : webElements) {
@@ -521,10 +522,10 @@ public abstract class AbstractAdminReportPage extends AbstractBasePage {
 	 * Traverses every page and adds every user displayed
 	 * to the list
 	 */
-	public List<User> getAllUsers() {
+	public List<IUser> getAllUsers() {
 		clickFirstButton();
-		final List<User> usersOnAllPages = new ArrayList<>();
-		List<User> usersFromCurrentPage = this.getUsersFromCurrentPage();
+		final List<IUser> usersOnAllPages = new ArrayList<>();
+		List<IUser> usersFromCurrentPage = this.getUsersFromCurrentPage();
 		while (usersFromCurrentPage != null) {
 			usersOnAllPages.addAll(usersFromCurrentPage);
 			if (isForwardButtonEnabled()) {
@@ -541,7 +542,7 @@ public abstract class AbstractAdminReportPage extends AbstractBasePage {
 	 * Gets user by login and creates java object of class User
 	 * based on the data taken
 	 */
-	public User getUserByLoginAndTransferToJavaObject(String login) {
+	public IUser getUserByLoginAndTransferToJavaObject(String login) {
 		selectField(FieldFilterDropdownList.LOGIN);
 		selectCondition(ConditionFilterDropdownList.EQUALS);
 		search(login);

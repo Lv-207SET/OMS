@@ -1,11 +1,8 @@
 package com.softserve.edu.oms.pages;
 
-import com.softserve.edu.oms.data.User;
+import com.softserve.edu.oms.data.IUser;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import com.softserve.edu.oms.data.IUser;
-import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.yandex.qatools.allure.annotations.Step;
@@ -26,7 +23,6 @@ public class LoginPage extends AbstractBasePage {
 	//Class constructor
 	public LoginPage(WebDriver driver) {
 		super(driver);
-		waitForLoad();
 	}
 
 	//Getters
@@ -82,6 +78,14 @@ public class LoginPage extends AbstractBasePage {
 		return this.getBadCredentialsErrorMessage().getText();
 	}
 
+	private void clearLoginnameInput() {
+        getLoginnameInput().clear();
+    }
+
+    private void clearPasswordInput() {
+        getPasswordInput().clear();
+    }
+
 	public void setLoginnameInput(String login) {
 		getLoginnameInput().sendKeys(login);
         logger.info("Setting login " + login);
@@ -100,14 +104,6 @@ public class LoginPage extends AbstractBasePage {
 	private void setPasswordInputClear(String password) {
 		clearPasswordInput();
 		setPasswordInput(password);
-	}
-
-	private void clearLoginnameInput() {
-		getLoginnameInput().clear();
-	}
-
-	private void clearPasswordInput() {
-		getPasswordInput().clear();
 	}
 
 	public void clickSubmitButton() {
@@ -176,7 +172,7 @@ public class LoginPage extends AbstractBasePage {
 		return this;
 	}
 
-	@Step("Login with long credentials")
+	@Step("Login with empty credentials")
 	public LoginPage loginWithEmptyCredentials (){
 		this.clearLoginnameInput();
 		this.clearPasswordInput();

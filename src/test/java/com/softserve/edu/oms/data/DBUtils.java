@@ -142,7 +142,7 @@
 		/** Method, which gets user from Database by sqlquery.
 		 * @param login - value of Login
 		 */
-		public User getUserByLogin(String login) {
+		public IUser getUserByLogin(String login) {
 			User user = null;
 			Statement statement;
 			ResultSet resultSet;
@@ -243,9 +243,9 @@
 		/** Method, which gets list of first five users from Database by sqlquery.
 		 */
 		@Step("Get first five users from DB")
-		public List<User> getTopFiveUsers() {
+		public List<IUser> getTopFiveUsers() {
 
-			List<User> users = new ArrayList<>();
+			List<IUser> users = new ArrayList<>();
 			Statement statement;
 			ResultSet resultSet;
 
@@ -256,7 +256,7 @@
 				resultSet = statement.executeQuery(SQLQueries.GET_5_USERS_JOIN_ROLE.getQuery());
 
 				while (resultSet.next()) {
-					User user = new User(
+					IUser user = new User(
 							resultSet.getString(1),
 							resultSet.getString(2),
 							resultSet.getString(3),

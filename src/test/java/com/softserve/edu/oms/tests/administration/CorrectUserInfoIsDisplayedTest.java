@@ -2,7 +2,6 @@
 
     import com.softserve.edu.oms.data.DBUtils;
     import com.softserve.edu.oms.data.IUser;
-    import com.softserve.edu.oms.data.User;
     import com.softserve.edu.oms.data.UserRepository;
     import com.softserve.edu.oms.pages.AdministrationPage;
     import com.softserve.edu.oms.tests.TestRunner;
@@ -76,11 +75,11 @@
             Assert.assertEquals(numberOfFoundUsersFromDB, numberOfFoundUsersFromPage);
 
             innerStep("Read all users data displayed on page");
-            List<User> usersFromPage = administrationPage
+            List<IUser> usersFromPage = administrationPage
                     .getUsersFromCurrentPage();
 
             innerStep("Read top 5 users from DB");
-            List<User> usersFromDB = dbUtils.getTopFiveUsers();
+            List<IUser> usersFromDB = dbUtils.getTopFiveUsers();
 
             innerStep("Verify that users in DB are the same as users on page");
             for(int i = 0; i<usersFromPage.size();i++){

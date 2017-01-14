@@ -16,4 +16,5 @@
 
 		String getRole();
 
+		boolean CompareTo (IUser user);
 	}

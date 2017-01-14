@@ -18,7 +18,6 @@
 			return instance;
 		}
 
-
 		public IUser adminUser() {
 			return new User("noneiva", "noneivanka", "nonehoroshko", "qwerty",
 					"mail@gmail.com", "West", "Administrator");

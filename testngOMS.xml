@@ -104,13 +104,6 @@
 					<include name="sortUsersTableTest" />
 				</methods>
 			</class>
-			<!-- LVSETOMS-53 -->
-			<class
-				name="com.softserve.edu.oms.tests.administration.ChangeNumberOfUsersTest">
-				<methods>
-					<include name="verifyChangePageNumber" />
-				</methods>
-			</class>
 		</classes>
 	</test>
 	<test name="CreateUserTest" preserve-order="true">

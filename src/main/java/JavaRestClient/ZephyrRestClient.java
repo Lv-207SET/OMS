@@ -29,7 +29,7 @@ public class ZephyrRestClient {
         return restClient;
     }
 
-//    Create cycle before tests
+//    Create test cycle
     public void createNewCycle(String cycleName, String buid, String startDate,
                                String projectId, String versionId ,String endDate, String environment){
         Entity body = Entity.json(cycleJsonParser(cycleName,buid,startDate,projectId,
@@ -44,9 +44,10 @@ public class ZephyrRestClient {
     }
 
 //    Parse cycle object to Json
-    public String cycleJsonParser(String cycleName, String buid, String startDate, String projectId, String versionId ,String endDate, String environment){
+    public String cycleJsonParser(String cycleName, String buid, String startDate, String projectId,
+                                  String versionId ,String endDate, String environment){
         Gson gson = new Gson();
-        CycleBuilder cycleBuilder = new CycleBuilder(cycleName,projectId,versionId, buid, startDate, endDate,environment);
+        Cycle cycleBuilder = new Cycle(cycleName,projectId,versionId, buid, startDate, endDate,environment);
         String jsonToObject = gson.toJson(cycleBuilder);
         System.out.println(jsonToObject);
         return jsonToObject;

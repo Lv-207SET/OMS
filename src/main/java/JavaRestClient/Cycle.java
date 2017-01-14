@@ -3,7 +3,7 @@ package JavaRestClient;
 /**
  * Created by Dmytro on 13/01/2017.
  */
-public class CycleBuilder {
+public class Cycle {
     private String name;
     private String projectId;
     private  String versionId;
@@ -12,7 +12,7 @@ public class CycleBuilder {
     private String endDate;
     private String environment;
 
-    public CycleBuilder(String name, String projectId, String versionId, String build, String startDate, String endDate, String environment) {
+    public Cycle(String name, String projectId, String versionId, String build, String startDate, String endDate, String environment) {
         this.name = name;
         this.projectId = projectId;
         this.versionId = versionId;

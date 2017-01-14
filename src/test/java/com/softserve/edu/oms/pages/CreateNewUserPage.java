@@ -21,7 +21,7 @@ public class CreateNewUserPage extends AbstractUserDataPage {
         getLoginInput().clear();
         getLoginInput().sendKeys(login);
         getFirstNameInput().sendKeys();
-        logger.info("Setting Login " + login);
+  //      logger.info("Setting Login " + login);
         return this;
     }
 

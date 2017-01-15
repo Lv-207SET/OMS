@@ -62,7 +62,7 @@ public class InvalidPasswordSetWhileNewUserCreationTest extends TestRunner{
                 .setConfirmPasswordInput(passw)
                 .setEmailInput(email);
 		
-		assertTrue(createNewUserPage.getPasswordErrorMessage().isDisplayed());
+		assertTrue(createNewUserPage.isPasswordErrorDisplayed());
 		
 		
 	}

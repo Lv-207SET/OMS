@@ -5,6 +5,7 @@ import com.softserve.edu.oms.enums.Region;
 import com.softserve.edu.oms.enums.Role;
 import com.softserve.edu.oms.locators.AbstractUserDataPageLocators;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -69,23 +70,23 @@ public abstract class AbstractUserDataPage extends AbstractBasePage {
 	}
 
 	public WebElement getLoginErrorMessage() {
-		return this.waitForElement(ERROR_LOGIN.by);
+		return this.driver.findElement(ERROR_LOGIN.by);
 	}
 
-	public WebElement getFirstNameErrorMessage() { return this.waitForElement(ERROR_FIRST_NAME.by); }
+	public WebElement getFirstNameErrorMessage() { return this.driver.findElement(ERROR_FIRST_NAME.by); }
 
-	public WebElement getLastNameErrorMessage() { return this.waitForElement(ERROR_LAST_NAME.by); }
+	public WebElement getLastNameErrorMessage() { return this.driver.findElement(ERROR_LAST_NAME.by); }
 
 	public WebElement getPasswordErrorMessage() {
-		return this.waitForElement(ERROR_PASSWORD.by);
+		return this.driver.findElement(ERROR_PASSWORD.by);
 	}
 
 	public WebElement getConfirmPasswordErrorMessage() {
-		return this.waitForElement(ERROR_CONFIRM_PASSWORD.by);
+		return this.driver.findElement(ERROR_CONFIRM_PASSWORD.by);
 	}
 
 	public WebElement getEmailErrorMessage() {
-		return this.waitForElement(ERROR_EMAIL.by);
+		return this.driver.findElement(ERROR_EMAIL.by);
 	}
 
 	// functional
@@ -127,32 +128,85 @@ public abstract class AbstractUserDataPage extends AbstractBasePage {
 	}
 
 	public String getLoginErrorMessageText() {
-		return getLoginErrorMessage().getText();
+		return waitForElement(ERROR_LOGIN.by).getText();
 	}
 
-	public Boolean getLoginError() {
-		return getLoginErrorMessage().isDisplayed();
-	}
-
-	public String getFirstNameErrorMessageText() {
-		return getFirstNameErrorMessage().getText();
-	}
+	public String getFirstNameErrorMessageText() { return waitForElement(ERROR_FIRST_NAME.by).getText(); }
 
 	public String getLastNameErrorMessageText() {
-		return getLastNameErrorMessage().getText();
+		return waitForElement(ERROR_LAST_NAME.by).getText();
 	}
 
-	public String getPasswordErrorMessageText() {
-		return getPasswordErrorMessage().getText();
-	}
+	public String getPasswordErrorMessageText() { return waitForElement(ERROR_PASSWORD.by).getText();}
 
 	public String getConfirmPasswordErrorMessageText() {
-		return getConfirmPasswordErrorMessage().getText();
+		return waitForElement(ERROR_CONFIRM_PASSWORD.by).getText();
 	}
 
 	public String getEmailErrorMessageText() {
-		return getEmailErrorMessage().getText();
+		return waitForElement(ERROR_EMAIL.by).getText();
 	}
+
+	public Boolean isLoginErrorDisplayed() {
+		try {
+			waitForElement(ERROR_LOGIN.by);
+			return true;
+		}
+		catch(TimeoutException e){
+			return false;
+		}
+	}
+
+	public Boolean isFirstNameErrorDisplayed() {
+		try {
+			waitForElement(ERROR_FIRST_NAME.by);
+			return true;
+		}
+		catch(TimeoutException e){
+			return false;
+		}
+	}
+
+	public Boolean isLastNameErrorDisplayed() {
+		try {
+			waitForElement(ERROR_LAST_NAME.by);
+			return true;
+		}
+		catch(TimeoutException e){
+			return false;
+		}
+	}
+
+	public Boolean isPasswordErrorDisplayed() {
+		try {
+			waitForElement(ERROR_PASSWORD.by);
+			return true;
+		}
+		catch(TimeoutException e){
+			return false;
+		}
+	}
+
+	public Boolean isConfirmPasswordErrorDisplayed() {
+		try {
+			waitForElement(ERROR_CONFIRM_PASSWORD.by);
+			return true;
+		}
+		catch(TimeoutException e){
+			return false;
+		}
+	}
+
+	public Boolean isEmailErrorDisplayed() {
+		try {
+			waitForElement(ERROR_EMAIL.by);
+			return true;
+		}
+		catch(TimeoutException e){
+			return false;
+		}
+	}
+
 
 	// set data
 	public AbstractUserDataPage setFirstNameInput(String firstName) {
@@ -267,7 +321,7 @@ public abstract class AbstractUserDataPage extends AbstractBasePage {
 		if (waitForElementToDisappear(AbstractUserDataPageLocators.ERROR_PASSWORD.by)
 				&& waitForElementToDisappear(AbstractUserDataPageLocators.ERROR_CONFIRM_PASSWORD.by)
 				&& waitForElementToDisappear(AbstractUserDataPageLocators.ERROR_EMAIL.by)) {
-			System.out.println("**************Input errors disappeared**************");
+			logger.info("***Input Errors Disappeared***");
 		} else {
 			throw new RuntimeException("Waiting for input errors to disappear failed!");
 		}

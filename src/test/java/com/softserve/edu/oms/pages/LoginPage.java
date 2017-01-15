@@ -88,7 +88,7 @@ public class LoginPage extends AbstractBasePage {
 
 	public void setLoginnameInput(String login) {
 		getLoginnameInput().sendKeys(login);
-        logger.info("Setting login " + login);
+        logger.info("Login {} entered in the User input field", login);
 	}
 
 	private void setLoginnameInputClear(String login) {
@@ -98,7 +98,7 @@ public class LoginPage extends AbstractBasePage {
 
 	public void setPasswordInput(String password) {
 		getPasswordInput().sendKeys(password);
-        logger.info("Setting password " + password);
+        logger.info("Password {} entered in the User input field", password);
 	}
 
 	private void setPasswordInputClear(String password) {
@@ -108,12 +108,12 @@ public class LoginPage extends AbstractBasePage {
 
 	public void clickSubmitButton() {
 		getSubmitButton().click();
-        logger.info("Submit button is clicked");
+        logger.info("Click action performed on Submit button");
     }
 
 	private void clickResetButton() {
 		getResetButton().click();
-        logger.info("Reset button is clicked");
+        logger.info("Click action performed on Reset button");
 	}
 
 	public void clickGetRememberMeCheckbox() {

@@ -6,7 +6,7 @@ import ru.yandex.qatools.allure.annotations.Step;
  * User class implements the user entity
  * from DB and page
  *
- * @since 01.12.15
+ * @since 01.12.16
  */
 public class User implements IUser {
 

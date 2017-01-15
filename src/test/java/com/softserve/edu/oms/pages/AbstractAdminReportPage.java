@@ -298,25 +298,25 @@ public abstract class AbstractAdminReportPage extends AbstractBasePage {
 	@Step("clickFirstButton")
 	public void clickFirstButton() {
 		getFirstButton().click();
-		logger.info("First button is clicked");
+		logger.info("Click action performed on First button");
 	}
 
 	@Step("clickBackwardButton")
 	public void clickBackwardButton() {
 		getBackwardButton().click();
-		logger.info("Backward button is clicked");
+		logger.info("Click action performed on Backward button");
 	}
 
 	@Step("clickForwardButton")
 	public void clickForwardButton() {
 		getForwardButton().click();
-		logger.info("Forward button is clicked");
+		logger.info("Click action performed on Forward button");
 	}
 
 	@Step("clickLastButton")
 	public void clickLastButton() {
 		getLastButton().click();
-		logger.info("Last button is clicked");
+		logger.info("Click action performed on Last button");
 	}
 
 	public void clickShowItemsLink() {

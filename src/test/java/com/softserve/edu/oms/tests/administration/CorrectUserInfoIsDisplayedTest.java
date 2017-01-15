@@ -20,7 +20,7 @@
             + "and perform user searching on the 'Administration' tab so I can manage them")
     public class CorrectUserInfoIsDisplayedTest extends TestRunner{
 
-        public static final Logger LOG = LoggerFactory.getLogger(CorrectUserInfoIsDisplayedTest.class);
+        public static final Logger logger = LoggerFactory.getLogger(CorrectUserInfoIsDisplayedTest.class);
 
         @DataProvider
         public Object[][] admUser() {
@@ -56,7 +56,7 @@
         @Step("CorrectUserInfoIsDisplayedTest")
         public void correctUserInfoIsDisplayedTest(IUser admUser) {
 
-            LOG.info("Test correctUserInfoIsDisplayed started");
+            logger.info("Test correctUserInfoIsDisplayed started");
 
             innerStep("Log in and go to users.html page");
             AdministrationPage administrationPage = loginPage
@@ -86,6 +86,6 @@
                 Assert.assertTrue(usersFromDB.get(i).CompareTo(usersFromPage.get(i)));
             }
 
-            LOG.info("Test correctUserInfoIsDisplayedTest finished");
+            logger.info("Test correctUserInfoIsDisplayedTest finished");
         }
     }

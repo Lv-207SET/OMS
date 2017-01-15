@@ -44,7 +44,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ErrorMsgConfirmPasswordTest extends TestRunner{
 
-    public static final Logger LOG = LoggerFactory.getLogger(ErrorMsgConfirmPasswordTest.class);
+    public static final Logger logger = LoggerFactory.getLogger(ErrorMsgConfirmPasswordTest.class);
     private CreateNewUserPage createNewUserPage;
     /**
      * Provides data for user login
@@ -96,7 +96,7 @@ public class ErrorMsgConfirmPasswordTest extends TestRunner{
 
         DBUtils dbUtils = new DBUtils();
 
-        LOG.info("Test verifyErrorMsgUserWithNotConfirmedPassword start");
+        logger.info("Test verifyErrorMsgUserWithNotConfirmedPassword start");
         // verify that user with chosen login does not exist
         innerStep("Verify that user with chosen login does not exist");
         assertThat(dbUtils.getUserByLogin(newUser.getLoginname()), CoreMatchers.equalTo(null));
@@ -121,7 +121,7 @@ public class ErrorMsgConfirmPasswordTest extends TestRunner{
         // verify that user with invalid confirm password is not created
         innerStep("Verify that user with invalid confirm password is not created");
         assertThat(dbUtils.getUserByLogin(newUser.getLoginname()), CoreMatchers.equalTo(null));
-        LOG.info("Test verifyErrorMsgUserWithNotConfirmedPassword done");
+        logger.info("Test verifyErrorMsgUserWithNotConfirmedPassword done");
     }
 
     /**

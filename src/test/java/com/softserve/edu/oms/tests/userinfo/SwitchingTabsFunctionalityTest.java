@@ -18,7 +18,7 @@
 
     public class SwitchingTabsFunctionalityTest extends TestRunner {
 
-        public static final Logger LOG = LoggerFactory.getLogger(SwitchingTabsFunctionalityTest.class);
+        public static final Logger logger = LoggerFactory.getLogger(SwitchingTabsFunctionalityTest.class);
 
     @DataProvider
     public Object[][] admUser() {
@@ -45,7 +45,7 @@
     @Step("TabSwitchingTest")
     public void tabSwitchingTest(IUser admUser) {
 
-        LOG.info("Test tabSwitching started");
+        logger.info("Test tabSwitching started");
 
         innerStep("Log in as Administrator");
         AdminHomePage admHomeUserPage = loginPage.successAdminLogin(admUser);
@@ -74,6 +74,6 @@
         innerStep("Verify that we are at User Info page");
         Assert.assertTrue((driver.getCurrentUrl()).contains("userInfo.htm"));
 
-        LOG.info("Test tabSwitching finished");
+        logger.info("Test tabSwitching finished");
     }
     }

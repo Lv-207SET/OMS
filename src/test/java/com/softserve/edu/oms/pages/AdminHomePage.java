@@ -19,7 +19,7 @@ import static com.softserve.edu.oms.locators.UserHomePageLocators.ORDERING_TAB;
  */
 public class AdminHomePage extends HomePage {
 
-	public static final Logger LOG = LoggerFactory.getLogger(AdminHomePage.class);
+	public static final Logger logger = LoggerFactory.getLogger(AdminHomePage.class);
 	public AdminHomePage(WebDriver driver) {
 		super(driver);
 	}
@@ -52,13 +52,13 @@ public class AdminHomePage extends HomePage {
 	@Step("Just a click on Administration tab")
 	public void clickAdministrationTab() {
 		getAdministrationTab().click();
-		LOG.info("Click action performed on Administration tab");
+		logger.info("Click action performed on Administration tab");
 		//return new AdministrationPage(driver);
 	}
 
 	public void clickOrderingTab() {
 		getOrderingTab().click();
-		LOG.info("Click action performed on Ordering tab");
+		logger.info("Click action performed on Ordering tab");
 	}
 	
     // Business Logic

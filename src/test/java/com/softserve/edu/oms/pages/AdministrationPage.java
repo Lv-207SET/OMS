@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
  */
 public class AdministrationPage extends AbstractAdminReportPage {
 
-    public static final Logger LOG = LoggerFactory.getLogger(AbstractAdminReportPage.class);
+    public static final Logger logger = LoggerFactory.getLogger(AbstractAdminReportPage.class);
 //    Constructor with driver initialization
 	public AdministrationPage(WebDriver driver) {
 		super(driver);
@@ -40,7 +40,7 @@ public class AdministrationPage extends AbstractAdminReportPage {
 				driver.switchTo().alert().dismiss();
 			}
 		} catch (NoSuchElementException e) {
-            LOG.error("No user with login {} found", login);
+            logger.error("No user with login {} found", login);
 		}
 		waitForLoad();
 		return this;
@@ -53,7 +53,7 @@ public class AdministrationPage extends AbstractAdminReportPage {
     @Step("User as role an Administrator goes from tab Administration to Create New User page")
     public CreateNewUserPage gotoCreateNewUserPage() {
         driver.findElement(AdministrationPageLocators.GO_TO_CREATE_NEW_USER_PAGE.by).click();
-        LOG.info("Click action performed on Create New User link");
+        logger.info("Click action performed on Create New User link");
         return new CreateNewUserPage(this.driver);
     }
 

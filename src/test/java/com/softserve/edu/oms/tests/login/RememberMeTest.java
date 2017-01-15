@@ -37,7 +37,7 @@ public class RememberMeTest extends TestRunner {
      * @since 16.12.16
      * @link http://ssu-jira.softserveinc.com/browse/LVSETOMS-38
      */
-    public static final Logger LOG = LoggerFactory.getLogger(RememberMeTest.class);
+    public static final Logger logger = LoggerFactory.getLogger(RememberMeTest.class);
     @Features("Authorization")
     @Stories("LVSETOMS-1 As User Admin I want to login so I can enter the system and add new users to system")
     @TestCaseId("LVSETOMS-38")
@@ -47,7 +47,7 @@ public class RememberMeTest extends TestRunner {
     @Test
     public void rememberMeTest() {
        // private
-        LOG.info("Test rememberMeTest start");
+        logger.info("Test rememberMeTest start");
         SoftAssert softAssert = new SoftAssert();
 
         IUser user= UserRepository.get().adminUser();
@@ -73,7 +73,7 @@ public class RememberMeTest extends TestRunner {
         softAssert.assertEquals(loginPage.getLoginnameInputText(),user.getLoginname());
         softAssert.assertEquals(loginPage.getPasswordInputText().length(),user.getPassword().length());
         softAssert.assertAll();
-        LOG.info("Test rememberMeTest done");
+        logger.info("Test rememberMeTest done");
     }
 }
 

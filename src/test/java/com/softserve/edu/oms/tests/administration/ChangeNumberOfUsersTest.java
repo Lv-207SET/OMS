@@ -45,7 +45,7 @@ public class ChangeNumberOfUsersTest extends TestRunner{
     private AdministrationPage administrationPage;
     private int pagesCount;
     private int numberUsers;
-    public static final Logger LOG = LoggerFactory.getLogger(ChangeNumberOfUsersTest.class);
+    public static final Logger logger = LoggerFactory.getLogger(ChangeNumberOfUsersTest.class);
     
     @DataProvider
     public Object[][] validUser() {
@@ -134,7 +134,7 @@ public class ChangeNumberOfUsersTest extends TestRunner{
     @Step("Verify changing number of pages and number of users after adding one user")
     public void verifyChangePageNumber(IUser user) {
         
-        LOG.info("Test verifyChangePageNumber start");
+        logger.info("Test verifyChangePageNumber start");
 
         int newNumberOfUsers;
         int newPagesCount;
@@ -165,6 +165,6 @@ public class ChangeNumberOfUsersTest extends TestRunner{
         Assert.assertEquals(numberUsers + 1, newNumberOfUsers);
         Assert.assertEquals(pagesCount + 1, newPagesCount);
         
-        LOG.info("Test verifyChangePageNumber done");
+        logger.info("Test verifyChangePageNumber done");
     }
 }

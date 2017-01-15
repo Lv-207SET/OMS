@@ -36,7 +36,7 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
 
 public class NavigationButtonsTest extends TestRunner {
 
-    public static final Logger LOG = LoggerFactory.getLogger(NavigationButtonsTest.class);
+    public static final Logger logger = LoggerFactory.getLogger(NavigationButtonsTest.class);
     private AdministrationPage administrationPage;
 
     /**
@@ -68,7 +68,7 @@ public class NavigationButtonsTest extends TestRunner {
     @Step("Verify navigation buttons functionality")
     public void verifyNavigationButtons() {
 
-        LOG.info("Test verifyNavigationButtons start");
+        logger.info("Test verifyNavigationButtons start");
         // determine the count of pages depending on count os users per page
         int numberUsersOnPage = administrationPage.getQuantityOfUsersPerPage();
         int numberOfFoundUsers = administrationPage.getFoundUsersNumber();
@@ -131,7 +131,7 @@ public class NavigationButtonsTest extends TestRunner {
         // verify that current page is: x#-1 of x#
         innerStep("Verify that current page is:  x#-1 of x#");
         Assert.assertTrue(administrationPage.getCurrentPageNumber() == (expectedPageCount-1));
-        LOG.info("Test verifyNavigationButtons done");
+        logger.info("Test verifyNavigationButtons done");
     }
 
     /**

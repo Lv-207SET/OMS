@@ -22,7 +22,7 @@ import static com.softserve.edu.oms.locators.AbstractUserDataPageLocators.*;
  */
 public abstract class AbstractUserDataPage extends AbstractBasePage {
 
-	public static final Logger LOG = LoggerFactory.getLogger(AbstractUserDataPage.class);
+	public static final Logger logger = LoggerFactory.getLogger(AbstractUserDataPage.class);
 
 	AbstractUserDataPage(WebDriver driver) {
 		super(driver);
@@ -212,48 +212,48 @@ public abstract class AbstractUserDataPage extends AbstractBasePage {
 	public AbstractUserDataPage setFirstNameInput(String firstName) {
 		getFirstNameInput().clear();
 		getFirstNameInput().sendKeys(firstName);
-		LOG.info("{} entered in the First Name input field", firstName);
+		logger.info("{} entered in the First Name input field", firstName);
 		return this;
 	}
 
 	public AbstractUserDataPage setLastNameInput(String lastName) {
 		getLastNameInput().clear();
 		getLastNameInput().sendKeys(lastName);
-		LOG.info("{} entered in the Last Name input field", lastName);
+		logger.info("{} entered in the Last Name input field", lastName);
 		return this;
 	}
 
 	public AbstractUserDataPage setPasswordInput(String password) {
 		getPasswordInput().clear();
 		getPasswordInput().sendKeys(password);
-		LOG.info("{} entered in the Password input field", password);
+		logger.info("{} entered in the Password input field", password);
 		return this;
 	}
 
 	public AbstractUserDataPage setConfirmPasswordInput(String confirmPassword) {
 		getConfirmPasswordInput().clear();
 		getConfirmPasswordInput().sendKeys(confirmPassword);
-		LOG.info("{} entered in the Confirm Password input field", confirmPassword);
+		logger.info("{} entered in the Confirm Password input field", confirmPassword);
 		return this;
 	}
 
 	public AbstractUserDataPage setEmailInput(String email) {
 		getEmailInput().clear();
 		getEmailInput().sendKeys(email);
-		LOG.info("{} entered in the Email input field", email);
+		logger.info("{} entered in the Email input field", email);
 		return this;
 	}
 
 	public AbstractUserDataPage setSelectRegion(Region region) {
 		getSelectRegion().selectByVisibleText(region.getRegionType());
-		LOG.info("{} Region is selected", region.toString().toLowerCase());
+		logger.info("{} Region is selected", region.toString().toLowerCase());
 		return this;
 	}
 
 	public AbstractUserDataPage setSelectRole(Role roleId) {
 		driver.findElement(By.id(roleId.getRoleId())).click();
 		waitForLoad();
-		LOG.info("{} Role is selected", roleId.toString().toLowerCase());
+		logger.info("{} Role is selected", roleId.toString().toLowerCase());
 		return this;
 	}
 
@@ -284,14 +284,14 @@ public abstract class AbstractUserDataPage extends AbstractBasePage {
 
 	public AbstractUserDataPage clickCreateButton() {
 		getCreateButton().click();
-		LOG.info("Click action performed on Create button");
+		logger.info("Click action performed on Create button");
 		return this;
 	}
 
 	public AbstractUserDataPage clickCancelButton() {
 		getCancelButton().click();
 		waitForLoad();
-		LOG.info("Click action performed on Cancel button");
+		logger.info("Click action performed on Cancel button");
 		return this;
 	}
 

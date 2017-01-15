@@ -38,14 +38,14 @@ public class CancelCreateUserTest extends TestRunner {
      * @since 16.12.16
      * @link http://ssu-jira.softserveinc.com/browse/LVSETOMS-55
      */
-    public static final Logger LOG = LoggerFactory.getLogger(CancelCreateUserTest.class);
+    public static final Logger logger = LoggerFactory.getLogger(CancelCreateUserTest.class);
 	@TestCaseId("LVSETOMS-55")
 	@Severity(SeverityLevel.CRITICAL)
     @Description("This test case verifies that new user creation is canceled by clicking "
     		+ "'Cancel' button on 'Create new user' page.")
     @Test
     public void cancelCreateUserTest() {
-        LOG.info("Test cancelCreateUserTest start");
+        logger.info("Test cancelCreateUserTest start");
         IUser user = UserRepository.get().adminUser();
 
         // check if input fields are empty
@@ -74,6 +74,6 @@ public class CancelCreateUserTest extends TestRunner {
         // check if new user isn't created
         innerStep("check if new user isn't created");
         Assert.assertNull(dbUtils.getUserByLogin(user.getLoginname()));
-        LOG.info("Test cancelCreateUserTest done");
+        logger.info("Test cancelCreateUserTest done");
     }
 }

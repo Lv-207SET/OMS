@@ -25,7 +25,7 @@ import static com.softserve.edu.oms.enums.ErrorMessagesEnum.ERROR_MESSAGE;
 
 public  class LoginWithEmptyCredentialsTest extends TestRunner {
 
-    public static final Logger LOG = LoggerFactory.getLogger(LoginWithEmptyCredentialsTest.class);
+    public static final Logger logger = LoggerFactory.getLogger(LoginWithEmptyCredentialsTest.class);
 
     /**
      * Test verifies that error message is shown,
@@ -40,7 +40,7 @@ public  class LoginWithEmptyCredentialsTest extends TestRunner {
     @Test()
     @Step
     public void verifyErrorMessageWhenUserLoginWithEmptyCredentials(){
-        LOG.info("Test verifyErrorMessageWhenUserLoginWithEmptyCredentials start");
+        logger.info("Test verifyErrorMessageWhenUserLoginWithEmptyCredentials start");
 
         // Click on 'Submit' button and get  error message
         innerStep("Click on 'Submit' button and get  error message");
@@ -52,6 +52,6 @@ public  class LoginWithEmptyCredentialsTest extends TestRunner {
         innerStep("Verify that error message is correct");
         Assert.assertEquals(currentErrorMessage, ERROR_MESSAGE.message);
 
-        LOG.info("Test verifyErrorMessageWhenUserLoginWithEmptyCredentials done");
+        logger.info("Test verifyErrorMessageWhenUserLoginWithEmptyCredentials done");
     }
 }

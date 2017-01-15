@@ -31,7 +31,7 @@ import static com.softserve.edu.oms.enums.ErrorMessagesEnum.LAST_NAME_ERROR_MESS
 
 public class CreateInvalidNewUserTest extends TestRunner {
 
-	public static final Logger LOG = LoggerFactory.getLogger(CreateInvalidNewUserTest.class);
+	public static final Logger logger = LoggerFactory.getLogger(CreateInvalidNewUserTest.class);
 
 	/**
 	 * Provides data for user creation
@@ -57,7 +57,7 @@ public class CreateInvalidNewUserTest extends TestRunner {
 	@Step
 	public void verifyErrorMessageCreatingUserWithInvalidData(IUser user) {
 
-		LOG.info("Test verifyErrorMessageCreatingUserWithInvalidData start");
+		logger.info("Test verifyErrorMessageCreatingUserWithInvalidData start");
 
 		IUser admin = UserRepository.get().adminUser();
 
@@ -81,7 +81,7 @@ public class CreateInvalidNewUserTest extends TestRunner {
 		innerStep("Verify that user with invalid 'First Name' and 'Last Name' is not created");
 		Assert.assertFalse(dbUtils.verifyThatUserIsInDB(user.getLoginname()));
 
-		LOG.info("Test verifyErrorMessageCreatingUserWithInvalidData done");
+		logger.info("Test verifyErrorMessageCreatingUserWithInvalidData done");
 	}
 
 }

@@ -21,7 +21,7 @@ import static com.softserve.edu.oms.locators.AbstractBasePageLocators.*;
 public abstract class AbstractBasePage {
 
     protected WebDriver driver;
-    public static final Logger LOG = LoggerFactory.getLogger(AbstractBasePage.class);
+    public static final Logger logger = LoggerFactory.getLogger(AbstractBasePage.class);
 
     AbstractBasePage(WebDriver driver) {
         this.driver = driver;
@@ -76,7 +76,7 @@ public abstract class AbstractBasePage {
 
     public void clickLogoutButton() {
         getLogoutButton().click();
-        LOG.info("Click action performed on Logout button");
+        logger.info("Click action performed on Logout button");
     }
 
     public void clickInspiredByGoogleLink() {
@@ -102,9 +102,9 @@ public abstract class AbstractBasePage {
             //Accepting alert.
             alert.accept();
 
-            LOG.info("Accepted the alert successfully");
+            logger.info("Accepted the alert successfully");
         } catch (Throwable e) {
-            LOG.error("Error {} came while waiting for the alert popup", e.getMessage());
+            logger.error("Error {} came while waiting for the alert popup", e.getMessage());
         }
         return this;
     }
@@ -113,7 +113,7 @@ public abstract class AbstractBasePage {
 
     public HomePage gotoUserInfoTab() {
         clickUserInfoTab();
-        LOG.info("Click action performed on User Info tab");
+        logger.info("Click action performed on User Info tab");
         return new HomePage(driver);
     }
 

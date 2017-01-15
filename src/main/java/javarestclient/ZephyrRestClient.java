@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import javarestclient.pojo.*;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.glassfish.jersey.client.ClientConfig;
-import org.glassfish.jersey.client.ClientResponse;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import org.glassfish.jersey.filter.LoggingFilter;
 import org.testng.ITestResult;
@@ -16,6 +15,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
 
 
 /**
@@ -24,6 +24,8 @@ import javax.ws.rs.core.Response;
 public class ZephyrRestClient {
     //  Global access to data
     private static volatile ZephyrRestClient instance = null;
+    public String response;
+
     // Default constructor
     private ZephyrRestClient() {
     }
@@ -43,6 +45,7 @@ public class ZephyrRestClient {
     public static final String password = System.getenv("passwordforjira");
     private static final String urlForCycle = System.getenv("urlcycle");
     private static final String urlForIssue ="http://localhost:8082/rest/api/2/issue/";
+    private static final String urlForUpdate="http://localhost:8082/rest/zapi/latest/execution";
 
     /**
      * Set up connection with zapi rest server
@@ -68,7 +71,6 @@ public class ZephyrRestClient {
                 .post(body);
         System.out.println("Status: " + responseFormServer.getStatus());
         System.out.println("Headers: " + responseFormServer.getHeaders());
-        System.out.println("Body: " + responseFormServer.readEntity(String.class));
     }
 
     /**
@@ -92,30 +94,11 @@ public class ZephyrRestClient {
         return jsonToObject;
     }
 
-    private Object parseJSONtoObject(String response){
-        ObjectMapper objectMapper = new ObjectMapper();
-        ResponseFromServer responseFromServer = new
-        return ;
-    }
-
     /**
-     * Create a test case. The data for test cases creating will
-     * be extracted from all methods which annotated with @TransferToJira
-     */
-    public void createTestCase(String testStep, String description,String issueType, String projectName){
-            Entity payload = Entity.json(ZephyrRestClient.getInstance().testCaseParseJson(testStep, description,
-                    issueType, projectName));
-            Response response = setUpConnectionWithZapi()
-                    .target(urlForIssue)
-                    .request(MediaType.APPLICATION_JSON)
-                    .post(payload);
-            System.out.println("Status: " + response.getStatus());
-            System.out.println("Headers: " + response.getHeaders());
-            String responseFromServer = response.readEntity(String.class);
-            parseJSONtoObject(responseFromServer);
-        }
-
-    public void createTestCaseFromListener(ITestResult result) {
+     * Create a test case in Jira
+     *
+     * */
+    public void createAndExecuteTestCase(ITestResult result, String issueType, String projectName) {
         String testStep = result.getMethod()
                 .getConstructorOrMethod()
                 .getMethod()
@@ -126,8 +109,52 @@ public class ZephyrRestClient {
                 .getMethod()
                 .getAnnotation(Description.class)
                 .value();
-        ZephyrRestClient.getInstance().createTestCase(testStep,description,"Test","LVSETOMS");
+        ZephyrRestClient zephyrRestClient = new ZephyrRestClient();
+        Entity payload = Entity.json(zephyrRestClient.testCaseParseJson(testStep, description,
+                issueType, projectName));
+        Response response = setUpConnectionWithZapi()
+                .target(urlForIssue)
+                .request(MediaType.APPLICATION_JSON_TYPE)
+                .post(payload);
+        System.out.println("Status: " + response.getStatus());
+        System.out.println("Headers: " + response.getHeaders());
+        String getResponseFromServer = response.readEntity(String.class);
+        parseJSONToObject(getResponseFromServer);
+    }
+
+    public void parseJSONToObject(String getResponse){
+        Gson gson = new Gson();
+        ObjectMapper objectMapper = new ObjectMapper();
+        ResponseFromServer responseFromServer = null;
+        try {
+            responseFromServer = objectMapper.readValue(getResponse, ResponseFromServer.class);
+            String response = responseFromServer.getId();
+            this.response = response;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String parseUpdateToJson() {
+        Gson gson = new Gson();
+        UpdateTestCase updateTestCase = new UpdateTestCase("200", response,"10001",
+                "10100","assignee","dimon1165");
+        String jsonToObject = gson.toJson(updateTestCase);
+        System.out.println(jsonToObject);
+        return jsonToObject;
+    }
+
+
+    public void executeAndUpdate(){
+        Entity payload = Entity.json(parseUpdateToJson());
+        Response response = setUpConnectionWithZapi()
+                .target(urlForUpdate)
+                .request(MediaType.APPLICATION_JSON_TYPE)
+                .post(payload);
+        System.out.println("Status: " + response.getStatus());
+        System.out.println("Headers: " + response.getHeaders());
+        System.out.println("Body: " + response.readEntity(String.class));
+
     }
 }
-
 

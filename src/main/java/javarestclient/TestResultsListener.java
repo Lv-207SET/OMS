@@ -14,7 +14,7 @@ public class TestResultsListener extends TestListenerAdapter{
     public void onTestSuccess(ITestResult result) {
         if(result.getStatus() == ITestResult.SUCCESS
                 && result.getMethod().getConstructorOrMethod().getMethod().isAnnotationPresent(TransferToJira.class)){
-            ZephyrRestClient.getInstance().createTestCaseFromListener(result);
+            ZephyrRestClient.getInstance().createAndExecuteTestCase(result,"Test", "LVSETOMS");
         }
     }
 
@@ -23,7 +23,8 @@ public class TestResultsListener extends TestListenerAdapter{
     public void onTestFailure(ITestResult result) {
         if(result.getStatus() == ITestResult.FAILURE
                 && result.getMethod().getConstructorOrMethod().getMethod().isAnnotationPresent(TransferToJira.class)){
-            ZephyrRestClient.getInstance().createTestCaseFromListener(result);
+            ZephyrRestClient.getInstance().createAndExecuteTestCase(result, "Test", "LVSETOMS");
+            ZephyrRestClient.getInstance().executeAndUpdate();
         }
 
     }
@@ -33,7 +34,7 @@ public class TestResultsListener extends TestListenerAdapter{
     public void onTestSkipped(ITestResult result) {
         if(result.getStatus() == ITestResult.SKIP
                 && result.getMethod().getConstructorOrMethod().getMethod().isAnnotationPresent(TransferToJira.class)){
-            ZephyrRestClient.getInstance().createTestCaseFromListener(result);
+            ZephyrRestClient.getInstance().createAndExecuteTestCase(result, "Test", "LVSETOMS");
         }
     }
 }

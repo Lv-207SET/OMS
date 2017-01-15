@@ -21,7 +21,7 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
 
     public class LoginFieldIsCaseInsensitiveTest extends TestRunner{
 
-        public static final Logger logger = LoggerFactory.getLogger(LoginFieldIsCaseInsensitiveTest.class);
+        public static final Logger LOG = LoggerFactory.getLogger(LoginFieldIsCaseInsensitiveTest.class);
 
     @DataProvider
     public Object[][] admAndNonExistingUser() {
@@ -59,7 +59,7 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
     @Step("LoginFieldIsCaseInsensitiveTest")
     public void loginFieldIsCaseInsensitiveTest(IUser admUser, IUser nonExistingUser) {
 
-        logger.info("Test loginFieldIsCaseInsensitive started");
+        LOG.info("Test loginFieldIsCaseInsensitive started");
 
         innerStep("Login and go to Create New User Page");
         CreateNewUserPage adminHomePage = loginPage.successAdminLogin(admUser)
@@ -100,14 +100,14 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
 
         Assert.assertTrue(newUserPageAgain.getLoginError());
 
-        logger.info("Test loginFieldIsCaseInsensitive finished");
+        LOG.info("Test loginFieldIsCaseInsensitive finished");
         }
 
         @Test(dataProvider = "admAndNonExistingUser")
         @Step("delete user from DB")
         public void deleteUserFromDB(IUser admUser, IUser nonExistingUser){
 
-        logger.info("Test deleteUserFromDB started");
+        LOG.info("Test deleteUserFromDB started");
 
         innerStep("Delete previously created test user from DB");
 
@@ -118,6 +118,6 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
                     nonExistingUser.getLoginname());
         }
 
-        logger.info("Test deleteUserFromDB finished");
+        LOG.info("Test deleteUserFromDB finished");
     }
     }

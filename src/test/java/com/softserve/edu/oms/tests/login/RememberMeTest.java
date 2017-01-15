@@ -1,9 +1,7 @@
 package com.softserve.edu.oms.tests.login;
 
-import com.softserve.edu.oms.tests.administration.FindingTest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -39,7 +37,7 @@ public class RememberMeTest extends TestRunner {
      * @since 16.12.16
      * @link http://ssu-jira.softserveinc.com/browse/LVSETOMS-38
      */
-    public static final Logger logger = LoggerFactory.getLogger(RememberMeTest.class);
+    public static final Logger LOG = LoggerFactory.getLogger(RememberMeTest.class);
     @Features("Authorization")
     @Stories("LVSETOMS-1 As User Admin I want to login so I can enter the system and add new users to system")
     @TestCaseId("LVSETOMS-38")
@@ -49,7 +47,7 @@ public class RememberMeTest extends TestRunner {
     @Test
     public void rememberMeTest() {
        // private
-        logger.info("Test rememberMeTest start");
+        LOG.info("Test rememberMeTest start");
         SoftAssert softAssert = new SoftAssert();
 
         IUser user= UserRepository.get().adminUser();
@@ -75,7 +73,7 @@ public class RememberMeTest extends TestRunner {
         softAssert.assertEquals(loginPage.getLoginnameInputText(),user.getLoginname());
         softAssert.assertEquals(loginPage.getPasswordInputText().length(),user.getPassword().length());
         softAssert.assertAll();
-        logger.info("Test rememberMeTest done");
+        LOG.info("Test rememberMeTest done");
     }
 }
 

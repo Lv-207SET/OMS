@@ -22,7 +22,7 @@ public class DBUtils {
     private String password = System.getenv("db_password");
     private String url = System.getenv("db_url");
 
-    public static final Logger logger = LoggerFactory.getLogger(DBUtils.class);
+    public static final Logger LOG = LoggerFactory.getLogger(DBUtils.class);
 
     /**
      * Method, which creates connection with Database
@@ -77,7 +77,7 @@ public class DBUtils {
                 rowCells = new ArrayList<>();
                 for (int i = 1; i <= columnCount; i++) {
                     rowCells.add(resultSet.getString(i));
-                    logger.info("+++\t" + resultSet.getString(i) + "\t");
+                    LOG.info("+++\t" + resultSet.getString(i) + "\t");
                 }
                 allCells.add(rowCells);
             }

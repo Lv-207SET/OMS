@@ -5,8 +5,6 @@ import com.softserve.edu.oms.data.UserRepository;
 import com.softserve.edu.oms.enums.UsersPerPage;
 import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.tests.TestRunner;
-import com.softserve.edu.oms.tests.login.LoginWithEmptyCredentialsTest;
-import org.hamcrest.CoreMatchers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -39,7 +37,7 @@ import static org.testng.Assert.assertTrue;
     		+ "user searching on the 'Administration' tab so I can manage them ")
     public class ChangeNumberOfUserPerPageTest extends TestRunner{
 
-        public static final Logger logger = LoggerFactory.getLogger(ChangeNumberOfUserPerPageTest.class);
+        public static final Logger LOG = LoggerFactory.getLogger(ChangeNumberOfUserPerPageTest.class);
 
         /**
          * Verify that correct number of records displays in a table on 'Administration' tab,
@@ -54,7 +52,7 @@ import static org.testng.Assert.assertTrue;
         @Step
         public void verifyChangeUserNumberPerPage() {
 
-            logger.info("Test verifyChangeUserNumberPerPage start");
+            LOG.info("Test verifyChangeUserNumberPerPage start");
 
             // Get admin user from UserRepository
             innerStep("Get admin user from UserRepository");
@@ -103,7 +101,7 @@ import static org.testng.Assert.assertTrue;
             innerStep("Verification that correct number of pages displayed");
             Assert.assertEquals(administrationPage.getPagesQuantity(), (int)Math.ceil(pagesNumber));
 
-            logger.info("Test verifyChangeUserNumberPerPage done");
+            LOG.info("Test verifyChangeUserNumberPerPage done");
         }
     }
 

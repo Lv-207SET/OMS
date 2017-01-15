@@ -31,7 +31,7 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
 
 public class ResetButtonTest extends TestRunner {
 
-    public static final Logger logger = LoggerFactory.getLogger(ResetButtonTest.class);
+    public static final Logger LOG = LoggerFactory.getLogger(ResetButtonTest.class);
     /**
      * Provides data for user login
      *
@@ -62,7 +62,7 @@ public class ResetButtonTest extends TestRunner {
     @Step("Verify 'Reset' button functionality")
     public void verifyResetButtonFunctionality(IUser someUser) {
 
-        logger.info("Test verifyResetButtonFunctionality start");
+        LOG.info("Test verifyResetButtonFunctionality start");
         loginPage.setLoginDataAndReset(someUser);
         innerStep("Verify that 'User' field is cleared by clicking on 'Reset' button");
         Assert.assertTrue(loginPage
@@ -72,7 +72,7 @@ public class ResetButtonTest extends TestRunner {
         Assert.assertTrue(loginPage
                 .getPasswordInputText()
                 .isEmpty());
-        logger.info("Test verifyResetButtonFunctionality done");
+        LOG.info("Test verifyResetButtonFunctionality done");
     }
 }
 

@@ -25,7 +25,7 @@ import static com.softserve.edu.oms.locators.AbstractAdminReportPageLocators.*;
  */
 public abstract class AbstractAdminReportPage extends AbstractBasePage {
 
-	public static final Logger logger = LoggerFactory.getLogger(AbstractAdminReportPage.class);
+	public static final Logger LOG = LoggerFactory.getLogger(AbstractAdminReportPage.class);
 
 	public AbstractAdminReportPage(WebDriver driver) {
 		super(driver);
@@ -298,25 +298,25 @@ public abstract class AbstractAdminReportPage extends AbstractBasePage {
 	@Step("clickFirstButton")
 	public void clickFirstButton() {
 		getFirstButton().click();
-		logger.info("Click action performed on First button");
+		LOG.info("Click action performed on First button");
 	}
 
 	@Step("clickBackwardButton")
 	public void clickBackwardButton() {
 		getBackwardButton().click();
-		logger.info("Click action performed on Backward button");
+		LOG.info("Click action performed on Backward button");
 	}
 
 	@Step("clickForwardButton")
 	public void clickForwardButton() {
 		getForwardButton().click();
-		logger.info("Click action performed on Forward button");
+		LOG.info("Click action performed on Forward button");
 	}
 
 	@Step("clickLastButton")
 	public void clickLastButton() {
 		getLastButton().click();
-		logger.info("Click action performed on Last button");
+		LOG.info("Click action performed on Last button");
 	}
 
 	public void clickShowItemsLink() {
@@ -367,7 +367,7 @@ public abstract class AbstractAdminReportPage extends AbstractBasePage {
 		inputSearchField.clear();
 		inputSearchField.sendKeys(searchTerm);
 		clickSearchButton();
-		logger.info("Searching for " + searchTerm);
+		LOG.info("Searching for " + searchTerm);
 	}
 
 	/**

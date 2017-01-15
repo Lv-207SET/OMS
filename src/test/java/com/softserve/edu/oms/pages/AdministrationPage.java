@@ -4,6 +4,8 @@ import com.softserve.edu.oms.enums.ConditionFilterDropdownList;
 import com.softserve.edu.oms.enums.FieldFilterDropdownList;
 import com.softserve.edu.oms.locators.AdministrationPageLocators;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.NoSuchElementException;
@@ -13,6 +15,7 @@ import java.util.NoSuchElementException;
  */
 public class AdministrationPage extends AbstractAdminReportPage {
 
+    public static final Logger LOG = LoggerFactory.getLogger(AbstractAdminReportPage.class);
 //    Constructor with driver initialization
 	public AdministrationPage(WebDriver driver) {
 		super(driver);
@@ -37,7 +40,7 @@ public class AdministrationPage extends AbstractAdminReportPage {
 				driver.switchTo().alert().dismiss();
 			}
 		} catch (NoSuchElementException e) {
-			System.out.println("No user with such login found");
+            LOG.error("No user with login {} found", login);
 		}
 		waitForLoad();
 		return this;
@@ -50,6 +53,7 @@ public class AdministrationPage extends AbstractAdminReportPage {
     @Step("User as role an Administrator goes from tab Administration to Create New User page")
     public CreateNewUserPage gotoCreateNewUserPage() {
         driver.findElement(AdministrationPageLocators.GO_TO_CREATE_NEW_USER_PAGE.by).click();
+        LOG.info("Click action performed on Create New User link");
         return new CreateNewUserPage(this.driver);
     }
 

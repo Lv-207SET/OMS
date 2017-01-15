@@ -12,7 +12,6 @@ import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.pages.CreateNewUserPage;
 import com.softserve.edu.oms.tests.TestRunner;
 
-import com.softserve.edu.oms.tests.administration.FindingTest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -39,14 +38,14 @@ public class CancelCreateUserTest extends TestRunner {
      * @since 16.12.16
      * @link http://ssu-jira.softserveinc.com/browse/LVSETOMS-55
      */
-    public static final Logger logger = LoggerFactory.getLogger(CancelCreateUserTest.class);
+    public static final Logger LOG = LoggerFactory.getLogger(CancelCreateUserTest.class);
 	@TestCaseId("LVSETOMS-55")
 	@Severity(SeverityLevel.CRITICAL)
     @Description("This test case verifies that new user creation is canceled by clicking "
     		+ "'Cancel' button on 'Create new user' page.")
     @Test
     public void cancelCreateUserTest() {
-        logger.info("Test cancelCreateUserTest start");
+        LOG.info("Test cancelCreateUserTest start");
         IUser user = UserRepository.get().adminUser();
 
         // check if input fields are empty
@@ -75,6 +74,6 @@ public class CancelCreateUserTest extends TestRunner {
         // check if new user isn't created
         innerStep("check if new user isn't created");
         Assert.assertNull(dbUtils.getUserByLogin(user.getLoginname()));
-        logger.info("Test cancelCreateUserTest done");
+        LOG.info("Test cancelCreateUserTest done");
     }
 }

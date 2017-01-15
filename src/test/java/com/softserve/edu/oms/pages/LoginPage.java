@@ -18,7 +18,7 @@ import static com.softserve.edu.oms.locators.LoginPageLocators.*;
  */
 public class LoginPage extends AbstractBasePage {
 
-	public static final Logger logger = LoggerFactory.getLogger(LoginPage.class);
+	public static final Logger LOG = LoggerFactory.getLogger(LoginPage.class);
 
 	//Class constructor
 	public LoginPage(WebDriver driver) {
@@ -88,7 +88,7 @@ public class LoginPage extends AbstractBasePage {
 
 	public void setLoginnameInput(String login) {
 		getLoginnameInput().sendKeys(login);
-        logger.info("Login {} entered in the User input field", login);
+        LOG.info("Login {} entered in the User input field", login);
 	}
 
 	private void setLoginnameInputClear(String login) {
@@ -98,7 +98,7 @@ public class LoginPage extends AbstractBasePage {
 
 	public void setPasswordInput(String password) {
 		getPasswordInput().sendKeys(password);
-        logger.info("Password {} entered in the User input field", password);
+        LOG.info("Password {} entered in the User input field", password);
 	}
 
 	private void setPasswordInputClear(String password) {
@@ -108,17 +108,17 @@ public class LoginPage extends AbstractBasePage {
 
 	public void clickSubmitButton() {
 		getSubmitButton().click();
-        logger.info("Click action performed on Submit button");
+        LOG.info("Click action performed on Submit button");
     }
 
 	private void clickResetButton() {
 		getResetButton().click();
-        logger.info("Click action performed on Reset button");
+        LOG.info("Click action performed on Reset button");
 	}
 
 	public void clickGetRememberMeCheckbox() {
 		getRememberMeCheckbox().click();
-        logger.info("Remember Me checkbox is checked");
+        LOG.info("Remember Me checkbox is checked");
 	}
 
 	/**
@@ -141,28 +141,28 @@ public class LoginPage extends AbstractBasePage {
     @Step("Login as Admin")
     public AdminHomePage successAdminLogin(IUser admin) {
 		setLoginData(admin);
-        logger.info("Logging as Admin");
+        LOG.info("Logging as Admin");
 		return new AdminHomePage(driver);
 	}
 
 	@Step("Login as Customer")
 	public CustomerHomePage successCustomerLogin(IUser customer){
 		setLoginData(customer);
-        logger.info("Logging as Customer");
+        LOG.info("Logging as Customer");
 		return new CustomerHomePage(driver);
 	}
 
 	@Step("Login as Merchandiser")
 	public MerchandiserHomePage successMerchandiserLogin(IUser merchandiser){
 		setLoginData(merchandiser);
-        logger.info("Logging as Merchandiser");
+        LOG.info("Logging as Merchandiser");
 		return new MerchandiserHomePage(driver);
 	}
 
 	@Step("Login as Supervisor")
 	public SupervisorHomePage successSupervisorLogin(IUser supervisor){
 		setLoginData(supervisor);
-        logger.info("Logging as Supervisor");
+        LOG.info("Logging as Supervisor");
 		return new SupervisorHomePage(driver);
 	}
 

@@ -4,6 +4,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.NoSuchElementException;
@@ -19,6 +21,7 @@ import static com.softserve.edu.oms.locators.AbstractBasePageLocators.*;
 public abstract class AbstractBasePage {
 
     protected WebDriver driver;
+    public static final Logger LOG = LoggerFactory.getLogger(AbstractBasePage.class);
 
     AbstractBasePage(WebDriver driver) {
         this.driver = driver;
@@ -73,6 +76,7 @@ public abstract class AbstractBasePage {
 
     public void clickLogoutButton() {
         getLogoutButton().click();
+        LOG.info("Click action performed on Logout button");
     }
 
     public void clickInspiredByGoogleLink() {
@@ -98,9 +102,9 @@ public abstract class AbstractBasePage {
             //Accepting alert.
             alert.accept();
 
-            System.out.println("Accepted the alert successfully.");
+            LOG.info("Accepted the alert successfully");
         } catch (Throwable e) {
-            System.err.println("Error came while waiting for the alert popup. " + e.getMessage());
+            LOG.error("Error {} came while waiting for the alert popup", e.getMessage());
         }
         return this;
     }
@@ -109,6 +113,7 @@ public abstract class AbstractBasePage {
 
     public HomePage gotoUserInfoTab() {
         clickUserInfoTab();
+        LOG.info("Click action performed on User Info tab");
         return new HomePage(driver);
     }
 

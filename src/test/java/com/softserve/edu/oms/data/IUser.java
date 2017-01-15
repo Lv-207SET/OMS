@@ -1,20 +1,26 @@
-	package com.softserve.edu.oms.data;
+package com.softserve.edu.oms.data;
 
-	public interface IUser {
+/**
+ * IUser interface is used to represent User class
+ * and insure that fields of User object could not be changed after initialization
+ *
+ * @since 01.12.16
+ */
+public interface IUser {
 
-		String getLoginname();
+    String getLoginname();
 
-		String getFirstname();
+    String getFirstname();
 
-		String getLastname();
+    String getLastname();
 
-		String getPassword();
+    String getPassword();
 
-		String getEmail();
+    String getEmail();
 
-		String getRegion();
+    String getRegion();
 
-		String getRole();
+    String getRole();
 
-		boolean CompareTo (IUser user);
-	}
+    boolean CompareTo(IUser user);
+}

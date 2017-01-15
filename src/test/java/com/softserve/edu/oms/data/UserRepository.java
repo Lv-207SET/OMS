@@ -1,5 +1,11 @@
 	package com.softserve.edu.oms.data;
 
+	/**
+	 * Repository of users needed for tests
+	 *
+	 * @version 1.0
+	 * @since 15.12.16
+	 */
 	public final class UserRepository {
 
 		private static volatile UserRepository instance = null;

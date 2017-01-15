@@ -28,16 +28,16 @@ import java.util.stream.Collectors;
 
 /**
  * Test class which verifies search function on Administration page.
- *
+ * <p>
  * Based on LVSETOMS-47 in Jira
- * 
+ *
  * @author Oleh Lavrynenko, Roman Raba
- * @since 16.12.16
  * @link http://ssu-jira.softserveinc.com/browse/LVSETOMS-47
+ * @since 16.12.16
  */
 @Features("Administration")
 @Stories("LVSETOMS-4 As Admin I want to see all existing users and perform "
-		+ "user searching on the 'Administration' tab so I can manage them ")
+        + "user searching on the 'Administration' tab so I can manage them ")
 
 public class FindingTest extends TestRunner {
 
@@ -46,7 +46,7 @@ public class FindingTest extends TestRunner {
 
     private final String VALID_NAME = UserRepository.get().adminUser().getLoginname();
     public static final Logger logger = LoggerFactory.getLogger(FindingTest.class);
-    
+
     /**
      * Set preconditions for test:
      * login with Administrator role credentials
@@ -54,7 +54,7 @@ public class FindingTest extends TestRunner {
      */
     @BeforeMethod
     public void setUp() {
-    	innerStep("Loging as administrator");
+        innerStep("Loging as administrator");
         AdminHomePage adminHomePage =
                 loginPage.successAdminLogin(UserRepository.get().adminUser());
         innerStep("Go to Administration page");
@@ -62,17 +62,17 @@ public class FindingTest extends TestRunner {
                 adminHomePage.gotoAdministrationPage();
     }
 
-    
+
     /**
      * Logout from session.
      */
     @AfterMethod
     public void tearDown() {
-    	innerStep("Log out from Application");
+        innerStep("Log out from Application");
         administrationPage.logout();
     }
 
-    
+
     /**
      * Verify that searching options in dropdown lists are correct
      *
@@ -81,8 +81,8 @@ public class FindingTest extends TestRunner {
      * @since 16.12.16
      */
     @TestCaseId("LVSETOMS-47")
-	@Severity(SeverityLevel.NORMAL)
-	@Description("Verify that searching options in dropdown lists are correct.")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Verify that searching options in dropdown lists are correct.")
     @Test
     @Step("testOptionValues")
     public void testOptionValues() {
@@ -91,17 +91,17 @@ public class FindingTest extends TestRunner {
 
         //verify that values in dropdown lists are correct and default values are correct too
         innerStep("verify that  default value in SelectField dropdown list is correct");
-                softAssert.assertEquals(administrationPage.getSelectFieldDefaultValue(), FieldFilterDropdownList.FIRST_NAME.getFieldName());
+        softAssert.assertEquals(administrationPage.getSelectFieldDefaultValue(), FieldFilterDropdownList.FIRST_NAME.getFieldName());
         innerStep("verify that  values in SelectField dropdown list are correct");
         softAssert.assertEquals(administrationPage.getSelectFieldOptions(),
-                 new HashSet<>(Arrays.asList(FieldFilterDropdownList.values()))
-                         .stream()
-                         .map(p -> p.getFieldName().toLowerCase()).collect(Collectors.toSet()));
+                new HashSet<>(Arrays.asList(FieldFilterDropdownList.values()))
+                        .stream()
+                        .map(p -> p.getFieldName().toLowerCase()).collect(Collectors.toSet()));
         innerStep("verify that  default value in SelectCondition dropdown list is correct");
         softAssert.assertEquals(administrationPage.getSelectConditionDefaultValue(), ConditionFilterDropdownList.EQUALS.getNameOfConditionFilterField());
         innerStep("verify that  values in SelectCondition dropdown list are correct");
         softAssert.assertEquals(administrationPage.getSelectConditionOptions(),
-                 new HashSet<>(Arrays.asList(ConditionFilterDropdownList.values()))
+                new HashSet<>(Arrays.asList(ConditionFilterDropdownList.values()))
                         .stream()
                         .map(condition -> condition.getNameOfConditionFilterField()).collect(Collectors.toSet()));
         softAssert.assertAll();
@@ -110,7 +110,6 @@ public class FindingTest extends TestRunner {
 
     /**
      * Verify that search for too long name  returns all active users.
-     *
      */
     @Test
     public void verifySearchTooLongName(IUser admin) {
@@ -124,7 +123,7 @@ public class FindingTest extends TestRunner {
 
         DBUtils dbUtils = new DBUtils();
         int numberOfUsers = dbUtils.getAllCells().size();
-      //verify that result  are all active users
+        //verify that result  are all active users
         softAssert.assertEquals(administrationPage.getAllUsers().size(), numberOfUsers);
         softAssert.assertAll();
         logger.info("Test verifySearchTooLongName done");
@@ -138,8 +137,8 @@ public class FindingTest extends TestRunner {
      * @since 16.12.16
      */
     @TestCaseId("LVSETOMS-47")
-   	@Severity(SeverityLevel.NORMAL)
-   	@Description("Verify that search by 'Login' and 'equals' work correctly.")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Verify that search by 'Login' and 'equals' work correctly.")
     @Test
     @Step("verifySearchByEquals")
     public void verifySearchByEquals() {
@@ -164,10 +163,10 @@ public class FindingTest extends TestRunner {
      * @version 1.0
      * @since 16.12.16
      */
-    
+
     @TestCaseId("LVSETOMS-47")
-   	@Severity(SeverityLevel.NORMAL)
-   	@Description("Verify that search by 'Login' and 'not equals' work correctly.")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Verify that search by 'Login' and 'not equals' work correctly.")
     @Test
     @Step("verifySearchByNotEquals")
     public void verifySearchByNotEquals() {
@@ -192,11 +191,10 @@ public class FindingTest extends TestRunner {
 
     /**
      * Verify that search by "Last Name" and "starts with" work correctly.
-     *
      */
     @TestCaseId("LVSETOMS-47")
-   	@Severity(SeverityLevel.NORMAL)
-   	@Description("Verify that search by 'Last Name' and 'starts with' work correctly.")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Verify that search by 'Last Name' and 'starts with' work correctly.")
     @Test
     @Step("Verify that search by last name works correctly")
     public void verifySearchLastName() {
@@ -214,14 +212,13 @@ public class FindingTest extends TestRunner {
         //Create list of user's last name attribute options 
         //from table which is on Administration page.
         administrationPage.getAllUsers()
-                          .forEach(user -> columnListFromTable.add(user.getLastname()));
+                .forEach(user -> columnListFromTable.add(user.getLastname()));
 
         //Get list user's last name attribute from DB
         dbUtils = new DBUtils();
         columnListFromDB = dbUtils.getOneColumn(SQLQueries.GET_LASTNAME_LIKE.getQuery(),
                 LabelsNamesEnum.BY_LAST_NAME.name,
-                LabelsNamesEnum.SEARCH_TEXT_NONE.name,
-                LabelsNamesEnum.SEARCH_TEXT_ER.name);
+                LabelsNamesEnum.SEARCH_TEXT_NONE.name);
 
         //Equal two lists
         innerStep("Verify equal two lists from table and DB");
@@ -232,11 +229,10 @@ public class FindingTest extends TestRunner {
 
     /**
      * Verify that search by "Login Name" and "contains" work correctly.
-     *
      */
     @TestCaseId("LVSETOMS-47")
-   	@Severity(SeverityLevel.NORMAL)
-   	@Description("Verify that search by 'Login Name' and 'contains' work correctly.")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Verify that search by 'Login Name' and 'contains' work correctly.")
     @Test
     @Step("Verify that search by login name works correctly")
     public void verifySearchLoginName() {
@@ -254,14 +250,13 @@ public class FindingTest extends TestRunner {
         //Create list of user's login name attribute options 
         //from table which is on Administration page.
         administrationPage.getAllUsers()
-                          .forEach(user -> columnListFromTable.add(user.getLoginname()));
+                .forEach(user -> columnListFromTable.add(user.getLoginname()));
 
         //Get list user's login name attribute from DB
         dbUtils = new DBUtils();
         columnListFromDB = dbUtils.getOneColumn(SQLQueries.GET_LOGIN_LIKE.getQuery(),
                 LabelsNamesEnum.BY_LOGIN_NAME.name,
-                LabelsNamesEnum.SEARCH_TEXT_NONE.name,
-                LabelsNamesEnum.SEARCH_TEXT_ER.name);
+                LabelsNamesEnum.SEARCH_TEXT_NONE.name);
 
         //Equal two lists
         innerStep("Verify equal two lists from table and DB");
@@ -272,11 +267,10 @@ public class FindingTest extends TestRunner {
 
     /**
      * Verify that search by "Role" and "does not contain" work correctly.
-     *
      */
     @TestCaseId("LVSETOMS-47")
-   	@Severity(SeverityLevel.NORMAL)
-   	@Description("Verify that search by 'Role' and 'does not contain' work correctly.")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Verify that search by 'Role' and 'does not contain' work correctly.")
     @Test
     @Step("Verify that search by role works correctly")
     public void verifySearchRole() {
@@ -289,7 +283,7 @@ public class FindingTest extends TestRunner {
         int newPagesCount;
         int numberOfItems;
 
-      //Initializing search by role
+        //Initializing search by role
         administrationPage.filterAndSearch(
                 FieldFilterDropdownList.ROLE,
                 ConditionFilterDropdownList.DOES_NOT_CONTAIN,
@@ -298,13 +292,12 @@ public class FindingTest extends TestRunner {
         //Create list of user's role attribute options 
         //from table which is on Administration page.
         administrationPage.getAllUsers()
-                          .forEach(user -> columnListFromTable.add(user.getRole()));
+                .forEach(user -> columnListFromTable.add(user.getRole()));
 
         //Get list user's login name attribute from DB
         dbUtils = new DBUtils();
         columnListFromDB = dbUtils.getOneColumn(SQLQueries.GET_ROLE_NOT_LIKE.getQuery(),
                 LabelsNamesEnum.BY_ROLE.name,
-                LabelsNamesEnum.SEARCH_TEXT_NONE.name,
                 LabelsNamesEnum.SEARCH_TEXT_ER.name);
 
         //Equal two lists
@@ -326,7 +319,7 @@ public class FindingTest extends TestRunner {
             pagesNumber = columnListFromDB.size() / numberOfItems;
         }
         newPagesCount = administrationPage.getPagesQuantity();
-        innerStep("Verify that the number of records returned by script divided" +                  
+        innerStep("Verify that the number of records returned by script divided" +
                 "by number of records displayed in the table rounded to the bigger integer");
         Assert.assertEquals(pagesNumber, newPagesCount);
         logger.info("Test verifySearchRole done");

@@ -16,6 +16,10 @@ public class Project {
         this.key = key;
     }
 
+    public Project(String key) {
+        this.key = key;
+    }
+
     @Override
     public String toString()
     {

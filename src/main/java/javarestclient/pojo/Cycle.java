@@ -4,6 +4,7 @@ package javarestclient.pojo;
  * Created by Dmytro on 13/01/2017.
  */
 public class Cycle {
+    private String  projectName;
     private String name;
     private String projectId;
     private  String versionId;
@@ -11,6 +12,8 @@ public class Cycle {
     private String startDate;
     private String endDate;
     private String environment;
+
+
 
     public Cycle(String name, String projectId, String versionId, String build, String startDate, String endDate, String environment) {
         this.name = name;

@@ -4,23 +4,13 @@ package javarestclient.pojo;
  * Created by Dmytro Voropai on 14/01/2017.
  */
 public class TestCase {
-    private String testCaseId;
     private String testStep;
     private String description;
 
 
-    public TestCase(String testCaseId, String testStep, String description) {
-        this.testCaseId = testCaseId;
+    public TestCase(String testStep, String description) {
         this.testStep = testStep;
         this.description = description;
-    }
-
-    public String getTestCaseId() {
-        return testCaseId;
-    }
-
-    public void setTestCaseId(String testCaseId) {
-        this.testCaseId = testCaseId;
     }
 
     public String getTestStep() {

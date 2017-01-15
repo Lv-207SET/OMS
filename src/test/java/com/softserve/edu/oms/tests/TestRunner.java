@@ -1,6 +1,5 @@
 package com.softserve.edu.oms.tests;
 
-import javarestclient.annotations.TransferToJiraImplementation;
 import javarestclient.ZephyrRestClient;
 import com.softserve.edu.oms.pages.LoginPage;
 import org.apache.commons.lang.SystemUtils;
@@ -57,10 +56,6 @@ public class TestRunner {
         ZephyrRestClient.getInstance().setUpConnectionWithZapi();
         ZephyrRestClient.getInstance().createNewCycle("Java", "First", "4/Dec/17", "10001",
                 "10100", "4/Dec/18", "Windows 10");
-//      Annotation Initialization
-        TransferToJiraImplementation.getAnnotatedMethods();
-//    Create test cases
-        ZephyrRestClient.createTestCase();
 }
 
     @AfterClass

@@ -1,5 +1,6 @@
 package com.softserve.edu.oms.tests.createuser;
 
+import javarestclient.TestResultsListener;
 import javarestclient.annotations.TransferToJira;
 import com.softserve.edu.oms.data.DBUtils;
 import com.softserve.edu.oms.data.IUser;
@@ -10,6 +11,7 @@ import com.softserve.edu.oms.pages.CreateNewUserPage;
 import com.softserve.edu.oms.tests.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import ru.yandex.qatools.allure.annotations.Description;
@@ -31,7 +33,7 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
  */
 @Features("Create New User")
 @Stories("LVSETOMS-3 As Administrator I want to create new user so he can log into the application")
-
+@Listeners(TestResultsListener.class)
 public class UserWithLongCredentialsCreationTest extends TestRunner{
 
     final private DBUtils dbUtils = new DBUtils();

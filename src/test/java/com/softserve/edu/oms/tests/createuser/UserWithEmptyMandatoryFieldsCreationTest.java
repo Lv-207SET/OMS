@@ -43,6 +43,7 @@ public class UserWithEmptyMandatoryFieldsCreationTest extends TestRunner {
     }
 
 
+
     @TestCaseId("LVSETOMS-49")
 	@Severity(SeverityLevel.CRITICAL)
     @Description("This test case verifies that validation on empty mandatory fields works while creating new user.")

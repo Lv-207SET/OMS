@@ -4,13 +4,19 @@ package javarestclient.pojo;
  * Created by Voropai Dmytro on 15/01/2017.
  */
 public class Fields {
-    private String summary;
 
     private Project project;
-
+    private String summary;
+    private String description;
     private Issuetype issuetype;
 
-    private String description;
+    public Fields(Project project, String summary, String description, Issuetype issuetype) {
+        this.project = project;
+        this.summary = summary;
+        this.description = description;
+        this.issuetype = issuetype;
+    }
+
 
     public String getSummary ()
     {

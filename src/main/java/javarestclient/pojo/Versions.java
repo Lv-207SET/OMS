@@ -1,10 +1,14 @@
 package javarestclient.pojo;
 
 /**
- * Created by Dmytro Voropai on 15/01/2017.
+ * Created by Nadya on 15/01/2017.
  */
-public class Issuetype {
+public class Versions {
     private String name;
+
+    public Versions(String name) {
+        this.name = name;
+    }
 
     public String getName ()
     {
@@ -13,10 +17,6 @@ public class Issuetype {
 
     public void setName (String name)
     {
-        this.name = name;
-    }
-
-    public Issuetype(String name) {
         this.name = name;
     }
 

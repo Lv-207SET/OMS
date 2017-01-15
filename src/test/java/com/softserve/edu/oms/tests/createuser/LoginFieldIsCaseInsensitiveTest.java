@@ -98,7 +98,7 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
                 .setPasswordInput(nonExistingUser.getPassword())
                 .setConfirmPasswordInput(nonExistingUser.getPassword());
 
-        Assert.assertTrue(newUserPageAgain.getLoginError());
+        Assert.assertTrue(newUserPageAgain.isLoginErrorDisplayed());
 
         LOG.info("Test loginFieldIsCaseInsensitive finished");
         }

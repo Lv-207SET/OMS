@@ -115,7 +115,7 @@ public class ErrorMsgConfirmPasswordTest extends TestRunner{
 
         // verify that correct error message appears
         innerStep("Verify that correct error message appears");
-        Assert.assertTrue(createNewUserPage.getConfirmPasswordErrorMessage().isDisplayed()
+        Assert.assertTrue(createNewUserPage.isConfirmPasswordErrorDisplayed()
                 && createNewUserPage.getConfirmPasswordErrorMessageText().equals(CONFIRM_PASSWORD_ERROR_MESSAGE.message));
 
         // verify that user with invalid confirm password is not created

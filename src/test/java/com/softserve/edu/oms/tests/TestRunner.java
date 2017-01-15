@@ -1,16 +1,13 @@
 package com.softserve.edu.oms.tests;
 
-import JavaRestClient.Annotations.TransferToJiraImplementation;
-import JavaRestClient.TestResultsListener;
-import JavaRestClient.ZephyrRestClient;
+import javarestclient.annotations.TransferToJiraImplementation;
+import javarestclient.ZephyrRestClient;
 import com.softserve.edu.oms.pages.LoginPage;
 import org.apache.commons.lang.SystemUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 
 import java.util.concurrent.TimeUnit;
 

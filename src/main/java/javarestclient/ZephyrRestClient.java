@@ -1,12 +1,11 @@
-package JavaRestClient;
+package javarestclient;
 
-import JavaRestClient.Annotations.TransferToJira;
-import JavaRestClient.Annotations.TransferToJiraImplementation;
 import com.google.gson.Gson;
+import javarestclient.pojo.Cycle;
+import javarestclient.pojo.TestCase;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import org.glassfish.jersey.filter.LoggingFilter;
-import org.testng.annotations.Test;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -14,10 +13,9 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import java.util.HashMap;
 import java.util.Map;
 
-import static JavaRestClient.Annotations.TransferToJiraImplementation.getAnnotatedMethods;
+import static javarestclient.annotations.TransferToJiraImplementation.getAnnotatedMethods;
 
 /**
  * Created by Voropai Dmytro on 13/01/2017.

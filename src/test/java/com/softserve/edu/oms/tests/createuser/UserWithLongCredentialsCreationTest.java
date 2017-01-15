@@ -1,6 +1,6 @@
 package com.softserve.edu.oms.tests.createuser;
 
-import JavaRestClient.Annotations.TransferToJira;
+import javarestclient.annotations.TransferToJira;
 import com.softserve.edu.oms.data.DBUtils;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.UserRepository;

@@ -1,6 +1,5 @@
-package JavaRestClient;
+package javarestclient;
 
-import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 
 /**

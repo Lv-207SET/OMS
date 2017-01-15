@@ -1,4 +1,4 @@
-package JavaRestClient;
+package javarestclient.pojo;
 
 /**
  * Created by Dmytro on 13/01/2017.

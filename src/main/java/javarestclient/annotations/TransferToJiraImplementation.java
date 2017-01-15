@@ -1,6 +1,6 @@
-package JavaRestClient.Annotations;
+package javarestclient.annotations;
 
-import JavaRestClient.TestCase;
+import javarestclient.pojo.TestCase;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
 import org.reflections.util.ClasspathHelper;

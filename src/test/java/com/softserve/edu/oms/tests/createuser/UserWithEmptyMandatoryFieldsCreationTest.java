@@ -1,9 +1,7 @@
 package com.softserve.edu.oms.tests.createuser;
 
-import JavaRestClient.Annotations.TransferToJiraImplementation;
-import JavaRestClient.TestResultsListener;
-import JavaRestClient.Annotations.TransferToJira;
-import JavaRestClient.ZephyrRestClient;
+import javarestclient.TestResultsListener;
+import javarestclient.annotations.TransferToJira;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.UserRepository;
 import com.softserve.edu.oms.enums.ErrorMessagesEnum;

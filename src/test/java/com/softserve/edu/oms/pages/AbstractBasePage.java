@@ -144,7 +144,7 @@ public abstract class AbstractBasePage {
 
     /**
      * This method is used to wait for elements to become visible.
-     * Mainly used in getters.
+     * Used in get data methods in corresponding page object class
      */
     protected WebElement waitForElement (final By by){
         WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver, 5)

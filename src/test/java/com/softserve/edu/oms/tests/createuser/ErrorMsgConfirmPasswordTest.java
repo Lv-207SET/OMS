@@ -97,7 +97,7 @@ public class ErrorMsgConfirmPasswordTest extends TestRunner{
         DBUtils dbUtils = new DBUtils();
 
         logger.info("Test verifyErrorMsgUserWithNotConfirmedPassword start");
-        // verify that user with chosen login does not exist
+
         innerStep("Verify that user with chosen login does not exist");
         assertThat(dbUtils.getUserByLogin(newUser.getLoginname()), CoreMatchers.equalTo(null));
 
@@ -113,12 +113,10 @@ public class ErrorMsgConfirmPasswordTest extends TestRunner{
                 .setSelectRegion(Region.getRegion(newUser.getRegion()))
                 .setSelectRole(Role.valueOf(newUser.getRole().toUpperCase()));
 
-        // verify that correct error message appears
         innerStep("Verify that correct error message appears");
         Assert.assertTrue(createNewUserPage.isConfirmPasswordErrorDisplayed()
                 && createNewUserPage.getConfirmPasswordErrorMessageText().equals(CONFIRM_PASSWORD_ERROR_MESSAGE.message));
 
-        // verify that user with invalid confirm password is not created
         innerStep("Verify that user with invalid confirm password is not created");
         assertThat(dbUtils.getUserByLogin(newUser.getLoginname()), CoreMatchers.equalTo(null));
         logger.info("Test verifyErrorMsgUserWithNotConfirmedPassword done");

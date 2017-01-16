@@ -5,7 +5,10 @@ import com.softserve.edu.oms.data.UserRepository;
 import com.softserve.edu.oms.enums.UsersPerPage;
 import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.tests.TestRunner;
+import javarestclient.TestResultsListener;
+import javarestclient.annotations.TransferToJira;
 import org.hamcrest.CoreMatchers;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import ru.yandex.qatools.allure.annotations.Description;
@@ -33,6 +36,7 @@ import static org.testng.Assert.assertTrue;
     @Features("Administration")
     @Stories("LVSETOMS-4 As Admin I want to see all existing users and perform "
     		+ "user searching on the 'Administration' tab so I can manage them ")
+    @Listeners(TestResultsListener.class)
     public class ChangeNumberOfUserPerPageTest extends TestRunner{
     	
     	/**
@@ -54,6 +58,7 @@ import static org.testng.Assert.assertTrue;
     			+ "and is 5 by default. ")
         @Test
         @Step
+        @TransferToJira
         public void verifyChangeUserNumberPerPage() {
             // Get admin user from UserRepository
            innerStep("Get admin user from UserRepository");

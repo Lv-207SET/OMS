@@ -1,7 +1,10 @@
 package com.softserve.edu.oms.tests.login;
 
 import com.softserve.edu.oms.tests.TestRunner;
+import javarestclient.TestResultsListener;
+import javarestclient.annotations.TransferToJira;
 import org.hamcrest.CoreMatchers;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import ru.yandex.qatools.allure.annotations.Description;
@@ -27,7 +30,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 @Features("Authorization")
 @Stories("LVSETOMS-1 As User Admin I want to login so I can enter the system and add new users to system")
-
+@Listeners(TestResultsListener.class)
 public  class LoginWithEmptyCredentialsTest extends TestRunner {
 
     /**
@@ -42,6 +45,7 @@ public  class LoginWithEmptyCredentialsTest extends TestRunner {
 
     @Test
     @Step
+    @TransferToJira
     public void verifyErrorMessageWhenUserLoginWithEmptyCredentials(){
 
         // Click on 'Submit' button and get  error message

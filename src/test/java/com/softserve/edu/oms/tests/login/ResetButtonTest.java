@@ -3,8 +3,11 @@ package com.softserve.edu.oms.tests.login;
 import com.softserve.edu.oms.data.IUser;
 import com.softserve.edu.oms.data.UserRepository;
 import com.softserve.edu.oms.tests.TestRunner;
+import javarestclient.TestResultsListener;
+import javarestclient.annotations.TransferToJira;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import ru.yandex.qatools.allure.annotations.Description;
@@ -26,7 +29,7 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
  */
 @Features("Authorization")
 @Stories("LVSETOMS-1 As User Admin I want to login so I can enter the system and add new users to system")
-
+@Listeners(TestResultsListener.class)
 public class ResetButtonTest extends TestRunner {
 
     /**
@@ -57,6 +60,7 @@ public class ResetButtonTest extends TestRunner {
    			+ " and 'Password' fields are cleared by clicking on 'Reset' button")
     @Test(dataProvider = "someUser")
     @Step("verify 'Reset' button functionality")
+    @TransferToJira
     public void verifyResetButtonFunctionality(IUser someUser) {
 
         loginPage.setLoginDataAndReset(someUser);

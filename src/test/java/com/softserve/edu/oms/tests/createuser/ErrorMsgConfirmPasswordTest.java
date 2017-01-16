@@ -9,12 +9,11 @@ import com.softserve.edu.oms.pages.AdminHomePage;
 import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.pages.CreateNewUserPage;
 import com.softserve.edu.oms.tests.TestRunner;
+import javarestclient.TestResultsListener;
+import javarestclient.annotations.TransferToJira;
 import org.hamcrest.CoreMatchers;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Features;
@@ -38,7 +37,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 @Features("Create New User")
 @Stories("LVSETOMS-3 As Administrator I want to create new user so he can log into the application")
-
+@Listeners(TestResultsListener.class)
 
 public class ErrorMsgConfirmPasswordTest extends TestRunner{
 
@@ -89,6 +88,7 @@ public class ErrorMsgConfirmPasswordTest extends TestRunner{
     
     @Test(dataProvider = "badMemoryUser")
     @Step("verify error message is shown while creating user with not confirmed password")
+    @TransferToJira
     public void verifyErrorMsgUserWithNotConfirmedPassword(IUser newUser) {
 
         DBUtils dbUtils = new DBUtils();

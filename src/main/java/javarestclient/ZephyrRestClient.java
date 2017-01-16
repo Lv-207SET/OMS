@@ -6,6 +6,8 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import org.glassfish.jersey.filter.LoggingFilter;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.testng.ITestResult;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Step;
@@ -19,16 +21,18 @@ import java.io.IOException;
 
 
 /**
- * Created by Voropai Dmytro on 13/01/2017.
+ * Created by Voropai Dmytro
  */
 public class ZephyrRestClient {
     //  Global access to data
     private static volatile ZephyrRestClient instance = null;
     public String response;
+    public String executionString;
 
     // Default constructor
     private ZephyrRestClient() {
     }
+
     //Singleton body
     public static ZephyrRestClient getInstance() {
         if (instance == null) {
@@ -40,17 +44,18 @@ public class ZephyrRestClient {
         }
         return instance;
     }
+
     //Get password, login and base url form environment variables
     public static final String login = System.getenv("loginforjira");
     public static final String password = System.getenv("passwordforjira");
     private static final String urlForCycle = System.getenv("urlcycle");
-    private static final String urlForIssue ="http://localhost:8082/rest/api/2/issue/";
-    private static final String urlForUpdate="http://localhost:8082/rest/zapi/latest/execution";
+    private static final String urlForIssue = "http://localhost:8082/rest/api/2/issue/";
+    private static final String urlForUpdate = "http://localhost:8082/rest/zapi/latest/execution";
 
     /**
      * Set up connection with zapi rest server
      */
-    public static Client setUpConnectionWithZapi(){
+    public static Client setUpConnectionWithZapi() {
 //        Get Basic Authentication
         HttpAuthenticationFeature httpAuthenticationFeature = HttpAuthenticationFeature.basic(login, password);
         final Client restClient = ClientBuilder.newClient(new ClientConfig().register(LoggingFilter.class));
@@ -62,33 +67,34 @@ public class ZephyrRestClient {
      * Create test cycle
      */
     public void createNewCycle(String cycleName, String buid, String startDate,
-                               String projectId, String versionId ,String endDate, String environment){
-        Entity body = Entity.json(cycleJsonParser(cycleName,buid,startDate,projectId,
-                versionId,endDate,environment));
+                               String projectId, String versionId, String endDate, String environment) {
+        Entity body = Entity.json(cycleJsonParser(cycleName, buid, startDate, projectId,
+                versionId, endDate, environment));
         Response responseFormServer = setUpConnectionWithZapi()
                 .target(urlForCycle)
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .post(body);
         System.out.println("Status: " + responseFormServer.getStatus());
         System.out.println("Headers: " + responseFormServer.getHeaders());
+        System.out.println("Headers: " + responseFormServer.readEntity(String.class));
     }
 
     /**
      * Parse object to Json
      */
     private String cycleJsonParser(String cycleName, String buid, String startDate, String projectId,
-                                  String versionId ,String endDate, String environment){
+                                   String versionId, String endDate, String environment) {
         Gson gson = new Gson();
-        Cycle cycleBuilder = new Cycle(cycleName,projectId,versionId, buid, startDate, endDate,environment);
+        Cycle cycleBuilder = new Cycle(cycleName, projectId, versionId, buid, startDate, endDate, environment);
         String jsonToObject = gson.toJson(cycleBuilder);
         System.out.println(jsonToObject);
         return jsonToObject;
     }
 
-    private String testCaseParseJson( String testStep, String description, String issueType, String projectName){
+    private String testCaseParseJson(String testStep, String description, String issueType, String projectName) {
         Gson gson = new Gson();
-        ForFields fields =new ForFields( new Fields(
-                new Project(projectName),testStep, description,new Issuetype(issueType)));
+        ForFields fields = new ForFields(new Fields(
+                new Project(projectName), testStep, description, new Issuetype(issueType)));
         String jsonToObject = gson.toJson(fields);
         System.out.println(jsonToObject);
         return jsonToObject;
@@ -96,8 +102,7 @@ public class ZephyrRestClient {
 
     /**
      * Create a test case in Jira
-     *
-     * */
+     */
     public void createAndExecuteTestCase(ITestResult result, String issueType, String projectName) {
         String testStep = result.getMethod()
                 .getConstructorOrMethod()
@@ -122,7 +127,7 @@ public class ZephyrRestClient {
         parseJSONToObject(getResponseFromServer);
     }
 
-    public void parseJSONToObject(String getResponse){
+    public void parseJSONToObject(String getResponse) {
         Gson gson = new Gson();
         ObjectMapper objectMapper = new ObjectMapper();
         ResponseFromServer responseFromServer = null;
@@ -137,15 +142,15 @@ public class ZephyrRestClient {
 
     public String parseUpdateToJson() {
         Gson gson = new Gson();
-        UpdateTestCase updateTestCase = new UpdateTestCase("200", response,"10001",
-                "10100","assignee","dimon1165");
+        UpdateTestCase updateTestCase = new UpdateTestCase("200", response, "10001",
+                "10100", "assignee", "dimon1165");
         String jsonToObject = gson.toJson(updateTestCase);
         System.out.println(jsonToObject);
         return jsonToObject;
     }
 
 
-    public void executeAndUpdate(){
+    public void addExecutionToTest() {
         Entity payload = Entity.json(parseUpdateToJson());
         Response response = setUpConnectionWithZapi()
                 .target(urlForUpdate)
@@ -153,8 +158,45 @@ public class ZephyrRestClient {
                 .post(payload);
         System.out.println("Status: " + response.getStatus());
         System.out.println("Headers: " + response.getHeaders());
-        System.out.println("Body: " + response.readEntity(String.class));
-
+        this.executionString = response.readEntity(String.class);
+        System.out.println(executionString);
     }
-}
 
+    public String getJSONElement() {
+       JSONObject jsonObject = new JSONObject(executionString);
+        JSONArray jsonArray = jsonObject.names();
+        String id = jsonArray.get(0).toString();
+        String url = "http://localhost:8082/rest/zapi/latest/execution/{id}/execute";
+        String urlForReplace = url.replace("{id}",id);
+        System.out.println(urlForReplace);
+        return urlForReplace;
+    }
+
+    public void updateTestExecutionStatusSuccess() {
+        Entity payload = Entity.json("{ \"status\": \"1\"}");
+        buildRequestBody(payload);
+    }
+
+    public void updateTestExecutionStatusFail() {
+        Entity payload = Entity.json("{ \"status\": \"2\"}");
+        buildRequestBody(payload);
+    }
+
+    public void updateTestExecutionStatusWIP() {
+        Entity payload = Entity.json("{ \"status\": \"3\"}");
+        buildRequestBody(payload);
+    }
+
+
+    private void buildRequestBody(Entity payload) {
+        String update = getJSONElement();
+        Response response = setUpConnectionWithZapi()
+                .target(update)
+                .request(MediaType.APPLICATION_JSON_TYPE)
+                .put(payload);
+        System.out.println("Status: " + response.getStatus());
+        System.out.println("Headers: " + response.getHeaders());
+        System.out.println("Body: " + response.readEntity(String.class));
+    }
+
+}

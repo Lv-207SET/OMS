@@ -59,11 +59,11 @@ public class UserWithEmptyMandatoryFieldsCreationTest extends TestRunner {
                 .acceptAlert();
 
    //  Assert that messages appear on page for all mandatory fields
-        Assert.assertNotNull(omsСreateNewUserPage.getLoginErrorMessageText());
-        Assert.assertNotNull(omsСreateNewUserPage.getFirstNameErrorMessageText());
-        Assert.assertNotNull(omsСreateNewUserPage.getLastNameErrorMessageText());
-        Assert.assertNotNull(omsСreateNewUserPage.getPasswordErrorMessageText());
-        Assert.assertNotNull(omsСreateNewUserPage.getEmailErrorMessageText());
+//        Assert.assertNotNull(omsСreateNewUserPage.getLoginErrorMessageText());
+//        Assert.assertNotNull(omsСreateNewUserPage.getFirstNameErrorMessageText());
+//        Assert.assertNotNull(omsСreateNewUserPage.getLastNameErrorMessageText());
+//        Assert.assertNotNull(omsСreateNewUserPage.getPasswordErrorMessageText());
+//        Assert.assertNotNull(omsСreateNewUserPage.getEmailErrorMessageText());
 
     //  Compare existing messages with expected
         Assert.assertEquals(omsСreateNewUserPage.getLoginErrorMessageText(),

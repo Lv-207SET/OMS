@@ -4,8 +4,11 @@ import static com.softserve.edu.oms.enums.ErrorMessagesEnum.FIRST_NAME_ERROR_MES
 import static com.softserve.edu.oms.enums.ErrorMessagesEnum.LAST_NAME_ERROR_MESSAGE;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import javarestclient.TestResultsListener;
+import javarestclient.annotations.TransferToJira;
 import org.hamcrest.CoreMatchers;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.softserve.edu.oms.data.DBUtils;
@@ -35,7 +38,7 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
  */
 @Features("Create New User")
 @Stories("LVSETOMS-3 As Administrator I want to create new user so he can log into the application")
-
+@Listeners(TestResultsListener.class)
 public class CreateInvalidNewUserTest extends TestRunner {
 
 
@@ -60,6 +63,7 @@ public class CreateInvalidNewUserTest extends TestRunner {
 
 	@Test(dataProvider = "invalidUsers")
 	@Step
+	@TransferToJira
 	public void verifyErrorMessageCreatingUserWithInvalidData(User user) {
 		IUser admin = UserRepository.get().adminUser();
 

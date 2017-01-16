@@ -5,9 +5,12 @@ import com.softserve.edu.oms.data.UserRepository;
 import com.softserve.edu.oms.pages.AdminHomePage;
 import com.softserve.edu.oms.pages.AdministrationPage;
 import com.softserve.edu.oms.tests.TestRunner;
+import javarestclient.TestResultsListener;
+import javarestclient.annotations.TransferToJira;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import ru.yandex.qatools.allure.annotations.Description;
@@ -31,7 +34,7 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
 @Features("Administration")
 @Stories("LVSETOMS-4 As Admin I want to see all existing users and perform "
 		+ "user searching on the 'Administration' tab so I can manage them ")
-
+@Listeners(TestResultsListener.class)
 public class NavigationButtonsTest extends TestRunner {
 
     private AdministrationPage administrationPage;
@@ -63,6 +66,7 @@ public class NavigationButtonsTest extends TestRunner {
 			+ "the 'Administration' tab by 'First', 'Last', 'Forward' and 'Backward' buttons.")
     @Test
     @Step("verify navigation buttons functionality")
+    @TransferToJira
     public void verifyNavigationButtons() {
 
         // determine the count of pages depending on count os users per page

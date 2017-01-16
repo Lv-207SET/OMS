@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,6 +19,13 @@ public class TestRunner {
     protected WebDriver driver;
     protected LoginPage loginPage;
 
+    @BeforeSuite
+    public void createTestCycleBeforeSuit(){
+        //      Creating new cycle with desired parameters
+        ZephyrRestClient.getInstance().setUpConnectionWithZapi();
+        ZephyrRestClient.getInstance().createNewCycle("Java", "First", "4/Dec/17", "10001",
+                "10100", "4/Dec/18", "Windows 10");
+    }
 
     @BeforeClass
     public void oneTimeSetUp() {
@@ -51,11 +59,6 @@ public class TestRunner {
 
         driver.get(loginPageUrl);
         loginPage = new LoginPage(driver);
-
-//      Creating new cycle with desired parameters
-        ZephyrRestClient.getInstance().setUpConnectionWithZapi();
-        ZephyrRestClient.getInstance().createNewCycle("Java", "First", "4/Dec/17", "10001",
-                "10100", "4/Dec/18", "Windows 10");
 }
 
     @AfterClass

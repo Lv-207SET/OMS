@@ -24,6 +24,22 @@
 					<include name="verifyCreateNewUserWithLongCredentials" />
 				</methods>
 			</class>
+<!---->
+			<class name="com.softserve.edu.oms.tests.login.ResetButtonTest">
+				<methods>
+					<include name="verifyResetButtonFunctionality"/>
+				</methods>
+			</class>
+			<class name="com.softserve.edu.oms.tests.administration.NavigationButtonsTest">
+				<methods>
+					<include name="verifyNavigationButtons"/>
+				</methods>
+			</class>
+			<class name="com.softserve.edu.oms.tests.createuser.ErrorMsgConfirmPasswordTest">
+				<methods>
+					<include name="verifyErrorMsgUserWithNotConfirmedPassword"/>
+				</methods>
+			</class>
 
 		</classes>
 	</test>  
